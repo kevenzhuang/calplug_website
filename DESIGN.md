@@ -181,11 +181,10 @@ Breakpoints (fixed; do not add others):
 
 | Width | What changes |
 |---|---|
-| 1000px and below | Menu collapses behind the Menu button |
+| 1000px and below | Menu collapses behind the three-line button; Support moves into the menu |
 | 900px | Grids of 4 and 3 cards become 2; people grid 5 becomes 3; steps 4 become 2 |
 | 760px | Home welcome and Contact top stack into one column |
 | 600px | Phone layout: one column, smaller titles, 16px page margin |
-| 480px | Header button reads "Support" |
 | 360px | Smaller logo and tighter header |
 
 ### Buttons and controls
