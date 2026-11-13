@@ -1,5 +1,5 @@
 {
-  "_note": "Extracted from calplug.org home page and /eventsarchive on 2026-11-12. date is ISO (YYYY-MM-DD) or null when the site gives none. Full agendas stay on the live site for now (see CONTENT-NOTES.md).",
+  "_note": "Extracted from calplug.org home page and /eventsarchive on 2026-11-12. date is ISO (YYYY-MM-DD) or null when the site gives none. Full agendas stay on the live site for now (see CONTENT-NOTES.md). Every item is shown with an image; items without 'image' use assets/brand/news-default.svg.",
   "events": [
     {
       "id": "annual-workshop-2026",
@@ -138,7 +138,8 @@
           "label": "Recording",
           "url": "https://betterbuildingssolutioncenter.energy.gov/webinars/beyond-energy-efficiency-how-your-device-usage-patterns-affect-energy-consumption"
         }
-      ]
+      ],
+      "image": "/wp-content/uploads/calplugpictureBBAPPL.png"
     },
     {
       "id": "workshop-3cs",

@@ -1,7 +1,9 @@
 # CalPlug Website Design Guide
 
-Version 0.2 (draft), 2026-11-12. Read this before changing any page, style or template.
+Version 0.3 (draft), 2026-11-12. Read this before changing any page, style or template.
 If a problem is not covered here, fix this guide first, then fix the page.
+
+**Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. Do not make one-off exceptions on a page.
 
 ## 1. What the site is for
 
@@ -79,9 +81,9 @@ The magenta link color on the current site is dropped. Body text and background 
 | Button | Label | Primary (blue fill) and secondary (blue outline) only |
 | Active project card | Title · years and sponsor · description · image (optional) · links | Large |
 | Project row | Years · title · sponsor · one-line summary · report link (optional) | Compact, one per completed project |
-| Publication entry | Title · authors · venue and year · links (PDF, DOI, Poster) | CalPlug members' names are not bolded in v0.1 (needs a confirmed list) |
+| Publication entry | Thumbnail · title · authors · venue and year · type tag · link | Every entry has a thumbnail (section 6) |
 | Person card | Photo · name · role or program · organization (boards) · link | One uniform placeholder when there is no photo |
-| News/event item | Date · title · one or two sentences · links | Items without a date sort last and show no date |
+| News/event item | Image · date · title · one or two sentences · links | Every item has an image (section 6). Items without a date sort last and show no date |
 | Tag | Label | For themes and types |
 
 Only things that can be clicked react to hover.
@@ -102,6 +104,24 @@ Only things that can be clicked react to hover.
 - New images are copied into `assets/`, not hot-linked from other websites. No AI-generated people.
 - Every image has alt text that describes it. Decorative images use empty alt.
 - Provide images at 1x and 2x; the hero at 1600px wide or more.
+
+### Logo
+
+- Files in `assets/brand/`: `calplug-logo.svg` (full, for light backgrounds), `calplug-logo-reversed.svg` (for the navy footer), `calplug-mark.svg` (icon only, also the favicon).
+- The SVG is a redraw of the existing logo: same icon, same blue and green, lettering set in Montserrat (open font licence) and converted to outlines. It needs the director's approval before it replaces the logo anywhere outside this site. The original PNG stays in `assets/legacy/`.
+- Do not recolor, stretch or add effects. Keep clear space around it equal to the thickness of the ring.
+
+### News images (standard)
+
+- Every news or event item has exactly one image, shown at 3:2.
+- Order of preference: a photo from the event, then the event flyer, then the default image `assets/brand/news-default.svg` (used automatically when `image` is empty).
+- New images: at least 1200 by 800 pixels, JPEG, under 400 KB, in `assets/news/`.
+
+### Publication thumbnails (standard)
+
+- Every publication has a thumbnail in a portrait slot (letter-page proportion).
+- If the entry links to a PDF, the thumbnail is the first page of that PDF, made by `tools/make_pub_thumbs.py`.
+- Otherwise the slot shows the standard tile for its type (Journal, Conference, Report, In the press). No hand-made exceptions.
 
 ## 7. Motion
 
@@ -130,6 +150,7 @@ Only things that can be clicked react to hover.
 |---|---|---|
 | 0.1 | 2026-11-12 | First draft: purpose, 7 pages, tokens from the logo, components, writing and image rules. Images from the previous site may be reused (decision: Keven). |
 | 0.2 | 2026-11-12 | Home redesigned as a lab home page (welcome + news first), after review: the first version read like a company site. Original tagline restored at Keven's request. |
+| 0.3 | 2026-11-12 | SVG logo; news image standard (every item has an image, with a default); publication thumbnails (first page of the PDF, or a type tile); 'formats come first' rule. |
 
 ## Open questions
 

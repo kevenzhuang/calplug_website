@@ -20,6 +20,9 @@ ERRORS = []
 # Version stamp so browsers fetch new CSS/JS after a change (DESIGN.md: cache and versions)
 STAMP = hashlib.sha1(b"".join(f.read_bytes() for f in sorted((SRC).rglob("*.*")))).hexdigest()[:8]
 
+NEWS_DEFAULT = "assets/brand/news-default.svg"
+PUB_LABELS = {"journal": "Journal", "conference": "Conference", "report": "Report", "press": "In the press"}
+
 NAV = [("index.html", "Home"), ("research.html", "Research"), ("publications.html", "Publications"),
        ("people.html", "People"), ("facilities.html", "Facilities"), ("news.html", "News & Events"),
        ("partner.html", "Partner")]
@@ -96,6 +99,7 @@ def page(filename, title, description, body, site):
 <meta property="og:title" content="{e(full_title)}">
 <meta property="og:description" content="{e(description)}">
 <meta property="og:type" content="website">
+<link rel="icon" href="assets/brand/calplug-mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/site.css?v={STAMP}">
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -103,7 +107,7 @@ def page(filename, title, description, body, site):
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="{e(url('/wp-content/uploads/calpluglogo-small.png'))}" alt="CalPlug, California Plug Load Research Center, University of California, Irvine" width="600" height="166"></a>
+    <a class="brand" href="index.html"><img src="assets/brand/calplug-logo.svg" alt="CalPlug, California Plug Load Research Center, University of California, Irvine" width="616" height="160"></a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav" aria-label="Main"><ul>{nav}</ul></nav>
   </div>
@@ -115,7 +119,7 @@ def page(filename, title, description, body, site):
   <div class="wrap">
     <div class="cols">
       <div>
-        <h2>{e(site['full_name'])}</h2>
+        <img class="footer-logo" src="assets/brand/calplug-logo-reversed.svg" alt="CalPlug" width="616" height="160" loading="lazy">
         <p>{'<br>'.join(e(a) for a in c['address'])}</p>
         <p>{e(c['general']['phone'])}<br><a href="mailto:{e(c['general']['email'])}">{e(c['general']['email'])}</a></p>
       </div>
@@ -149,6 +153,25 @@ def head(title, lead):
 def cta(title, text, label="Partner with us", href="partner.html"):
     return (f'<section class="cta"><div class="wrap"><div><h2>{e(title)}</h2><p>{e(text)}</p></div>'
             f'<a class="btn" href="{href}">{e(label)}</a></div></section>')
+
+
+def pub_thumb(p):
+    """First page of the PDF when we have it, otherwise the standard tile for the publication type."""
+    u = p.get("url") or ""
+    f = f"assets/pubs/{hashlib.sha1(u.encode()).hexdigest()[:12]}.jpg"
+    if u and (ROOT / f).exists():
+        return f'<div class="pubthumb"><img src="{f}" alt="" loading="lazy"></div>'
+    return f'<div class="pubthumb tile t-{p["type"]}" aria-hidden="true"><span>{PUB_LABELS[p["type"]]}</span></div>'
+
+
+def pub_entry(p, tag=True):
+    u = p.get("url")
+    title = f'<a href="{e(url(u))}">{e(p["title"])}</a>' if u else e(p["title"])
+    kind = "PDF" if (u or "").split("?")[0].lower().endswith(".pdf") else "View"
+    link = f'<a href="{e(url(u))}">{kind}</a>' if u else ""
+    meta = f'<div class="links">{f"<span class=\"tag\">{PUB_LABELS[p["type"]]}</span>" if tag else ""}{link}</div>'
+    return (f'<article class="pub" data-tags="{p["type"]}">{pub_thumb(p)}<div><h3>{title}</h3><p>{e(p["authors"])}</p>'
+            f'<p>{e(p.get("venue", ""))}{"" if tag else ", " + str(p["year"])}</p>{meta}</div></article>')
 
 
 def project_card(p):
@@ -185,8 +208,8 @@ def board(members):
 # ---------- pages ----------
 
 def news_item(ev):
-    thumb = f'<div class="thumb">{img(ev["image"], "")}</div>' if ev.get("image") else ""
-    return (f'<article class="news reveal{"" if thumb else " noimg"}">{thumb}<div><div class="when">{e(fmt_date(ev))}</div>'
+    thumb = f'<div class="thumb">{img(ev.get("image") or NEWS_DEFAULT, "")}</div>'
+    return (f'<article class="news reveal">{thumb}<div><div class="when">{e(fmt_date(ev))}</div>'
             f'<h3>{e(ev["title"])}</h3>'
             f'{f"<p>{e(ev.get("summary") or ev.get("theme") or "")}</p>" if ev.get("summary") or ev.get("theme") else ""}'
             f'{links(ev.get("links"))}</div></article>')
@@ -201,9 +224,7 @@ def build_home(site, projects, pubs, events, people, partners):
         f'<article class="row reveal"><div class="when">{years(p) or "Ongoing"}</div><div><h3>{e(p["title"])}</h3>'
         f'<p>{e(p["summary"])}</p>{f"<p class=\"meta\">{e(p["sponsor"])}</p>" if p.get("sponsor") else ""}</div></article>'
         for p in active)
-    pub = "".join(
-        f'<article class="pub reveal"><h3>{f"<a href=\"{e(url(x["url"]))}\">{e(x["title"])}</a>" if x.get("url") else e(x["title"])}</h3>'
-        f'<p>{e(x["authors"])}</p><p>{e(x.get("venue", ""))}, {x["year"]}</p></article>' for x in recent)
+    pub = "".join(pub_entry(x, tag=False) for x in recent)
     body = f"""
 <section class="welcome"><div class="wrap">
   <figure class="reveal">{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign')}</figure>
@@ -267,7 +288,7 @@ def build_research(site, projects):
 
 
 def build_publications(site, pubs):
-    labels = {"journal": "Journal", "conference": "Conference", "report": "Report", "press": "In the press"}
+    labels = PUB_LABELS
     items = pubs["publications"]
     for p in items:
         need(p, ["type", "year", "title", "authors"], "publications.json")
@@ -277,10 +298,7 @@ def build_publications(site, pubs):
     for y in sorted({p["year"] for p in items}, reverse=True):
         out += f'<section data-group><h2 class="year">{y}</h2>'
         for p in [x for x in items if x["year"] == y]:
-            kind = "PDF" if (p.get("url") or "").lower().endswith(".pdf") else "View"
-            link = f'<a href="{e(url(p["url"]))}">{kind}</a>' if p.get("url") else ""
-            out += (f'<article class="pub" data-tags="{p["type"]}"><h3>{e(p["title"])}</h3><p>{e(p["authors"])}</p>'
-                    f'<p>{e(p.get("venue", ""))}</p><div class="links"><span class="tag">{labels[p["type"]]}</span>{link}</div></article>')
+            out += pub_entry(p)
         out += "</section>"
     other_titles = {"affiliate_faculty_research": "Affiliate faculty research on plug loads", "articles": "Articles",
                     "conference_presentations": "Conference presentations", "case_studies": "Case studies",
@@ -382,7 +400,7 @@ def build_news(site, events):
     dated = sorted([x for x in evs if x.get("date")], key=lambda x: x["date"], reverse=True)
     undated = [x for x in evs if not x.get("date")]
     body = head("News & Events", "Workshops, talks and announcements from CalPlug.") + f"""
-<section class="section"><div class="wrap"><div class="rows">{''.join(event_row(x) for x in dated + undated)}</div></div></section>
+<section class="section"><div class="wrap"><div class="newslist">{''.join(news_item(x) for x in dated + undated)}</div></div></section>
 """
     return page("news.html", "News & Events", "CalPlug workshops and events.", body, site)
 

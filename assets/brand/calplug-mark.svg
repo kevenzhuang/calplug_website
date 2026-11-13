@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="CalPlug">
+<path d="M13 80A67 67 0 0 1 147 80" fill="none" stroke="#005BAA" stroke-width="20"/>
+<path d="M13 80A67 67 0 0 0 147 80" fill="none" stroke="#8BC53F" stroke-width="20"/>
+<g fill="none" stroke="#005BAA" stroke-width="6.5" stroke-linecap="round"><path d="M50.5 47.5A42 42 0 0 1 109.500 47.5"/><path d="M59.500 57A29.500 29.500 0 0 1 100.500 57"/><path d="M68.500 66.500A16.500 16.500 0 0 1 91.500 66.500"/></g>
+<path d="M61.500 92V79.500a3.200 3.200 0 0 1 6.400 0V92H92.100V79.500a3.200 3.200 0 0 1 6.400 0V92H113a33 33 0 0 1-66 0Z" fill="#8BC53F"/>
+</svg>
