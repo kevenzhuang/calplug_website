@@ -1,6 +1,6 @@
-name: Import images only
+name: Import images and documents
 
-# Downloads images listed in data/, content/legacy/ and tools/import_assets.py (EXTRA) from the old site.
+# Downloads images and PDF documents listed in data/, content/legacy/ and tools/import_assets.py (EXTRA) from the old site.
 # Unlike "Import original text, pages, images and thumbnails", it never rewrites data or pages.
 on:
   workflow_dispatch:
@@ -17,10 +17,10 @@ jobs:
         with:
           python-version: "3.12"
       - run: python tools/import_assets.py
-      - name: Commit new images
+      - name: Commit new files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets
-          git diff --cached --quiet || git commit -m "Import images from the old site"
+          git add assets wp-content
+          git diff --cached --quiet || git commit -m "Add: images and documents from the old site"
           git push

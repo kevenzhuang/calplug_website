@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA, SRC, DIST, ASSETS = ROOT / "data", ROOT / "src", ROOT / "dist", ROOT / "assets"
 OLD_SITE = "https://www.calplug.org"
 ERRORS = []
+MISSING = []  # files the data points to on the old site that have not been imported yet
 # Version stamp so browsers fetch new CSS/JS after a change (DESIGN.md: cache and versions)
 STAMP = hashlib.sha1(b"".join(f.read_bytes() for f in sorted((SRC).rglob("*.*")))).hexdigest()[:8]
 
@@ -60,10 +61,14 @@ def url(path):
     imported copy (assets/legacy for the old site, assets/ext for other sites), otherwise the original address."""
     if not path:
         return ""
+    path = re.sub(r"^https?://(?:www\.)?calplug\.org(?=/wp-content/)", "", path)
     local = None
     if path.startswith("/wp-content/uploads/"):
+        if (ROOT / path[1:]).is_file():
+            return path[1:]  # documents (PDF) keep the address they had on the old site, so links from elsewhere still work
         local = "assets/legacy/" + path[len("/wp-content/uploads/"):]
         if not (ROOT / local).exists():
+            MISSING.append(path)
             return OLD_SITE + path
     elif path.startswith("http") and re.search(r"\.(png|jpe?g|gif|webp)(\?|$)", path, re.I) and (ASSETS / "ext" / ext_name(path)).exists():
         local = "assets/ext/" + ext_name(path)
@@ -283,7 +288,7 @@ def legacy(slug):
     def href(m):
         path = m.group(1)
         if path.startswith("/wp-content/"):
-            return f'href="{OLD_SITE}{path}"'
+            return f'href="{e(url(path))}"'
         key = path.rstrip("/")
         return f'href="{OLD_LINKS[key]}"' if key in OLD_LINKS else f'href="{OLD_SITE}{path}"'
 
@@ -844,8 +849,12 @@ def main():
     shutil.copytree(SRC / "fonts", DIST / "fonts")
     if ASSETS.exists():
         shutil.copytree(ASSETS, DIST / "assets")
+    if (ROOT / "wp-content").exists():  # documents from the old site, served at their old address
+        shutil.copytree(ROOT / "wp-content", DIST / "wp-content")
     (DIST / ".nojekyll").write_text("")
     print(f"Built {len(pages)} pages into dist/")
+    if MISSING:
+        print(f"Note: {len(set(MISSING))} files still point to the old site (run the import workflow): " + ", ".join(sorted(set(MISSING))[:5]) + (" ..." if len(set(MISSING)) > 5 else ""))
 
 
 if __name__ == "__main__":
