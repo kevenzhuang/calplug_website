@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.16, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
+Version 0.17, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -41,7 +41,7 @@ Every page starts the same way: the page title (h1) on the left, a short green l
 | Page | Content, top to bottom |
 |---|---|
 | Home | Welcome (see below) · Latest news (3 list rows) · Current projects (4 small cards) · Recent publications (3 list rows) |
-| About | About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility · Contact (address, phone, email, link to Contact) (original text; small heading on the left, text on the right) |
+| About | About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility · Our logo (current and earlier logo side by side, each whole in the same white frame, with a caption) · Contact (address, phone, email, link to Contact) (original text; small heading on the left, text on the right) |
 | People | Jump links (Team · Students · Faculty · Advisory Board · Council · Alumni) · Director and staff (photo, first two sentences of the bio, "Full bio" to open the rest) · Affiliated team · Students · Affiliated faculty · Advisory Board (+ emeriti) · Chief Technology Council (+ emeriti) · Alumni |
 | Research (`research.html`) | Intro · filter by research area (draft areas, see Open questions) · Current projects (cards, two per row) · Completed projects (list rows) · Student projects |
 | Research page, Our labs | Former Facilities page: intro · three cards linking to SIM Home, 1 kWh Challenge, SIM Lab (each an original page) · floor plan, folded. `facilities.html` now sends visitors here |
@@ -191,11 +191,36 @@ Only things that can be clicked react to hover.
 - Every number, date, title and partner name needs a source. Unverified items are tracked in `CONTENT-NOTES.md` and stay off the site.
 - Names: "CalPlug", "California Plug Load Research Center", "Calit2", "UC Irvine".
 
+### Bullets, numbers, labels or sentences
+
+Choose by what the content is, never by habit. `tools/check.py` stops the build on the two most common mistakes (marked ✓).
+
+| Content | Format | Example on the site |
+|---|---|---|
+| A thought, an explanation, anything whose parts depend on each other | Sentences in a paragraph. No bullets | About CalPlug, project descriptions, bios |
+| Three or more parallel items, each short and read on its own | Bullet list | What you get / What we ask (Careers), tasks of a position, Vision |
+| Steps that happen in order | Numbered steps | How to apply |
+| Facts with a name and a value (phone, date, room, audience) | Label / value rows, no bullets, no colons | Contact cards, 1 kWh Challenge design |
+| Two items | A sentence ("A and B"), not a list | — |
+| One item | A sentence. ✓ Never a one-item list | — |
+| Items that are links to documents | A plain list with lines between rows (no bullets) | Student projects, Earlier documents |
+
+Rules inside a bullet list:
+- Every item has the same grammar: all short phrases or all full sentences. ✓ Never mixed.
+- Phrases: capital first letter, no period at the end ("Workspace, supplies and equipment"). Full sentences: a period at the end of each.
+- One idea per item, about one line; at most about six items. Longer lists become a table or are split under small headings.
+- A list is introduced by a heading or a short lead-in, not by a colon after a sentence fragment ("Why:"); copied pages are corrected to a small heading.
+- No bullets inside cards that hold a single sentence, no nested lists except in copied agendas.
+
 ## 6. Images
 
 ### Logo
 
-- Header: `assets/brand/calplug-logo-compact.png`, the icon and the CALPLUG wordmark cut from the original logo file. Lettering unchanged, nothing redrawn. About 44px high.
+- Vector logo files (`assets/brand/`, copies in `brand-kit/logos/`):
+  - `calplug-logo.svg`: the current full logo, traced with `tools/trace_logo.py` from the largest copy on the old site (`calpluglogo2022.jpg`, 1187 px). Lettering is the original's shapes, not a font.
+  - `calplug-logo-compact.svg`: the icon (`calplug-mark.svg`) and the traced CALPLUG wordmark, laid out like the earlier `calplug-logo-compact.png`. Used in the header (about 40px high).
+  - `calplug-logo-earlier.svg`: the earlier logo, traced from a 700 px screenshot (`calplug-logo-earlier-source.png`). The large letters are faithful; the small text is approximate.
+  - When the designer's original vector files are found, they replace these files under the same names.
 - The icon alone (`assets/brand/calplug-mark.svg`): redrawn as a vector by measuring the original logo file (ring outer and inner radius, horizontal split, the three arcs' centers, radii and widths, the plug's prongs and body); checked against the original pixel by pixel, differences are only at anti-aliased edges. Used for the browser tab icon, the 404 page and the default news and publication images. Never altered (no "unplugged" variant, no recoloring).
 - Replace these only with a higher-resolution or vector copy of the same artwork from the lab.
 - UC Irvine logo: the primary logo file Keven Zhuang provided (`assets/brand/uci-logo.png`, 266×45). Keep the clear space around it; nothing locked up with it; not smaller than 3/16 inch (about 18px); never redrawn or recolored. A larger or vector copy from the UC Irvine brand asset library (UCInetID login) would look sharper on high-resolution screens; swap it in when available.
@@ -352,6 +377,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.17 | 2026-11-13 | Bullet standard (section 5): when to use paragraphs, bullets, numbered steps, label / value rows or plain link lists, and the grammar inside a list; the build checks one-item lists and mixed lists. Fixed: About Vision endings, 1 kWh Challenge ("Why:" and the design list), the webinar details in the Events Archive (now label / value rows). Vector logos: current full logo, compact header logo and earlier logo, traced with the new `tools/trace_logo.py`; the header uses the SVG. About shows the current and earlier logo. Fixed: the header button had lost the space in "Support CalPlug". |
 | 0.16 | 2026-11-13 | Section 7 rewritten as the interaction standard: principles, a state table for every interactive element, and rules for links, navigation, filters, disclosures, touch sizes and motion. Code brought in line: one disclosure style with a chevron (Earlier documents are blue like other disclosures), Menu button reads Close when open and closes with Escape or a click outside, pressed states for buttons, filter results announced to screen readers, card zoom only on devices with a mouse, minimum target sizes. |
 | 0.15 | 2026-11-13 | Page icons removed (too many circles: the logo, then a ring by every title). Full visual review: Contact cards rebuilt as short titles with aligned label / value rows (Phone, Email, Web, Contact) and the Calit2 spelling fixed; footer address on its own line and no separator at a line start; affiliated team emails aligned; Home project cards without cut-off summaries; Careers research areas never split; copied pages: one-item lists turned into paragraphs, line breaks inside links removed, typos fixed, back links added; list titles kept to the text width; filter buttons scroll sideways on phones instead of wrapping into four rows. Review checklist added to section 9. |
 | 0.14 | 2026-11-13 | CalPlug icon redrawn to the original logo's measurements; it replaces the look-alike in the tab icon, About, 404 and default images. Ring icons rebuilt with the logo's ring proportions and blue line icons. Selected filter is now light blue with a blue border so the ring stays visible. Footer logos are no longer links (the top bar is the one link out). Share image and templates use the true ring. |
@@ -367,7 +393,8 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 
 ## Open questions
 
-- The original CalPlug logo as a vector file, for printed posters (brand kit).
+- The designer's original vector files of the current and earlier logos (the SVGs here are traced from bitmaps).
+- Top bar: the navy bar feels abrupt to Keven; options under discussion (keep navy, light gray, or remove).
 
 - A larger or vector copy of the UC Irvine primary logo, for sharper display (optional).
 - Research areas for the Research filter are a draft (`data/projects.json`, `themes`), for Arnold to approve.

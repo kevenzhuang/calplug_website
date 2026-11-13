@@ -8,6 +8,9 @@ For posters, flyers, slides and anything else CalPlug shows to the world. It mat
 |---|---|
 | `calplug-slides-template.pptx` | Slides (16:9): cover, section divider, content. Start every CalPlug talk from it |
 | `calplug-flyer-template.pptx` | Event flyer, US Letter portrait. Replace the text and put one photo or diagram in the gray box |
+| `logos/calplug-logo.svg` | Full logo as a vector (traced; scales to any size). Use this one |
+| `logos/calplug-logo-compact.svg` | Icon and CALPLUG wordmark only, vector |
+| `logos/calplug-logo-earlier.svg` | The earlier logo, vector (traced; small text approximate). For history pages only, not for new material |
 | `logos/calplug-logo-full.png` | Full logo with "California Plug Load Research Center, University of California, Irvine" |
 | `logos/calplug-logo-compact.png` | Icon and CALPLUG wordmark only, for small spaces |
 | `logos/calplug-mark.svg` | Icon only (the ring and plug) |
@@ -40,5 +43,5 @@ For posters, flyers, slides and anything else CalPlug shows to the world. It mat
 
 ## Still needed
 
-- The original logo as a vector file (SVG, EPS or AI). The PNG here is 600 pixels wide: fine on screens and slides, too small for large printed posters.
+- The designer's original vector files (SVG, EPS or AI). The SVGs here are traced from bitmaps: very close for the current logo, approximate for the earlier logo's small text.
 - The official UC Irvine reversed (white) logo; `uci-logo-white.png` was made by recoloring the provided file.

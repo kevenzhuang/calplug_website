@@ -28,6 +28,8 @@ Working notes for maintainers. Not published. Source: calplug.org as read on 202
 | Contact | "CalIt2 administrative offices" | "Calit2 administrative offices" | Typo |
 | 1 kWh Challenge | "accessibble"; no period after "on hold" | "accessible"; period added | Typos |
 | SIM Home | "(SIM)Home" | "(SIM) Home" | Missing space |
+| 1 kWh Challenge | "The 1KWh Challenge"; "Why:" with a one-item list; "Design" with "Label: value" bullets | "The 1 kWh Challenge"; small headings; the design facts as label / value rows | Bullet standard |
+| About, Vision | Two of three items end with a period | All three end with a period | Consistent list |
 | Events | Better Buildings webinar listed twice | Listed once | Duplicate |
 | Publications | 2021 DOE survey report listed under Journal | Moved to reports | It is a prepared-for report |
 

@@ -2,7 +2,8 @@
 """Check the built site in dist/. Run after tools/build.py. Exits 1 if anything fails.
 
 Checks: internal links and files exist, every image has an alt attribute, no placeholder text,
-exactly one h1 per page, a title and description on every page, no empty sections.
+exactly one h1 per page, a title and description on every page, no empty sections,
+and the bullet rules of DESIGN.md section 5 (no one-item lists, no lists mixing sentences and phrases).
 """
 import re
 import sys
@@ -54,6 +55,16 @@ def main():
             problems.append(f"{name}: placeholder text found: {PLACEHOLDER.search(text).group(0)!r}")
         if re.search(r'<(ul|div) class="(grid[^"]*|rows|logos[^"]*|chips[^"]*)">\s*</\1>', text):
             problems.append(f"{name}: an empty section is being published")
+        main = text[text.find("<main"):text.find("</main>")]
+        for attrs, body in re.findall(r"<ul([^>]*)>(.*?)</ul>", main, re.S):
+            if any(k in attrs for k in ("grid", "logo-grid", "plain", "steps")):
+                continue
+            items = [re.sub(r"<[^>]+>", "", x).strip() for x in re.findall(r"<li[^>]*>(.*?)</li>", body, re.S)]
+            ends = [x.endswith((".", "!", "?")) for x in items]
+            if len(items) == 1:
+                problems.append(f"{name}: a bullet list with one item (use a sentence): {items[0][:50]!r}")
+            elif 0 < sum(ends) < len(ends):
+                problems.append(f"{name}: a bullet list mixing full sentences and short phrases: {items[0][:50]!r}")
         for im in p.imgs:
             if "alt" not in im:
                 problems.append(f"{name}: image without alt: {im.get('src')}")

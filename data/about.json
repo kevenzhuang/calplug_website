@@ -13,7 +13,7 @@
       "bullets": [
         "Easy-to-use, cost-effective energy solutions targeted to the full range of real users, including disadvantaged communities, small businesses, and other hard-to-reach customers, and education and motivating them to participate.",
         "Seamless integration of plug loads into everyday life – automatically adjusting to users’ needs and usage patterns enabling user input, and giving useful feedback.",
-        "Integration of plug loads into a system approach responding to availability of renewable resources and grid considerations to support sustainability and reduce GHG impact"
+        "Integration of plug loads into a system approach responding to availability of renewable resources and grid considerations to support sustainability and reduce GHG impact."
       ]
     },
     {
@@ -47,6 +47,21 @@
         "label": "Our labs",
         "href": "research.html#labs"
       }
+    },
+    {
+      "title": "Our logo",
+      "logos": [
+        {
+          "src": "assets/brand/calplug-logo.svg",
+          "caption": "Current logo",
+          "alt": "Current CalPlug logo: a blue and green ring around a plug with signal waves, the word CALPLUG, California Plug Load Research Center, University of California, Irvine"
+        },
+        {
+          "src": "assets/brand/calplug-logo-earlier.svg",
+          "caption": "Earlier logo",
+          "alt": "Earlier CalPlug logo: the letters CalPlug drawn as a plug and cord, California Plug Load Research Center, University of California, Irvine"
+        }
+      ]
     }
   ]
 }

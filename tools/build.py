@@ -205,7 +205,7 @@ def page(filename, title, description, body, site, image=None, extra_head=""):
     <p><a href="contact.html"{" aria-current=\"page\"" if filename == "contact.html" else ""}>Contact</a></p>
   </div></div>
   <div class="wrap main-row">
-    <a class="brand" href="index.html"><img src="assets/brand/calplug-logo-compact.png" alt="CalPlug" width="517" height="96"></a>
+    <a class="brand" href="index.html"><img src="assets/brand/calplug-logo-compact.svg" alt="CalPlug" width="517" height="96"></a>
     <nav class="nav" id="nav" aria-label="Main"><ul>{nav}</ul></nav>
     <div class="header-actions">{btn}<button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button></div>
   </div>
@@ -255,12 +255,26 @@ def legacy(slug):
     return html
 
 
+def tidy_lists(html):
+    """Bullet rules (DESIGN.md section 5) applied to copied pages: a list of one item is a paragraph;
+    a list whose every item is "Label: value" is a label / value list."""
+    def fix(m):
+        items = re.findall(r"<li>(.*?)</li>", m.group(1), re.S)
+        if len(items) == 1:
+            return f"<p>{items[0].strip()}</p>"
+        pairs = [re.match(r"\s*(?:<h\d>)?\s*<strong>\s*([^<:]+?):\s*</strong>\s*(.*?)\s*(?:</h\d>)?\s*$", i, re.S) for i in items]
+        if items and all(pairs):
+            return '<dl class="facts wide">' + "".join(f"<dt>{p.group(1).strip()}</dt><dd>{p.group(2).strip()}</dd>" for p in pairs) + "</dl>"
+        return m.group(0)
+    return re.sub(r"<ul>((?:(?!<ul>).)*?)</ul>", fix, html, flags=re.S)
+
+
 LEGACY_BACK = {"events-archive.html": ("news.html", "News & Events"), "sim-home.html": ("research.html#labs", "Our labs"),
                "sim-lab.html": ("research.html#labs", "Our labs"), "1-kwh-challenge.html": ("research.html#labs", "Our labs")}
 
 
 def legacy_page(filename, title, slug, site, description):
-    html = re.sub(r"<ul>\s*<li>([^<]{200,})</li>\s*</ul>", r"<p>\1</p>", legacy(slug))
+    html = tidy_lists(legacy(slug))
     back = LEGACY_BACK.get(filename)
     back = f'<p class="back"><a href="{back[0]}">\u2190 {e(back[1])}</a></p>' if back else ""
     body = head(title) + f'<section class="section"><div class="wrap prose">{html}{back}</div></section>'
@@ -426,6 +440,10 @@ def build_about(site, about):
         inner += "".join(f"<p>{e(x)}</p>" for x in s.get("paragraphs", []))
         if s.get("bullets"):
             inner += '<ul class="bullets">' + "".join(f"<li>{e(x)}</li>" for x in s["bullets"]) + "</ul>"
+        if s.get("logos"):
+            inner += '<div class="logo-history">' + "".join(
+                f'<figure><div class="logo-frame"><img src="{e(l["src"])}" alt="{e(l["alt"])}" loading="lazy"></div><figcaption>{e(l["caption"])}</figcaption></figure>'
+                for l in s["logos"]) + "</div>"
         if s.get("link"):
             inner += f'<p><a href="{s["link"]["href"]}">{e(s["link"]["label"])} \u2192</a></p>'
         out += f'<section class="about-row"><h2>{e(s["title"])}</h2><div>{inner}</div></section>'
