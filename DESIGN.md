@@ -155,7 +155,7 @@ All content is shown with one of three blocks. The Publications list is the mode
 | Logo tile | See section 3 | Support |
 | Pill | Short navy label on the tint, thin border | Position IDs, membership levels |
 | Notice | One sentence on the tint with a 3px navy left line | Deadlines. At most one per page |
-| Steps | Numbered columns with a blue top line | How to apply |
+| Steps | Numbered columns with a navy top line | How to apply |
 | Filter | Round buttons | Publications by type, Research by research area |
 | More on demand | Closed by default ("Full bio", "Compare all benefits") | Long text that most readers skip |
 | Social icon | Single-color icon with a hidden text label | LinkedIn, Facebook, in the footer. White on hover |
