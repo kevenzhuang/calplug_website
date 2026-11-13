@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.9, 2026-11-12. Status: agreed with Keven Zhuang, not yet built into the pages.
+Version 0.9.1, 2026-11-12. Status: agreed with Keven Zhuang and built.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -58,7 +58,7 @@ Every page starts the same way: the page title (h1) on the left, a short green l
 
 Two short lines on the light footer background, with a green line on top:
 
-1. UC Irvine and Calit2 logos on the left; LinkedIn and Facebook icons on the right.
+1. On the left, one UC Irvine logo with "Calit2" as text beside it (UC Irvine's rule for several campus units: one UC Irvine logo, other unit names as text). Until the official file is obtained, "UC Irvine · Calit2" is shown as text. On the right, LinkedIn and Facebook icons.
 2. One line of small text: address · email · copyright.
 
 No site map in the footer: every page not in the menu is reached from its parent page.
@@ -109,7 +109,7 @@ No uppercase labels above headings. No underlines except on hover.
 
 ### Layout
 
-- One page width: 1000px. Everything starts at the same left edge. Only the home welcome band has its own background.
+- One page width: 1080px (wide enough for the ten-item menu). Everything starts at the same left edge. Only the home welcome band has its own background.
 - Running text is at most 720px wide. Lists use the full page width.
 - Spacing scale (px): 4, 8, 12, 16, 24, 32, 48, 64. Between sections 48; between a section title and its content 16.
 - Radius 6px. Borders 1px.
@@ -153,7 +153,7 @@ Only things that can be clicked react to hover.
 - About page: the full original logo with all three lines (`assets/legacy/calpluglogo-small.png`).
 - Browser tab icon and default images: the icon alone (`assets/brand/calplug-mark.svg`).
 - Replace these only with a higher-resolution or vector copy of the same artwork from the lab.
-- UC Irvine and Calit2 logos: official files only, used according to each owner's rules. Never redraw them.
+- UC Irvine logo: official file only (UC Irvine brand asset library, UCInetID login, or the Calit2 communications office). Keep the clear space around it; nothing locked up with it; not smaller than 3/16 inch. Calit2 is named in text next to it, not shown as a second logo. Never redraw either.
 
 ### No cropping
 
@@ -210,11 +210,10 @@ Only things that can be clicked react to hover.
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.9.1 | 2026-11-12 | Built. Page width 1080px so the ten-item menu fits; menu collapses below 1080px. Footer follows UC Irvine's rule: one UC Irvine logo plus "Calit2" in text, not two logos. |
 | 0.9 | 2026-11-12 | Agreed plan after a point-by-point review: welcome band text left and photo right at about 300px so news shows on the first screen; 10-item menu including Careers and Support; compact logo; blue and green used in a top strip, title lines, current-menu line, welcome band and footer line; two-line footer with UC Irvine and Calit2 logos and social icons; line-break rules; people photos squared from the top and checked by eye; project filter removed; Contact with building photo and map link, no embedded map. |
 
 ## Open questions
 
-- Official UC Irvine and Calit2 logo files and their usage rules (to be looked up on their official brand pages).
-- Whether UC Irvine requires specific footer links (privacy, accessibility) on unit websites.
+- The official UC Irvine logo file: download from the UC Irvine brand asset library with a UCInetID, or ask the Calit2 communications office.
 - Research areas for the Projects page, for Arnold to approve before a filter returns.
-- A higher-resolution group photo for the welcome band (the current file is 400 by 225 pixels).
