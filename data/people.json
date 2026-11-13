@@ -5,7 +5,7 @@
     "title": "Director of CalPlug; Former Director of Calit2 UCI Division",
     "email": "gpli@calit2.uci.edu",
     "photo": "/wp-content/uploads/gp-li-300dpi_cropped-2.jpg",
-    "bio": "G. P. Li is a professor at the University of California, Irvine, with appointments in two departments: Electrical Engineering and Computer Science and Biomedical Engineering, and Materials and Manufacturing Technology program. Dr. Li served as director of California Institute for Telecommunications and Information Technology (Calit2) from 2007 to 2025, which develops solutions for digital transformation of energy and environmental industrial sectors. Dr. Li also serves as director of the Integrated Nanosystems Research Facility (INRF) in The Henry Samueli School of Engineering, which researches and develops sensors and actuators for industry 4.0 applications. Furthermore, he serves as director of California Plug Load Research Center (CalPlug), which research and develop solutions for improving flexible demand plug loads’ energy efficiency and their active management. Dr. Li holds 38 U.S. patents with additional 11 patents pending and has published more than 400 research papers involving microelectronic technologies, microwave circuit design, Micro-Electro-Mechanical Systems (MEMS) for communication and biomedical instrumentation applications, bio-nano-IT technology, and AI for efficient energy utilization and manufacturing.",
+    "bio": "G. P. Li is a professor at the University of California, Irvine, with appointments in two departments: Electrical Engineering and Computer Science and Biomedical Engineering, and Materials and Manufacturing Technology program. Dr. Li served as director of California Institute for Telecommunications and Information Technology (Calit2) from 2007 to 2025, which develops solutions for digital transformation of energy and environmental industrial sectors. Dr. Li also serves as director of the Integrated Nanosystems Research Facility (INRF) in The Henry Samueli School of Engineering, which researches and develops sensors and actuators for industry 4.0 applications. Furthermore, he serves as director of California Plug Load Research Center (CalPlug), which researches and develops solutions for improving flexible demand plug loads’ energy efficiency and their active management. Dr. Li holds 38 U.S. patents with an additional 11 patents pending and has published more than 400 research papers involving microelectronic technologies, microwave circuit design, Micro-Electro-Mechanical Systems (MEMS) for communication and biomedical instrumentation applications, bio-nano-IT technology, and AI for efficient energy utilization and manufacturing.",
     "links": [
       {
         "label": "INRF",
@@ -19,7 +19,7 @@
       "title": "Assistant Project Scientist",
       "email": "shuoyuw@uci.edu",
       "photo": "/wp-content/uploads/image001-scaled.jpg",
-      "bio": "Shuoyu (Arnold) Wang joined CalPlug as a postdoctoral scholar in 2024. Prior to joining CalPlug, he was a post-graduate intern within the Building Energy Science Group at National Renewable Energy Laboratory(NREL). Dr. Wang holds a Ph.D. in structural engineering from Lehigh University and a M.S. in civil engineering from University of Southern California. He also received his B.S. in civil engineering from Southwest Jiaotong University, China. Dr. Wang’s research focuses on development of intelligent AI-based management and control of energy systems from end-devices to whole-building levels, optimization of grid operations through load forecasting, and energy storage systems with focus on sensible and latent thermal energy storage (TES) in industrial and building applications. He has a diverse expertise in actionable intelligence (AI), machine learning (ML)/deep learning (DL), thermal computation analysis with transient heat transfer and computational fluid dynamic (CFD) modeling, material characterization in TES applications, and integration of building structural components with energy efficiency and energy storage systems."
+      "bio": "Shuoyu (Arnold) Wang joined CalPlug as a postdoctoral scholar in 2024. Prior to joining CalPlug, he was a post-graduate intern within the Building Energy Science Group at National Renewable Energy Laboratory (NREL). Dr. Wang holds a Ph.D. in structural engineering from Lehigh University and an M.S. in civil engineering from University of Southern California. He also received his B.S. in civil engineering from Southwest Jiaotong University, China. Dr. Wang’s research focuses on development of intelligent AI-based management and control of energy systems from end-devices to whole-building levels, optimization of grid operations through load forecasting, and energy storage systems with focus on sensible and latent thermal energy storage (TES) in industrial and building applications. He has diverse expertise in actionable intelligence (AI), machine learning (ML)/deep learning (DL), thermal computation analysis with transient heat transfer and computational fluid dynamic (CFD) modeling, material characterization in TES applications, and integration of building structural components with energy efficiency and energy storage systems."
     }
   ],
   "affiliated_team": [
@@ -224,7 +224,7 @@
       "photo": "/wp-content/uploads/Leverato2.jpg"
     },
     {
-      "name": "G.P. Li, Ph.D.",
+      "name": "G. P. Li, Ph.D.",
       "dept": "Electrical Engineering & Computer Science / Biomedical Engineering / Chemical Engineering & Materials Science",
       "email": "gpli@uci.edu",
       "url": "https://engineering.uci.edu/users/gp-li",
@@ -516,7 +516,7 @@
     {
       "name": "Mukesh Khattar",
       "title": "Technical Executive",
-      "org": "Electric Power Research Institute (EPRI)",
+      "org": "Electric Power Research Institute",
       "org_url": "https://www.epri.com/",
       "photo": "/wp-content/uploads/images-3.jpg"
     },

@@ -121,6 +121,13 @@ def links(items):
         f'<a href="{e(url(l["url"]))}">{e(l["label"])}</a>' for l in items) + "</div>"
 
 
+def more_link(href, label):
+    """A text link that stands alone. The arrow (added by CSS on .more) means "another page of this site" and nothing
+    else, so links that leave the site, write an e-mail or jump within the page do not get the class (DESIGN.md section 3)."""
+    cls = ' class="more"' if re.match(r"[a-z0-9-]+\.html", href) else ""
+    return f'<a{cls} href="{e(href)}">{e(label)}</a>'
+
+
 def paras(p):
     """Original description as a list of paragraphs (data may hold a string or a list)."""
     d = p.get("description") or []
@@ -350,14 +357,13 @@ def pub_entry(p, tag=True):
             f'<p>{e(p.get("venue", ""))}{"" if tag else ", " + str(p["year"])}</p>{meta}</div></article>')
 
 
-def person(p, sub):
+def person(p, sub, tag="h3"):
     pos = f' style="object-position: {e(p["photo_position"])}"' if p.get("photo_position") else ""
     pic = img(p["photo"], f'Portrait of {p["name"]}').replace("<img ", f"<img{pos} ", 1) if p.get("photo") else f'<div class="ph" aria-hidden="true">{e(initials(p["name"]))}</div>'
-    name = e(p["name"])
-    link = p.get("linkedin") or p.get("url")
-    if link:
-        name = f'<a href="{e(link)}">{name}</a>'
-    return f'<li class="person">{pic}<h3>{name}</h3>{"".join(f"<p>{e(s)}</p>" for s in sub if s)}</li>'
+    # Names are never links: in a grid where only some people have a page, linked names made a patchwork of blue and
+    # black. The link gets its own line and says where it goes (DESIGN.md section 4, People).
+    link = "".join(f'<p><a href="{e(p[k])}">{label}</a></p>' for k, label in (("linkedin", "LinkedIn"), ("url", "Profile")) if p.get(k))
+    return f'<li class="person">{pic}<{tag}>{e(p["name"])}</{tag}>{"".join(f"<p>{e(s)}</p>" for s in sub if s)}{link}</li>'
 
 
 # ---------- pages ----------
@@ -381,7 +387,13 @@ def limit(text, n, where):
 
 
 def project_page_name(p):
-    return f"project-{p['id']}.html"
+    """A project's page. 'page' in the data names an existing page instead (SIM Home has its lab page), so that
+    one subject never has two pages with the same title."""
+    return p.get("page") or f"project-{p['id']}.html"
+
+
+def has_page(p):
+    return bool(paras(p) or p.get("page"))
 
 
 def project_meta(p, themes):
@@ -423,9 +435,9 @@ def project_row(p, themes):
     href = project_page_name(p)
     meta = " · ".join(x for x in [e(p.get("sponsor", "")), theme_names(p, themes)] if x)
     ls = list(p.get("links") or [])
-    more = f'<a class="more" href="{href}">Details</a>' if paras(p) else ""
+    more = f'<a class="more" href="{href}">Details</a>' if has_page(p) else ""
     link_html = '<div class="links">' + "".join(f'<a href="{e(url(l["url"]))}">{e(l["label"])}</a>' for l in ls) + more + "</div>"
-    title = f'<a href="{href}">{e(p["title"])}</a>' if paras(p) else e(p["title"])
+    title = f'<a href="{href}">{e(p["title"])}</a>' if has_page(p) else e(p["title"])
     return (f'<article class="item" id="{e(p["id"])}" data-tags="{" ".join(p.get("themes", []))}"><div class="when">{years(p) or "Ongoing"}</div>'
             f'<div><h3>{title}</h3><p class="meta">{meta}</p>'
             f'{f"<p>{e(p["summary"])}</p>" if p.get("summary") else ""}{link_html}</div></article>')
@@ -488,12 +500,12 @@ def build_about(site, about):
         if s.get("logo"):
             inner += f'<img class="about-logo" src="{e(s["logo"]["src"])}" alt="{e(s["logo"]["alt"])}" loading="lazy">'
         if s.get("link"):
-            inner += f'<p><a href="{s["link"]["href"]}">{e(s["link"]["label"])} \u2192</a></p>'
+            inner += f'<p class="links">{more_link(s["link"]["href"], s["link"]["label"])}</p>'
         out += f'<section class="about-row"><h2>{e(s["title"])}</h2><div>{inner}</div></section>'
     c = site["contact"]
     out += (f'<section class="about-row" id="contact"><h2>Contact</h2><div><p>{"<br>".join(e(a) for a in c["address"])}</p>'
             f'<p>{e(c["general"]["phone"])} · <a href="mailto:{e(c["general"]["email"])}">{e(c["general"]["email"])}</a></p>'
-            f'<p><a class="more" href="contact.html">Directions and all contacts</a></p></div></section>')
+            f'<p class="links">{more_link("contact.html", "Directions and all contacts")}</p></div></section>')
     body = head("About") + f'<div class="wrap about">{out}</div>'
     return page("about.html", "About", about["sections"][0]["paragraphs"][0][:155], body, site)
 
@@ -601,9 +613,9 @@ def build_people(site, people, partners):
                 f'<p class="meta">{e(title)}<a href="mailto:{e(p["email"])}">{e(p["email"])}</a></p><p>{e(short)}</p>{more}</div></div>')
 
     team = "".join(
-        f'<div class="card"><div class="card-body"><h3>{e(a["name"])}</h3><p>{e(a["title"])}</p><p class="bottom"><a href="mailto:{e(a["email"])}">{e(a["email"])}</a></p></div></div>'
+        f'<div class="card"><div class="card-body"><h4>{e(a["name"])}</h4><p>{e(a["title"])}</p><p class="bottom"><a href="mailto:{e(a["email"])}">{e(a["email"])}</a></p></div></div>'
         for a in people["affiliated_team"])
-    grid = lambda items, sub: '<ul class="grid c5">' + "".join(person(x, sub(x)) for x in items) + "</ul>"
+    grid = lambda items, sub, tag="h3": '<ul class="grid c5">' + "".join(person(x, sub(x), tag) for x in items) + "</ul>"
     boardsub = lambda m: [m.get("role"), m.get("title"), m.get("org")]
     jump = [("team", "Team"), ("students", "Students"), ("faculty", "Faculty"), ("advisory-board", "Advisory Board"),
             ("technology-council", "Council"), ("alumni", "Alumni")]
@@ -626,12 +638,12 @@ def build_people(site, people, partners):
 <section class="section" id="advisory-board"><div class="wrap">
   <h2>Advisory Board</h2>
   {grid(people['advisory_board'], boardsub)}
-  <h3 class="sub">Board members emeriti</h3>{grid(people['advisory_board_emeriti'], boardsub)}
+  <h3 class="sub">Board members emeriti</h3>{grid(people['advisory_board_emeriti'], boardsub, "h4")}
 </div></section>
 <section class="section" id="technology-council"><div class="wrap">
   <h2>Chief Technology Council</h2>
   {grid(people['technology_council'], boardsub)}
-  <h3 class="sub">Council members emeriti</h3>{grid(people['technology_council_emeriti'], boardsub)}
+  <h3 class="sub">Council members emeriti</h3>{grid(people['technology_council_emeriti'], boardsub, "h4")}
 </div></section>
 <section class="section" id="alumni"><div class="wrap">
   <h2>Alumni</h2>
@@ -670,7 +682,7 @@ def mentor_line(ms):
     return f'<div class="mentor"><div class="faces">{pics}</div><p>Mentor{"s" if len(ms) > 1 else ""}: {names}</p></div>'
 
 
-def build_careers(site, c):
+def build_careers(site, c, projects):
     limit(c["intro"], 45, "careers.json intro")
     for p in c["positions"]:
         need(p, ["id", "title", "mentors", "description"], "careers.json positions")
@@ -681,6 +693,9 @@ def build_careers(site, c):
     for p in c["positions"]:
         tasks = '<ul class="ticks">' + "".join(f"<li>{e(t)}</li>" for t in p.get("tasks", [])) + "</ul>" if p.get("tasks") else ""
         more = f'<p class="meta">More info: <a href="{e(p["link"]["url"])}">{e(p["link"]["label"])}</a></p>' if p.get("link") else ""
+        if p.get("project"):
+            pr = projects[p["project"]]
+            more = f'<p class="meta">Project: {more_link(project_page_name(pr), pr.get("short_title") or pr["title"])}</p>'
         pos += (f'<article class="card position"><div class="card-body"><p><span class="pill">{e(p["id"])}</span></p><h3>{e(p["title"])}</h3>'
                 f'<p>{e(p["description"])}</p>{tasks}{more}{mentor_line(p["mentors"])}</div></article>')
     steps = "".join(f'<li><h3>{e(s["title"])}</h3><p>{e(s["text"])}</p></li>' for s in c["apply"])
@@ -735,7 +750,7 @@ def build_support(site, s):
     head_row = "<tr><th scope=\"col\">Benefit</th>" + "".join(f'<th scope="col" class="c">{e(t)}</th>' for t in tiers) + "</tr>"
     ways = ""
     for w in s["ways"]:
-        act = f'<div class="links"><a class="more" href="{e(w["action"]["url"])}">{e(w["action"]["label"])}</a></div>' if w.get("action") else ""
+        act = f'<div class="links">{more_link(w["action"]["url"], w["action"]["label"])}</div>' if w.get("action") else ""
         ways += f'<div class="card" id="{"friends" if w["id"] == "gift" else e(w["id"])}"><div class="card-body"><h3>{e(w["title"])}</h3><p>{e(w["text"])}</p>{act}</div></div>'
     cmail = s["contact"]
     body = head(s["title"], f'<p class="intro">{e(s["intro"])}</p>') + f"""
@@ -800,7 +815,7 @@ def build_contact(site):
     <div>
       <p>{e(c['location_text'])}</p>
       <p class="address">{'<br>'.join(e(a) for a in c['address'])}</p>
-      <p><a class="more" href="{maps}">Open in Google Maps</a></p>
+      <p class="links"><a href="{maps}">Open in Google Maps</a></p>
       <p class="meta">Hours: {e(c['hours'])}</p>
     </div>
     <figure class="figure">{img('assets/site/calit2-building.jpg', 'The Calit2 Building at UC Irvine, home of CalPlug', eager=True)}</figure>
@@ -827,7 +842,7 @@ def main():
         "sim-lab.html": legacy_page("sim-lab.html", "SIM Lab", "sim-lab", site, "CalPlug SIM Lab testing and demonstration labs."),
         "1-kwh-challenge.html": legacy_page("1-kwh-challenge.html", "1 kWh Challenge", "1-kwh-challenge", site, "The One Kilowatt-hour Challenge outreach program."),
         "events-archive.html": legacy_page("events-archive.html", "Events Archive", "events-archive", site, "Past CalPlug workshops with agendas, speakers and recordings."),
-        "careers.html": build_careers(site, load("careers")),
+        "careers.html": build_careers(site, load("careers"), {p["id"]: p for p in projects["projects"]}),
         "support.html": build_support(site, load("support")),
         "contact.html": build_contact(site),
         "404.html": build_404(site),

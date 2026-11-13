@@ -9,7 +9,7 @@
     "Healthcare",
     "Transportation"
   ],
-  "deadline": "Applications are due by 5:00 PM PST on Friday of Week 1 of each quarter, the course registration deadline. Spring 2026 deadline: April 3, 2026.",
+  "deadline": "Applications are due by 5:00 pm PT on Friday of Week 1 of each quarter, the course registration deadline. Spring 2026 deadline: April 3, 2026.",
   "offer": [
     "Hands-on research in cutting-edge fields",
     "Workspace, supplies and equipment",
@@ -40,7 +40,8 @@
         "Generate high-fidelity thermal datasets with CFD and transient thermal simulation",
         "Select and train ML models validated with FE data",
         "Build AI applications for TES systems of different scales and conditions"
-      ]
+      ],
+      "project": "ai-tes"
     },
     {
       "id": "IAC-F25",
@@ -83,7 +84,8 @@
         "Measure the energy use of IT server loads and cooling loads in server rooms",
         "Develop AI algorithms for real-time data center load management",
         "Monitor and analyze energy data at the Calit2 facility across demonstration phases"
-      ]
+      ],
+      "project": "edge-data-center"
     },
     {
       "id": "BA-S26",
@@ -105,7 +107,8 @@
         "Explore occupancy-based monitoring in buildings",
         "Develop AI load prediction for real-time control of lighting and HVAC",
         "Demonstrate the technology at a campus site and measure energy savings"
-      ]
+      ],
+      "project": "occupancy-lighting"
     }
   ],
   "apply": [
@@ -115,7 +118,7 @@
     },
     {
       "title": "Apply by Week 1",
-      "text": "New and returning students apply by 5:00 PM PST on Friday of Week 1. With the Dean's approval, applications may be accepted until Week 3."
+      "text": "New and returning students apply by 5:00 pm PT on Friday of Week 1. With the Dean's approval, applications may be accepted until Week 3."
     },
     {
       "title": "Interview",

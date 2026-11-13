@@ -1,5 +1,5 @@
 {
-  "_note": "Original text from calplug.org/about (2026-11-12). Only spelling was corrected (benifiting -> benefiting). Do not reword without the director's approval.",
+  "_note": "Original text from calplug.org/about (2026-11-12). Spelling and grammar corrections only; each one is listed in CONTENT-NOTES.md. Do not reword without the director's approval.",
   "sections": [
     {
       "title": "About CalPlug",
@@ -15,19 +15,19 @@
       "title": "Vision",
       "quote": "Energy-conscious plug and process loads for how people work, live, and play",
       "bullets": [
-        "Easy-to-use, cost-effective energy solutions targeted to the full range of real users, including disadvantaged communities, small businesses, and other hard-to-reach customers, and education and motivating them to participate.",
-        "Seamless integration of plug loads into everyday life – automatically adjusting to users’ needs and usage patterns enabling user input, and giving useful feedback.",
+        "Easy-to-use, cost-effective energy solutions targeted to the full range of real users, including disadvantaged communities, small businesses, and other hard-to-reach customers, and educating and motivating them to participate.",
+        "Seamless integration of plug loads into everyday life – automatically adjusting to users’ needs and usage patterns, enabling user input, and giving useful feedback.",
         "Integration of plug loads into a system approach responding to availability of renewable resources and grid considerations to support sustainability and reduce GHG impact."
       ]
     },
     {
-      "title": "Mission Statement",
+      "title": "Mission statement",
       "paragraphs": [
         "To advance energy efficiency and management solutions for plug loads by promoting best practices and fostering cross-disciplinary collaboration between academia, government agencies, utilities, manufacturers, and the community at large."
       ]
     },
     {
-      "title": "Organization Goal",
+      "title": "Organization goal",
       "paragraphs": [
         "To elevate CalPlug as the premier center for research linking behavior, technology, and policy on plug loads related energy fields, to advance best practices solutions benefiting our environment and society."
       ]
@@ -45,7 +45,7 @@
     {
       "title": "Facility",
       "paragraphs": [
-        "CalPlug’s physical facilities include an engineering lab, test and demonstration rooms, offices, and space for meetings — over 8,000 sq. ft. in all, located on the building’s fourth floor. Calit2 administers CalPlug and provides it with access to an auditorium, electronics labs, an incubator for startup firms, and visualization and teleconference facilities."
+        "CalPlug’s physical facilities include an engineering lab, test and demonstration rooms, offices, and space for meetings — over 8,000 sq. ft. in all, located on the fourth floor of the Calit2 Building. Calit2 administers CalPlug and provides it with access to an auditorium, electronics labs, an incubator for startup firms, and visualization and teleconference facilities."
       ],
       "link": {
         "label": "Our labs",

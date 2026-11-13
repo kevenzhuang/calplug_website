@@ -1,10 +1,10 @@
 {
   "_note": "Extracted from calplug.org/projects on 2026-11-12. 'summary' is a one-line paraphrase of the existing description. 'themes' are a DRAFT grouping (not from the site) pending Arnold's review. Sponsor and years are as shown on the site; null = not shown. 'short_title' (home page cards) and 'intro' were written for the new site and are pending Arnold's review.",
   "themes": {
-    "plug-loads": "Plug loads & appliances",
+    "plug-loads": "Plug loads",
     "behavior": "User behavior",
     "smart-manufacturing": "Smart manufacturing",
-    "grid": "Grid & energy storage",
+    "grid": "Grid & storage",
     "buildings": "Buildings & data centers"
   },
   "projects": [
@@ -25,9 +25,11 @@
       ],
       "summary": "Open-source short-term net-load forecasting that accounts for behind-the-meter solar, batteries and electric vehicles.",
       "description": [
-        "Project SIGNAL is a four-year research project funded by CEC to address the challenge of rapidly increasing adoption of Behind-the-Meter (BtM) Distributed Energy Resources (DER) including solar photovoltaic (PV) systems, battery energy storage systems (BESS), and electric vehicles (EV), operating invisibly to grid operators. Led by researchers from UCI CalPlug, SIGNAL uniquely assembles multi-disciplinary team with Lawrence Berkeley National Laboratory (LBNL), UC San Diego and Derapi, Inc., together with California utility partners (SCE, SDG&E, LADWP) to deliver open-source solutions to short-term net-load forecasting benefiting all California ratepayers.",
-        "Project SIGNAL aims to address the challenge of California’s BtM forecasting through three groundbreaking innovations. First, a standardized data workflow framework for data collection, generalization and analysis from multiple data sources will be established. The data workflow framework will be built on the NSF-funded National Data Platform (NDP) and Grid Data Hub to serve as a fundamental platform for the forecasting model development. Second, a state-of-art multi-horizon forecasting model will be developed by integrating advanced ML/DL algorithms to enable prediction of BtM resources from five-minute to day-ahead time horizons. The model focuses on extracting socioeconomic and geographic information from multi-source datasets to transform static assumptions into dynamic probability distributions based on real-time inputs, providing actionable intelligence for distribution planning, demand response, and real-time operations. Third, a comprehensive multi-stage model validation relying on a DER communication API will be conducted to ensure model’s seamless integration with CAISO’s existing forecasting system: (1) a community-scale demonstration at Laguna Woods Village with component-level monitoring of 300-500 households’ usage of PV, BESS and EV to provide ground-truth DER usage data, and (2) a utility operational pilot testing at 2-3 selected substations with the utility partners.",
-        "The open-source deliverables from Project SIGNAL—forecasting model, data workflow frameworks, DER communication API, training documentations—create a replicable blueprint accelerating the entire utility sector toward energy goals without prohibitive individual development costs. By solving BtM visibility during the critical 2024-2030 period, SIGNAL removes a fundamental barrier limiting renewable integration and grid reliability, transforming behind-the-meter resources from invisible liabilities into visible, predictable assets that enable California’s clean energy transition while positioning the state as national leader in advanced DER forecasting."
+        "Project SIGNAL is a four-year research project funded by CEC to address the challenge of rapidly increasing adoption of Behind-the-Meter (BtM) Distributed Energy Resources (DER) including solar photovoltaic (PV) systems, battery energy storage systems (BESS), and electric vehicles (EV), operating invisibly to grid operators. Led by researchers from UCI CalPlug, SIGNAL uniquely assembles a multi-disciplinary team with Lawrence Berkeley National Laboratory (LBNL), UC San Diego and Derapi, Inc., together with California utility partners (SCE, SDG&E, LADWP) to deliver open-source solutions to short-term net-load forecasting benefiting all California ratepayers.",
+        "Project SIGNAL aims to address the challenge of California’s BtM forecasting through three groundbreaking innovations. First, a standardized data workflow framework for data collection, generalization and analysis from multiple data sources will be established. The data workflow framework will be built on the NSF-funded National Data Platform (NDP) and Grid Data Hub to serve as a fundamental platform for the forecasting model development.",
+        "Second, a state-of-the-art multi-horizon forecasting model will be developed by integrating advanced ML/DL algorithms to enable prediction of BtM resources from five-minute to day-ahead time horizons. The model focuses on extracting socioeconomic and geographic information from multi-source datasets to transform static assumptions into dynamic probability distributions based on real-time inputs, providing actionable intelligence for distribution planning, demand response, and real-time operations.",
+        "Third, a comprehensive multi-stage model validation relying on a DER communication API will be conducted to ensure the model’s seamless integration with CAISO’s existing forecasting system: (1) a community-scale demonstration at Laguna Woods Village with component-level monitoring of 300–500 households’ usage of PV, BESS and EV to provide ground-truth DER usage data, and (2) a utility operational pilot testing at 2–3 selected substations with the utility partners.",
+        "The open-source deliverables from Project SIGNAL—forecasting model, data workflow frameworks, DER communication API, training documentation—create a replicable blueprint accelerating the entire utility sector toward energy goals without prohibitive individual development costs. By solving BtM visibility during the critical 2024–2030 period, SIGNAL removes a fundamental barrier limiting renewable integration and grid reliability, transforming behind-the-meter resources from invisible liabilities into visible, predictable assets that enable California’s clean energy transition while positioning the state as a national leader in advanced DER forecasting."
       ],
       "themes": [
         "grid"
@@ -46,7 +48,8 @@
       "sponsor": null,
       "summary": "An AI/ML framework that predicts and controls sensible thermal energy storage performance much faster than CFD simulation.",
       "description": [
-        "Sensible Thermal Energy Storage (TES) have been demonstrated to play an important role in enhancing the energy efficiency of fossil-fuel power plants and facilitating the integration of intermittent energy sources. For seamless integration with other energy components, sensible TES systems need to be designed according to specific operating conditions and controlled based on the varying energy resources and fluctuating energy demand, all of which are traditionally achieved by computationally costly heat transfer and CFD simulations, which hinder rapid design iteration and real-time control strategies. This research proposal introduces a novel artificial intelligence and machine learning (AI/ML) framework, marking a paradigm shift from traditional physics-based modeling to data-driven approaches. This framework aims to significantly accelerate TES performance prediction and provide precise real-time control over system operations, thereby supporting energy-saving strategies such as demand response. This interdisciplinary approach integrates thermal engineering, computational fluid dynamics, and advanced machine learning to develop a transformative methodology to innovate sensible TES system design and operation."
+        "Sensible Thermal Energy Storage (TES) systems have been demonstrated to play an important role in enhancing the energy efficiency of fossil-fuel power plants and facilitating the integration of intermittent energy sources. For seamless integration with other energy components, sensible TES systems need to be designed according to specific operating conditions and controlled based on the varying energy resources and fluctuating energy demand, all of which are traditionally achieved by computationally costly heat transfer and CFD simulations, which hinder rapid design iteration and real-time control strategies.",
+        "This research proposal introduces a novel artificial intelligence and machine learning (AI/ML) framework, marking a paradigm shift from traditional physics-based modeling to data-driven approaches. This framework aims to significantly accelerate TES performance prediction and provide precise real-time control over system operations, thereby supporting energy-saving strategies such as demand response. This interdisciplinary approach integrates thermal engineering, computational fluid dynamics, and advanced machine learning to develop a transformative methodology to innovate sensible TES system design and operation."
       ],
       "themes": [
         "grid"
@@ -65,7 +68,8 @@
       "sponsor": "CalNEXT / Southern California Edison",
       "summary": "Economical retrofit strategies that coordinate cooling controls and server workloads to cut energy use in small edge data centers.",
       "description": [
-        "This project demonstrates economical retrofit strategies to improve energy efficiency in small-scale edge datacenters. These edge data centers usually have a limited cooling capability relying on a less efficient building HVAC system, thus is often overlooked in the data center sector. Since more and more edge data centers are being constructed and distributed among the communities (many of them in the urban areas) where grid power is constrained, the aggregated energy saving potential and its support to grid flexibility can be substantial if a cost-effective, easy-deployable technologies can be demonstrated specifically for those small-scale data centers. The project integrates digital air-cooling controls with real-time thermal management, as well as server virtualization with dynamic workload consolidation. Unlike existing approaches that address computing or cooling loads independently, this project validates a coordinated IT facilities optimization strategy delivering 25–35% total facility energy savings through real-time communication between computing workloads and cooling systems."
+        "This project demonstrates economical retrofit strategies to improve energy efficiency in small-scale edge data centers. These edge data centers usually have a limited cooling capability relying on a less efficient building HVAC system, and thus are often overlooked in the data center sector. Since more and more edge data centers are being constructed and distributed among the communities (many of them in the urban areas) where grid power is constrained, the aggregated energy saving potential and its support to grid flexibility can be substantial if cost-effective, easily deployable technologies can be demonstrated specifically for those small-scale data centers.",
+        "The project integrates digital air-cooling controls with real-time thermal management, as well as server virtualization with dynamic workload consolidation. Unlike existing approaches that address computing or cooling loads independently, this project validates a coordinated IT facilities optimization strategy delivering 25–35% total facility energy savings through real-time communication between computing workloads and cooling systems."
       ],
       "themes": [
         "buildings"
@@ -84,7 +88,7 @@
       "sponsor": null,
       "summary": "A sensor-based building management system that controls lighting and HVAC from real-time occupancy detection, demonstrated at a UCI campus building.",
       "description": [
-        "This project develops an intelligent sensor-based building management system that integrates dynamic lighting and HVAC control through real-time occupancy detection using multi-signal data fusion and advanced behavioral learning algorithms. By collecting energy consumption data of building devices and appliances and real-time occupancy and site condition data (lighting and Wi-Fi signals) from IoT-based sensor system, the developed control system will employ Automatic and Dynamic Load Detection (ADLD) and Learning Behavior Algorithms (LBA) to enable optimized operation of lighting and HVAC systems through real-time and proactive control. Over a 24-month project period including technology demonstration at a selected campus building at UCI, the plug-and-play system will demonstrate the deployment feasibility and scalability of the technology for broad commercial adoption, supporting California Investor Owned Utility (“IOU”) custom measure development."
+        "This project develops an intelligent sensor-based building management system that integrates dynamic lighting and HVAC control through real-time occupancy detection using multi-signal data fusion and advanced behavioral learning algorithms. By collecting energy consumption data of building devices and appliances and real-time occupancy and site condition data (lighting and Wi-Fi signals) from an IoT-based sensor system, the developed control system will employ Automatic and Dynamic Load Detection (ADLD) and Learning Behavior Algorithms (LBA) to enable optimized operation of lighting and HVAC systems through real-time and proactive control. Over a 24-month project period including technology demonstration at a selected campus building at UCI, the plug-and-play system will demonstrate the deployment feasibility and scalability of the technology for broad commercial adoption, supporting California Investor Owned Utility (“IOU”) custom measure development."
       ],
       "themes": [
         "buildings"
@@ -117,7 +121,8 @@
         }
       ],
       "description": [
-        "Improving state codes and standards and associated test methods for plug load energy consumption is a potentially useful way of driving forward state energy and GHG reduction goals. The Energy Commission has tasked CalPlug and partner organizations (California Energy Alliance, UC Davis, and California State University Northridge) to assess codes and standards opportunities for commercial office equipment, residential small networking equipment, and laboratory equipment, that currently do not have Title 20 requirements. In this project, we will identify non-covered plug load devices with the most potential to positively impact future energy and load management codes and standards, develop appliance test standards to quantify device performance, test selected devices to accurately determine energy use and related performance characteristics in varying operating modes, model the energy impacts of potential plug load measures to determine statewide savings and related impacts, and provide plug load codes and standards recommendations, including recommended test methods."
+        "Improving state codes and standards and associated test methods for plug load energy consumption is a potentially useful way of driving forward state energy and GHG reduction goals. The Energy Commission tasked CalPlug and partner organizations (California Energy Alliance, UC Davis, and California State University Northridge) to assess codes and standards opportunities for commercial office equipment, residential small networking equipment, and laboratory equipment, that did not have Title 20 requirements.",
+        "In this project, the team set out to identify non-covered plug load devices with the most potential to positively impact future energy and load management codes and standards, develop appliance test standards to quantify device performance, test selected devices to accurately determine energy use and related performance characteristics in varying operating modes, model the energy impacts of potential plug load measures to determine statewide savings and related impacts, and provide plug load codes and standards recommendations, including recommended test methods."
       ]
     },
     {
@@ -138,7 +143,10 @@
         }
       ],
       "description": [
-        "On behalf of NVIE, CalPlug developed and conducted a survey of small and medium manufacturers (SMMs) in Nevada to assess their attitudes about, prior experience with, and readiness level toward adopting smart manufacturing solutions, also known as Industry 4.0. Results for readiness measures reveal interest among Nevada SMMs for moving forward with SM solutions, but suggest that their ability to fully adopt lags behind their willingness to consider it. Staffing needs are a major challenge for Nevada SMMs: only 18% of subjects report their SMMs have a sufficiently skilled workforce to adopt SM. In 33% of these companies, training would be needed for at least 75% of employees and 73% of these SMMs would need to hire additional workers (in addition to any replacements) to meet the needs of smart manufacturing. The most cited top driver for adopting SM was reducing costs (36%), but the most cited top barrier to adopting SM was investment of money (33%), illustrating the catch-22 faced by smaller companies. A key contribution of this study was asking subjects whether their companies were using any of 20 technologies as part of a smart manufacturing solution, and if not, whether they had ever tried or considered that technology and rejected it. All but 7% of these Nevada SMMs use at least one SM technology on the list, with 46% using 1 to 4, 35% using 5 to 8, and 12% using 9 to 13. SMMs with fewer than 20 employees used significantly fewer SM technologies on average (3.6) than companies with 50 to 499 employees (5.4). The SM technologies used most often are mobile phones (69%), cloud computing (54%), handheld scanners (48%), cybersecurity (48%), and tablets (45%). Several higher-end technologies were rarely used or even considered by these SMMs. Overall, variations in evaluations of certain solutions support the idea that SMMs can benefit from targeting their relatively limited resources on specific technologies for specific needs rather than embracing the full spectrum of smart manufacturing."
+        "On behalf of NVIE, CalPlug developed and conducted a survey of small and medium manufacturers (SMMs) in Nevada to assess their attitudes about, prior experience with, and readiness level toward adopting smart manufacturing solutions, also known as Industry 4.0. Results for readiness measures reveal interest among Nevada SMMs for moving forward with SM solutions, but suggest that their ability to fully adopt lags behind their willingness to consider it.",
+        "Staffing needs are a major challenge for Nevada SMMs: only 18% of subjects report their SMMs have a sufficiently skilled workforce to adopt SM. In 33% of these companies, training would be needed for at least 75% of employees and 73% of these SMMs would need to hire additional workers (in addition to any replacements) to meet the needs of smart manufacturing. The most cited top driver for adopting SM was reducing costs (36%), but the most cited top barrier to adopting SM was investment of money (33%), illustrating the catch-22 faced by smaller companies.",
+        "A key contribution of this study was asking subjects whether their companies were using any of 20 technologies as part of a smart manufacturing solution, and if not, whether they had ever tried or considered that technology and rejected it. All but 7% of these Nevada SMMs use at least one SM technology on the list, with 46% using 1 to 4, 35% using 5 to 8, and 12% using 9 to 13. SMMs with fewer than 20 employees used significantly fewer SM technologies on average (3.6) than companies with 50 to 499 employees (5.4). The SM technologies used most often are mobile phones (69%), cloud computing (54%), handheld scanners (48%), cybersecurity (48%), and tablets (45%). Several higher-end technologies were rarely used or even considered by these SMMs.",
+        "Overall, variations in evaluations of certain solutions support the idea that SMMs can benefit from targeting their relatively limited resources on specific technologies for specific needs rather than embracing the full spectrum of smart manufacturing."
       ]
     },
     {
@@ -154,7 +162,8 @@
       ],
       "links": [],
       "description": [
-        "Large manufacturers have been able to capitalize on the advancements in digital technology to increase productivity. However, small and medium manufacturers have not been able to benefit as much from smart solutions. They face a range of barriers, including the high cost of transitioning from largely manual operations to a more automated environment and the high IT, infrastructure, and monitoring needs of complex systems scaled for large businesses. The goal of the Smart Connected Workers project is to create affordable, scalable, accessible, and portable smart manufacturing systems. The project aims to develop the smart manufacturing platform leveraging existing installed infrastructure to keep cost down. In this collaborative project, CalPlug contributes a state of the market review of survey studies, highlighting the needs, drivers, and barriers faced by small and medium manufacturing enterprises. This review supported development of an online survey study to inform software development and later implementation. Participants of the study (ongoing) are owners and other staff of SMEs and consultants who work with these SMEs. CalPlug staff is also involved in development and testing of the smart manufacturing platform."
+        "Large manufacturers have been able to capitalize on the advancements in digital technology to increase productivity. However, small and medium manufacturers have not been able to benefit as much from smart solutions. They face a range of barriers, including the high cost of transitioning from largely manual operations to a more automated environment and the high IT, infrastructure, and monitoring needs of complex systems scaled for large businesses.",
+        "The goal of the Smart Connected Workers project was to create affordable, scalable, accessible, and portable smart manufacturing systems. The project aimed to develop the smart manufacturing platform leveraging existing installed infrastructure to keep cost down. In this collaborative project, CalPlug contributed a state of the market review of survey studies, highlighting the needs, drivers, and barriers faced by small and medium manufacturing enterprises. This review supported development of an online survey study to inform software development and later implementation. Participants of the study were owners and other staff of SMEs and consultants who worked with these SMEs. CalPlug staff was also involved in development and testing of the smart manufacturing platform."
       ]
     },
     {
@@ -194,7 +203,7 @@
         }
       ],
       "description": [
-        "CalPlug reviewed and compared EE programs concerned with commercial plug load devices , with the aim of suggesting possible avenues for integrating new approaches or measure categories into ComEd’s current EE programs. CalPlug took a three-pronged approach to identify potential opportunities. First, CalPlug compiled a list of plug load devices and controls that were the most promising for achieving energy savings. Second, CalPlug identified and examined all the energy efficiency programs that involve plug load devices in ComEd’s current program portfolio and in the portfolios of 18 selected comparison utilities. Third, CalPlug compared ComEd’s programs with the comparison utilities’ programs and with best practices to identify potential opportunities for more effectively advancing plug load efficiency."
+        "CalPlug reviewed and compared EE programs concerned with commercial plug load devices, with the aim of suggesting possible avenues for integrating new approaches or measure categories into ComEd’s current EE programs. CalPlug took a three-pronged approach to identify potential opportunities. First, CalPlug compiled a list of plug load devices and controls that were the most promising for achieving energy savings. Second, CalPlug identified and examined all the energy efficiency programs that involve plug load devices in ComEd’s current program portfolio and in the portfolios of 18 selected comparison utilities. Third, CalPlug compared ComEd’s programs with the comparison utilities’ programs and with best practices to identify potential opportunities for more effectively advancing plug load efficiency."
       ]
     },
     {
@@ -262,7 +271,7 @@
         }
       ],
       "description": [
-        "Research shows that many desktop computers are left on for long periods even when not being used. Getting computers to transition to sleep mode during these periods would save a substantial amount of energy both in commercial and residential settings. CalPlug developed and tested a new software application that manages computer sleep settings, called Power Management User Interface. The goal was to create a user interface that encourages desktop computer users to more efficiently use the automatic sleep settings already available on computers. The design of the user interface was based upon past research on the efficacy of various energy feedback programs and displays in reducing energy use in residential and office settings, on programs to encourage pro-environmental behaviors more generally, and on behavioral theories. The software was tested in the lab for user comprehension and then evaluated in a randomized control trial at the University of California, Irvine"
+        "Research shows that many desktop computers are left on for long periods even when not being used. Getting computers to transition to sleep mode during these periods would save a substantial amount of energy both in commercial and residential settings. CalPlug developed and tested a new software application that manages computer sleep settings, called Power Management User Interface. The goal was to create a user interface that encourages desktop computer users to more efficiently use the automatic sleep settings already available on computers. The design of the user interface was based upon past research on the efficacy of various energy feedback programs and displays in reducing energy use in residential and office settings, on programs to encourage pro-environmental behaviors more generally, and on behavioral theories. The software was tested in the lab for user comprehension and then evaluated in a randomized controlled trial at the University of California, Irvine."
       ]
     },
     {
@@ -283,7 +292,7 @@
         }
       ],
       "description": [
-        "Behavioral policies and interventions are an integral part of reducing residential greenhouse gas emissions. The project conducted an intensive review of the current literature on behavioral interventions designed to reduce or shift residential energy consumption, and tied intervention techniques to the behavioral theories that support them. The review collected over 1400 sources and used content coding to identify themes and results. CalPlug gave recommendations for future behavioral intervention projects based on the assessment of prior research and behavioral theory."
+        "Behavioral policies and interventions are an integral part of reducing residential greenhouse gas emissions. The project conducted an intensive review of the current literature on behavioral interventions designed to reduce or shift residential energy consumption, and tied intervention techniques to the behavioral theories that support them. The review collected over 1,400 sources and used content coding to identify themes and results. CalPlug gave recommendations for future behavioral intervention projects based on the assessment of prior research and behavioral theory."
       ]
     },
     {
@@ -368,7 +377,7 @@
         }
       ],
       "description": [
-        "CalPlug identified topics related to the changing nature of miscellaneous loads, with a projection timescale reaching out to 2030. The team reviewed California’s ZNE net energy efforts in addition to the energy modeling techniques used for evaluating zero net energy compliance and assessed the impact of Internet of Things (IoT) technologies on residential energy consumption. CalPlug considered often-overlooked and emerging product categories and the impact of demographic development on residential energy consumption."
+        "CalPlug identified topics related to the changing nature of miscellaneous loads, with a projection timescale reaching out to 2030. The team reviewed California’s zero net energy (ZNE) efforts in addition to the energy modeling techniques used for evaluating zero net energy compliance and assessed the impact of Internet of Things (IoT) technologies on residential energy consumption. CalPlug considered often-overlooked and emerging product categories and the impact of demographic development on residential energy consumption."
       ]
     },
     {
@@ -389,9 +398,7 @@
           "url": "https://www.etcc-ca.com/reports/sim-home?dl=1565392230"
         }
       ],
-      "description": [
-        "The Simulation, Integration, and Management (SIM) Home project aimed to assist with several aspects of program development within SCE’s Emerging Technology group. The first objective was to build an advanced metering environment including a range of products, providing the capacity for networked plug load device testing to supplement individual energy tests. The second objective was to produce energy consumption estimates for products included in the initial development of the SIM Home, in particular noting the estimated range of consumption based on varied device use patterns. The third purpose was to develop two applications for communicating this information to users: a web-based energy display, and an animated avatar providing human-like verbal communication."
-      ]
+      "page": "sim-home.html"
     },
     {
       "id": "plug-loads-advocacy",
@@ -432,7 +439,7 @@
         }
       ],
       "description": [
-        "This project aimed to demonstrate the concept of distributing Smart Meter information through compliant home set-top box systems. Real-time information, such as kWh usage and kW demand, will be relayed from an end-point Smart Meter to a multi-access gateway. The gateway, or dedicated web server device, will embed the consumer home energy usage in a web-based platform already developed by CalPlug that can be accessed through a standard web browser built into a user terminal such as a set-top box. Displaying this data will provide home owners with sufficient information that will help them manage their energy consumption. The user friendly interface has been designed to display customer’s energy usage and cost information on their TV screen while they are watching TV."
+        "This project aimed to demonstrate the concept of distributing Smart Meter information through compliant home set-top box systems. Real-time information, such as kWh usage and kW demand, is relayed from an end-point Smart Meter to a multi-access gateway. The gateway, or dedicated web server device, embeds the consumer home energy usage in a web-based platform already developed by CalPlug that can be accessed through a standard web browser built into a user terminal such as a set-top box. Displaying this data provides home owners with sufficient information to help them manage their energy consumption. The user-friendly interface was designed to display customers’ energy usage and cost information on their TV screen while they are watching TV."
       ]
     },
     {
@@ -454,7 +461,9 @@
         }
       ],
       "description": [
-        "This field study was a follow‐up to the Computer Power Management Usage Survey, which showed a high rate of self-reported engagement of automatic power management settings, and moderate use of manual steps, such as manual shutdown. The monitoring study examined the office desktops of a subsample of staff members, faculty members, and graduate students of the earlier study, enabling comparison across the two studies. Researchers examined the power settings of 125 office desktops, and remotely monitored the power states of 119 of the computers for several weeks. Participants also completed questionnaires. Power state monitoring shows that desktops were off an average of 16 percent of the time and in sleep mode for 7 percent. The majority of time (61 percent) was spent on but user‐inactive. While 84 percent of these participants had reported using automatic PM settings in the earlier survey, only 20 percent of their desktops actually had automatic settings enabled. A minority of computers exhibited manual use of sleep mode and 25 percent of computers exhibited manual shutdown or hibernation. Greater power management engagement was found for participants with more control over their computers and those with more computer expertise. The findings are consistent with the idea that differences between the survey reports and the monitoring study data are due to users’ confusion about power management settings; sources of that confusion and its possible connection to lower enabling rates are discussed."
+        "This field study was a follow‐up to the Computer Power Management Usage Survey, which showed a high rate of self-reported engagement of automatic power management settings, and moderate use of manual steps, such as manual shutdown. The monitoring study examined the office desktops of a subsample of staff members, faculty members, and graduate students of the earlier study, enabling comparison across the two studies. Researchers examined the power settings of 125 office desktops, and remotely monitored the power states of 119 of the computers for several weeks. Participants also completed questionnaires.",
+        "Power state monitoring shows that desktops were off an average of 16 percent of the time and in sleep mode for 7 percent. The majority of time (61 percent) was spent on but user‐inactive. While 84 percent of these participants had reported using automatic PM settings in the earlier survey, only 20 percent of their desktops actually had automatic settings enabled. A minority of computers exhibited manual use of sleep mode and 25 percent of computers exhibited manual shutdown or hibernation.",
+        "Greater power management engagement was found for participants with more control over their computers and those with more computer expertise. The findings are consistent with the idea that differences between the survey reports and the monitoring study data are due to users’ confusion about power management settings; sources of that confusion and its possible connection to lower enabling rates are discussed."
       ]
     },
     {
@@ -472,13 +481,14 @@
       ],
       "links": [],
       "description": [
-        "This project involved a survey of over 2,000 students, faculty, staff, and retirees of a university population. Respondents were ask about their use of computers and particularly of power management (PM) settings and behaviors. Detailed information was obtained for 1,041 office desktop computers, 599 home desktops, and 1,729 laptops. Respondents reported using automatic PM (primarily sleep settings) for 96 percent of laptops, 88 percent of home desktops, and 86 percent of office desktops. Manual PM (shutting down computers after use) is reported more often by those who also use automatic PM. Important reasons given for leaving computers on without sleep enabled include slow restarting and keeping computers on for updates, backups, and remote access. Other variables addressed include users’ role, computer knowledge, age, and gender. A follow-up monitoring study of a subset of office desktops showed substantially lower automatic PM rates than in the survey but agrees with the survey in other respects; implications for the survey results are explored."
+        "This project involved a survey of over 2,000 students, faculty, staff, and retirees of a university population. Respondents were asked about their use of computers and particularly of power management (PM) settings and behaviors. Detailed information was obtained for 1,041 office desktop computers, 599 home desktops, and 1,729 laptops. Respondents reported using automatic PM (primarily sleep settings) for 96 percent of laptops, 88 percent of home desktops, and 86 percent of office desktops. Manual PM (shutting down computers after use) is reported more often by those who also use automatic PM.",
+        "Important reasons given for leaving computers on without sleep enabled include slow restarting and keeping computers on for updates, backups, and remote access. Other variables addressed include users’ role, computer knowledge, age, and gender. A follow-up monitoring study of a subset of office desktops showed substantially lower automatic PM rates than in the survey but agrees with the survey in other respects; implications for the survey results are explored."
       ]
     }
   ],
   "student_projects": [
     {
-      "group": "Annoyance Threshold Testing",
+      "group": "Annoyance threshold testing",
       "items": [
         {
           "title": "Experimental Test of Energy Annoyance Thresholds",
@@ -501,7 +511,7 @@
       ]
     },
     {
-      "group": "Buddy Projects",
+      "group": "Buddy projects",
       "items": [
         {
           "title": "Water Cooler Buddy: Development of an Intelligent Energy Saving Solution for Water Dispensers",
@@ -518,7 +528,7 @@
       ]
     },
     {
-      "group": "SIM Home Projects",
+      "group": "SIM Home projects",
       "items": [
         {
           "title": "PLSIM: An Integrated Plug Load Assessment Tool",
@@ -527,7 +537,7 @@
       ]
     },
     {
-      "group": "Other Projects",
+      "group": "Other projects",
       "items": [
         {
           "title": "Open Source FPGA Development",

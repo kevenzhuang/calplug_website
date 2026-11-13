@@ -4,6 +4,8 @@
 Checks: internal links and files exist, every image has an alt attribute, no placeholder text,
 exactly one h1 per page, a title and description on every page, no empty sections,
 and the bullet rules of DESIGN.md section 5 (no one-item lists, no lists mixing sentences and phrases).
+Also: heading levels do not skip, no image over 400 KB, the arrow link is only used for pages of this site,
+times are written one way, and no paragraph runs past 150 words.
 """
 import re
 import sys
@@ -11,7 +13,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 DIST = Path(__file__).resolve().parent.parent / "dist"
-LEGACY_PAGES = {"events-archive.html", "sim-home.html", "sim-lab.html", "1-kwh-challenge.html"}  # copied pages keep their own structure
+TIME = re.compile(r"\b\d{1,2}(?::\d{2})?\s?(?:AM|PM|a\.m\.|p\.m\.)(?!\w)|\b\d{1,2}(?::\d{2})?(?:am|pm)\b|\b(?:PST|PDT|EST|EDT|MST|MDT|CST|CDT)\b")
+MAX_PARAGRAPH = 150  # words (DESIGN.md section 5)
 PLACEHOLDER = re.compile(r"\b(lorem ipsum|coming soon|TODO|TBD|placeholder)\b|>\s*test\s*<", re.I)
 
 
@@ -121,16 +124,27 @@ def main():
                 problems.append(f"{name}: a bullet list with one item (use a sentence): {items[0][:50]!r}")
             elif 0 < sum(ends) < len(ends):
                 problems.append(f"{name}: a bullet list mixing full sentences and short phrases: {items[0][:50]!r}")
-        if name not in LEGACY_PAGES:
-            levels = [int(x) for x in re.findall(r"<h([1-6])[\s>]", main)]
-            for prev, cur in zip(levels, levels[1:]):
-                if cur > prev + 1:
-                    problems.append(f"{name}: heading levels skip from h{prev} to h{cur}")
-                    break
-            big = [im.get("src") for im in p.imgs if im.get("src", "").startswith("assets/") and (DIST / im["src"]).exists()
-                   and (DIST / im["src"]).stat().st_size > 400_000]
-            for src in big:
-                problems.append(f"{name}: image over 400 KB: {src} (run tools/optimize_images.py)")
+        levels = [int(x) for x in re.findall(r"<h([1-6])[\s>]", main)]
+        for prev, cur in zip(levels, levels[1:]):
+            if cur > prev + 1:
+                problems.append(f"{name}: heading levels skip from h{prev} to h{cur}")
+                break
+        big = [im.get("src") for im in p.imgs if im.get("src", "").startswith("assets/") and (DIST / im["src"]).exists()
+               and (DIST / im["src"]).stat().st_size > 400_000]
+        for src in big:
+            problems.append(f"{name}: image over 400 KB: {src} (run tools/optimize_images.py)")
+        # The arrow means "another page of this site" (DESIGN.md section 3, Link marks)
+        for href in re.findall(r'<a class="more" href="([^"]*)"', main):
+            if href.startswith(("http", "mailto:", "tel:", "#")):
+                problems.append(f"{name}: an arrow link that does not go to a page of this site: {href[:60]}")
+        # Times are written "5:00 pm PT" (DESIGN.md section 5, Dates and times)
+        plain = re.sub(r"<[^>]+>", " ", main)
+        for m in TIME.finditer(plain):
+            problems.append(f"{name}: time not in the site's format (write 5:00 pm PT): {m.group(0)!r}")
+        for para in re.findall(r"<p[^>]*>(.*?)</p>", main, re.S):
+            n = len(re.sub(r"<[^>]+>", " ", para).split())
+            if n > MAX_PARAGRAPH:
+                problems.append(f"{name}: a paragraph of {n} words (limit {MAX_PARAGRAPH}; split it where a new step or topic starts): {re.sub(r'<[^>]+>', '', para)[:50]!r}")
         # Cards side by side share one shape: either all of them hold a bullet list or none does
         rows = CardRows()
         rows.feed(main)

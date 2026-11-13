@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.27, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
+Version 0.28, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -92,6 +92,7 @@ Blue and green are sampled from the CalPlug logo, and each has one meaning. A vi
 | `--ink` | `#1B2530` | Headings and body text |
 | `--muted` | `#5B6875` | Authors, sponsors, summaries, small text |
 | `--line` | `#E3E8EE` | Dividers and borders, always 1px |
+| `--line-control` | `#8794A1` | The border of pill buttons, 1px. Darker than `--line` because a control's outline has to be visible on its own (3.1:1 on white; WCAG asks 3:1 for controls) |
 | `--white` | `#FFFFFF` | Page background |
 
 The page is white at the top and grounded at the bottom by the navy footer. (Until 0.11 the top had a 4px blue and green strip, which only repeated the logo's colors; in 0.12 to 0.18 the top bar was navy, which felt abrupt.)
@@ -113,8 +114,8 @@ Two families, both stored on this site (`src/fonts/`, SIL Open Font License; no 
 |---|---|---|---|
 | `--fs-h1` | 34px (28px on phones) | Page title, one per page | Clearly the largest thing on the page, still one line for most titles |
 | `--fs-h2` | 24px (21px on phones) | Section title; step numbers | About 1.4 times the body, enough to scan sections |
-| `--fs-lead` | 19px | The home tagline, page introductions, the footer vision line, the About quote | One step above body for the single sentence a visitor should read first |
-| `--fs-h3` | 17px | Item title: a news item, project, publication, person, card | Just above body: weight, not size, makes it a title, so long lists stay calm |
+| `--fs-lead` | 19px | The home tagline, page introductions, the footer vision line, the About quote; a sub-heading inside a section ("Affiliated team members", "Board members emeriti") | One step above body for the single sentence a visitor should read first. As a sub-heading it sits between the section title (24) and the item titles (17) below it, so the three levels never look alike |
+| `--fs-h3` | 17px | Item title: a news item, project, publication, person, card, step. No item title uses another size | Just above body: weight, not size, makes it a title, so long lists stay calm |
 | `--fs-body` | 16px | Paragraphs | Browser default; comfortable for long reading |
 | `--fs-nav` | 15px | Menu items only | Between body and small so eight items fit one row down to 1000px |
 | `--fs-small` | 14px | Supporting text: authors, venues, sponsors, summaries, dates, card text, buttons, footer | Clearly secondary but still readable |
@@ -194,8 +195,8 @@ There are exactly three clickable shapes, and the same job always gets the same 
 | Control | Look | Use | Limit |
 |---|---|---|---|
 | Menu button | Three lines in a 40px square, turning into a cross | Opening the menu on phones and tablets | Header only |
-| Pill button | Pill, 1px gray border, 14px muted text at weight 500, 32px high; may carry a ring icon | Any row of choices under a page title: filters that narrow a list (Research, Publications) and section links that jump down a long page (People) | Only in that row. A row of choices is never plain text links, so the three pages look alike |
-| Text link | Blue text; "→" for a link to another page of the site, "↗" or "PDF" marks added automatically | Everything else | — |
+| Pill button | Pill, 1px gray border (`--line-control`), 14px muted text at weight 500, 32px high; may carry a ring icon | Any row of choices under a page title: filters that narrow a list (Research, Publications) and section links that jump down a long page (People) | Only in that row. A row of choices is never plain text links, so the three pages look alike |
+| Text link | Blue text; "→" for a link to another page of the site, "↗" or "PDF" marks added automatically. A link that stands alone has a 32px tap area | Everything else | — |
 
 States for each are in section 7.
 
@@ -206,7 +207,9 @@ States for each are in section 7.
 | Colors, sizes, weights, line heights, radii, durations and spacing come from tokens | `tools/check.py` reads the stylesheet and stops the build on a raw value |
 | Text length limits | `tools/build.py` stops the build |
 | Bullet rules; cards in a row have one shape | `tools/check.py` |
-| Links, image alt text, one h1, no placeholder text, no empty sections | `tools/check.py` |
+| Links, image alt text, one h1, heading levels, no placeholder text, no empty sections, no image over 400 KB: on every page, copied pages included | `tools/check.py` |
+| "→" only on links to a page of this site | `more_link()` in `tools/build.py` decides; `tools/check.py` stops the build otherwise |
+| Times written one way ("5:00 pm PT"); no paragraph over 150 words | `tools/check.py` |
 | Alignment, line breaks, photos, overall look | A person, with the checklist in section 9 |
 
 **Tracing a change.** Every visual decision has a row in this guide: the token tables above (what value and why), section 4 (which component), section 5 (how text is written and formatted), section 7 (how it reacts). A change that cannot point to a row adds the row first, with its reason, and a line in the change log.
@@ -233,7 +236,7 @@ All content is shown with one of three blocks. The Publications list is the mode
 |---|---|---|
 | Header | Logo · menu | See section 2 |
 | Footer | Logos · icons · address, email, copyright | See section 2 |
-| Person | Photo · name · role or program · organization (boards only) | Grid of 5 (3 on tablets, 2 on phones) |
+| Person | Photo · name · role or program · organization (boards only) · link ("LinkedIn ↗" or "Profile ↗") | Grid of 5 (3 on tablets, 2 on phones). The name is never a link: only some people have a page, and linked names turned the grid into a patchwork of blue and black. The link has its own line and says where it goes. Names under a sub-heading are one heading level lower (h4), same look |
 | List row | See section 3 | News, completed projects, publications |
 | Card | See section 3 | Current projects, facilities, contact blocks, affiliated team, Careers, Support |
 | Logo tile | See section 3 | Support |
@@ -246,6 +249,7 @@ All content is shown with one of three blocks. The Publications list is the mode
 | Footer vision line | CalPlug's Vision from About, in quotes, Montserrat, white, above the logos with a faint line below | Every page. Text comes from `vision` in `data/site.json`; never replaced by a slogan |
 | Ring icon | A ring with the logo's own proportions (inner radius 74% of the outer, split on the horizontal, blue above, green below) around a line icon in the logo's blue with round ends, the same weight as the logo's arcs (22px; 20px on filter buttons) | Research areas: on the filter buttons and on project cards. Icons: plug (plug loads), person (user behavior), factory (smart manufacturing), bolt (grid and storage), building (buildings and data centers), calendar (default news image). Drawn in `tools/build.py` (`LINE_ICONS`); never add a second icon style |
 | Active dot | Green dot + "Active" in green text | Meta line of active projects |
+| Figure pair | Two figures per row (one on phones), each image whole in the same 3:2 frame on the tint, optional caption in small muted text | Copied pages: SIM Lab rooms, 1 kWh Challenge slides. A picture that carries text has that text in its alt |
 | Link marks | "PDF" in a small outlined box after links to PDF files; "↗" after links that leave the site | Lists, cards, copied pages. Added by CSS from the link address, never typed into data |
 
 Only things that can be clicked react to hover.
@@ -262,19 +266,41 @@ Only things that can be clicked react to hover.
 | Project summary, news summary | 35 and 30 words |
 | Careers position | 1 sentence of 30 words, at most 3 tasks |
 | List bullets | One idea each, about one line |
+| Any paragraph | 150 words. A longer one is split where a new step or topic starts ("Second, ...", "Overall, ..."), without changing a word |
 
 - **Plain and direct.** Say what CalPlug does, for whom, with what result. No slogans ("leading enabler"), no repeated thanks, no italic or bold sentences used as headings.
-- **Rewritten text is reviewed.** Every piece written or shortened for the new site is listed in `CONTENT-NOTES.md` for Arnold to check. About, mission, vision, bios and project descriptions stay as the center wrote them.
+- **Rewritten text is reviewed.** Every piece written or shortened for the new site is listed in `CONTENT-NOTES.md` for Arnold to check. About, mission, vision, bios and project descriptions stay as the center wrote them. Three kinds of change are allowed there, and each one is listed in `CONTENT-NOTES.md` with the old and the new wording: spelling and grammar; splitting a long paragraph; and, for a completed project, the tense ("we will identify" becomes "the team set out to identify"). Meaning, numbers and names are never changed this way.
 - English only.
 - Every number, date, title and partner name needs a source. Unverified items are tracked in `CONTENT-NOTES.md` and stay off the site.
-- Names: "CalPlug", "California Plug Load Research Center", "Calit2", "UC Irvine".
+- Names: "CalPlug", "California Plug Load Research Center", "Calit2", "UC Irvine". More in "Dates, times and names" below.
 
 ### Headings and link words
 
 - Page titles and menu items: title case, as names of pages ("News & Events", "Support & Memberships").
 - Section titles and card titles: sentence case ("Latest news", "Student researchers", "Affiliated faculty"). Names of bodies keep their capitals ("Advisory Board", "Chief Technology Council").
-- Headings go down one level at a time (h1, h2, h3). Where a page has cards directly under its title, a section title is still present for screen readers. Copied pages keep their own headings.
+- Headings go down one level at a time (h1, h2, h3, h4). Where a page has cards directly under its title, a section title is still present for screen readers. Copied pages follow the same rules (until 0.27 they kept the old site's headings).
+- Titles of things that exist outside the site keep their own capitals: papers, reports, posters, talks, position titles, project titles.
 - One word per action, everywhere: "Read" for a publication, "Details" for a project page, "Read more" for a lab page, "All ..." for a full list. The mark after the word (→, ↗, PDF) says where it leads.
+
+### Dates, times and names
+
+One way to write each, so the same thing never appears in three forms.
+
+| What | Written | Not |
+|---|---|---|
+| A date in a list, card or under an event title (the green "when" line) | Oct 21, 2024 · Apr 21–22, 2020 (short month, no weekday; written by the build from the data) | October 21st · 10/21/24 · Monday, October 21 |
+| A date inside a sentence | April 3, 2026 (month in full) | Apr. 3 |
+| A time | 5:00 pm · 9:00–9:05 am · 12:00 pm (always minutes, a space, lower-case am / pm) | 5 PM · 5:00PM · 9:00 a.m. |
+| A time zone | PT, ET, MT (no "S" or "D", so it is right in summer and winter) | PST, EDT |
+| Year ranges, number ranges | 2026–2030 · 300–500 (en dash, no spaces) | 2026-2030 |
+| Thousands | 1,400 | 1400 |
+| The director | G. P. Li (with a space), "Dr. G. P. Li" as a mentor or contact | G.P. Li · GP Li |
+| The project scientist | Shuoyu (Arnold) Wang, "Dr. Shuoyu (Arnold) Wang" as a mentor or contact | Arnold Wang |
+| The building | Calit2 Building | Calit2 building |
+| | data centers (two words) · SIM Home · SIM Lab · 1 kWh Challenge | datacenters · SIM-Home |
+| An organization in a list of people | The full name, without an abbreviation in brackets, unless every entry of that organization has it | Electric Power Research Institute (EPRI) in one row only |
+
+Exceptions, kept as published: author lists and titles in Publications, and speaker names and talk titles in the Events Archive (a record of what was announced).
 
 ### Bullets, numbers, labels or sentences
 
@@ -283,7 +309,7 @@ The format follows from what the content is, never from habit or from what looks
 1. **Do the parts happen in a fixed order?** → numbered steps.
 2. **Is each part a name with a value** (phone, date, room, audience, sponsor)? → label / value rows. No bullets, no colons.
 3. **Is each part a link to a document?** → a plain list, one link per row, a line between rows. No bullets.
-4. **Are there three or more parts that are parallel, short (about one line each) and make sense on their own**, so a reader scans them and might use only one? → a bullet list.
+4. **Are there three or more parts that are parallel, short (about one line each) and make sense on their own**, so a reader scans them and might use only one? → a bullet list. Separate recommendations or findings after a lead-in line ("we recommend the following:") are also a list, even when each is two or three sentences.
 5. **Otherwise** (one or two items, or ideas that lean on each other with "because", "so", "which") → sentences in a paragraph.
 
 Two rules make the site look consistent rather than random:
@@ -314,7 +340,9 @@ Inside a bullet list:
 | Support: full benefits table | Table with check marks | Many items compared across three levels |
 | Contact cards, 1 kWh Challenge design, webinar details | Label / value rows | Names with values |
 | Student projects, Earlier documents | Plain link list | Each row is a document |
-| Events Archive agendas (copied) | Bullets, nested where the original nests | Time-ordered program, kept as published |
+| SIM Home: recommendations | A lead-in line, then bullets (full sentences) | Four separate recommendations |
+| Events Archive: each event | Title, date, one paragraph, speakers in one sentence, agenda, links, picture: the same order for every event | Seven events read as one list |
+| Events Archive agendas | Behind an "Agenda" disclosure (the old site also hid them). Bullets, one line each: "time \| **speaker**, organization: *title*"; nested where the program has sessions | Time-ordered program, kept as published |
 
 `tools/check.py` stops the build when a list has one item, when a list mixes sentences and phrases, and when cards in one row mix lists and plain text.
 
@@ -335,13 +363,15 @@ Inside a bullet list:
 ### File size and loading
 
 - No image on a page is over 400 KB (the build stops otherwise). `tools/optimize_images.py` writes a smaller copy of every large image to `assets/opt/` (longest side 1000px); originals are kept and the site serves the copy.
-- Images hosted on other sites are copied into `assets/ext/` by the "Import images only" workflow; the site never depends on another site's image address.
+- Images hosted on other sites are copied into `assets/ext/` by the "Import images and documents" workflow; the site never depends on another site's image address.
+- Documents (PDF reports, slides, posters, brochures) from the old site are stored in `wp-content/uploads/`, the same path they had on calplug.org, by the same workflow. Once the domain points here, every address already printed in a paper or linked from another site keeps working. A new document can go in the same folder.
 - Every image tag carries its pixel width and height, written by the build, so the page does not jump while images load.
 - Images below the first screen load only when scrolled to.
 
 ### No cropping
 
 - Photos, flyers, diagrams and first pages are never cropped. Each kind has one frame shape; the whole image is fitted inside it on a neutral background.
+- Pictures of different shapes shown side by side (SIM Lab rooms, 1 kWh Challenge slides) each sit whole in the same 3:2 frame, the frame used for news images.
 - The welcome photo, the Contact building photo (`assets/site/calit2-building.jpg`), and the director and staff photos are shown at their own proportions.
 
 ### People photos
@@ -411,7 +441,7 @@ Visited links look the same as unvisited ones. Disabled states do not exist: an 
 
 - Links open in the same tab, including links to other sites and PDFs; the visitor decides. No `target="_blank"`.
 - After a link that leaves the site: a small "↗". After a link to a PDF: a small outlined "PDF". Both are added by CSS from the address, never typed into data, and never added to buttons or to "→" links.
-- "→" links (`.more`): moves to another page of this site ("All news and events", "Details"). The arrow is part of the link.
+- "→" links (`.more`): moves to another page of this site ("All news and events", "Details"). The arrow is part of the link. It is never used for a link that leaves the site (that gets "↗"), writes an e-mail, or jumps within the page (those get no mark). Until 0.27 "Open in Google Maps", an e-mail address and "See member benefits" carried the arrow.
 - Link text says where it goes ("Read", "Slides", "Open in Google Maps"), never "click here".
 - UC Irvine and Calit2 are linked once, by their logos in the footer.
 
@@ -439,7 +469,7 @@ Visited links look the same as unvisited ones. Disabled states do not exist: an 
 
 ### Touch and sizes
 
-- Anything tappable is at least 32px high (buttons 40px); text links inside sentences are the exception.
+- Anything tappable is at least 32px high (buttons 40px); text links inside sentences are the exception. Links that stand alone ("Read", "Details", "Slides", "LinkedIn", back links, e-mail lines) get the 32px from padding above and below, so the text keeps its size and place. (Until 0.27 these were about 20px high.)
 - No action depends on hover: hover only adds feedback. Image zoom on cards is turned off on touch screens.
 
 ### Motion
@@ -455,18 +485,20 @@ Visited links look the same as unvisited ones. Disabled states do not exist: an 
 - Icons that only decorate are hidden from screen readers (`aria-hidden`); icons that act (social links) have a hidden text label.
 - Language of the page is set (`lang="en"`); the current menu item carries `aria-current="page"`; the menu button carries `aria-expanded`; filter buttons carry `aria-pressed`.
 - One h1 per page; headings do not skip levels. Every image has alt text; decorative images use empty alt.
-- Text contrast at least 4.5:1.
+- Text contrast at least 4.5:1. Borders that outline a control at least 3:1 (`--line-control`); dividers and card borders are decoration and stay light.
 
 ## 9. Checks before publishing
 
 1. `python tools/build.py` builds without errors.
-2. `python tools/check.py` passes (links, alt text, placeholder text, empty sections, one h1).
+2. `python tools/check.py` passes (the full list is in section 3, "Where each rule is enforced").
 3. Screenshots at 1440, 1024 and 390 look right, including line breaks (section 3) and people photos (section 6). A passing script does not mean the page looks good. Look at every page, and check in particular:
    - **Alignment across cards.** Cards side by side have the same parts in the same order, so their rows line up (Contact: Phone, Email, Web, Contact; team cards: email at the bottom). Titles short enough to fit one line.
    - **Labels and values.** Facts are shown as label / value rows with one fixed label width, not as sentences ("Phone: ...").
    - **Separators.** A " · " never starts a line: keep separated items in no-wrap pieces, or put them on their own lines on phones.
    - **No half sentences.** Text is never cut with "..." to fit a box; shorten it or leave it out.
-   - **Copied pages.** No one-item bullet lists holding a paragraph, no line breaks inside links, spelling fixed, a link back to the parent page.
+   - **Copied pages.** No one-item bullet lists holding a paragraph, no line breaks inside links, spelling fixed, a link back to the parent page, pictures with text described in their alt.
+   - **One subject, one page.** Two pages never share a title (SIM Home had a lab page and a project page; the project row now opens the lab page).
+   - **Names and dates.** Written as in section 5, "Dates, times and names".
    - **Circles.** The ring appears only where it means something (the logo, research areas). Do not add it as page decoration.
 4. Anything new that this guide does not cover has been added to this guide.
 
@@ -492,6 +524,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.28 | 2026-11-13 | Third audit, every page read in full (27 findings; approved by Keven). Documents: 63 PDFs moved from the old site into `wp-content/uploads/` at their old path, so their addresses survive the domain move. Links: "→" only for pages of this site (fixed on Contact, Support, About), enforced by the build. People: names are never links and are 17px like every item title; "LinkedIn ↗" / "Profile ↗" on their own line; sub-headings are 19px with names one heading level lower. Tap areas of stand-alone links raised from about 20px to 32px. Pill borders darkened to 3:1 (`--line-control`). Research: shorter area labels so the filter fits one row; labs ordered SIM Home, SIM Lab, 1 kWh Challenge; SIM Home has one page instead of two; Careers positions link to their projects. New standard "Dates, times and names" (section 5) and a 150-word paragraph limit. Copied pages rebuilt to the standard: Events Archive (one order for every event, agendas behind a disclosure, the webinar that appeared twice merged), SIM Lab and 1 kWh Challenge (figure pairs, alt text carrying the text of slide images), SIM Home (recommendations as a list). Grammar and tense fixes in original text, each listed in `CONTENT-NOTES.md`. Checks now cover copied pages too. |
 | 0.27 | 2026-11-13 | Support is now an ordinary menu item (before Contact) instead of a button, on wide screens and in the phone menu. The site has three clickable shapes: pill buttons, text links and the menu button. |
 | 0.26 | 2026-11-13 | Phone menu after Keven's comparison with the Youxun site: the header is sticky; while the menu is open the page behind cannot scroll; the dimmed layer starts below the header, so the top of the screen stays white; arrows removed from menu rows. Section jumps stop below the sticky header. |
 | 0.25 | 2026-11-13 | Support button changed from a blue fill to an outline that fills on hover, so it no longer outweighs the logo. Phones: the header holds only the logo and a three-line menu button (after the Youxun site); the menu drops down over a dimmed page, items carry "→", and Support is the last row. This also removes the two unequal buttons side by side. |

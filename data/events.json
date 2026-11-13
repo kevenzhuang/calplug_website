@@ -1,5 +1,5 @@
 {
-  "_note": "Extracted from calplug.org home page and /eventsarchive on 2026-11-12. date is ISO (YYYY-MM-DD) or null when the site gives none. Full agendas stay on the live site for now (see CONTENT-NOTES.md). Every item is shown with an image; items without 'image' use assets/brand/news-default.svg.",
+  "_note": "Extracted from calplug.org home page and /eventsarchive on 2026-11-12. date is ISO (YYYY-MM-DD) or null when the site gives none. Full agendas are on the Events Archive page (content/legacy/events-archive.html). Every item is shown with an image; items without 'image' use assets/brand/news-default.svg.",
   "events": [
     {
       "id": "annual-workshop-2026",
