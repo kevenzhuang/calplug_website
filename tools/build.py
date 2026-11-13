@@ -188,9 +188,8 @@ def build_home(site, projects, pubs, events, people, partners):
     theme_cards = ""
     for key, label in themes.items():
         inside = [p for p in P if key in p["themes"]]
-        ex = "; ".join(p["title"].split(":")[0] for p in inside[:2])
         theme_cards += (f'<a class="card reveal" href="research.html#projects"><span class="count">{len(inside)}</span>'
-                        f'<h3>{e(label)}</h3><p>{e(ex)}</p></a>')
+                        f'<h3>{e(label)}</h3><p>{"project" if len(inside) == 1 else "projects"}</p></a>')
     orgs = []
     for m in people["advisory_board"]:
         if m["org"] not in orgs:
