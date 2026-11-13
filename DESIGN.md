@@ -1,196 +1,220 @@
 # CalPlug Website Design Guide
 
-Version 0.8 (draft), 2026-11-12. Read this before changing any page, style or template.
-If a problem is not covered here, fix this guide first, then fix the page.
+Version 0.9, 2026-11-12. Status: agreed with Keven Zhuang, not yet built into the pages.
+Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
-**Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. Do not make one-off exceptions on a page.
+**Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
 
 ## 1. What the site is for
 
-calplug.org is the public showcase of the California Plug Load Research Center (CalPlug) at UC Irvine. It is not a paper registry or an intranet.
+calplug.org is the public face of the California Plug Load Research Center (CalPlug) at UC Irvine: a research lab's site, not a company's.
 
 | Reader | What they want | Where they go |
 |---|---|---|
-| Sponsors and partners (utilities, agencies, companies) | What CalPlug does, what it has delivered, who backs it, how to work together | Home, Research, Partner |
-| People curious about CalPlug (peers, media, UCI) | A fast, trustworthy overview and recent news | Home, News & Events |
-| Future students | Research areas, the team, how to join | Research, People |
+| Sponsors and partners | What CalPlug does, what it has delivered, who backs it, how to support it | Home, About, Projects, Support |
+| People curious about CalPlug | A fast, trustworthy overview and recent news | Home, About, News & Events |
+| Future students | Research, the team, how to join | Projects, People, Careers |
 
-Simple and direct: the site exists so people can find information, not to impress. Tone: a research lab's site, not a company's. Modern, simple, credible, with the life of a working lab. The home page leads with people and news, not with marketing: no statistics strip, no call-to-action bands, text links instead of large buttons. Every page answers one question and offers one next step.
+Simple and direct: the site exists so people can find information, not to impress. If a page feels heavy, remove something; do not add decoration. No call-to-action bands ("Get in touch", "Partner with us") at the bottom of pages.
 
-## 2. Pages and navigation
+## 2. Navigation and pages
 
-**Menu: one row, eight items, no drop-down menus.** Home · About · People · Projects · Publications · Facilities · News & Events · Contact.
+### Header
 
-Pages that are not in the menu are reached from their parent page and from the footer. Nothing from the previous site is dropped.
+One row: the logo on the left, the menu on the right. Ten items, no drop-down menus:
 
-| Page | In menu | Reached from | Content |
-|---|---|---|---|
-| Home `index.html` | yes | | Welcome (photo on top, then name, tagline, three text links) · Latest news (3) · Current projects (titles) · Recent publications (3) |
-| About `about.html` | yes | | Logo · About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility |
-| People `people.html` | yes | | Director · Staff · Affiliated team · Students · Alumni · Affiliated faculty · Advisory Board · Chief Technology Council |
-| Projects `research.html` | yes | | Current · Completed (filter by area) · Student projects |
-| Publications `publications.html` | yes | | By year, newest first, filter by type · Earlier documents |
-| Facilities `facilities.html` | yes | | Overview, floor plan, three cards |
-| SIM Home, SIM Lab, 1 kWh Challenge | no | Facilities, footer | Original pages |
-| News & Events `news.html` | yes | | All items, newest first |
-| Events Archive `events-archive.html` | no | News & Events, footer | Original page with agendas and recordings |
-| Careers `careers.html` | no | Home, footer | Original page |
-| Support & Memberships `support.html` | no | Home, footer | Original three pages as sections, members and affiliates |
-| Contact `contact.html` | yes | | Location, phones, emails, hours |
+Home · About · People · Projects · Publications · Facilities · News & Events · Careers · Support · Contact
 
-No call-to-action bands at the bottom of pages. CalPlug is a research center, not a company.
+- The menu label is "Support"; the page title is "Support & Memberships".
+- When the window is too narrow for one row, the menu collapses behind a Menu button. It never wraps onto two rows.
+- The current page is marked with a short green line under its menu item.
 
-Pages copied whole from the old site live in `content/legacy/*.html` (made by `tools/import_pages.py`) and are shown word for word.
+### Pages
 
-Rules:
-- A page or section with no content is not published. No "coming soon", no placeholder text.
-- All items of one kind use the same component with the same fields in the same order. A missing optional field is left out, never filled with "N/A".
-- Old URLs redirect to the new pages. The PDFs under `/wp-content/uploads/` keep their URLs.
+Every page starts the same way: the page title (h1) on the left, a short green line under it, then the content. No introductory paragraph unless the original text has one.
+
+| Page | Content, top to bottom |
+|---|---|
+| Home | Welcome band (see below) · Latest news · Current projects · Recent publications |
+| About | Full original logo · About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility (original text; small heading on the left, text on the right) |
+| People | Jump links (Team · Students · Faculty · Advisory Board · Council · Alumni) · Director and staff (photo and original bio) · Affiliated team · Students · Affiliated faculty · Advisory Board (+ emeriti) · Chief Technology Council (+ emeriti) · Alumni |
+| Projects | Current projects (full original text and image) · Completed projects (list) · Student projects. No filter for now: the research areas are not yet approved |
+| Publications | Filter by type · by year, newest first · Earlier documents, folded by category |
+| Facilities | Original intro · floor plan · three cards linking to SIM Home, 1 kWh Challenge, SIM Lab (each an original page) |
+| News & Events | All items, newest first · link to the Events Archive (original page with agendas and recordings) |
+| Careers | Original page; the open positions shown as cards of one format |
+| Support & Memberships | Original text of Support, Become A Member, Members & Affiliates |
+| Contact | Original location text · photo of the Calit2 Building · address with an "Open in Google Maps" link · general, collaborations and Calit2 contacts · hours. No embedded map |
+
+### Home welcome band
+
+- Text on the left, the group photo on the right, both aligned at the top.
+- Text: "California Plug Load Research Center" (h1), the original tagline, then three text links: About · Careers · Contact.
+- The band is about 300px high on a laptop, so the first one or two news items are visible without scrolling.
+- The photo is shown whole (not cropped), scaled to fit.
+- The band has the light blue background (`--blue-tint`); everything below is white.
+
+### Footer
+
+Two short lines on the light footer background, with a green line on top:
+
+1. UC Irvine and Calit2 logos on the left; LinkedIn and Facebook icons on the right.
+2. One line of small text: address · email · copyright.
+
+No site map in the footer: every page not in the menu is reached from its parent page.
 
 ## 3. Visual standard
 
-The look is light and quiet: white background, one text column, thin dividers, few boxes. If a page feels heavy, remove something; do not add decoration. Only the values below may appear in CSS (they are variables at the top of `src/css/site.css`).
+### Color and where it is used
 
-### Color
+Blue and green are sampled from the CalPlug logo. They are used in small, meaningful places only.
 
-| Token | Value | Use |
+| Token | Value | Used for |
 |---|---|---|
-| `--blue` | `#005BAA` | Links, the selected filter, the current menu item |
-| `--green` | `#8BC53F` | The line under the current menu item only. Never for text (2.07:1 on white) |
-| `--green-text` | `#4A7A1C` | Dates and years in lists (5.13:1) |
+| `--blue` | `#005BAA` | Links, selected filter, menu hover, icon hover, left half of the top strip |
+| `--green` | `#8BC53F` | Right half of the top strip; line under the current menu item; short line under page and section titles; line on top of the footer. Never for text (2.07:1 on white) |
+| `--green-text` | `#4A7A1C` | Dates and years in lists (5.13:1 on white) |
+| `--blue-tint` | `#EEF4FA` | Home welcome band only |
+| `--tint` | `#F6F8FA` | Footer, image frames |
 | `--ink` | `#1B2530` | Headings and body text |
-| `--muted` | `#5B6875` | Secondary text: authors, sponsors, summaries, footer |
+| `--muted` | `#5B6875` | Authors, sponsors, summaries, small text |
 | `--line` | `#E3E8EE` | Dividers and borders, always 1px |
-| `--tint` | `#F6F8FA` | Footer and image frames only. Sections do not alternate background colors |
 | `--white` | `#FFFFFF` | Page background |
 
-Blue and green are sampled from the logo. No other colors, no gradients, no shadows.
+The top of every page has a 4px strip, blue on the left half and green on the right, echoing the logo ring.
+
+Not used: large dark blocks, gradients, shadows, colored cards, green text on white.
 
 ### Type hierarchy
 
-One family: the system UI font. Two weights only: 400 (text) and 600 (headings); the menu uses 500.
+One family (the system UI font). Weights: 400 for text, 600 for headings, 500 for the menu.
 
-| Level | Token | Size | Weight | Color | Used for |
-|---|---|---|---|---|---|
-| Page title (h1) | `--fs-h1` | 34px (28px on phones) | 600 | ink | One per page |
-| Section title (h2) | `--fs-h2` | 24px (21px on phones) | 600 | ink | "Latest news", "Completed projects", a year |
-| Item title (h3) | `--fs-h3` | 17px | 600 | ink | A news item, project, publication, person |
-| Lead | `--fs-lead` | 19px | 400 | ink | One opening paragraph at most per page |
-| Body | `--fs-body` | 16px, line height 1.65 | 400 | ink | Paragraphs |
-| Small | `--fs-small` | 14px | 400 | muted | Authors, venues, sponsors, summaries, dates, links under an item, menu, footer |
+| Level | Size | Color | Used for |
+|---|---|---|---|
+| Page title (h1) | 34px (28px on phones) | ink | One per page |
+| Section title (h2) | 24px (21px on phones) | ink | "Latest news", a year, a People section |
+| Item title (h3) | 17px | ink | A news item, project, publication, person |
+| Lead | 19px | ink | The home tagline; at most one per page |
+| Body | 16px, line height 1.65 | ink | Paragraphs |
+| Small | 14px | muted | Authors, venues, sponsors, summaries, dates, menu, footer |
 
-No uppercase labels above headings, no bold inside running text except what the original text has, no underlines except on hover.
+No uppercase labels above headings. No underlines except on hover.
+
+### Line breaks
+
+- Titles fit on one line on a laptop where possible. When a title must wrap, it breaks between phrases and the lines are of similar length (`text-wrap: balance`).
+- A single word never sits alone on the last line of a title or a short paragraph (`text-wrap: pretty`).
+- Names, dates and short fixed terms never split across lines: "UC Irvine", "CalPlug/ITAC", "May 5, 2026", "Calit2 Building". Use a non-breaking space or a no-wrap span.
+- After any change to a title or layout, look at the page at 1440, 1024 and 390px wide and check each wrapped line by eye.
 
 ### Layout
 
-- One page width: 1000px (`--page`). Titles, lists and text all start at the same left edge. Nothing is centered except the home welcome block.
-- Running text is at most 720px wide (`--text`). Lists (news, projects, publications) use the full page width.
-- Spacing scale (px): 4, 8, 12, 16, 24, 32, 48, 64. Between sections: 48. Between a section title and its content: 16.
-- Radius 6px. Borders 1px `--line`.
+- One page width: 1000px. Everything starts at the same left edge. Only the home welcome band has its own background.
+- Running text is at most 720px wide. Lists use the full page width.
+- Spacing scale (px): 4, 8, 12, 16, 24, 32, 48, 64. Between sections 48; between a section title and its content 16.
+- Radius 6px. Borders 1px.
 
-### The list format
+### One list format
 
-News, projects and publications all use the same row: a narrow left column, then title and details, separated by a 1px divider.
+News, projects and publications use the same row: a narrow left column, then the title and details, rows separated by a 1px line.
 
 | List | Left column | Right column |
 |---|---|---|
-| News | Image in a 3:2 frame (180px) | Date · title · summary · links |
-| Projects | Years (110px) | Title · sponsor · first sentence · "Full description" · links |
-| Publications | Thumbnail (72px) | Title · authors · venue · type and link |
+| News | Image, whole, in a 3:2 frame (180px wide) | Date · title · summary · links |
+| Projects | Years (110px) | Title · sponsor · first sentence of the original description · "Full description" · links |
+| Publications | Thumbnail (72px) | Title · authors · venue · type · link |
 
 ## 4. Components
 
 | Component | Fields, in order | Notes |
 |---|---|---|
-| Header | Original logo · menu | One row. Under 900px the menu opens from a Menu button |
-| Footer | Address · Site · More (pages not in the menu) · Connect · copyright | Tint background |
-| Person | Photo · name · role or program · organization (boards) | Grid of 5 (3 on tablets, 2 on phones). Initials when there is no photo |
-| Card | Image (optional) · title · text | Only for facilities, contact blocks and the affiliated team |
-| Filter | Pills | Projects by area, publications by type |
-| Full description | Closed by default | Holds long original text so lists stay scannable |
+| Header | Logo · menu | See section 2 |
+| Footer | Logos · icons · address, email, copyright | See section 2 |
+| Person | Photo · name · role or program · organization (boards only) | Grid of 5 (3 on tablets, 2 on phones) |
+| Card | Image (optional) · title · text | Facilities, contact blocks, affiliated team, Careers positions |
+| Filter | Pills | Publications by type |
+| Full description | Closed by default | Long original text inside lists |
+| Social icon | Single-color icon with a hidden text label | LinkedIn, Facebook. Blue on hover |
 
 Only things that can be clicked react to hover.
 
 ## 5. Writing
 
-- **Keep the original wording.** Text that the center or a person wrote (About, mission, bios, project descriptions, facility descriptions) is published as written. Fix spelling only. Do not shorten, summarize or rephrase it; if a short version is needed, use the first sentence word for word. Rewording is a separate, approved task.
-
+- **Keep the original wording.** Text the center or a person wrote (About, mission, bios, project descriptions, facility pages, Careers, Support) is published as written. Fix spelling only. Do not shorten, summarize or rephrase it; where a short version is needed, use the first sentence word for word. Rewording is a separate, approved task.
 - English only.
-- Lead with the point. Short sentences. Few adjectives.
-- Every number, date, title and partner name needs a source (a report, a paper, an official page). No source, no claim. Unverified items are tracked in `CONTENT-NOTES.md` and stay off the site.
-- Words like "leading", "first" or "premier" are not used in new text unless a third party said so and is cited. Exception: the center's own long-standing tagline on the home page.
-- Names: "CalPlug" (not Calplug); "California Plug Load Research Center" on first use per page; "Calit2"; "UC Irvine".
-- Sponsor names are written out on first use, with the abbreviation in parentheses: "California Energy Commission (CEC)".
+- Every number, date, title and partner name needs a source. Unverified items are tracked in `CONTENT-NOTES.md` and stay off the site.
+- Names: "CalPlug", "California Plug Load Research Center", "Calit2", "UC Irvine".
 
 ## 6. Images
 
-- People: square crop, face centered, same framing. Use a photo only with the person's consent.
-- Partner and sponsor logos and other images already used on the previous calplug.org may be reused. New logos need the organization's agreement.
-- New images are copied into `assets/`, not hot-linked from other websites. No AI-generated people.
-- Every image has alt text that describes it. Decorative images use empty alt.
-- Provide images at 1x and 2x; the hero at 1600px wide or more.
-
 ### Logo
 
-- Use the existing CalPlug logo file unchanged (`assets/legacy/calpluglogo-small.png`). Do not redraw it, change its lettering, recolor or stretch it. Replace it only with a higher-resolution or vector copy of the same artwork from the lab.
-- Header (48px high) and About page: the full original logo.
-- `assets/brand/calplug-logo-compact.png` (icon and CALPLUG wordmark cut from the original file) is available for small spaces.
-- `assets/brand/calplug-mark.svg` is the icon alone (no lettering), used for the browser tab icon and inside the default images.
-- UC Irvine and Calit2 logos go in the footer once official files are supplied. Use only official files and follow each owner's rules; never redraw them.
+- Header: `assets/brand/calplug-logo-compact.png`, the icon and the CALPLUG wordmark cut from the original logo file. Lettering unchanged, nothing redrawn. About 44px high.
+- About page: the full original logo with all three lines (`assets/legacy/calpluglogo-small.png`).
+- Browser tab icon and default images: the icon alone (`assets/brand/calplug-mark.svg`).
+- Replace these only with a higher-resolution or vector copy of the same artwork from the lab.
+- UC Irvine and Calit2 logos: official files only, used according to each owner's rules. Never redraw them.
 
-### No cropping (standard)
+### No cropping
 
-- Content images (photos, flyers, diagrams, first pages) are never cropped. Each kind has one frame shape; the whole image is fitted inside it on a neutral background.
-- The welcome photo and the director and staff photos are shown at their own proportions.
-- The only exception is the grid of people: portraits are cropped to a square from the top so the grid stays even. Supply square portraits to avoid any crop.
+- Photos, flyers, diagrams and first pages are never cropped. Each kind has one frame shape; the whole image is fitted inside it on a neutral background.
+- The welcome photo, the Contact building photo (`assets/site/calit2-building.jpg`), and the director and staff photos are shown at their own proportions.
 
-### News images (standard)
+### People photos
 
-- Every news or event item has exactly one image, fitted whole inside a 3:2 frame.
-- Order of preference: a photo from the event, then the event flyer, then the one default image `assets/brand/news-default.svg` (used automatically when `image` is empty).
+- The people grid uses square frames so it stays even. The square is taken from the top of the photo so the head and shoulders are always fully visible.
+- Every photo is checked by eye after it is added. If a face is cut, set `photo_position` for that person in `data/people.json` (for example `"center 20%"`) instead of changing the rule.
+- Best: people supply square portraits, at least 600 by 600 pixels.
+- No photo: one uniform placeholder with the person's initials.
+
+### News images
+
+- Every item has one image, fitted whole into a 3:2 frame.
+- Order of preference: a photo from the event, the event flyer, then the default `assets/brand/news-default.svg`.
 - New images: at least 1200 by 800 pixels, JPEG, under 400 KB, in `assets/news/`.
 
-### Publication thumbnails (standard)
+### Publication thumbnails
 
-- Every publication has a thumbnail in a portrait slot (letter-page proportion).
-- `tools/make_pub_thumbs.py` looks for an image in this order: first page of the linked PDF; first page of a PDF named on the linked page; the linked page's own preview image.
-- If none is found, the slot shows the one default image `assets/brand/pub-default.svg`. No colored tiles, no hand-made exceptions.
+- `tools/make_pub_thumbs.py` tries, in order: the first page of the linked PDF; the first page of a PDF named on the linked page; the linked page's preview image.
+- Otherwise the one default image `assets/brand/pub-default.svg`. No colored tiles.
 
 ## 7. Motion
 
-- Hover feedback only, 0.2s color change. No entrance animations, no carousels, no auto-playing anything.
+- Hover feedback only: a 0.2s color change. No entrance animations, carousels or auto-play.
 - Off when the visitor's system asks for reduced motion.
 - All content is visible without JavaScript.
 
 ## 8. Responsive and accessibility
 
-- Checked widths: 1440, 1024, 820, 390, 320. No horizontal scroll at any of them.
-- People grid: 5 columns on desktop, 3 on tablets, 2 on phones.
-- Every link and button is reachable by keyboard and shows a visible focus ring.
-- One `h1` per page; headings do not skip levels.
+- Checked widths: 1440, 1024, 820, 390, 320. No horizontal scroll at any width.
+- Every link, button and icon is reachable by keyboard and has a visible focus ring and a text label.
+- One h1 per page; headings do not skip levels. Every image has alt text; decorative images use empty alt.
+- Text contrast at least 4.5:1.
 
 ## 9. Checks before publishing
 
-1. `python tools/build.py` builds without errors (data format, missing files).
-2. `python tools/check.py` passes (broken links, placeholder text, empty sections, missing alt text).
-3. Screenshots at 1440 and 390 look right. A script passing does not mean the page looks good.
+1. `python tools/build.py` builds without errors.
+2. `python tools/check.py` passes (links, alt text, placeholder text, empty sections, one h1).
+3. Screenshots at 1440, 1024 and 390 look right, including line breaks (section 3) and people photos (section 6). A passing script does not mean the page looks good.
 4. Anything new that this guide does not cover has been added to this guide.
 
 ## 10. Change log
 
 | Version | Date | Change |
 |---|---|---|
-| 0.1 | 2026-11-12 | First draft: purpose, 7 pages, tokens from the logo, components, writing and image rules. Images from the previous site may be reused (decision: Keven). |
-| 0.2 | 2026-11-12 | Home redesigned as a lab home page (welcome + news first), after review: the first version read like a company site. Original tagline restored at Keven's request. |
-| 0.3 | 2026-11-12 | SVG logo; news image standard (every item has an image, with a default); publication thumbnails (first page of the PDF, or a type tile); 'formats come first' rule. |
-| 0.4 | 2026-11-12 | Original logo restored (no redrawn lettering); no-cropping standard; entrance animations removed; welcome section simplified. |
-| 0.5 | 2026-11-12 | Welcome: text left, photo right. Compact header logo cut from the original artwork. One default image each for news and publications; thumbnail finder also tries PDFs and preview images on linked pages. |
-| 0.6 | 2026-11-12 | About page added. Original wording kept everywhere (bios, projects, facilities); imported by `tools/import_text.py`. |
-| 0.7 | 2026-11-12 | Navigation follows the previous site (with sub-menus); Facilities sub-pages, Careers, Contact, Support and Events Archive restored with original content; call-to-action bands removed; full logo in a two-row header. |
-| 0.8 | 2026-11-12 | Lighter redesign after review (0.7 was heavy and cluttered): one-row menu without drop-downs, stacked welcome, one page width, one list format, written type hierarchy, light footer. |
+| 0.1 | 2026-11-12 | First draft: purpose, pages, tokens from the logo, components, writing and image rules. |
+| 0.2 | 2026-11-12 | Home redesigned as a lab home page (welcome + news first). Original tagline restored. |
+| 0.3 | 2026-11-12 | News image standard; publication thumbnails; "formats come first" rule. |
+| 0.4 | 2026-11-12 | Original logo restored; no-cropping standard; entrance animations removed. |
+| 0.5 | 2026-11-12 | Welcome text left, photo right; compact header logo; default images; wider thumbnail search. |
+| 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
+| 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
+| 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.9 | 2026-11-12 | Agreed plan after a point-by-point review: welcome band text left and photo right at about 300px so news shows on the first screen; 10-item menu including Careers and Support; compact logo; blue and green used in a top strip, title lines, current-menu line, welcome band and footer line; two-line footer with UC Irvine and Calit2 logos and social icons; line-break rules; people photos squared from the top and checked by eye; project filter removed; Contact with building photo and map link, no embedded map. |
 
 ## Open questions
 
-- Official UC Irvine and Calit2 logo files for the footer are needed from the lab.
-- UC Irvine and Calit2 brand and web requirements (logo use, footer statements, accessibility policy) have not been checked yet.
-- Research themes on the Research page are a draft grouping and need Arnold's approval.
+- Official UC Irvine and Calit2 logo files and their usage rules (to be looked up on their official brand pages).
+- Whether UC Irvine requires specific footer links (privacy, accessibility) on unit websites.
+- Research areas for the Projects page, for Arnold to approve before a filter returns.
+- A higher-resolution group photo for the welcome band (the current file is 400 by 225 pixels).
