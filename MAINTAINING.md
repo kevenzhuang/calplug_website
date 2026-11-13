@@ -21,7 +21,8 @@ Each task is one edit in one file under `data/`. Copy an existing entry and chan
 | Change the share picture | `tools/share/share.html` | Edit, then run `python tools/make_share_image.py` (needs Playwright) |
 | Make slides or a flyer | `brand-kit/` | Start from the templates; see `brand-kit/README.md` |
 | Turn a logo picture into a vector file | `tools/trace_logo.py` | `python tools/trace_logo.py in.png out.svg --colors "#005BAA,#8BC53F,#000000" --scale 3` (needs `pip install potracer`). Compare the result with the picture before using it |
-| Download new images from the old site | GitHub Actions, "Import images only" | Never rewrites data or pages |
+| Download new images from the old site or from another site named in the data | GitHub Actions, "Import images only" | Never rewrites data or pages |
+| After adding any image | `python tools/optimize_images.py` | Writes smaller copies to `assets/opt/` (needs Pillow). The build refuses images over 400 KB |
 | Update Careers (term, deadline, positions) | `data/careers.json` | Change `term` and `deadline`; each position has `id`, `title`, `mentors` (name, email, photo), one-sentence `description`, up to 3 `tasks`. The build stops if a piece is too long (DESIGN.md section 5) |
 | Update Support (members, affiliates, benefits) | `data/support.json` | Members and affiliates: `name` and optional `logo` (without a logo the name is shown in a tile). Benefits: one line per benefit with the levels that include it (`G`, `P`, `D`) |
 | Change the home tagline or a page introduction | `data/site.json` (`tagline`), `data/projects.json` (`intro`), `data/careers.json`, `data/support.json` | Keep within the length limits in DESIGN.md section 5 |

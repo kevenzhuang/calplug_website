@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.22, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
+Version 0.23, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -271,6 +271,13 @@ Only things that can be clicked react to hover.
 - Every number, date, title and partner name needs a source. Unverified items are tracked in `CONTENT-NOTES.md` and stay off the site.
 - Names: "CalPlug", "California Plug Load Research Center", "Calit2", "UC Irvine".
 
+### Headings and link words
+
+- Page titles and menu items: title case, as names of pages ("News & Events", "Support & Memberships").
+- Section titles and card titles: sentence case ("Latest news", "Student researchers", "Affiliated faculty"). Names of bodies keep their capitals ("Advisory Board", "Chief Technology Council").
+- Headings go down one level at a time (h1, h2, h3). Where a page has cards directly under its title, a section title is still present for screen readers. Copied pages keep their own headings.
+- One word per action, everywhere: "Read" for a publication, "Details" for a project page, "Read more" for a lab page, "All ..." for a full list. The mark after the word (→, ↗, PDF) says where it leads.
+
 ### Bullets, numbers, labels or sentences
 
 The format follows from what the content is, never from habit or from what looks busy. Before writing any text, ask these questions in order and stop at the first "yes":
@@ -326,6 +333,13 @@ Inside a bullet list:
 - UC Irvine logo: the primary logo file Keven Zhuang provided (`assets/brand/uci-logo.png`, 266×45). Keep the clear space around it; nothing locked up with it; not smaller than 3/16 inch (about 18px); never redrawn or recolored. A larger or vector copy from the UC Irvine brand asset library (UCInetID login) would look sharper on high-resolution screens; swap it in when available.
 - UC Irvine seal: not used. UC Irvine's brand rules say the seal should not be used on the web and cannot be modified; questions go to graphicservices@uci.edu.
 - Calit2 logo: the file Keven Zhuang provided (`assets/brand/calit2-logo.png`, square). Shown as is, at 40px high, with a little space from the UC Irvine name; never recolored or redrawn.
+
+### File size and loading
+
+- No image on a page is over 400 KB (the build stops otherwise). `tools/optimize_images.py` writes a smaller copy of every large image to `assets/opt/` (longest side 1000px); originals are kept and the site serves the copy.
+- Images hosted on other sites are copied into `assets/ext/` by the "Import images only" workflow; the site never depends on another site's image address.
+- Every image tag carries its pixel width and height, written by the build, so the page does not jump while images load.
+- Images below the first screen load only when scrolled to.
 
 ### No cropping
 
@@ -479,6 +493,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.23 | 2026-11-13 | Second audit. Performance: People page images cut from about 20 MB to under 4 MB with optimized copies; three images hot-linked from other sites are now stored here; image tags carry width and height. Structure: no skipped heading levels on built pages. Wording: one capitalization rule for headings ("Affiliated faculty"), one word per action ("Read" for every publication; "Details →" in project rows). Build checks added for heading order and image size. |
 | 0.22 | 2026-11-13 | People: the section links under the title were plain blue links while Research and Publications had pill buttons in the same place; they are now pill buttons too (rule: a row of choices under a page title is always pills). Director and staff: email on its own line, so a " · " no longer starts a line on phones. Filter buttons without an icon have even padding. |
 | 0.21 | 2026-11-13 | Full audit of the stylesheet against this guide. Every font size, weight, line height, radius, duration and spacing value is now a named token with a stated job and reason (section 3: Type; Layout, spacing and shape; Buttons and controls). Found and removed: two unnamed font sizes, three unnamed line heights, two radii, 6px / 10px / 22px gaps outside the scale, a translucent line color, an unused style. `tools/check.py` now reads the stylesheet and stops the build on any raw value. Added the table of where each rule is enforced and the rule for tracing a change. |
 | 0.20 | 2026-11-13 | Top bar removed. Contact back in the menu as the last item; the footer logos link to UC Irvine and Calit2 again (the only place). Bullet standard rewritten as five questions in order, two consistency rules, and a table of every place on the site and its format. Membership levels: the Gold card now has the same lead-in and list as Platinum and Diamond. The build also stops when cards in one row mix lists and plain text. |

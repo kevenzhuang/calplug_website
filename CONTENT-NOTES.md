@@ -78,8 +78,7 @@ The full original text is still on the site wherever it existed (project pages, 
 
 | Image | Note |
 |---|---|
-| AI-TES figure (f1000research-files.f1000.com) | Still hot-linked from a journal site; will break if that site moves it |
-| Edge Data Center image (assets.belden.com) | Still hot-linked from a company site |
+| AI-TES figure (from f1000research), Edge Data Center image (from belden.com), Chelsea Choudhary photo (from calit2.uci.edu) | Copied into `assets/ext/` on 2026-11-13; no longer hot-linked. The first two come from other organizations: replace with the lab's own figures when possible |
 | `pexels-singkham-...jpg`, `solar-energy.png` (Freepik) | Stock images; Freepik asks for attribution |
 | Member and affiliate logos | All 12 have a logo. CPUC, PG&E, ComEd, DIRECTV and Embertec logos were provided by Keven Zhuang on 2026-11-13 (`assets/logos/`) |
 
