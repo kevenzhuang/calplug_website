@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.30, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
+Version 0.31, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -230,7 +230,7 @@ All content is shown with one of three blocks. The Publications list is the mode
 |---|---|---|
 | News | Image, whole, in a 3:2 frame (180px wide) | Date · title · summary · links |
 | Completed projects | Years (110px) | Title (links to the project page) · sponsor and area · summary · reports · Details |
-| Publications | Thumbnail (96px wide, 124px high; 72px wide on phones) | Title · authors · venue · type · link |
+| Publications | Thumbnail (132px wide, 171px high; 96px on phones, 72px at 360px or less) | Title · authors · venue · type · link |
 
 **2. Card.** A bordered box: optional image on top (whole, in a 16:9 frame on the tint background), then a small meta line (years, sponsor), title, short text, and the link at the bottom. Cards in one row are the same height. For a few items that each deserve a look: current projects (2 per row; 4 small ones on Home), facilities (3), Careers positions (2), ways to support and membership levels (3). Two per row on tablets, one on phones.
 
@@ -414,7 +414,7 @@ Inside a bullet list:
 
 - `tools/make_pub_thumbs.py` tries, in order: the first page of the linked PDF; the first page of a PDF named on the linked page; the linked page's preview image.
 - Otherwise the one default image `assets/brand/pub-default.svg`. No colored tiles.
-- Size: 96px wide in a letter-page frame (17:22), so 124px high: the height of a news image (180 by 120). Every list row on the site then carries a picture of about the same height, and a first page is large enough to recognize. The page is shown whole; slides and other wide first pages sit centered in the same frame. The frame's top edge is level with the capitals of the title beside it (a 3px nudge). 72px wide on phones, where the text column needs the room. (Until 0.28: 72px and 56px.)
+- Size: 132px wide in a letter-page frame (17:22), so 171px high; 96px wide on phones, 72px on screens of 360px or less, where the text column needs the room. Large enough to recognize a paper by its first page, as on research-lab sites that show big first-page thumbnails (model: the UW Makeability Lab publication list). Not larger: at 160px a three-line entry leaves a block of empty space under its text and the page grows by about 40%. The page is shown whole; slides and other wide first pages sit centered in the same frame. The frame's top edge is level with the capitals of the title beside it (a 3px nudge). Thumbnail files are 360px wide, enough for sharp display up to 180px. (0.29: 96px and 72px; before: 72px and 56px.)
 
 ## 7. Interaction and motion
 
@@ -531,6 +531,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.31 | 2026-11-13 | Publication thumbnails enlarged again, to 132px (96px on phones), after comparing 96 / 132 / 160 with Keven against the UW Makeability Lab list. Home section titles stay left-aligned: only the welcome block is centered (discussed, no change). |
 | 0.30 | 2026-11-13 | Home welcome redesigned after Keven's comparison with the Melady Lab site: group photo first, then one centered paragraph and three links; no visible title, the full name opens the paragraph in title weight (the build checks that it is there). Approved from a before-and-after preview. |
 | 0.29 | 2026-11-13 | Publication thumbnails enlarged from 72px to 96px wide (56px to 72px on phones), after Keven's review: same height as news images, top edge level with the title. |
 | 0.28 | 2026-11-13 | Third audit, every page read in full (27 findings; approved by Keven). Documents: 63 PDFs moved from the old site into `wp-content/uploads/` at their old path, so their addresses survive the domain move. Links: "→" only for pages of this site (fixed on Contact, Support, About), enforced by the build. People: names are never links and are 17px like every item title; "LinkedIn ↗" / "Profile ↗" on their own line; sub-headings are 19px with names one heading level lower. Tap areas of stand-alone links raised from about 20px to 32px. Pill borders darkened to 3:1 (`--line-control`). Research: shorter area labels so the filter fits one row; labs ordered SIM Home, SIM Lab, 1 kWh Challenge; SIM Home has one page instead of two; Careers positions link to their projects. New standard "Dates, times and names" (section 5) and a 150-word paragraph limit. Copied pages rebuilt to the standard: Events Archive (one order for every event, agendas behind a disclosure, the webinar that appeared twice merged), SIM Lab and 1 kWh Challenge (figure pairs, alt text carrying the text of slide images), SIM Home (recommendations as a list). Grammar and tense fixes in original text, each listed in `CONTENT-NOTES.md`. Checks now cover copied pages too. |
