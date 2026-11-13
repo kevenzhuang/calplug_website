@@ -12,14 +12,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OLD_SITE = "https://www.calplug.org"
-PATTERN = re.compile(r'"(/wp-content/uploads/[^"]+\.(?:png|jpe?g|gif|webp|avif|svg))"', re.I)
+PATTERN = re.compile(r'"(?:https?://(?:www\.)?calplug\.org)?(/wp-content/uploads/[^"]+\.(?:png|jpe?g|gif|webp|avif|svg))"', re.I)
 EXTRA = ["/wp-content/uploads/calpluglogo-small.png", "/wp-content/uploads/zotwatt-2.jpg",
          "/wp-content/uploads/clplg_space.jpg"]
 
 
 def main():
     paths = set(EXTRA)
-    for f in (ROOT / "data").glob("*.json"):
+    sources = list((ROOT / "data").glob("*.json")) + list((ROOT / "content" / "legacy").glob("*.html"))
+    for f in sources:
         paths.update(PATTERN.findall(f.read_text(encoding="utf-8")))
     ok = skipped = 0
     failed = []

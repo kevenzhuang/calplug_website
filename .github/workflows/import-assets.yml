@@ -1,4 +1,4 @@
-name: Import original text, images and thumbnails
+name: Import original text, pages, images and thumbnails
 
 on:
   workflow_dispatch:
@@ -16,6 +16,7 @@ jobs:
           python-version: "3.12"
       - run: sudo apt-get update -q && sudo apt-get install -y -q poppler-utils imagemagick
       - run: python tools/import_text.py
+      - run: python tools/import_pages.py
       - run: python tools/import_assets.py
       - run: python tools/make_pub_thumbs.py
       - name: Shrink oversized images (longest side 1600px)
@@ -24,6 +25,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets data
+          git add assets data content
           git diff --cached --quiet || git commit -m "Import original text and images from the old site"
           git push
