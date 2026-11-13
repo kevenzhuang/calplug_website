@@ -467,12 +467,10 @@ def build_home(site, projects, pubs, events, people, partners):
     limit(site["tagline"], 40, "site.json tagline")
     body = f"""
 <section class="welcome"><div class="wrap">
-  <div class="welcome-text">
-    <h1>California Plug Load Research Center</h1>
-    <p class="lead">{e(site['tagline'])}</p>
-    <p class="textlinks"><a href="about.html">About</a><a href="careers.html">Join us</a><a href="contact.html">Contact</a></p>
-  </div>
+  <h1 class="visually-hidden">California Plug Load Research Center</h1>
   <figure>{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign', eager=True)}</figure>
+  <p class="lead">{e(site['tagline'])}</p>
+  <p class="textlinks"><a href="about.html">About</a><a href="careers.html">Join us</a><a href="contact.html">Contact</a></p>
 </div></section>
 <section class="section"><div class="wrap">
   <div class="section-head"><h2>Latest news</h2><a class="more" href="news.html">All news and events</a></div>

@@ -87,16 +87,14 @@ main > :last-child { padding-bottom: var(--s-64); }
 .filters a:hover { text-decoration: none; }
 .page-head .filters { margin: var(--s-24) 0 0; }
 
-/* Home welcome: text left, photo right, white, a line below */
+/* Home welcome: the group photo, then one paragraph and three links, all centered; white, a line below */
 .welcome { padding: var(--s-48) 0 var(--s-32); }
-.welcome .wrap > * { min-width: 0; }
-.welcome .wrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: var(--s-48); align-items: start; }
-.welcome h1 { margin-bottom: var(--s-16); }
-.welcome .lead { margin-bottom: var(--s-16); }
-.welcome figure { margin: 0; }
+.welcome .wrap { text-align: center; }
+.welcome figure { margin: 0 auto var(--s-32); max-width: 640px; }
 .welcome figure img { width: 100%; border-radius: var(--radius); }
+.welcome .lead { max-width: var(--text); margin: 0 auto var(--s-16); }
+.welcome .textlinks { justify-content: center; margin: 0 auto; }
 .welcome + .section { padding-top: var(--s-32); }
-.welcome .wrap { padding-bottom: 0; }
 .welcome::after { content: ""; display: block; max-width: calc(var(--page) - 2 * var(--s-24)); margin: var(--s-32) auto 0; border-bottom: 1px solid var(--line); }
 .textlinks { display: flex; gap: var(--s-8) var(--s-24); flex-wrap: wrap; font-size: var(--fs-small); font-weight: var(--w-label); margin: 0; }
 
@@ -294,7 +292,7 @@ figcaption { margin-top: var(--s-8); font-size: var(--fs-small); color: var(--mu
   .grid.c5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
-  .welcome .wrap, .contact-top { grid-template-columns: minmax(0, 1fr); gap: var(--s-24); }
+  .contact-top { grid-template-columns: minmax(0, 1fr); gap: var(--s-24); }
 }
 @media (max-width: 600px) {
   :root { --fs-h1: 1.75rem; --fs-h2: 1.3125rem; }
