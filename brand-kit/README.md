@@ -10,8 +10,6 @@ For posters, flyers, slides and anything else CalPlug shows to the world. It mat
 | `calplug-flyer-template.pptx` | Event flyer, US Letter portrait. Replace the text and put one photo or diagram in the gray box |
 | `logos/calplug-logo.svg` | Full logo as a vector (traced; scales to any size). Use this one |
 | `logos/calplug-logo-compact.svg` | Icon and CALPLUG wordmark only, vector |
-| `logos/calplug-logo-earlier-wordmark.svg` | The earlier logo's wordmark and cord only. History pages only |
-| `logos/calplug-logo-earlier.svg` | The earlier logo, vector (traced; small text approximate). For history pages only, not for new material |
 | `logos/calplug-logo-full.png` | Full logo with "California Plug Load Research Center, University of California, Irvine" |
 | `logos/calplug-logo-compact.png` | Icon and CALPLUG wordmark only, for small spaces |
 | `logos/calplug-mark.svg` | Icon only (the ring and plug) |

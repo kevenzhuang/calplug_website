@@ -440,10 +440,8 @@ def build_about(site, about):
         inner += "".join(f"<p>{e(x)}</p>" for x in s.get("paragraphs", []))
         if s.get("bullets"):
             inner += '<ul class="bullets">' + "".join(f"<li>{e(x)}</li>" for x in s["bullets"]) + "</ul>"
-        if s.get("logos"):
-            inner += '<div class="logo-history">' + "".join(
-                f'<figure><div class="logo-frame"><img src="{e(l["src"])}" alt="{e(l["alt"])}" loading="lazy"></div><figcaption>{e(l["caption"])}</figcaption></figure>'
-                for l in s["logos"]) + "</div>"
+        if s.get("logo"):
+            inner += f'<img class="about-logo" src="{e(s["logo"]["src"])}" alt="{e(s["logo"]["alt"])}" loading="lazy">'
         if s.get("link"):
             inner += f'<p><a href="{s["link"]["href"]}">{e(s["link"]["label"])} \u2192</a></p>'
         out += f'<section class="about-row"><h2>{e(s["title"])}</h2><div>{inner}</div></section>'

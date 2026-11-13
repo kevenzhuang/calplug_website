@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.18, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
+Version 0.19, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -23,7 +23,7 @@ Simple and direct: the site exists so people can find information, not to impres
 
 Two rows:
 
-1. **Top bar** (32px, navy): "University of California, Irvine › Calit2" on the left (links to uci.edu and calit2.uci.edu; "UC Irvine › Calit2" on phones), "Contact" on the right. Light gray text, white on hover. It tells every visitor at once that CalPlug is a UC Irvine research center, and pairs with the navy footer.
+1. **Top bar** (32px, light gray `--tint` with a 1px line below): "University of California, Irvine › Calit2" on the left (links to uci.edu and calit2.uci.edu; "UC Irvine › Calit2" on phones), "Contact" on the right. Muted gray text, blue on hover. It tells every visitor at once that CalPlug is a UC Irvine research center without a dark block at the top of the page.
 2. **Main row**: the logo on the left, six menu items, then one button. No drop-down menus:
 
 **Logo** · About · People · Research · Publications · News · Careers · **[Support CalPlug]**
@@ -41,7 +41,7 @@ Every page starts the same way: the page title (h1) on the left, a short green l
 | Page | Content, top to bottom |
 |---|---|
 | Home | Welcome (see below) · Latest news (3 list rows) · Current projects (4 small cards) · Recent publications (3 list rows) |
-| About | About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility · Contact. Under the About CalPlug text, the current and earlier logos side by side, each whole in the same white frame, captioned "Current logo" and "Earlier logo" (no section of their own) (address, phone, email, link to Contact) (original text; small heading on the left, text on the right) |
+| About | About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility · Contact. Under the About CalPlug text: the full current logo (`calplug-logo.svg`, about 360px wide), with no caption |
 | People | Jump links (Team · Students · Faculty · Advisory Board · Council · Alumni) · Director and staff (photo, first two sentences of the bio, "Full bio" to open the rest) · Affiliated team · Students · Affiliated faculty · Advisory Board (+ emeriti) · Chief Technology Council (+ emeriti) · Alumni |
 | Research (`research.html`) | Intro · filter by research area (draft areas, see Open questions) · Current projects (cards, two per row) · Completed projects (list rows) · Student projects |
 | Research page, Our labs | Former Facilities page: intro · three cards linking to SIM Home, 1 kWh Challenge, SIM Lab (each an original page) · floor plan, folded. `facilities.html` now sends visitors here |
@@ -86,15 +86,15 @@ Blue and green are sampled from the CalPlug logo, and each has one meaning. A vi
 | `--green` | `#8BC53F` | Line under the current menu item; short line under the page title; line on top of the footer; Active dot; bottom half of ring icons. Never for text (2.07:1 on white) |
 | `--blue-tint` | `#EEF4FA` | Selected filter button background (with blue border and blue text) |
 | `--green-text` | `#4A7A1C` | Dates and years, the word "Active", check marks in the benefits table (5.13:1 on white) |
-| `--navy` | `#0E2A47` | Top bar and footer backgrounds; pill text; notice and step lines; About side headings; line icons inside rings |
+| `--navy` | `#0E2A47` | Footer background; pill text; notice and step lines; About side headings; line icons inside rings |
 | `--on-navy` | `#C5D0DC` | Text on the footer (10:1 on navy) |
-| `--tint` | `#F6F8FA` | Image frames, pills, notice boxes, table group rows |
+| `--tint` | `#F6F8FA` | Top bar, image frames, pills, notice boxes, table group rows |
 | `--ink` | `#1B2530` | Headings and body text |
 | `--muted` | `#5B6875` | Authors, sponsors, summaries, small text |
 | `--line` | `#E3E8EE` | Dividers and borders, always 1px |
 | `--white` | `#FFFFFF` | Page background |
 
-The page is framed by navy: the top bar above, the footer below. (Until 0.11 the top had a 4px blue and green strip; it was replaced because it only repeated the logo's colors right next to the logo.)
+The page is light at the top and grounded at the bottom: a light gray top bar, the navy footer. (Until 0.11 the top had a 4px blue and green strip, which only repeated the logo's colors; in 0.12 to 0.18 the top bar was navy, which felt abrupt.)
 
 Not used: gradients, shadows, colored cards, green text on white. The footer is the only dark block.
 
@@ -219,8 +219,6 @@ Rules inside a bullet list:
 - Vector logo files (`assets/brand/`, copies in `brand-kit/logos/`):
   - `calplug-logo.svg`: the current full logo, traced with `tools/trace_logo.py` from the largest copy on the old site (`calpluglogo2022.jpg`, 1187 px). Lettering is the original's shapes, not a font.
   - `calplug-logo-compact.svg`: the icon (`calplug-mark.svg`) and the traced CALPLUG wordmark, laid out like the earlier `calplug-logo-compact.png`. Used in the header (about 40px high).
-  - `calplug-logo-earlier.svg`: the earlier logo, traced from a 700 px screenshot (`calplug-logo-earlier-source.png`). The large letters are faithful; the small text is approximate.
-  - `calplug-logo-earlier-wordmark.svg`: the earlier logo's wordmark and cord only, without the two lines of text.
   - When the designer's original vector files are found, they replace these files under the same names.
 - The icon alone (`assets/brand/calplug-mark.svg`): redrawn as a vector by measuring the original logo file (ring outer and inner radius, horizontal split, the three arcs' centers, radii and widths, the plug's prongs and body); checked against the original pixel by pixel, differences are only at anti-aliased edges. Used for the browser tab icon, the 404 page and the default news and publication images. Never altered (no "unplugged" variant, no recoloring).
 - Replace these only with a higher-resolution or vector copy of the same artwork from the lab.
@@ -284,7 +282,8 @@ The rules for how the site responds to people. Every interactive element below h
 | Element | Default | Hover | Keyboard focus | Pressed / open | Current |
 |---|---|---|---|---|---|
 | Text link | Blue | Underline (3px below the text) | 2px blue ring, 3px gap | — | — |
-| Link on navy (top bar, footer) | Light gray or white | White, underline | 2px white ring | — | Top bar "Contact": white on the Contact page |
+| Top bar link | Muted gray | Blue, underline | Ring | — | "Contact": blue on the Contact page |
+| Link on navy (footer) | Light gray or white | White, underline | 2px white ring | — | — |
 | Menu item | Ink | Blue | Ring | — | Blue text and a 3px green line on the header's bottom edge (the link fills the header height, so the line sits on the edge, not under the word). Phones: blue text and a short green bar in the left margin; the text does not move |
 | Header button "Support CalPlug" | Blue fill, white text, 40px high, text centered on the same line as the menu | Darker blue (`--blue-dark`) | Ring | Navy | Navy fill (flat; nothing added around it) |
 | Menu button (phones) | Gray border, "Menu" | Blue border and text | Ring | Blue border and text, reads "Close" | — |
@@ -380,6 +379,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.19 | 2026-11-13 | Top bar changed to option B: light gray with a line below, muted text, blue on hover; navy stays only in the footer. About shows one full current logo, no captions. Earlier logo dropped (the trace was too rough and its typeface could not be identified). |
 | 0.18 | 2026-11-13 | Filter buttons keep one font weight when selected, so the row no longer jumps. Current menu item: the green line now sits on the header's bottom edge; phones mark it with a bar in the margin instead of indenting the text; the header button's current state is a flat navy fill instead of a green edge that looked raised. Rule added: states never change size. Logos on About moved under the About CalPlug text. Earlier wordmark-only SVG added. |
 | 0.17 | 2026-11-13 | Bullet standard (section 5): when to use paragraphs, bullets, numbered steps, label / value rows or plain link lists, and the grammar inside a list; the build checks one-item lists and mixed lists. Fixed: About Vision endings, 1 kWh Challenge ("Why:" and the design list), the webinar details in the Events Archive (now label / value rows). Vector logos: current full logo, compact header logo and earlier logo, traced with the new `tools/trace_logo.py`; the header uses the SVG. About shows the current and earlier logo. Fixed: the header button had lost the space in "Support CalPlug". |
 | 0.16 | 2026-11-13 | Section 7 rewritten as the interaction standard: principles, a state table for every interactive element, and rules for links, navigation, filters, disclosures, touch sizes and motion. Code brought in line: one disclosure style with a chevron (Earlier documents are blue like other disclosures), Menu button reads Close when open and closes with Escape or a click outside, pressed states for buttons, filter results announced to screen readers, card zoom only on devices with a mouse, minimum target sizes. |
@@ -397,8 +397,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 
 ## Open questions
 
-- The designer's original vector files of the current and earlier logos (the SVGs here are traced from bitmaps).
-- Top bar: the navy bar feels abrupt to Keven; options under discussion (keep navy, light gray, or remove).
+- The designer's original vector files of the logo (the SVGs here are traced from bitmaps). The earlier logo is not used: its wordmark is custom lettering and its small text a serif in small capitals that could not be identified from the only copy (a 700 px screenshot), and a trace of it was too rough to publish.
 
 - A larger or vector copy of the UC Irvine primary logo, for sharper display (optional).
 - Research areas for the Research filter are a draft (`data/projects.json`, `themes`), for Arnold to approve.
