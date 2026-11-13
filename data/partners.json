@@ -34,56 +34,31 @@
       "email": "shuoyuw@uci.edu"
     }
   },
-  "join": {
-    "program": "Undergraduate / Graduate 199/299 Student Research Opportunities",
-    "requirements": [
-      "GPA 3.0+ preferred (lower GPAs considered with explanation)",
-      "Commit at least 3 quarters (1 year) of research",
-      "Work a minimum of 8 hours/week (2 units is about 8 hours)",
-      "Attend team meetings, keep a research log, and submit a short report at the end of each quarter"
-    ],
-    "benefits": [
-      "Hands-on research experience",
-      "Dedicated workspace, supplies, and equipment provided",
-      "Mentorship from faculty and project leaders",
-      "Opportunity to earn 1-3 course credits (199/299) and possibly paid positions after 2+ quarters of outstanding work",
-      "Letters of recommendation for committed students (after 2+ quarters)"
-    ],
-    "positions": [
-      {
-        "id": "TES-S26",
-        "area": "AI & Energy Efficiency",
-        "mentor": "Dr. Shuoyu (Arnold) Wang",
-        "email": "shuoyuw@uci.edu",
-        "description": "Apply AI and machine learning to performance prediction and control for thermal energy systems."
-      },
-      {
-        "id": "IAC-F25",
-        "area": "Energy Engineering",
-        "mentor": "Chelsea Choudhary",
-        "email": "ccchoudh@uci.edu",
-        "description": "Work on a DOE-funded project that provides free energy assessments for small and medium-sized manufacturers.",
-        "link": "https://smartiac.calit2.uci.edu/"
-      },
-      {
-        "id": "DC-S26",
-        "area": "Electrical Engineering & AI-driven Management",
-        "mentor": "Dr. G. P. Li and Dr. Shuoyu (Arnold) Wang",
-        "email": "gpli@calit2.uci.edu",
-        "description": "Explore cost-effective retrofit strategies to enhance the energy efficiency of edge data centers."
-      },
-      {
-        "id": "BA-S26",
-        "area": "Building Automation & Remote Sensing and Control",
-        "mentor": "Dr. G. P. Li and Dr. Shuoyu (Arnold) Wang",
-        "email": "gpli@calit2.uci.edu",
-        "description": "Develop holistic building load management for lighting, HVAC, and plug load devices."
-      }
-    ],
-    "apply": "Applications are due by 5:00 PM on Friday of Week 1 of each quarter. Selected students are invited to an interview; once matched with a project, students submit the 199/299 documentation.",
-    "_flag": "Positions and deadline are for Spring 2026 (deadline April 3, 2026). Needs the current quarter's list before going live."
-  },
   "facilities": [
+    {
+      "id": "sim-home",
+      "name": "SIM Home",
+      "images": [
+        "/wp-content/uploads/simhomegraphic.png",
+        "/wp-content/uploads/simhomenetworkdiagram.png"
+      ],
+      "paragraphs": [
+        "The Simulation, Integration, and Management (SIM) Home project aimed to assist with several aspects of program development within SCE’s Emerging Technology group. The first objective was to build an advanced metering environment including a range of products, providing the capacity for networked plug load device testing to supplement individual energy tests. The second objective was to produce energy consumption estimates for products included in the initial development of the SIM Home, in particular noting the estimated range of consumption based on varied device use patterns. The third purpose was to develop two applications for communicating this information to users: a web-based energy display, and an animated avatar providing human-like verbal communication."
+      ],
+      "blurb": "The Simulation, Integration, and Management Home, or SIM-Home for short, is a project designed to be an advanced metering and observation environment in which one can see user behavioral patterns while monitoring energy consumption monitoring. This was used to develop two applications for users to track this information."
+    },
+    {
+      "id": "1-kwh-challenge",
+      "name": "1 kWh Challenge",
+      "images": [
+        "/wp-content/uploads/1khchallengepic2.png"
+      ],
+      "_flag": "Confirm whether the program is still on hold or has ended.",
+      "paragraphs": [
+        "The One Kilowatt-hour Challenge was a community outreach program that was designed as an Educational Program where community members within UCI could learn exactly how much energy a Kilowatt-hour is. With Covid restrictions in place the 1 Kilowatt-hour Challenges are on hold"
+      ],
+      "blurb": "The One Kilowatt-hour Challenge was a community outreach program that was designed as an Educational Program where community members within UCI could learn exactly how much energy a Kilowatt-hour is."
+    },
     {
       "id": "sim-lab",
       "name": "SIM Lab",
@@ -96,29 +71,8 @@
       "paragraphs": [
         "The CalPlug Engineering Lab collects energy consumption and performance data for electronic devices in the plug load category. We work with manufacturers to sample their prototypes for power testing and further analysis, before their production periods. There is currently no service at such a small scale for prototype appliances. Industry testing standards, such as Energy Star, IEC and CEA, are employed in our testing methodology. Electrical properties such as average power consumption, power rating, power factor and power states are characterized. A final report is the only expected outcome from this service.",
         "CalPlug also provides testing service for manufacturers and utilities to obtain power consumption and savings report before their pilot programs for specific prototypes. CalPlug hosts four individual demonstration labs that are set up as individual SIM labs (Simulation Integration Majority), such as the SIM living room and the SIM office. Typical setups and the common use of appliances are implemented according to data and percentages determined by the US Census and available public databases. A final report is the only expected outcome from this service."
-      ]
-    },
-    {
-      "id": "sim-home",
-      "name": "SIM Home",
-      "images": [
-        "/wp-content/uploads/simhomegraphic.png",
-        "/wp-content/uploads/simhomenetworkdiagram.png"
       ],
-      "paragraphs": [
-        "The Simulation, Integration, and Management (SIM) Home project aimed to assist with several aspects of program development within SCE’s Emerging Technology group. The first objective was to build an advanced metering environment including a range of products, providing the capacity for networked plug load device testing to supplement individual energy tests. The second objective was to produce energy consumption estimates for products included in the initial development of the SIM Home, in particular noting the estimated range of consumption based on varied device use patterns. The third purpose was to develop two applications for communicating this information to users: a web-based energy display, and an animated avatar providing human-like verbal communication."
-      ]
-    },
-    {
-      "id": "1-kwh-challenge",
-      "name": "1 kWh Challenge",
-      "images": [
-        "/wp-content/uploads/1khchallengepic2.png"
-      ],
-      "_flag": "Confirm whether the program is still on hold or has ended.",
-      "paragraphs": [
-        "The One Kilowatt-hour Challenge was a community outreach program that was designed as an Educational Program where community members within UCI could learn exactly how much energy a Kilowatt-hour is. With Covid restrictions in place the 1 Kilowatt-hour Challenges are on hold"
-      ]
+      "blurb": "CalPlug provides testing service for manufacturers and utilities to obtain power consumption and savings report before their pilot programs for specific prototypes. CalPlug hosts four individual demonstration labs that are set up as individual SIM labs (Simulation Integration Majority), such as the SIM living room and the SIM office."
     }
   ],
   "facility_rooms_note": "Notable rooms: Engineering Lab (Room 4301) and Data Engineering ThinkTank (Room 4500). Floor plan image: /wp-content/uploads/clplg_space.jpg",

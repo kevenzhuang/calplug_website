@@ -8,7 +8,7 @@ Preview: https://kevenzhuang.github.io/calplug_website/
 
 ## How it works
 
-- Content lives in `data/*.json` (people, projects, publications, events, partners, site text).
+- Content lives in `data/*.json` (people, projects, publications, events, partners, site text) and `content/legacy/*.html` (pages kept word for word from the previous site).
 - `tools/build.py` turns the data into plain HTML pages in `dist/`. No framework, no database.
 - Every push runs the build and the checks on GitHub. If they pass on `main`, the site is published.
 

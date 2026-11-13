@@ -23,9 +23,28 @@ STAMP = hashlib.sha1(b"".join(f.read_bytes() for f in sorted((SRC).rglob("*.*"))
 NEWS_DEFAULT = "assets/brand/news-default.svg"
 PUB_LABELS = {"journal": "Journal", "conference": "Conference", "report": "Report", "press": "In the press"}
 
-NAV = [("index.html", "Home"), ("about.html", "About"), ("research.html", "Research"), ("publications.html", "Publications"),
-       ("people.html", "People"), ("facilities.html", "Facilities"), ("news.html", "News & Events"),
-       ("partner.html", "Partner")]
+# Navigation follows the structure of the previous calplug.org. (href, label, [sub-items])
+NAV = [
+    ("index.html", "Home", []),
+    ("about.html", "About", []),
+    ("people.html", "People", [("people.html#team", "CalPlug Team"), ("people.html#affiliated-faculty", "Affiliated Faculty Leadership"),
+                                ("people.html#advisory-board", "Advisory Board"), ("people.html#technology-council", "Chief Technology Council")]),
+    ("facilities.html", "Facilities", [("sim-home.html", "SIM Home"), ("1-kwh-challenge.html", "1 kWh Challenge"), ("sim-lab.html", "SIM Lab")]),
+    ("research.html", "Projects & Publications", [("research.html", "Projects"), ("publications.html", "Publications")]),
+    ("support.html", "Support & Memberships", [("support.html#friends", "Support"), ("support.html#members", "Become a Member"),
+                                                ("support.html#affiliates", "Members & Affiliates")]),
+    ("news.html", "Events", [("news.html", "News & Events"), ("events-archive.html", "Events Archive")]),
+    ("careers.html", "CalPlug Careers", []),
+    ("contact.html", "Contact", []),
+]
+# which top-level item is "current" for each page
+SECTION = {"publications.html": "research.html", "sim-home.html": "facilities.html", "sim-lab.html": "facilities.html",
+           "1-kwh-challenge.html": "facilities.html", "events-archive.html": "news.html"}
+OLD_LINKS = {"/sim-home": "sim-home.html", "/sim-lab": "sim-lab.html", "/1-kwh-challenge": "1-kwh-challenge.html",
+             "/friends": "support.html#friends", "/members-2": "support.html#members", "/support": "support.html",
+             "/affiliations": "support.html#affiliates", "/about/careers": "careers.html", "/about/contact": "contact.html",
+             "/eventsarchive": "events-archive.html", "/projects": "research.html", "/publications": "publications.html",
+             "/about/team": "people.html", "/about": "about.html", "/facilities": "facilities.html", "/": "index.html", "": "index.html"}
 
 
 def load(name):
@@ -96,8 +115,11 @@ def initials(name):
 
 
 def page(filename, title, description, body, site):
-    nav = "".join(
-        f'<li><a href="{h}"{" aria-current=\"page\"" if h == filename else ""}>{e(t)}</a></li>' for h, t in NAV)
+    cur = SECTION.get(filename, filename)
+    nav = ""
+    for h, label, subs in NAV:
+        sub = ('<ul class="sub">' + "".join(f'<li><a href="{sh}">{e(sl)}</a></li>' for sh, sl in subs) + "</ul>") if subs else ""
+        nav += (f'<li{" class=\"has-sub\"" if subs else ""}><a href="{h}"{" aria-current=\"page\"" if h == cur else ""}>{e(label)}</a>{sub}</li>')
     c = site["contact"]
     full_title = "CalPlug – California Plug Load Research Center" if filename == "index.html" else f"{title} – CalPlug"
     return f"""<!DOCTYPE html>
@@ -118,11 +140,11 @@ def page(filename, title, description, body, site):
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/brand/calplug-logo-compact.png" alt="CalPlug, California Plug Load Research Center" width="517" height="96"></a>
+  <div class="wrap top">
+    <a class="brand" href="index.html"><img src="{e(url('/wp-content/uploads/calpluglogo-small.png'))}" alt="CalPlug, California Plug Load Research Center, University of California, Irvine" width="600" height="166"></a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
-    <nav class="nav" id="nav" aria-label="Main"><ul>{nav}</ul></nav>
   </div>
+  <nav class="nav" id="nav" aria-label="Main"><div class="wrap"><ul>{nav}</ul></div></nav>
 </header>
 <main id="main">
 {body}
@@ -137,7 +159,7 @@ def page(filename, title, description, body, site):
       </div>
       <div>
         <h2>Site</h2>
-        <ul>{''.join(f'<li><a href="{h}">{e(t)}</a></li>' for h, t in NAV[1:])}</ul>
+        <ul>{''.join(f'<li><a href="{h}">{e(lbl)}</a></li>' for h, lbl, _ in NAV[1:])}</ul>
       </div>
       <div>
         <h2>Connect</h2>
@@ -158,8 +180,36 @@ def page(filename, title, description, body, site):
 """
 
 
+def legacy(slug):
+    """Original page content copied from the old site (content/legacy), with links and images pointed at this site."""
+    f = ROOT / "content" / "legacy" / f"{slug}.html"
+    if not f.exists():
+        ERRORS.append(f"content/legacy/{slug}.html is missing; run tools/import_pages.py")
+        return ""
+    html = f.read_text(encoding="utf-8")
+
+    def src(m):
+        return f'src="{e(url(m.group(1)))}"'
+
+    def href(m):
+        path = m.group(1)
+        if path.startswith("/wp-content/"):
+            return f'href="{OLD_SITE}{path}"'
+        key = path.rstrip("/")
+        return f'href="{OLD_LINKS[key]}"' if key in OLD_LINKS else f'href="{OLD_SITE}{path}"'
+
+    html = re.sub(r'src="(?:https?://(?:www\.)?calplug\.org)?(/wp-content/uploads/[^"]+)"', src, html)
+    html = re.sub(r'href="(?:https?://(?:www\.)?calplug\.org)?(/[^"]*|)"', href, html)
+    return html
+
+
+def legacy_page(filename, title, slug, site, description):
+    body = head(title, "") + f'<section class="section"><div class="wrap prose">{legacy(slug)}</div></section>'
+    return page(filename, title, description, body, site)
+
+
 def head(title, lead):
-    return f'<div class="page-head"><div class="wrap"><h1>{e(title)}</h1><p class="lead">{e(lead)}</p></div></div>'
+    return f'<div class="page-head"><div class="wrap"><h1>{e(title)}</h1>{f"<p class=\"lead\">{e(lead)}</p>" if lead else ""}</div></div>'
 
 
 def cta(title, text, label="Partner with us", href="partner.html"):
@@ -243,7 +293,7 @@ def build_home(site, projects, pubs, events, people, partners):
     <h1>California Plug Load Research Center</h1>
     <p class="lead">The California Plug Load Research Center (CalPlug) is the Leading Enabler for Energy Efficiency Solutions in the Use and Design of Appliances and Consumer Products.</p>
     <p>Our mission: {e(site['mission'][0].lower() + site['mission'][1:])}</p>
-    <p>Interested in working with us? See <a href="people.html#join">student research opportunities</a> or <a href="partner.html">how to partner with CalPlug</a>.</p>
+    <p>Interested in working with us? See <a href="careers.html">student research opportunities</a> or <a href="support.html">support and memberships</a>.</p>
     <p><a href="about.html"><strong>About CalPlug \u2192</strong></a></p>
   </div>
   <figure>{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign')}</figure>
@@ -313,7 +363,6 @@ def build_research(site, projects):
   <div class="section-head"><div><div class="eyebrow">Students</div><h2>Student projects</h2></div></div>
   <div class="grid c3">{students}</div>
 </div></section>
-{cta('Have a research question for us?', 'We work with utilities, agencies and manufacturers on testing, evaluation and field studies.', 'Get in touch')}
 """
     return page("research.html", "Research", "Current and completed research projects at the California Plug Load Research Center.", body, site)
 
@@ -360,13 +409,8 @@ def build_people(site, people, partners):
     team = "".join(
         f'<div class="card reveal"><h3>{e(a["name"])}</h3><p>{e(a["title"])}</p><div class="links"><a href="mailto:{e(a["email"])}">{e(a["email"])}</a></div></div>'
         for a in people["affiliated_team"])
-    j = partners["join"]
-    positions = "".join(
-        f'<div class="card reveal"><div class="meta">{e(p["id"])}</div><h3>{e(p["area"])}</h3><p>{e(p["description"])}</p>'
-        f'<p>Mentor: {e(p["mentor"])}</p><div class="links"><a href="mailto:{e(p["email"])}">{e(p["email"])}</a></div></div>'
-        for p in j["positions"])
     body = head("People", "Faculty, researchers, students and advisors behind CalPlug.") + f"""
-<section class="section"><div class="wrap">
+<section class="section" id="team"><div class="wrap">
   <div class="eyebrow">Director</div>
   <div class="lead-person reveal">{img(d['photo'], 'Portrait of ' + d['name'])}<div><h2>{e(d['name'])}</h2>
     <p class="meta">{e(d['title'])} · <a href="mailto:{e(d['email'])}">{e(d['email'])}</a></p><p>{e(d['bio'])}</p></div></div>
@@ -379,8 +423,8 @@ def build_people(site, people, partners):
   <h3 class="sub">Alumni</h3>
   <ul class="grid c5">{''.join(person(s, [s['program'], s['level']]) for s in people['alumni'])}</ul>
 </div></section>
-<section class="section"><div class="wrap">
-  <div class="section-head"><div><div class="eyebrow">UC Irvine</div><h2>Affiliated faculty</h2></div></div>
+<section class="section" id="affiliated-faculty"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">UC Irvine</div><h2>Affiliated Faculty Leadership</h2></div></div>
   <ul class="grid c5">{''.join(person(f, [f['dept']]) for f in people['affiliated_faculty'])}</ul>
 </div></section>
 <section class="section tint" id="advisory-board"><div class="wrap">
@@ -388,37 +432,27 @@ def build_people(site, people, partners):
   {board(people['advisory_board'])}
   <h3 class="sub">Board members emeriti</h3>{board(people['advisory_board_emeriti'])}
 </div></section>
-<section class="section"><div class="wrap">
+<section class="section" id="technology-council"><div class="wrap">
   <div class="section-head"><div><div class="eyebrow">Guidance</div><h2>Chief Technology Council</h2></div></div>
   {board(people['technology_council'])}
   <h3 class="sub">Council members emeriti</h3>{board(people['technology_council_emeriti'])}
-</div></section>
-<section class="section tint" id="join"><div class="wrap">
-  <div class="section-head"><div><div class="eyebrow">Join us</div><h2>Student research opportunities</h2><p class="lead">{e(j['program'])}</p></div></div>
-  <div class="grid c2">
-    <div class="card"><h3>Requirements</h3><ul class="plain">{''.join(f'<li>{e(x)}</li>' for x in j['requirements'])}</ul></div>
-    <div class="card"><h3>Benefits</h3><ul class="plain">{''.join(f'<li>{e(x)}</li>' for x in j['benefits'])}</ul></div>
-  </div>
-  <h3 class="sub">Positions</h3><div class="grid c2">{positions}</div>
-  <p class="read" style="margin-top:var(--s-24)">{e(j['apply'])}</p>
 </div></section>
 """
     return page("people.html", "People", "The CalPlug team: director, researchers, students, affiliated faculty and advisory boards.", body, site)
 
 
 def build_facilities(site, partners):
+    pages = {"sim-home": "sim-home.html", "sim-lab": "sim-lab.html", "1-kwh-challenge": "1-kwh-challenge.html"}
     cards = ""
     for f in partners["facilities"]:
-        pics = "".join(f'<div class="thumb">{img(f["images"][0], f["name"])}</div>' if i == 0 else "" for i, _ in enumerate(f["images"]))
-        cards += f'<article class="card reveal" id="{e(f["id"])}">{pics}<h3>{e(f["name"])}</h3>{"".join(f"<p>{e(x)}</p>" for x in f["paragraphs"])}</article>'
-    body = head("Facilities", "Labs and demonstration rooms on the fourth floor of the Calit2 Building at UC Irvine.") + f"""
+        cards += (f'<a class="card" href="{pages[f["id"]]}" id="{e(f["id"])}"><div class="thumb">{img(f["images"][0], f["name"])}</div>'
+                  f'<h3>{e(f["name"])}</h3><p>{e(f["blurb"])}</p><div class="links"><span>Read more \u2192</span></div></a>')
+    body = head("Facilities", "") + f"""
 <section class="section"><div class="wrap">
-  <div class="grid c2"><div><h2>Where we work</h2><p style="margin-top:var(--s-16)">{e(site['facility'])}</p>
-  <p>{e(partners['facility_intro'])}</p></div>
-  <figure style="margin:0">{img('/wp-content/uploads/clplg_space.jpg', 'Floor plan of the CalPlug space on the fourth floor of the Calit2 Building')}</figure></div>
+  <p class="lead">{e(partners['facility_intro'])}</p>
+  <figure class="plan">{img('/wp-content/uploads/clplg_space.jpg', 'Floor plan of the CalPlug space on the fourth floor of the Calit2 Building')}</figure>
+  <div class="grid c3">{cards}</div>
 </div></section>
-<section class="section tint"><div class="wrap"><div class="grid c3">{cards}</div></div></section>
-{cta('Need a device tested?', 'CalPlug provides power consumption testing for manufacturers and utilities.', 'Contact us')}
 """
     return page("facilities.html", "Facilities", "CalPlug labs and demonstration facilities at UC Irvine.", body, site)
 
@@ -430,34 +464,42 @@ def build_news(site, events):
     dated = sorted([x for x in evs if x.get("date")], key=lambda x: x["date"], reverse=True)
     undated = [x for x in evs if not x.get("date")]
     body = head("News & Events", "Workshops, talks and announcements from CalPlug.") + f"""
-<section class="section"><div class="wrap"><div class="newslist">{''.join(news_item(x) for x in dated + undated)}</div></div></section>
+<section class="section"><div class="wrap"><div class="newslist">{''.join(news_item(x) for x in dated + undated)}</div>
+<p style="margin-top:var(--s-32)"><a href="events-archive.html"><strong>Events archive: full agendas, speakers and recordings \u2192</strong></a></p></div></section>
 """
     return page("news.html", "News & Events", "CalPlug workshops and events.", body, site)
 
 
-def build_partner(site, partners):
-    s, c = partners["support"], site["contact"]
-    ways = "".join(f'<div class="card reveal"><h3>{e(w["name"])}</h3><p>{e(w["how"])}</p></div>' for w in s["ways"])
-    li = lambda xs: "".join(f'<span class="tag">{e(x)}</span>' for x in xs)
-    body = head("Partner with CalPlug", "CalPlug invites all interested groups to join the effort as members and partners.") + f"""
+def build_support(site, partners):
+    chips = lambda xs: "".join(f'<span class="tag">{e(x)}</span>' for x in xs)
+    body = head("Support & Memberships", "") + f"""
+<section class="section"><div class="wrap prose">{legacy('support')}</div></section>
+<section class="section tint" id="friends"><div class="wrap prose"><h2>Support</h2>{legacy('friends')}</div></section>
+<section class="section" id="members"><div class="wrap prose"><h2>Become A Member</h2>{legacy('members')}</div></section>
+<section class="section tint" id="affiliates"><div class="wrap">
+  <h2>Members &amp; Affiliates</h2>
+  <h3 class="sub">Current CalPlug Members</h3><div class="chips">{chips(partners['members'])}</div>
+  <h3 class="sub">Current affiliates</h3><div class="chips">{chips(partners['affiliates'])}</div>
+  <div class="logos" style="margin-top:var(--s-32)">{''.join(img(l['src'], l['name']) for l in partners.get('logos', []))}</div>
+</div></section>
+"""
+    return page("support.html", "Support & Memberships", "Support CalPlug as a friend or corporate member.", body, site)
+
+
+def build_contact(site):
+    c = site["contact"]
+    body = head("Contact", "") + f"""
 <section class="section"><div class="wrap">
-  <p class="lead">{e(s['intro'])}</p>
-  <h2 class="sub">Ways to support</h2><div class="grid c2">{ways}</div>
-</div></section>
-<section class="section tint"><div class="wrap">
-  <h2>Members</h2><div class="chips" style="margin:var(--s-16) 0 var(--s-32)">{li(partners['members'])}</div>
-  <h2>Affiliates</h2><div class="chips" style="margin:var(--s-16) 0 var(--s-32)">{li(partners['affiliates'])}</div>
-  <div class="logos reveal">{''.join(img(l['src'], l['name']) for l in partners.get('logos', []))}</div>
-</div></section>
-<section class="section" id="contact"><div class="wrap"><h2>Contact</h2>
-  <div class="grid c3" style="margin-top:var(--s-24)">
-    <div class="card"><h3>Collaborations</h3><p>{e(c['collaborations']['name'])}<br>{e(c['collaborations']['phone'])}</p><div class="links"><a href="mailto:{e(c['collaborations']['email'])}">{e(c['collaborations']['email'])}</a></div></div>
-    <div class="card"><h3>General information</h3><p>{e(c['general']['phone'])}<br>{e(c['hours'])}</p><div class="links"><a href="mailto:{e(c['general']['email'])}">{e(c['general']['email'])}</a></div></div>
-    <div class="card"><h3>Location</h3><p>{'<br>'.join(e(a) for a in c['address'])}</p><p>{e(c['location_note'])}</p></div>
+  <p class="read">CalPlug is located on the main campus of UC Irvine, in the Calit2 building, at the intersection of East Peltason Road and Los Trancos Drive, adjacent to the University Club. The CalPlug main office is located on the fourth floor in suite 4300. CalIt2 administrative offices are in suite 4100.</p>
+  <div class="grid c2" style="margin-top:var(--s-32)">
+    <div class="card"><h3>Location</h3><p>{'<br>'.join(e(a) for a in c['address'])}</p><p>Our hours: {e(c['hours'])}</p></div>
+    <div class="card"><h3>General Information, Directions &amp; Parking</h3><p>Phone: {e(c['general']['phone'])}</p><div class="links"><a href="mailto:{e(c['general']['email'])}">{e(c['general']['email'])}</a></div></div>
+    <div class="card"><h3>CalPlug Collaborations</h3><p>Phone: {e(c['collaborations']['phone'])}</p><div class="links"><a href="mailto:{e(c['collaborations']['email'])}">{e(c['collaborations']['email'])}</a></div></div>
+    <div class="card"><h3>General / Calit2 Information</h3><p>Phone: {e(c['calit2']['phone'])}</p><div class="links"><a href="mailto:{e(c['calit2']['email'])}">{e(c['calit2']['email'])}</a><a href="{e(c['calit2']['url'])}">www.calit2.uci.edu</a></div></div>
   </div>
 </div></section>
 """
-    return page("partner.html", "Partner", "Support CalPlug as a member, friend or research partner.", body, site)
+    return page("contact.html", "Contact", "How to reach the California Plug Load Research Center.", body, site)
 
 
 def main():
@@ -471,7 +513,13 @@ def main():
         "people.html": build_people(site, people, partners),
         "facilities.html": build_facilities(site, partners),
         "news.html": build_news(site, events),
-        "partner.html": build_partner(site, partners),
+        "sim-home.html": legacy_page("sim-home.html", "SIM Home", "sim-home", site, "The Simulation, Integration, and Management (SIM) Home at CalPlug."),
+        "sim-lab.html": legacy_page("sim-lab.html", "SIM Lab", "sim-lab", site, "CalPlug SIM Lab testing and demonstration labs."),
+        "1-kwh-challenge.html": legacy_page("1-kwh-challenge.html", "1 kWh Challenge", "1-kwh-challenge", site, "The One Kilowatt-hour Challenge outreach program."),
+        "events-archive.html": legacy_page("events-archive.html", "Events Archive", "events-archive", site, "Past CalPlug workshops with agendas, speakers and recordings."),
+        "careers.html": legacy_page("careers.html", "CalPlug Careers", "careers", site, "Student research opportunities at CalPlug."),
+        "support.html": build_support(site, partners),
+        "contact.html": build_contact(site),
     }
     if ERRORS:
         print("Build stopped. Fix these data problems:\n  " + "\n  ".join(ERRORS))

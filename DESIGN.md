@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.6 (draft), 2026-11-12. Read this before changing any page, style or template.
+Version 0.7 (draft), 2026-11-12. Read this before changing any page, style or template.
 If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. Do not make one-off exceptions on a page.
@@ -19,18 +19,25 @@ Simple and direct: the site exists so people can find information, not to impres
 
 ## 2. Pages
 
-Eight pages, one navigation level. No drop-down menus.
+The navigation keeps the structure of the previous calplug.org, which visitors already know. Nothing from the old site is dropped: every old page has a place here.
 
-| Page | Question it answers | Sections, in order | Next step |
+| Menu item | Sub-items | Page(s) | Content |
 |---|---|---|---|
-| Home | What is CalPlug and what is new? | Welcome (text on the left: what we do, mission, how to work with us; group photo on the right) · Latest news (4) · Current projects (compact list) · Recent publications (4) | Read the news / Work with us |
-| About | What does CalPlug stand for? | Logo · About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility (original text) | Meet the boards / See facilities |
-| Research | What has CalPlug worked on, and with whom? | Intro · Active projects (cards with the full original description) · Completed projects (rows: first sentence of the original description, full text behind 'Full description'; filter by theme) · Student projects | Read a report / Contact |
-| Publications | What has CalPlug published? | Filter (type, year) · List by year, newest first · Archive (older undated documents) | Open the PDF or DOI |
-| People | Who is CalPlug and how do I join? | Director · Staff · Students · Affiliated faculty · Advisory Board · Technology Council · Alumni · Join us | Apply / Email |
-| Facilities | What can CalPlug test and demonstrate? | Intro and floor plan · SIM Lab · SIM Home · 1 kWh Challenge | Contact about testing |
-| News & Events | What happened recently? | Upcoming (only if any) · Past events by date, newest first | Read the recap |
-| Partner | How do I support or join CalPlug? | Why support · Membership · Friends of CalPlug · Members and affiliates · Contact details and location | Email the contact |
+| Home | | `index.html` | Welcome (text left, group photo right) · Latest news (4) · Current projects · Recent publications (4) |
+| About | | `about.html` | Logo · About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility |
+| People | CalPlug Team · Affiliated Faculty Leadership · Advisory Board · Chief Technology Council | `people.html` (sections) | Director · Staff · Affiliated team · Students · Alumni · Faculty · Boards |
+| Facilities | SIM Home · 1 kWh Challenge · SIM Lab | `facilities.html` + one page each | Overview with floor plan; each facility keeps its full original page |
+| Projects & Publications | Projects · Publications | `research.html`, `publications.html` | Projects (active, completed, student) · Publications by year |
+| Support & Memberships | Support · Become a Member · Members & Affiliates | `support.html` (sections) | Original text of the three old pages, plus members and affiliates |
+| Events | News & Events · Events Archive | `news.html`, `events-archive.html` | News list with images · full archive with agendas, speakers and recordings |
+| CalPlug Careers | | `careers.html` | Student research opportunities (original page) |
+| Contact | | `contact.html` | Location, phone numbers, emails, hours |
+
+The header has two rows: the full original logo, then the menu. Sub-items open on hover or keyboard focus; on phones the whole menu opens from one Menu button.
+
+No call-to-action bands ("Get in touch", "Partner with us") at the bottom of pages. CalPlug is a research center, not a company; Careers, Support and Contact are in the menu for people who look for them.
+
+Pages copied whole from the old site live in `content/legacy/*.html` (made by `tools/import_pages.py`). They are shown word for word inside the site template. Convert one to structured data only when its format has been agreed.
 
 Rules:
 - A page or section with no content is not published. No "coming soon", no placeholder text.
@@ -111,8 +118,8 @@ Only things that can be clicked react to hover.
 ### Logo
 
 - Use the existing CalPlug logo file unchanged (`assets/legacy/calpluglogo-small.png`). Do not redraw it, change its lettering, recolor or stretch it. Replace it only with a higher-resolution or vector copy of the same artwork from the lab.
-- Header: `assets/brand/calplug-logo-compact.png`, the icon and the CALPLUG wordmark cut from the original file (original lettering, no redraw). The two small text lines are left out in the header because they cannot be read at that size; the center's full name is in the page text instead.
-- Full logo with all three lines: use it where it is shown at 300px wide or more (documents, slides, posters).
+- Header and About page: the full original logo.
+- `assets/brand/calplug-logo-compact.png` (icon and CALPLUG wordmark cut from the original file) is available for small spaces.
 - `assets/brand/calplug-mark.svg` is the icon alone (no lettering), used for the browser tab icon and inside the default images.
 - UC Irvine and Calit2 logos go in the footer once official files are supplied. Use only official files and follow each owner's rules; never redraw them.
 
@@ -164,6 +171,7 @@ Only things that can be clicked react to hover.
 | 0.4 | 2026-11-12 | Original logo restored (no redrawn lettering); no-cropping standard; entrance animations removed; welcome section simplified. |
 | 0.5 | 2026-11-12 | Welcome: text left, photo right. Compact header logo cut from the original artwork. One default image each for news and publications; thumbnail finder also tries PDFs and preview images on linked pages. |
 | 0.6 | 2026-11-12 | About page added. Original wording kept everywhere (bios, projects, facilities); imported by `tools/import_text.py`. |
+| 0.7 | 2026-11-12 | Navigation follows the previous site (with sub-menus); Facilities sub-pages, Careers, Contact, Support and Events Archive restored with original content; call-to-action bands removed; full logo in a two-row header. |
 
 ## Open questions
 

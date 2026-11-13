@@ -17,6 +17,7 @@ Each task is one edit in one file under `data/`. Copy an existing entry and chan
 | Finish a project | `data/projects.json` | Change `status` to `completed`, set `end`, add the report under `links` |
 | Add an event or news item | `data/events.json`, list `events` | Add `id`, `title`, `date` (YYYY-MM-DD), `summary`, `links`, and `image` (see DESIGN.md, News images). Without `image` the default image is used |
 | Change contact details | `data/site.json` | Edit `contact` |
+| Edit Careers, a facility page, Support text or the Events Archive | `content/legacy/<page>.html` | Plain HTML copied from the old site. Edit the text directly; keep the tags simple (p, h2 to h4, ul, li, a, img) |
 | Add a board member | `data/people.json`, list `advisory_board` or `technology_council` | Add `name`, `title`, `org`, `org_url`, `photo` |
 
 Example, adding a publication:
