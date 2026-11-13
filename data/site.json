@@ -22,19 +22,23 @@
     "location_note": "Main campus of UC Irvine, Calit2 Building, at the intersection of East Peltason Road and Los Trancos Drive. CalPlug main office: fourth floor, suite 4300.",
     "general": {
       "phone": "(949) 824-4874",
-      "email": "calplug@uci.edu"
+      "email": "calplug@uci.edu",
+      "title": "General & directions"
     },
     "collaborations": {
       "name": "Shuoyu (Arnold) Wang",
       "phone": "(949) 824-3047",
-      "email": "shuoyuw@uci.edu"
+      "email": "shuoyuw@uci.edu",
+      "title": "Collaborations"
     },
     "calit2": {
       "phone": "(949) 824-6900",
       "email": "info@calit2.uci.edu",
-      "url": "https://www.calit2.uci.edu/"
+      "url": "https://www.calit2.uci.edu/",
+      "title": "Calit2"
     },
-    "hours": "Mon-Fri 8:00am - 5:00pm"
+    "hours": "Monday to Friday, 8:00 am to 5:00 pm",
+    "location_text": "CalPlug is located on the main campus of UC Irvine, in the Calit2 building, at the intersection of East Peltason Road and Los Trancos Drive, adjacent to the University Club. The CalPlug main office is located on the fourth floor in suite 4300. Calit2 administrative offices are in suite 4100."
   },
   "social": {
     "facebook": "https://www.facebook.com/calplug/",

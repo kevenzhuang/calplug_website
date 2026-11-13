@@ -199,7 +199,11 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
 
 /* Contact */
 .contact-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-48); align-items: start; margin-bottom: var(--s-32); }
-.contact-top .figure { margin: 0; max-width: none; }
+.contact-top .figure { margin: 0.35em 0 0; max-width: none; }
+.contact-top .address { font-weight: 600; }
+.facts { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: var(--s-8) var(--s-16); margin: var(--s-8) 0 0; font-size: var(--fs-small); }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
 
 /* Pages copied from the previous site */
 .prose > * { max-width: var(--text); }
@@ -229,7 +233,15 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
 .social a { color: var(--on-navy); display: block; }
 .social a:hover { color: var(--white); }
 .social svg { width: 20px; height: 20px; fill: currentColor; display: block; }
-.site-footer .legal { margin: 0; max-width: none; }
+.site-footer .legal { margin: 0; max-width: none; display: flex; flex-wrap: wrap; gap: 0 var(--s-8); }
+.site-footer .legal span { white-space: nowrap; }
+.site-footer .legal span:first-child { flex-basis: 100%; }
+.site-footer .legal span + span + span::before { content: "\00b7"; margin-right: var(--s-8); }
+@media (max-width: 600px) {
+  .site-footer .legal { display: block; }
+  .site-footer .legal span { display: block; white-space: normal; }
+  .site-footer .legal span::before { display: none; }
+}
 .site-footer .legal a { color: var(--white); }
 .site-footer :focus-visible { outline-color: var(--white); }
 
@@ -319,12 +331,18 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
 .notfound h1 { margin-bottom: var(--s-16); }
 .notfound .intro { font-size: var(--fs-lead); }
 
-/* Page icon: the ring icon for the page, left of the title (DESIGN.md section 4) */
-.title-row { display: flex; align-items: flex-start; gap: var(--s-16); }
-.page-icon { width: 44px; height: 44px; margin-top: 0; }
-
-@media (max-width: 600px) { .page-icon { width: 36px; height: 36px; } .title-row { gap: var(--s-12); } }
 
 /* Footer vision line: CalPlug's own words, on every page */
 .site-footer .vision { font-family: var(--font-head); font-weight: 600; font-size: var(--fs-lead); line-height: 1.4; color: var(--white); max-width: none; margin: 0 0 var(--s-24); padding-bottom: var(--s-24); border-bottom: 1px solid rgba(255, 255, 255, 0.12); text-wrap: balance; }
 @media (max-width: 600px) { .site-footer .vision { font-size: var(--fs-body); } }
+
+/* Review fixes 0.15 */
+.nw { white-space: nowrap; }
+.card .bottom { margin-top: auto; padding-top: var(--s-8); }
+.item h3, .news h3, .pub h3 { max-width: var(--text); }
+.prose a:has(:is(h2, h3, h4, h5, h6, p, div, img, figure))::after { content: none !important; }
+@media (max-width: 600px) {
+  .filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-right: calc(var(--s-16) * -1); padding-right: var(--s-16); }
+  .filters::-webkit-scrollbar { display: none; }
+  .filters button { flex-shrink: 0; }
+}

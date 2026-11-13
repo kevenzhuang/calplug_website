@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.14, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
+Version 0.15, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -165,7 +165,6 @@ All content is shown with one of three blocks. The Publications list is the mode
 | More on demand | Closed by default ("Full bio", "Compare all benefits") | Long text that most readers skip |
 | Social icon | Single-color icon with a hidden text label | LinkedIn, Facebook, in the footer. White on hover |
 | Header button | Blue fill, white text | "Support CalPlug" only |
-| Page icon | The ring icon for the page (44px; 36px on phones), left of the page title, top-aligned with its first line | Every page with a title: About the CalPlug icon itself, People person, Research plug, Publications document, News calendar, Careers cap, Support heart, Contact pin, Our labs and SIM pages building, 1 kWh Challenge bolt; a project page uses its research area's icon. Set in `PAGE_ICON` in `tools/build.py` |
 | Footer vision line | CalPlug's Vision from About, in quotes, Montserrat, white, above the logos with a faint line below | Every page. Text comes from `vision` in `data/site.json`; never replaced by a slogan |
 | Ring icon | A ring with the logo's own proportions (inner radius 74% of the outer, split on the horizontal, blue above, green below) around a line icon in the logo's blue with round ends, the same weight as the logo's arcs (22px; 20px on filter buttons) | Research areas: on the filter buttons and on project cards. Icons: plug (plug loads), person (user behavior), factory (smart manufacturing), bolt (grid and storage), building (buildings and data centers), calendar (default news image). Drawn in `tools/build.py` (`LINE_ICONS`); never add a second icon style |
 | Active dot | Green dot + "Active" in green text | Meta line of active projects |
@@ -197,7 +196,7 @@ Only things that can be clicked react to hover.
 ### Logo
 
 - Header: `assets/brand/calplug-logo-compact.png`, the icon and the CALPLUG wordmark cut from the original logo file. Lettering unchanged, nothing redrawn. About 44px high.
-- The icon alone (`assets/brand/calplug-mark.svg`): redrawn as a vector by measuring the original logo file (ring outer and inner radius, horizontal split, the three arcs' centers, radii and widths, the plug's prongs and body); checked against the original pixel by pixel, differences are only at anti-aliased edges. Used for the browser tab icon, the About page icon, the 404 page and the default news and publication images. Never altered (no "unplugged" variant, no recoloring).
+- The icon alone (`assets/brand/calplug-mark.svg`): redrawn as a vector by measuring the original logo file (ring outer and inner radius, horizontal split, the three arcs' centers, radii and widths, the plug's prongs and body); checked against the original pixel by pixel, differences are only at anti-aliased edges. Used for the browser tab icon, the 404 page and the default news and publication images. Never altered (no "unplugged" variant, no recoloring).
 - Replace these only with a higher-resolution or vector copy of the same artwork from the lab.
 - UC Irvine logo: the primary logo file Keven Zhuang provided (`assets/brand/uci-logo.png`, 266×45). Keep the clear space around it; nothing locked up with it; not smaller than 3/16 inch (about 18px); never redrawn or recolored. A larger or vector copy from the UC Irvine brand asset library (UCInetID login) would look sharper on high-resolution screens; swap it in when available.
 - UC Irvine seal: not used. UC Irvine's brand rules say the seal should not be used on the web and cannot be modified; questions go to graphicservices@uci.edu.
@@ -260,7 +259,13 @@ Only things that can be clicked react to hover.
 
 1. `python tools/build.py` builds without errors.
 2. `python tools/check.py` passes (links, alt text, placeholder text, empty sections, one h1).
-3. Screenshots at 1440, 1024 and 390 look right, including line breaks (section 3) and people photos (section 6). A passing script does not mean the page looks good.
+3. Screenshots at 1440, 1024 and 390 look right, including line breaks (section 3) and people photos (section 6). A passing script does not mean the page looks good. Look at every page, and check in particular:
+   - **Alignment across cards.** Cards side by side have the same parts in the same order, so their rows line up (Contact: Phone, Email, Web, Contact; team cards: email at the bottom). Titles short enough to fit one line.
+   - **Labels and values.** Facts are shown as label / value rows with one fixed label width, not as sentences ("Phone: ...").
+   - **Separators.** A " · " never starts a line: keep separated items in no-wrap pieces, or put them on their own lines on phones.
+   - **No half sentences.** Text is never cut with "..." to fit a box; shorten it or leave it out.
+   - **Copied pages.** No one-item bullet lists holding a paragraph, no line breaks inside links, spelling fixed, a link back to the parent page.
+   - **Circles.** The ring appears only where it means something (the logo, research areas). Do not add it as page decoration.
 4. Anything new that this guide does not cover has been added to this guide.
 
 ## 10. Brand kit
@@ -285,6 +290,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.15 | 2026-11-13 | Page icons removed (too many circles: the logo, then a ring by every title). Full visual review: Contact cards rebuilt as short titles with aligned label / value rows (Phone, Email, Web, Contact) and the Calit2 spelling fixed; footer address on its own line and no separator at a line start; affiliated team emails aligned; Home project cards without cut-off summaries; Careers research areas never split; copied pages: one-item lists turned into paragraphs, line breaks inside links removed, typos fixed, back links added; list titles kept to the text width; filter buttons scroll sideways on phones instead of wrapping into four rows. Review checklist added to section 9. |
 | 0.14 | 2026-11-13 | CalPlug icon redrawn to the original logo's measurements; it replaces the look-alike in the tab icon, About, 404 and default images. Ring icons rebuilt with the logo's ring proportions and blue line icons. Selected filter is now light blue with a blue border so the ring stays visible. Footer logos are no longer links (the top bar is the one link out). Share image and templates use the true ring. |
 | 0.13 | 2026-11-13 | Page icons: each page title has its ring icon on the left (fixed size and place on every page). CalPlug's Vision as one line at the top of the footer. |
 | 0.12.1 | 2026-11-13 | Page-title arcs removed: the title areas differ in height, so each page showed a different, cut-off piece of the arcs and it looked like a broken image. |
