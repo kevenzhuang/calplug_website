@@ -21,7 +21,7 @@ Each task is one edit in one file under `data/`. Copy an existing entry and chan
 | Change the share picture | `tools/share/share.html` | Edit, then run `python tools/make_share_image.py` (needs Playwright) |
 | Make slides or a flyer | `brand-kit/` | Start from the templates; see `brand-kit/README.md` |
 | Turn a logo picture into a vector file | `tools/trace_logo.py` | `python tools/trace_logo.py in.png out.svg --colors "#005BAA,#8BC53F,#000000" --scale 3` (needs `pip install potracer`). Compare the result with the picture before using it |
-| Download new images or PDF documents from the old site, or images from another site named in the data | GitHub Actions, "Import images and documents" | Never rewrites data or pages. Images go to `assets/legacy/`, documents to `wp-content/uploads/` (their old path). Files over 90 MB are reported and left out |
+| Download new images or PDF documents from the old site, or images from another site named in the data | GitHub Actions, "Import images and documents" | Never rewrites data or pages. Images go to `assets/legacy/`, documents to `wp-content/uploads/` (their old path). Files over 90 MB are reported and left out. The imported files are published with the next change; to publish them at once, run "Build, check and deploy" from the Actions tab |
 | Add a new document (report, slides, poster) | `wp-content/uploads/` | Put the PDF there and write its path in the data as `/wp-content/uploads/<file>.pdf`. Lower-case letters, digits and hyphens in the name; under 50 MB if possible |
 | After adding any image | `python tools/optimize_images.py` | Writes smaller copies to `assets/opt/` (needs Pillow). The build refuses images over 400 KB |
 | Update Careers (term, deadline, positions) | `data/careers.json` | Change `term` and `deadline`; each position has `id`, `title`, `mentors` (name, email, photo), one-sentence `description`, up to 3 `tasks`, and optionally `project` (the `id` of its project in `data/projects.json`; the card then links to the project page). The build stops if a piece is too long (DESIGN.md section 5) |
@@ -111,7 +111,7 @@ The sample runs at a GitHub address and tells search engines to stay away. On th
 | 7 | Browser | Open five old addresses (a PDF from a paper, `/projects`, `/people`, `/about/careers`, `/eventsarchive`). PDFs open as before; old page addresses show the 404 page with links, unless redirects were added |
 | 8 | This file, section 3 | Write the approval date and turn on branch protection for `main` |
 
-Size: the repository holds about 350 MB of documents and 35 MB of images. GitHub Pages allows 1 GB per site and 100 MB per file.
+Size: the repository holds about 350 MB of documents (63 PDFs, the largest 66 MB) and 35 MB of images. GitHub Pages allows 1 GB per site and 100 MB per file.
 
 ## 6. What must never be in this repository
 
