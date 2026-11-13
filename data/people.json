@@ -1,0 +1,108 @@
+{
+  "_note": "Extracted from calplug.org people pages on 2026-11-12. 'photo' is the image path on the current site. Corrections applied are listed in CONTENT-NOTES.md.",
+  "director": {
+    "name": "G. P. Li, Ph.D.",
+    "title": "Director of CalPlug; Former Director of Calit2 UCI Division",
+    "email": "gpli@calit2.uci.edu",
+    "photo": "/wp-content/uploads/gp-li-300dpi_cropped-2.jpg",
+    "bio": "G. P. Li is a professor at the University of California, Irvine, with appointments in Electrical Engineering and Computer Science and in Biomedical Engineering, and in the Materials and Manufacturing Technology program. Dr. Li served as director of the California Institute for Telecommunications and Information Technology (Calit2) at UC Irvine from 2007 to 2025. He also serves as director of the Integrated Nanosystems Research Facility (INRF) in The Henry Samueli School of Engineering, and as director of the California Plug Load Research Center (CalPlug). Dr. Li holds 38 U.S. patents with 11 additional patents pending and has published more than 400 research papers.",
+    "links": [{ "label": "INRF", "url": "https://www.inrf.uci.edu/" }]
+  },
+  "staff": [
+    {
+      "name": "Shuoyu (Arnold) Wang, Ph.D.",
+      "title": "Assistant Project Scientist",
+      "email": "shuoyuw@uci.edu",
+      "photo": "/wp-content/uploads/image001-scaled.jpg",
+      "bio": "Shuoyu (Arnold) Wang joined CalPlug as a postdoctoral scholar in 2024. Prior to joining CalPlug, he was a post-graduate intern within the Building Energy Science Group at the National Renewable Energy Laboratory (NREL). Dr. Wang holds a Ph.D. in structural engineering from Lehigh University, an M.S. in civil engineering from the University of Southern California, and a B.S. in civil engineering from Southwest Jiaotong University, China.",
+      "_flag": "Bio is cut off in the extraction; copy the remaining sentences from the live page."
+    }
+  ],
+  "affiliated_team": [
+    { "name": "Chelsea Choudhary", "title": "Program Manager of SMART ITAC", "email": "ccchoudh@uci.edu", "link": "https://smartiac.calit2.uci.edu/" },
+    { "name": "Sergio Gago-Masague, Ph.D.", "title": "Director of ETAD and Associate Director for Training Programs of Calit2 UCI Division", "email": "sgagomas@calit2.uci.edu", "link": "https://etad.calit2.uci.edu/" },
+    { "name": "Shelly Nazarenus", "title": "Director of Communications", "email": "snaz@calit2.uci.edu" }
+  ],
+  "students": [
+    { "name": "Daniel Ceja", "program": "Mechanical Engineering", "level": "Undergraduate", "linkedin": "https://www.linkedin.com/in/daniel-ceja-929ba8337", "photo": "/wp-content/uploads/Daniel-Ceja.jpg" },
+    { "name": "Jordan Chan", "program": "Mechanical Engineering", "level": "Undergraduate", "linkedin": "https://www.linkedin.com/in/jordanruichan", "photo": "/wp-content/uploads/Jordan-Chan-scaled-e1793320118344.jpg" },
+    { "name": "Yash Deole", "program": "Data Science", "level": "Post-graduate", "linkedin": "https://www.linkedin.com/in/yash-m-d/", "photo": "/wp-content/uploads/Yash-Deole.jpg" },
+    { "name": "Jacob Horne", "program": "Computer Science", "level": "Undergraduate", "linkedin": "https://www.linkedin.com/in/jacobhornejth/", "photo": "/wp-content/uploads/Jacob-Horne.png" },
+    { "name": "Haritejas Kallu", "program": "Mechanical Engineering", "level": "Undergraduate", "linkedin": "https://www.linkedin.com/in/tejas-kallu", "photo": "/wp-content/uploads/Haritejas-Kallu-e1793320038659.jpg" },
+    { "name": "Anirudh Kaushal", "program": "Computer Science", "level": "Undergraduate", "linkedin": "https://www.linkedin.com/in/anirudh-kaushal-05a175269/", "photo": "/wp-content/uploads/Anirudh-Kaushal.jpg" },
+    { "name": "Siddharth Kurra", "program": "EECS", "level": "Undergraduate", "linkedin": "https://www.linkedin.com/in/siddharth-kurra-a58681288/", "photo": "/wp-content/uploads/Siddharth-Kurra.jpg" },
+    { "name": "Nhu (Nadine) Mai", "program": "Computer Engineering", "level": "Undergraduate", "linkedin": "https://www.linkedin.com/in/thao-nhu-mai", "photo": "/wp-content/uploads/Nhu-Nadine-Mai-scaled-e1793320084594.jpg" },
+    { "name": "Darien Ngo", "program": "Aerospace Engineering", "level": "Undergraduate", "linkedin": "https://www.linkedin.com/in/darien-ngo/", "photo": "/wp-content/uploads/Darien-Ngo-scaled.jpg" },
+    { "name": "Rahul Pandit", "program": "Computer Engineering", "level": "Graduate", "linkedin": "https://www.linkedin.com/in/rahulsharadpandit", "photo": "/wp-content/uploads/Rahul-Sharad-Pandit.png" },
+    { "name": "Aaron Taniguchi", "program": "Aerospace Engineering", "level": "Undergraduate", "linkedin": "https://www.linkedin.com/in/aarontani/", "photo": "/wp-content/uploads/Aaron-Taniguchi.png" },
+    { "name": "Aryaman Tyagi", "program": "Data Science", "level": "Post-graduate", "linkedin": "https://www.linkedin.com/in/aryaman-tyagi-393949200", "photo": "/wp-content/uploads/Aryaman-Tyagi-scaled.jpeg" },
+    { "name": "Santhosh Uppu", "program": "Computer Science", "level": "Undergraduate", "linkedin": "https://www.linkedin.com/in/santhosh-uppu-0502762a4", "photo": "/wp-content/uploads/Santhosh-Uppu.jpg" },
+    { "name": "Yudong (Wayde) Wan", "program": "EECS", "level": "Graduate", "linkedin": "https://www.linkedin.com/in/waydewan/", "photo": "/wp-content/uploads/Yudong-Wayde-Wan.jpg" },
+    { "name": "Tianle Wang", "program": "EECS", "level": "Post-graduate", "linkedin": "https://www.linkedin.com/in/tianlewang-moto", "photo": "/wp-content/uploads/Tianle-Wang-scaled.jpg" },
+    { "name": "Gensen Xiao", "program": "Computer Science", "level": "Graduate", "linkedin": "https://www.linkedin.com/in/gensen-xiao-2b84812a8/", "photo": "/wp-content/uploads/Gensen-Xiao-scaled.jpeg" },
+    { "name": "Keven Zhuang", "program": "Applied and Computational Mathematics", "level": "Undergraduate", "linkedin": "https://www.linkedin.com/in/keven-zhuang-62643b3b6", "photo": "/wp-content/uploads/Keven-Zhuang-scaled.jpeg" }
+  ],
+  "alumni": [
+    { "name": "Erick Castellanos-Ramirez", "program": "Mechanical Engineering", "level": "Post-graduate", "linkedin": "https://www.linkedin.com/in/erickcastellanos-ramirez/", "photo": "/wp-content/uploads/Erick-Castellanos-Ramirez.jpg" },
+    { "name": "Arnav Dhariya", "program": "Computer Science", "level": "Undergraduate", "linkedin": "https://www.linkedin.com/in/arnav-dhariya-3a2441241/", "photo": "/wp-content/uploads/Arnav-Dhariya.png" },
+    { "name": "Rowan Richards", "program": "Mechanical Engineering", "level": "Undergraduate", "linkedin": "https://www.linkedin.com/in/rowan-richards/", "photo": "/wp-content/uploads/Rowan-Richards.png" }
+  ],
+  "affiliated_faculty": [
+    { "name": "Nader Bagherzadeh, Ph.D.", "dept": "Electrical Engineering & Computer Science", "email": "nader@uci.edu", "url": "https://engineering.uci.edu/users/nader-bagherzadeh", "photo": "/wp-content/uploads/nader-bagherzadeh.png" },
+    { "name": "Nikil Dutt, Ph.D.", "dept": "Electrical Engineering & Computer Science", "email": "dutt@uci.edu", "url": "https://engineering.uci.edu/users/nikil-dutt", "photo": "/wp-content/uploads/nikil-dutt.png" },
+    { "name": "David Kirkby, Ph.D.", "dept": "Physics & Astronomy", "email": "dkirkby@uci.edu", "url": "https://www.physics.uci.edu/people/david-p-kirkby", "photo": "/wp-content/uploads/Kirkby_David.jpg" },
+    { "name": "Fadi Kurdahi, Ph.D.", "dept": "Electrical Engineering & Computer Science", "email": "kurdahi@uci.edu", "url": "https://engineering.uci.edu/users/fadi-kurdahi", "photo": "/wp-content/uploads/fadi-kurdahi.png" },
+    { "name": "Marco Levorato, Ph.D.", "dept": "Computer Science", "email": "levorato@uci.edu", "url": "https://www.ics.uci.edu/~mlevorat/", "photo": "/wp-content/uploads/Leverato2.jpg" },
+    { "name": "G.P. Li, Ph.D.", "dept": "Electrical Engineering & Computer Science / Biomedical Engineering / Chemical Engineering & Materials Science", "email": "gpli@uci.edu", "url": "https://engineering.uci.edu/users/gp-li", "photo": "/wp-content/uploads/gp-li.png" },
+    { "name": "Scott Samuelsen, Ph.D.", "dept": "Mechanical & Aerospace Engineering", "email": "gss@uci.edu", "url": "https://engineering.uci.edu/users/scott-samuelsen", "photo": "/wp-content/uploads/scott-samuelsen_0.jpg" },
+    { "name": "Keyue Smedley, Ph.D.", "dept": "Electrical Engineering & Computer Science", "email": "smedley@uci.edu", "url": "https://engineering.uci.edu/users/keyue-smedley", "photo": "/wp-content/uploads/keyue_smedley.jpg" },
+    { "name": "Daniel Stokols, Ph.D.", "dept": "Planning, Policy, & Design / Psychology & Social Behavior", "email": "dstokols@uci.edu", "url": "https://faculty.sites.uci.edu/dstokols/", "photo": "/wp-content/uploads/Dan-Stokols-288x300-1.jpg" }
+  ],
+  "advisory_board": [
+    { "name": "Kim Trenbath", "role": "Co-Chair", "title": "Group Manager, Building and Energy Systems Integration Research, Building Technologies and Science", "org": "National Laboratory of the Rockies (NLR)", "org_url": "https://www.nlr.gov/", "photo": "/wp-content/uploads/1676045613281.jpg" },
+    { "name": "Alexandra (Ally) Peck", "role": "Co-Chair", "title": "Director of Environmental Policy", "org": "Consumer Technology Association (CTA)", "org_url": "https://www.cta.tech/", "photo": "/wp-content/uploads/2JIQDOKS1NAZ6V27RLMT5HLPF.jpg" },
+    { "name": "Ammi Amarnath", "title": "Principal Technical Executive", "org": "Electric Power Research Institute", "org_url": "https://www.epri.com/", "photo": "/wp-content/uploads/1516632305583.jpg" },
+    { "name": "Wendell C. Brase", "title": "Associate Chancellor for Sustainability", "org": "UC Irvine", "org_url": "https://www.uci.edu/", "photo": "/wp-content/uploads/images.jpg" },
+    { "name": "Chris Calwell", "title": "Principal", "org": "Ecos Research", "org_url": "https://www.ecosresearch.com/meet-the-team/", "photo": "/wp-content/uploads/0b77348-cropped.jpg" },
+    { "name": "Edwin Hornquist", "title": "Principal Technical Leader", "org": "Electric Power Research Institute", "org_url": "https://www.epri.com/", "photo": "/wp-content/uploads/1672865451882.jpg" },
+    { "name": "David Jacot", "title": "AGM & Executive Director of Distributed Energy Solutions", "org": "Los Angeles Department of Water and Power", "org_url": "https://www.ladwp.com/", "photo": "/wp-content/uploads/1516940495934.jpg" },
+    { "name": "Alan Meier", "title": "Senior Scientist", "org": "Lawrence Berkeley National Laboratory", "org_url": "https://eta.lbl.gov/", "photo": "/wp-content/uploads/images-1.jpg" },
+    { "name": "Wyatt Merrill", "title": "Technology Manager and Technical Project Officer", "org": "Department of Energy", "org_url": "https://www.energy.gov/", "photo": "/wp-content/uploads/wyatt-merrill-1.jpg" },
+    { "name": "Cassie Rauss", "title": "Senior Manager", "org": "Southern California Edison", "org_url": "https://www.sce.com/", "photo": "/wp-content/uploads/1517439854323.jpg" },
+    { "name": "Scott Samuelsen", "title": "Professor, Mechanical & Aerospace Engineering", "org": "UC Irvine", "org_url": "https://www.uci.edu/", "photo": "/wp-content/uploads/1517267868131.jpg" },
+    { "name": "David Zabrowski", "title": "Vice President", "org": "Frontier Energy", "org_url": "https://frontierenergy.com/", "photo": "/wp-content/uploads/1516544229689.jpg" },
+    { "name": "Armen Saiyan", "title": "Manager of Efficiency Solutions Engineering & La Kretz Labs", "org": "Los Angeles Department of Water and Power", "org_url": "https://www.ladwp.com/", "photo": "/wp-content/uploads/LADWP_Armen-Saiyan-6-scaled.jpg" }
+  ],
+  "advisory_board_emeriti": [
+    { "name": "Douglas Johnson", "title": "Advisor", "org": "HBJ Global Solutions, LLC", "org_url": "https://hbjglobalsolutions.com/", "photo": "/wp-content/uploads/1781586831406.png" },
+    { "name": "Gregg Ander", "title": "Managing Director", "org": "Gregg D. Ander, LLC", "org_url": "https://newbuildings.org/board-member/gregg-ander/", "photo": "/wp-content/uploads/1517399302952.jpg" },
+    { "name": "Bruce Baccei", "title": "Project Manager, Energy Efficiency & Renewables", "org": "Sacramento Municipal Utility District", "org_url": "https://www.smud.org/", "photo": "/wp-content/uploads/1517524419074.jpg" },
+    { "name": "Pierre Delforge", "title": "Chief Product and Innovation Officer", "org": "Harvest Thermal", "org_url": "https://www.harvest-thermal.com/", "photo": "/wp-content/uploads/1668402073682.jpg" },
+    { "name": "Noah Horowitz", "title": "Senior Director, Clean Cooling Collaborative (CCC)", "org": "ClimateWorks Foundation", "org_url": "https://www.climateworks.org/", "photo": "/wp-content/uploads/1517729100630.jpg" },
+    { "name": "Nick Ilyadis", "title": "Former Vice President, CTO", "org": "Broadcom", "org_url": "https://www.broadcom.com/", "photo": "/wp-content/uploads/1650411145702.jpg" },
+    { "name": "M. Rois Langner", "title": "Architectural Engineer", "org": "National Laboratory of the Rockies (NLR)", "org_url": "https://www.nlr.gov/", "photo": "/wp-content/uploads/1714149908627.jpg" },
+    { "name": "Bradley Meister", "title": "Senior Mechanical Engineer", "org": "California Energy Commission", "org_url": "https://www.energy.ca.gov/", "photo": "/wp-content/uploads/1516488805214.jpg" },
+    { "name": "Soheila Pasha", "title": "Electrical Engineer", "org": "California Energy Commission", "org_url": "https://www.energy.ca.gov/", "photo": "/wp-content/uploads/soheila-pasha-1.jpg" },
+    { "name": "Kenneth Rider", "title": "Chief Policy Advisor", "org": "California Energy Commission", "org_url": "https://www.energy.ca.gov/", "photo": "/wp-content/uploads/1534905051783.jpg" },
+    { "name": "Michael Siminovitch", "title": "Founding Director", "org": "California Lighting Technology Center, UC Davis", "org_url": "https://cltc.ucdavis.edu/michael-siminovitch", "photo": "/wp-content/uploads/siminovitch_bio1_headonly.jpg" },
+    { "name": "Linda R. Cohen", "title": "Professor of Economics & Law", "org": "UC Irvine", "org_url": "https://www.uci.edu/", "photo": "/wp-content/uploads/cohen.jpg" },
+    { "name": "Ken Lowe", "title": "Co-Founder, Vice President", "org": "Vizio", "org_url": "https://www.vizio.com/en/home", "photo": "/wp-content/uploads/1516284185806-1.jpg" },
+    { "name": "Joseph Vukovich", "title": "Senior Consultant", "org": "West Monroe", "org_url": "https://www.westmonroe.com/", "photo": "/wp-content/uploads/1593128346565.jpg" }
+  ],
+  "technology_council": [
+    { "name": "Al Choperena", "title": "CEO", "org": "Smartenit, Inc.", "org_url": "https://smartenit.com/", "photo": "/wp-content/uploads/1517712930812-e1786578176801.jpg" },
+    { "name": "Dan Cregg", "title": "Vice President of Technology", "org": "Hatch", "org_url": "https://www.hatch.co/", "photo": "/wp-content/uploads/1516580738485.jpg" },
+    { "name": "Hughson Garnier", "title": "Electric Generation System Program Specialist", "org": "California Energy Commission", "org_url": "https://www.energy.ca.gov/", "photo": "/wp-content/uploads/images-2.jpg" },
+    { "name": "Arthur Hitomi", "title": "CEO / Co-founder", "org": "Numecent", "org_url": "https://www.numecent.com/", "photo": "/wp-content/uploads/1516256218292.jpg" },
+    { "name": "Stephen Palm", "title": "Senior Technical Director", "org": "Broadcom", "org_url": "https://www.broadcom.com/", "photo": "/wp-content/uploads/1771095623998.png" },
+    { "name": "David Rivers", "title": "Project Manager", "org": "Southern California Edison", "org_url": "https://www.sce.com/", "photo": "/wp-content/uploads/1516958613093.jpg" },
+    { "name": "Amir Tabakh", "title": "Former Assistant Director of Distributed Energy Solutions", "org": "Los Angeles Department of Water and Power", "org_url": "https://www.ladwp.com/", "photo": "/wp-content/uploads/1718211355660.jpg" },
+    { "name": "Anh-Tuan Le", "title": "Supervisor, Efficiency Solutions Engineering, Distributed Energy Solutions", "org": "Los Angeles Department of Water and Power", "org_url": "https://www.ladwp.com/", "photo": "/wp-content/uploads/Image-3.jpg" }
+  ],
+  "technology_council_emeriti": [
+    { "name": "Steve Dulac", "title": "Director, Content Technology & Regulatory Policy", "org": "AT&T / DIRECTV", "org_url": "https://www.att.com/", "photo": "/wp-content/uploads/1539363596938.jpg" },
+    { "name": "Mukesh Khattar", "title": "Technical Executive", "org": "Electric Power Research Institute (EPRI)", "org_url": "https://www.epri.com/", "photo": "/wp-content/uploads/images-3.jpg" },
+    { "name": "Henry Wong", "title": "Chief Technologist", "org": "E3HS IT Consulting LLC", "org_url": "https://e3hsit.com/", "photo": "/wp-content/uploads/1517680272287.jpg" },
+    { "name": "Vojin Zivojnovic", "title": "President & CEO, Founder", "org": "AGGIOS", "org_url": "https://www.aggios.com/", "photo": "/wp-content/uploads/bl91vu1f0bs950y8shpp.avif" }
+  ]
+}

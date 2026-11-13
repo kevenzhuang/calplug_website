@@ -1,0 +1,182 @@
+{
+  "_note": "Extracted from calplug.org home page and /eventsarchive on 2026-11-12. date is ISO (YYYY-MM-DD) or null when the site gives none. Full agendas stay on the live site for now (see CONTENT-NOTES.md).",
+  "events": [
+    {
+      "id": "annual-workshop-2026",
+      "title": "CalPlug/ITAC 2026 Annual Workshop",
+      "theme": "Data-Driven Energy Management Ecosystem: from Users to Grid",
+      "date": "2026-05-05",
+      "time": "10:00 AM - 5:00 PM",
+      "location": "Calit2 Auditorium",
+      "format": "in-person",
+      "summary": "Explored holistic approaches to energy management ecosystems in the data-driven era, covering microgrids, data centers, renewable resources, and DER management including solar, battery storage and EVs. Hosted by CalPlug and the SMART Industrial Training and Assessment Center (SMART ITAC).",
+      "image": "/wp-content/uploads/Calplug_workshop.jpg",
+      "links": [
+        {
+          "label": "Recap article",
+          "url": "https://www.calit2.uci.edu/2026/05/17/calplug-itac-workshop-focuses-on-data-driven-energy-management/"
+        }
+      ]
+    },
+    {
+      "id": "iac-workshop-24",
+      "title": "CalPlug + IAC Workshop Series #24",
+      "date": null,
+      "image": "/wp-content/uploads/poster-reception.jpg",
+      "links": [],
+      "_flag": "No date or description on the site."
+    },
+    {
+      "id": "battery-plugin-workshop",
+      "title": "Battery Plugin Workshop",
+      "date": null,
+      "links": [],
+      "_flag": "No date or description on the site.",
+      "image": "/wp-content/uploads/pexels-singkham-178541-1108572-scaled.jpg"
+    },
+    {
+      "id": "enviro-policy-2024",
+      "title": "Environmental Policy + Clean Energy Workshop",
+      "date": "2024-10-21",
+      "links": [],
+      "_flag": "No description on the site.",
+      "image": "/wp-content/uploads/solar-energy.png"
+    },
+    {
+      "id": "earth-day-iac",
+      "title": "CalPlug + IAC Earth Day Workshop",
+      "date": null,
+      "links": [
+        {
+          "label": "Flyer",
+          "url": "https://pdflink.to/04ecc43b/"
+        }
+      ],
+      "_flag": "No date on the site.",
+      "image": "/wp-content/uploads/earthday.jpg"
+    },
+    {
+      "id": "workshop-19",
+      "title": "CalPlug Workshop #19 and 10th Anniversary",
+      "date": null,
+      "location": "Calit2 Auditorium",
+      "format": "in-person",
+      "summary": "CalPlug's 19th workshop and 10th anniversary celebration. Discussion centered on climate resiliency, lowering greenhouse gas emissions, and inclusivity.",
+      "image": "/wp-content/uploads/calplug19.jpg",
+      "links": [
+        {
+          "label": "Slides",
+          "url": "https://www.calit2.uci.edu/2022/05/17/calplug-focuses-on-climate-resilient-solutions/"
+        },
+        {
+          "label": "Brochure",
+          "url": "/wp-content/uploads/CalPlug-10th-Anniversary-Workshop.pdf"
+        }
+      ],
+      "_flag": "Site shows 'Monday, October 18, 2021', the same date as Workshop #18, while the slides link is dated May 2022. Date left empty until confirmed."
+    },
+    {
+      "id": "workshop-18",
+      "title": "CalPlug Workshop #18: Optimizing Energy Efficiency in Spaces",
+      "date": "2021-10-18",
+      "format": "online",
+      "summary": "Webinar on optimizing energy efficiency in commercial office spaces and in the home.",
+      "image": "/wp-content/uploads/calplugnumber18.png",
+      "links": [
+        {
+          "label": "Slides",
+          "url": "https://www.calit2.uci.edu/2021/10/21/optimizing-energy-efficiency-in-spaces/"
+        },
+        {
+          "label": "Brochure",
+          "url": "/wp-content/uploads/CalPlug18-1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "aceee-2021",
+      "title": "ACEEE 2021 Summer Study on Energy Efficiency in Industry",
+      "date": "2021-07-12",
+      "end_date": "2021-07-15",
+      "summary": "CalPlug Research Director Joy Pixley presented survey results from the CESMII Smart Connected Worker project, \"Enabling Small and Medium Manufacturers to Adopt Smart Manufacturing.\"",
+      "links": [
+        {
+          "label": "Slides",
+          "url": "/wp-content/uploads/SCW_ACEEE_2021_Presentation.pdf"
+        }
+      ]
+    },
+    {
+      "id": "workshop-17",
+      "title": "CalPlug Earth Day Workshop #17",
+      "date": "2021-04-22",
+      "format": "online",
+      "summary": "Panel discussion on how to work together to find solutions for climate change.",
+      "links": [
+        {
+          "label": "Slides and info",
+          "url": "https://www.calit2.uci.edu/2021/04/27/calplug-earth-day-2021-2/"
+        },
+        {
+          "label": "Brochure",
+          "url": "/wp-content/uploads/CALPLUG-WS-17-BROCHURE.pdf"
+        },
+        {
+          "label": "Recording",
+          "url": "https://www.youtube.com/watch?v=4iMTFollSfc"
+        }
+      ]
+    },
+    {
+      "id": "bba-webinar-2021",
+      "title": "Better Buildings Alliance Webinar: Beyond Energy Efficiency: How Your Device Usage Patterns Affect Energy Consumption",
+      "date": "2021-03-17",
+      "format": "online",
+      "summary": "CalPlug Research Director Dr. Joy Pixley gave the featured technical presentation at the DOE Better Buildings Alliance Plug and Process Loads webinar.",
+      "links": [
+        {
+          "label": "Recording",
+          "url": "https://betterbuildingssolutioncenter.energy.gov/webinars/beyond-energy-efficiency-how-your-device-usage-patterns-affect-energy-consumption"
+        }
+      ]
+    },
+    {
+      "id": "workshop-3cs",
+      "title": "CalPlug Workshop: 3 C's - Climate Change, Energy Consumption and Disadvantaged Communities during COVID-19",
+      "date": "2020-11-16",
+      "format": "online",
+      "links": [
+        {
+          "label": "Brochure",
+          "url": "https://drive.google.com/file/d/1ps19AzCc-XNjjcMqjlEngt0W7b5DLUEP/view?usp=sharing"
+        },
+        {
+          "label": "Recording",
+          "url": "https://www.youtube.com/watch?v=rZuah4pEg1M"
+        }
+      ]
+    },
+    {
+      "id": "workshop-15",
+      "title": "CalPlug Workshop #15 & Earth Day Celebration",
+      "date": "2020-04-21",
+      "end_date": "2020-04-22",
+      "format": "online",
+      "summary": "CalPlug's first virtual workshop.",
+      "links": [
+        {
+          "label": "Brochure",
+          "url": "https://drive.google.com/file/d/1GmTd_t8oUPqid6jjIBrHQM4tzJUq0wq0/view?usp=sharing"
+        },
+        {
+          "label": "Recording, day 1",
+          "url": "https://www.youtube.com/watch?v=C9ORRkXn200"
+        },
+        {
+          "label": "Recording, day 2",
+          "url": "https://www.youtube.com/watch?v=ggInV3kCkTw"
+        }
+      ]
+    }
+  ]
+}

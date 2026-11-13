@@ -1,0 +1,25 @@
+{
+  "name": "CalPlug",
+  "full_name": "California Plug Load Research Center",
+  "institution": "University of California, Irvine",
+  "host": "Calit2 (California Institute for Telecommunications and Information Technology), UC Irvine Division",
+  "established": 2011,
+  "tagline_current_site": "The Leading Enabler for Energy Efficiency Solutions in the Use and Design of Appliances and Consumer Products",
+  "about": "The California Plug Load Research Center was established in 2011 to improve energy efficiency in the use and design of plug-load devices. CalPlug focuses on energy efficiency solutions, efficiency evaluations of consumer electronics, standards development, education, public outreach, and user behavior studies, collaborating closely with utilities, manufacturers, advocacy groups, research institutions, and energy policy makers.",
+  "vision": "Energy-conscious plug and process loads for how people work, live, and play",
+  "mission": "To advance energy efficiency and management solutions for plug loads by promoting best practices and fostering cross-disciplinary collaboration between academia, government agencies, utilities, manufacturers, and the community at large.",
+  "facility": "CalPlug's physical facilities include an engineering lab, test and demonstration rooms, offices, and space for meetings, over 8,000 sq. ft. in all, on the fourth floor of the Calit2 Building. Calit2 administers CalPlug and provides access to an auditorium, electronics labs, an incubator for startup firms, and visualization and teleconference facilities.",
+  "contact": {
+    "address": ["4300 Calit2 Building", "University of California, Irvine", "Irvine, CA 92697-2800"],
+    "location_note": "Main campus of UC Irvine, Calit2 Building, at the intersection of East Peltason Road and Los Trancos Drive. CalPlug main office: fourth floor, suite 4300.",
+    "general": { "phone": "(949) 824-4874", "email": "calplug@uci.edu" },
+    "collaborations": { "name": "Shuoyu (Arnold) Wang", "phone": "(949) 824-3047", "email": "shuoyuw@uci.edu" },
+    "calit2": { "phone": "(949) 824-6900", "email": "info@calit2.uci.edu", "url": "https://www.calit2.uci.edu/" },
+    "hours": "Mon-Fri 8:00am - 5:00pm"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/calplug/",
+    "linkedin": "https://www.linkedin.com/company/california-plug-load-research-center/"
+  },
+  "source_pages": ["/", "/about", "/about/contact"]
+}

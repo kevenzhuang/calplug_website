@@ -1,0 +1,149 @@
+{
+  "_note": "Extracted from /affiliations, /support, /friends, /members-2 and /about/careers on 2026-11-12.",
+  "members": [
+    "Los Angeles Department of Water and Power (LADWP)",
+    "Consumer Technology Association (CTA)"
+  ],
+  "affiliates": [
+    "California Energy Commission (CEC)",
+    "California Public Utilities Commission (CPUC)",
+    "Southern California Edison (SCE)",
+    "Pacific Gas and Electric Company (PG&E)",
+    "San Diego Gas & Electric (SDG&E)",
+    "Commonwealth Edison (ComEd)",
+    "Smartenit",
+    "Embertec",
+    "TrickleStar",
+    "DIRECTV (AT&T)"
+  ],
+  "support": {
+    "intro": "Support from corporations and individual donors provides critical resources to supplement operational and external research funding for the Center. These funds allow CalPlug to expand outreach and education and to conduct independent research on the future of plug loads, energy efficiency and storage, and user experience.",
+    "ways": [
+      {
+        "name": "Friend of CalPlug",
+        "how": "Send a gift by check payable to \"The UCI Foundation\", mailed to: California Plug Load Research Center (CalPlug), ATTN: Herumi Baylon, University of California, Irvine, Irvine, CA 92697-2800. To donate equipment or materials, contact Dr. Arnold Wang."
+      },
+      {
+        "name": "Corporate Member",
+        "how": "To request information about becoming a member, contact Dr. Shuoyu (Arnold) Wang.",
+        "_flag": "Membership benefits are an image (screenshot) on the current site; text must be retyped from it."
+      }
+    ],
+    "contact": {
+      "name": "Shuoyu (Arnold) Wang",
+      "email": "shuoyuw@uci.edu"
+    }
+  },
+  "join": {
+    "program": "Undergraduate / Graduate 199/299 Student Research Opportunities",
+    "requirements": [
+      "GPA 3.0+ preferred (lower GPAs considered with explanation)",
+      "Commit at least 3 quarters (1 year) of research",
+      "Work a minimum of 8 hours/week (2 units is about 8 hours)",
+      "Attend team meetings, keep a research log, and submit a short report at the end of each quarter"
+    ],
+    "benefits": [
+      "Hands-on research experience",
+      "Dedicated workspace, supplies, and equipment provided",
+      "Mentorship from faculty and project leaders",
+      "Opportunity to earn 1-3 course credits (199/299) and possibly paid positions after 2+ quarters of outstanding work",
+      "Letters of recommendation for committed students (after 2+ quarters)"
+    ],
+    "positions": [
+      {
+        "id": "TES-S26",
+        "area": "AI & Energy Efficiency",
+        "mentor": "Dr. Shuoyu (Arnold) Wang",
+        "email": "shuoyuw@uci.edu",
+        "description": "Apply AI and machine learning to performance prediction and control for thermal energy systems."
+      },
+      {
+        "id": "IAC-F25",
+        "area": "Energy Engineering",
+        "mentor": "Chelsea Choudhary",
+        "email": "ccchoudh@uci.edu",
+        "description": "Work on a DOE-funded project that provides free energy assessments for small and medium-sized manufacturers.",
+        "link": "https://smartiac.calit2.uci.edu/"
+      },
+      {
+        "id": "DC-S26",
+        "area": "Electrical Engineering & AI-driven Management",
+        "mentor": "Dr. G. P. Li and Dr. Shuoyu (Arnold) Wang",
+        "email": "gpli@calit2.uci.edu",
+        "description": "Explore cost-effective retrofit strategies to enhance the energy efficiency of edge data centers."
+      },
+      {
+        "id": "BA-S26",
+        "area": "Building Automation & Remote Sensing and Control",
+        "mentor": "Dr. G. P. Li and Dr. Shuoyu (Arnold) Wang",
+        "email": "gpli@calit2.uci.edu",
+        "description": "Develop holistic building load management for lighting, HVAC, and plug load devices."
+      }
+    ],
+    "apply": "Applications are due by 5:00 PM on Friday of Week 1 of each quarter. Selected students are invited to an interview; once matched with a project, students submit the 199/299 documentation.",
+    "_flag": "Positions and deadline are for Spring 2026 (deadline April 3, 2026). Needs the current quarter's list before going live."
+  },
+  "facilities": [
+    {
+      "id": "sim-lab",
+      "name": "SIM Lab",
+      "summary": "The CalPlug Engineering Lab collects energy consumption and performance data for plug load devices. CalPlug works with manufacturers and utilities to test prototypes before production or pilot programs, using industry testing standards such as ENERGY STAR, IEC and CEA. Four demonstration labs are set up as SIM labs, such as the SIM living room and the SIM office.",
+      "images": [
+        "/wp-content/uploads/simlabpic.png",
+        "/wp-content/uploads/simlaboffice.png",
+        "/wp-content/uploads/simlivingroom.png",
+        "/wp-content/uploads/simlabfieldtrial.png"
+      ]
+    },
+    {
+      "id": "sim-home",
+      "name": "SIM Home",
+      "summary": "The Simulation, Integration, and Management (SIM) Home is an advanced metering and observation environment for studying user behavior patterns while monitoring energy consumption, with networked plug load device testing.",
+      "images": [
+        "/wp-content/uploads/simhomegraphic.png",
+        "/wp-content/uploads/simhomenetworkdiagram.png"
+      ]
+    },
+    {
+      "id": "1-kwh-challenge",
+      "name": "1 kWh Challenge",
+      "summary": "A community outreach and education program in which UCI community members learned exactly how much energy a kilowatt-hour is.",
+      "status_note": "The current site says the challenges are on hold due to Covid restrictions.",
+      "images": [
+        "/wp-content/uploads/1khchallengepic2.png"
+      ],
+      "_flag": "Confirm whether the program is still on hold or has ended."
+    }
+  ],
+  "facility_rooms_note": "Notable rooms: Engineering Lab (Room 4301) and Data Engineering ThinkTank (Room 4500). Floor plan image: /wp-content/uploads/clplg_space.jpg",
+  "logos": [
+    {
+      "name": "Los Angeles Department of Water and Power",
+      "src": "/wp-content/uploads/452px-Los_Angeles_Department_of_Water_and_Power_logo.svg_.png"
+    },
+    {
+      "name": "Consumer Technology Association",
+      "src": "/wp-content/uploads/CTA.jpg"
+    },
+    {
+      "name": "California Energy Commission",
+      "src": "/wp-content/uploads/ceclogo-1.jpg"
+    },
+    {
+      "name": "Southern California Edison",
+      "src": "/wp-content/uploads/edison-logo.png"
+    },
+    {
+      "name": "San Diego Gas & Electric (Sempra)",
+      "src": "/wp-content/uploads/sempralogo.png"
+    },
+    {
+      "name": "Smartenit",
+      "src": "/wp-content/uploads/smartenit.jpg"
+    },
+    {
+      "name": "TrickleStar",
+      "src": "/wp-content/uploads/tricklestar-logo.png"
+    }
+  ]
+}

@@ -1,0 +1,478 @@
+{
+  "_note": "Extracted from calplug.org/projects on 2026-11-12. 'summary' is a one-line paraphrase of the existing description. 'themes' are a DRAFT grouping (not from the site) pending Arnold's review. Sponsor and years are as shown on the site; null = not shown.",
+  "themes": {
+    "plug-loads": "Plug loads & appliances",
+    "behavior": "User behavior",
+    "smart-manufacturing": "Smart manufacturing",
+    "grid": "Grid & distributed energy",
+    "buildings": "Buildings & data centers"
+  },
+  "projects": [
+    {
+      "id": "signal",
+      "title": "SIGNAL: Socioeconomic-geographic Intelligence for Grid Net-load Analytics and Learning",
+      "status": "active",
+      "start": 2026,
+      "end": 2030,
+      "sponsor": "California Energy Commission (CEC)",
+      "partners": [
+        "Lawrence Berkeley National Laboratory (LBNL)",
+        "UC San Diego",
+        "Derapi, Inc.",
+        "SCE",
+        "SDG&E",
+        "LADWP"
+      ],
+      "summary": "Open-source short-term net-load forecasting that accounts for behind-the-meter solar, batteries and electric vehicles.",
+      "description": "A four-year project funded by the CEC to address the rapid growth of behind-the-meter distributed energy resources (solar PV, battery storage and electric vehicles) that operate invisibly to grid operators. Led by CalPlug with LBNL, UC San Diego and Derapi, Inc., together with California utility partners, the project builds a standardized data workflow, a multi-horizon forecasting model from five minutes to day-ahead, and a multi-stage validation that includes a community-scale demonstration at Laguna Woods Village and utility pilot testing at selected substations.",
+      "themes": [
+        "grid"
+      ],
+      "image": "/wp-content/uploads/simplified-diagram-no-title.png",
+      "links": [],
+      "image_alt": "Simplified diagram of the SIGNAL forecasting workflow"
+    },
+    {
+      "id": "ai-tes",
+      "title": "AI-TES: AI-Driven Framework for Rapid Performance Prediction and Operation Optimization of Sensible Thermal Energy Storage Systems",
+      "status": "active",
+      "start": null,
+      "end": null,
+      "sponsor": null,
+      "summary": "An AI/ML framework that predicts and controls sensible thermal energy storage performance much faster than CFD simulation.",
+      "description": "Sensible thermal energy storage (TES) systems are traditionally designed and controlled with computationally costly heat-transfer and CFD simulations, which hinders rapid design iteration and real-time control. This research introduces an AI/ML framework that accelerates TES performance prediction and supports real-time control of system operation, in support of strategies such as demand response.",
+      "themes": [
+        "grid"
+      ],
+      "image": "https://f1000research-files.f1000.com/manuscripts/200560/5dabd312-8962-4ffc-9dd6-a4f6747d7eed_figure3.gif",
+      "links": [],
+      "image_alt": "Diagram of thermal energy storage technologies"
+    },
+    {
+      "id": "edge-data-center",
+      "title": "Edge Data Center Smart Retrofit",
+      "status": "active",
+      "start": 2026,
+      "end": 2028,
+      "sponsor": "CalNEXT / Southern California Edison",
+      "summary": "Economical retrofit strategies that coordinate cooling controls and server workloads to cut energy use in small edge data centers.",
+      "description": "Small-scale edge data centers often rely on less efficient building HVAC systems and are overlooked in the data center sector. This project demonstrates cost-effective, easy-to-deploy retrofit strategies for them, integrating digital air-cooling controls with real-time thermal management, and server virtualization with dynamic workload consolidation.",
+      "themes": [
+        "buildings"
+      ],
+      "image": "https://assets.belden.com/m/7a3474ba28aecdc4/original/Vector_cars.jpg",
+      "links": [],
+      "image_alt": "Illustration of edge data centers in a city"
+    },
+    {
+      "id": "occupancy-lighting",
+      "title": "Occupancy-based Lighting PPL Smart Management",
+      "status": "active",
+      "start": null,
+      "end": null,
+      "sponsor": null,
+      "summary": "A sensor-based building management system that controls lighting and HVAC from real-time occupancy detection, demonstrated at a UCI campus building.",
+      "description": "This project develops a sensor-based building management system that integrates dynamic lighting and HVAC control through real-time occupancy detection, using multi-signal data fusion and behavioral learning algorithms. Over a 24-month period including a demonstration at a UCI campus building, the plug-and-play system will show deployment feasibility and scalability, supporting custom measure development for California investor-owned utilities.",
+      "themes": [
+        "buildings"
+      ],
+      "image": "/wp-content/uploads/unnamed-1.png",
+      "links": [],
+      "image_alt": "Diagram of the occupancy-based lighting and HVAC control system"
+    },
+    {
+      "id": "pletics",
+      "title": "Plug Load Energy Testing for Improving Codes and Standards (PLETICS)",
+      "status": "completed",
+      "start": 2021,
+      "end": 2024,
+      "sponsor": "California Energy Commission (CEC)",
+      "partners": [
+        "California Energy Alliance",
+        "UC Davis",
+        "California State University Northridge"
+      ],
+      "summary": "Tested plug load devices not covered by Title 20 and recommended codes, standards and test methods.",
+      "themes": [
+        "plug-loads"
+      ],
+      "links": [
+        {
+          "label": "Report",
+          "url": "https://www.energy.ca.gov/sites/default/files/2025-05/CEC-500-2025-018.pdf"
+        }
+      ]
+    },
+    {
+      "id": "nevada-industry-4",
+      "title": "Nevada Industry 4.0 Survey",
+      "status": "completed",
+      "start": 2021,
+      "end": 2022,
+      "sponsor": "Nevada Industry Excellence (NVIE)",
+      "summary": "Surveyed small and medium manufacturers in Nevada on their readiness to adopt smart manufacturing.",
+      "themes": [
+        "smart-manufacturing"
+      ],
+      "links": [
+        {
+          "label": "Report",
+          "url": "/wp-content/uploads/Nevada-SCW-Report-Final.pdf"
+        }
+      ]
+    },
+    {
+      "id": "smm-survey",
+      "title": "Smart Manufacturing in Small and Medium Manufacturers Survey",
+      "status": "completed",
+      "start": 2019,
+      "end": 2021,
+      "sponsor": "CESMII",
+      "summary": "Reviewed and surveyed the needs, drivers and barriers small and medium manufacturers face in adopting smart manufacturing.",
+      "themes": [
+        "smart-manufacturing"
+      ],
+      "links": []
+    },
+    {
+      "id": "covid-residential-la",
+      "title": "Evaluating the Impact of the COVID-19 Pandemic on Residential Energy Use in Los Angeles",
+      "status": "completed",
+      "start": 2021,
+      "end": 2021,
+      "sponsor": "Los Angeles Department of Water and Power (LADWP)",
+      "summary": null,
+      "_flag": "The description on the current site duplicates the CESMII survey text. Summary left empty until confirmed.",
+      "themes": [
+        "behavior"
+      ],
+      "links": [
+        {
+          "label": "Article",
+          "url": "https://www.mdpi.com/2076-3417/11/10/4476"
+        }
+      ]
+    },
+    {
+      "id": "comed-plug-load",
+      "title": "Highlighting Plug Load Devices in Commercial Energy Efficiency",
+      "status": "completed",
+      "start": 2019,
+      "end": 2020,
+      "sponsor": "Commonwealth Edison (ComEd)",
+      "summary": "Compared ComEd's commercial plug load efficiency programs with those of 18 other utilities to identify new opportunities.",
+      "themes": [
+        "plug-loads"
+      ],
+      "links": [
+        {
+          "label": "Report",
+          "url": "/wp-content/uploads/CalPlug-ComEd-Plug-Load-EE-Final-Report.pdf"
+        }
+      ]
+    },
+    {
+      "id": "idsm-connected",
+      "title": "IDSM Program Opportunities in Connected Plug Load Devices",
+      "status": "completed",
+      "start": 2019,
+      "end": 2020,
+      "sponsor": "San Diego Gas & Electric (SDG&E)",
+      "summary": "Assessed smart connected residential plug load devices for utility demand-side management programs.",
+      "themes": [
+        "plug-loads"
+      ],
+      "links": [
+        {
+          "label": "Report",
+          "url": "https://www.etcc-ca.com/reports/program-opportunities-connected-plug-load-devices?dl=1585955352"
+        }
+      ]
+    },
+    {
+      "id": "usb-motion-sensor",
+      "title": "USB Motion Sensor Computer Energy Management System: Technology Evaluation Report",
+      "status": "completed",
+      "start": 2019,
+      "end": 2019,
+      "sponsor": "TrickleStar, LLC",
+      "summary": "Evaluated a motion-sensing device that puts workstation computers into standby without user action.",
+      "themes": [
+        "plug-loads"
+      ],
+      "links": [
+        {
+          "label": "Report",
+          "url": "https://rtf.nwcouncil.org/sites/default/files/proposed_measures/20190617_CalPlug_TrickleStar_USBMS%20_Testing_Report__TS1910_FINAL_17Jun2019_0.pdf"
+        }
+      ]
+    },
+    {
+      "id": "pmui",
+      "title": "Power Management User Interface (PMUI)",
+      "status": "completed",
+      "start": 2016,
+      "end": 2020,
+      "sponsor": "California Energy Commission (CEC)",
+      "summary": "Developed software that encourages desktop users to use computer sleep settings, evaluated in a randomized controlled trial at UC Irvine.",
+      "themes": [
+        "behavior",
+        "plug-loads"
+      ],
+      "links": [
+        {
+          "label": "Final report",
+          "url": "https://www.energy.ca.gov/publications/2021/power-management-user-interface-study"
+        },
+        {
+          "label": "Software report",
+          "url": "/wp-content/uploads/PMUI-Software-Development-Report.FINALApril-2019.pdf"
+        }
+      ]
+    },
+    {
+      "id": "behavioral-interventions",
+      "title": "Behavioral Interventions in Residential Energy Consumption",
+      "status": "completed",
+      "start": 2018,
+      "end": 2019,
+      "sponsor": "Southern California Edison (SCE)",
+      "summary": "Reviewed over 1,400 sources on behavioral interventions that reduce or shift residential energy consumption.",
+      "themes": [
+        "behavior"
+      ],
+      "links": [
+        {
+          "label": "Report",
+          "url": "https://www.etcc-ca.com/reports/calplug-behavioral-interactions-and-feedback?dl=1588697179"
+        }
+      ]
+    },
+    {
+      "id": "sim-home-extended",
+      "title": "SIM Home Extended Testing: Advancing Plug Load Efficiency with Behavioral Focused Usage Evaluation",
+      "status": "completed",
+      "start": 2018,
+      "end": 2019,
+      "sponsor": "Southern California Edison (SCE)",
+      "summary": "Assessed whether amount of use, pattern of use, or power management drives the variation in device energy use.",
+      "themes": [
+        "behavior",
+        "plug-loads"
+      ],
+      "links": [
+        {
+          "label": "Report",
+          "url": "https://www.etcc-ca.com/reports/advancing-plug-load-efficiency-behavioral-focused-usage-evaluation?dl=1586231844"
+        }
+      ]
+    },
+    {
+      "id": "atom-water",
+      "title": "Intelligent Control of Domestic and Commercial Point of Use Water Heating and Cooling Applications",
+      "status": "completed",
+      "start": 2017,
+      "end": 2020,
+      "sponsor": "University of California, Irvine",
+      "summary": "Evaluated the savings potential of the Active Thermal Observation and Management (ATOM) control method for water dispensers and coffee makers.",
+      "themes": [
+        "plug-loads"
+      ],
+      "links": [
+        {
+          "label": "Paper",
+          "url": "http://eedal2017.uci.edu/wp-content/uploads/110_Intelligent-control-of-domestic-and-commercial-point-of-use-water-heating-and-cooling-applications_review.pdf"
+        }
+      ]
+    },
+    {
+      "id": "energy-channel-2",
+      "title": "Energy Channel 2.0",
+      "status": "completed",
+      "start": 2015,
+      "end": 2017,
+      "sponsor": "Southern California Edison (SCE)",
+      "summary": "A low-cost, real-time home energy monitor displayed on the television, using smart meter data.",
+      "themes": [
+        "behavior"
+      ],
+      "links": [
+        {
+          "label": "Report",
+          "url": "https://www.etcc-ca.com/reports/energy-channel-20?dl=1528233541"
+        }
+      ]
+    },
+    {
+      "id": "roadmap-2030",
+      "title": "Technology Roadmap towards 2030 and Beyond",
+      "status": "completed",
+      "start": 2015,
+      "end": 2017,
+      "sponsor": "Southern California Edison (SCE)",
+      "summary": "Projected how miscellaneous loads and Internet of Things technologies will change residential energy consumption through 2030.",
+      "themes": [
+        "plug-loads"
+      ],
+      "links": [
+        {
+          "label": "Report",
+          "url": "https://www.etcc-ca.com/reports/technology-roadmap-towards-2030-and-beyond?dl=1565719714"
+        }
+      ]
+    },
+    {
+      "id": "sim-home",
+      "title": "SIM Home",
+      "status": "completed",
+      "start": 2015,
+      "end": 2017,
+      "sponsor": "Southern California Edison (SCE)",
+      "summary": "Built an advanced metering environment for networked plug load testing, plus two applications that communicate energy use to residents.",
+      "themes": [
+        "plug-loads",
+        "behavior"
+      ],
+      "links": [
+        {
+          "label": "Report",
+          "url": "https://www.etcc-ca.com/reports/sim-home?dl=1565392230"
+        }
+      ]
+    },
+    {
+      "id": "plug-loads-advocacy",
+      "title": "Plug Loads Advocacy: A Look Ahead at Plug-In Appliances and Their Relationship to the Smart Grid and Homes",
+      "status": "completed",
+      "start": 2015,
+      "end": 2016,
+      "sponsor": "Southern California Edison (SCE)",
+      "summary": "Reviewed recent studies on energy-saving opportunities for plug load devices to strengthen plug load advocacy.",
+      "themes": [
+        "plug-loads"
+      ],
+      "links": [
+        {
+          "label": "Report",
+          "url": "/wp-content/uploads/PlugLoadsAdvocacy.pdf"
+        }
+      ]
+    },
+    {
+      "id": "smart-meter-tv",
+      "title": "Smart Meter Data on TV via Set-Top Box",
+      "status": "completed",
+      "start": 2013,
+      "end": 2014,
+      "sponsor": "Southern California Edison (SCE)",
+      "summary": "Demonstrated showing smart meter usage and cost information on a home TV through a set-top box.",
+      "themes": [
+        "behavior"
+      ],
+      "links": [
+        {
+          "label": "Report",
+          "url": "/wp-content/uploads/Display-of-Smart-Meter-Info-via-Set-Top-Box.pdf"
+        }
+      ]
+    },
+    {
+      "id": "computer-power-modes",
+      "title": "Monitoring Computer Power Modes Field Study",
+      "status": "completed",
+      "start": 2012,
+      "end": 2014,
+      "sponsor": "California Energy Commission (CEC)",
+      "summary": "Monitored the power states of office desktops and found automatic power management enabled on only 20 percent of them.",
+      "themes": [
+        "behavior",
+        "plug-loads"
+      ],
+      "links": [
+        {
+          "label": "Report",
+          "url": "/wp-content/uploads/monitoringcomputerpowermodes.pdf"
+        }
+      ]
+    },
+    {
+      "id": "computer-pm-survey",
+      "title": "Computer Power Management Usage Survey",
+      "status": "completed",
+      "start": 2011,
+      "end": 2014,
+      "sponsor": "California Energy Commission (CEC)",
+      "summary": "Surveyed over 2,000 members of a university population about how they use computer power management.",
+      "_flag": "Report link on the current site points to the Set-Top Box PDF (wrong file). Link omitted until the right file is found.",
+      "themes": [
+        "behavior",
+        "plug-loads"
+      ],
+      "links": []
+    }
+  ],
+  "student_projects": [
+    {
+      "group": "Annoyance Threshold Testing",
+      "items": [
+        {
+          "title": "Experimental Test of Energy Annoyance Thresholds",
+          "url": "/wp-content/uploads/PMUI-5.0-Poster.pdf",
+          "_flag": "Same PDF as the PMUI 5.0 poster on the current site; confirm."
+        },
+        {
+          "title": "Engagement Affecting Annoyance Thresholds and Energy Savings",
+          "url": "/wp-content/uploads/UROP-Poster-AT2.1.pdf"
+        }
+      ]
+    },
+    {
+      "group": "PMUI 5.0",
+      "items": [
+        {
+          "title": "PMUI 5.0 Poster",
+          "url": "/wp-content/uploads/PMUI-5.0-Poster.pdf"
+        }
+      ]
+    },
+    {
+      "group": "Buddy Projects",
+      "items": [
+        {
+          "title": "Water Cooler Buddy: Development of an Intelligent Energy Saving Solution for Water Dispensers",
+          "url": "/wp-content/uploads/Development-of-Energy-savings-for-Water-Dispensers.pdf"
+        },
+        {
+          "title": "Coffee Buddy: Improving Energy Management in Coffee Makers",
+          "url": "/wp-content/uploads/Improving-Energy-Management-in-Coffee-Makers.pdf"
+        },
+        {
+          "title": "Projector Buddy: Real World Classroom Projector Usage",
+          "url": "/wp-content/uploads/Real-World-Classroom-Projector-Usage.pdf"
+        }
+      ]
+    },
+    {
+      "group": "SIM Home Projects",
+      "items": [
+        {
+          "title": "PLSIM: An Integrated Plug Load Assessment Tool",
+          "url": "/wp-content/uploads/PLSIM-Integrated-Plug-Load-Assessment-Tool.pdf"
+        }
+      ]
+    },
+    {
+      "group": "Other Projects",
+      "items": [
+        {
+          "title": "Open Source FPGA Development",
+          "url": "/wp-content/uploads/Open-Source-FPGA-Development.pdf"
+        },
+        {
+          "title": "Disaggregation Plug Load Management Applications",
+          "url": "/wp-content/uploads/Disaggregation-Plug-Load-Management-Applications.pdf"
+        }
+      ]
+    }
+  ]
+}
