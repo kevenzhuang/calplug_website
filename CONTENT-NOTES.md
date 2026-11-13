@@ -45,7 +45,7 @@ Rewritten after the full audit of 2026-11-13 (DESIGN.md 0.28). Earlier numbers a
 4. **Workshop #19 and 10th Anniversary.** The Events Archive gives it the same date as Workshop #18 (October 18, 2021); its slides page is dated May 2022. Need the real date. In News it is shown without a date for this reason.
 5. **LADWP COVID-19 project.** No description or summary: the old site's description was a copy of the CESMII survey text. Need two or three sentences.
 6. **Computer Power Management Usage Survey.** The old report link opens the Set-Top Box report, so the project has no report link. Need the right file.
-7. **Home tagline.** The new one (below, "Text written or shortened") or the old one. The old one is kept in `data/site.json` as `tagline_current_site`.
+7. **Home paragraph.** Home now opens with the group photo and one paragraph instead of a title. Is the new paragraph (below, "Text written or shortened") right, or should the old tagline be used? The old one is kept in `data/site.json` as `tagline_current_site`.
 8. **Permissions.** See "Permissions needed before launch".
 
 ### Content questions (can be fixed after launch; the site shows what the old site showed)
@@ -99,7 +99,7 @@ The full original text is still on the site wherever it existed (project pages, 
 
 | Where | New text | Based on |
 |---|---|---|
-| Home tagline (`site.json`) | "CalPlug studies how appliances, buildings and data centers use energy, and develops ways to use less of it. We bring together researchers, utilities, manufacturers and policy makers. Founded in 2011 at Calit2, UC Irvine." | About text (founding year, focus, partners) and current projects; replaces "the Leading Enabler for Energy Efficiency Solutions... Join Us in our Journey towards Improving Energy Efficiency and Cross Collaboration". Show Arnold both |
+| Home tagline (`site.json`) | "The California Plug Load Research Center (CalPlug) studies how appliances, buildings and data centers use energy, and develops ways to use less of it. We bring together researchers, utilities, manufacturers and policy makers. Founded in 2011 at Calit2, UC Irvine." | About text (founding year, focus, partners) and current projects; replaces "the Leading Enabler for Energy Efficiency Solutions... Join Us in our Journey towards Improving Energy Efficiency and Cross Collaboration". Show Arnold both |
 | Projects intro | Two sentences on who CalPlug works with | About text |
 | Project short titles (Home cards) | "SIGNAL: Net-load Forecasting", "AI-TES: Thermal Energy Storage", "Edge Data Center Smart Retrofit", "Occupancy-based Smart Lighting" | Full titles |
 | Project summaries | One sentence each (already in the data since 0.1) | Original descriptions |
@@ -227,7 +227,7 @@ Also: the SIM Home project no longer has a second page with the same title and t
 
 ## Images to replace when better ones arrive
 
-- Hero photo (`zotwatt-2.jpg`, 647px wide): needs a recent photo at 1600px or wider.
+- Home group photo (`zotwatt-2.jpg`, only 400 by 225 pixels): it is now the first thing on the Home page and looks soft on large screens. Needs a recent group photo at 1600px or wider; the page is built to show it larger as soon as one arrives.
 - Logo (`calpluglogo-small.png`, 600px): needs the original vector file.
 - Event photos: all under 530px wide.
 

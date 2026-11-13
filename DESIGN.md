@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.29, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
+Version 0.30, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -34,7 +34,7 @@ One row: the logo on the left, eight menu items of equal rank on the right. No b
 
 ### Pages
 
-Every page starts the same way: the page title (h1) on the left, a short green line under it, then at most a two-sentence introduction (19px), then the content.
+Every page starts the same way: the page title (h1) on the left, a short green line under it, then at most a two-sentence introduction (19px), then the content. Home is the one exception (see "Home welcome").
 
 | Page | Content, top to bottom |
 |---|---|
@@ -52,10 +52,16 @@ Every page starts the same way: the page title (h1) on the left, a short green l
 
 ### Home welcome
 
-- Text on the left, the group photo on the right, both aligned at the top. White background, a 1px line below.
-- Text: "California Plug Load Research Center" (h1), the tagline from `data/site.json` (at most 40 words; says what CalPlug does in plain words), then three text links: About · Join us · Contact.
-- About 300px high on a laptop, so the first news items are visible without scrolling.
-- The photo is shown whole (not cropped), scaled to fit.
+A lab's home page shows its people first (the model is the USC Melady Lab site). In order, all centered:
+
+1. The group photo, whole, not cropped. At most 640px wide, because the only copy is 400 by 225 pixels and looks soft when enlarged further. When a photo of 1600px or wider arrives, raise the limit to the text width (720px).
+2. One paragraph (19px, at most 720px wide, at most 40 words): `tagline` in `data/site.json`. It opens with the center's full name, "The California Plug Load Research Center (CalPlug) ...", set in title weight, because the page has no visible title and the logo says only "CalPlug". The build stops if the full name is missing.
+3. Three text links: About · Join us · Contact.
+
+- No visible title and no green line: the name would say the same thing three times (logo, title, first sentence). The h1 is still in the page for search engines and screen readers, hidden from view.
+- White background, a 1px line below. The sections under it (news, projects, publications) stay left-aligned: lists are scanned from the left edge.
+- Known trade-off, accepted on 2026-11-13: on a laptop the first screen now holds the photo and the paragraph, and "Latest news" starts just below it. (0.5 to 0.29: title and text on the left, photo on the right, about 300px high.)
+- On phones the photo comes first as well; before, a visitor read a full screen of text before seeing it.
 
 ### Footer
 
@@ -184,7 +190,7 @@ Breakpoints (fixed; do not add others):
 |---|---|
 | 1000px and below | Menu collapses behind the three-line button; Support moves into the menu |
 | 900px | Grids of 4 and 3 cards become 2; people grid 5 becomes 3; steps 4 become 2 |
-| 760px | Home welcome and Contact top stack into one column |
+| 760px | Contact top stacks into one column |
 | 600px | Phone layout: one column, smaller titles, 16px page margin |
 | 360px | Smaller logo and tighter header |
 
@@ -525,6 +531,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.30 | 2026-11-13 | Home welcome redesigned after Keven's comparison with the Melady Lab site: group photo first, then one centered paragraph and three links; no visible title, the full name opens the paragraph in title weight (the build checks that it is there). Approved from a before-and-after preview. |
 | 0.29 | 2026-11-13 | Publication thumbnails enlarged from 72px to 96px wide (56px to 72px on phones), after Keven's review: same height as news images, top edge level with the title. |
 | 0.28 | 2026-11-13 | Third audit, every page read in full (27 findings; approved by Keven). Documents: 63 PDFs moved from the old site into `wp-content/uploads/` at their old path, so their addresses survive the domain move. Links: "→" only for pages of this site (fixed on Contact, Support, About), enforced by the build. People: names are never links and are 17px like every item title; "LinkedIn ↗" / "Profile ↗" on their own line; sub-headings are 19px with names one heading level lower. Tap areas of stand-alone links raised from about 20px to 32px. Pill borders darkened to 3:1 (`--line-control`). Research: shorter area labels so the filter fits one row; labs ordered SIM Home, SIM Lab, 1 kWh Challenge; SIM Home has one page instead of two; Careers positions link to their projects. New standard "Dates, times and names" (section 5) and a 150-word paragraph limit. Copied pages rebuilt to the standard: Events Archive (one order for every event, agendas behind a disclosure, the webinar that appeared twice merged), SIM Lab and 1 kWh Challenge (figure pairs, alt text carrying the text of slide images), SIM Home (recommendations as a list). Grammar and tense fixes in original text, each listed in `CONTENT-NOTES.md`. Checks now cover copied pages too. |
 | 0.27 | 2026-11-13 | Support is now an ordinary menu item (before Contact) instead of a button, on wide screens and in the phone menu. The site has three clickable shapes: pill buttons, text links and the menu button. |
