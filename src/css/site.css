@@ -50,11 +50,11 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nav-cta { display: inline-block; background: var(--blue); color: var(--white); font-size: var(--fs-small); font-weight: 600; padding: var(--s-8) var(--s-16); border-radius: var(--radius); white-space: nowrap; }
 .nav-cta:hover { background: var(--blue-dark); text-decoration: none; }
 .nav-cta:active { background: var(--navy); }
-.nav-cta[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--green); }
+.nav-cta[aria-current="page"] { background: var(--navy); }
 .nav { margin-left: auto; }
 .brand img { height: 40px; width: auto; }
 .nav ul { display: flex; gap: var(--s-24); }
-.nav a { display: block; color: var(--ink); font-size: 0.9375rem; font-weight: 500; white-space: nowrap; padding: var(--s-8) 0; border-bottom: 2px solid transparent; }
+.nav a { display: block; color: var(--ink); font-size: 0.9375rem; font-weight: 500; white-space: nowrap; padding: 23px 0 21px; margin-bottom: -1px; border-bottom: 3px solid transparent; }
 .nav a:hover { color: var(--blue); text-decoration: none; }
 .nav a[aria-current="page"] { color: var(--blue); border-bottom-color: var(--green); }
 .nav-toggle { display: none; min-height: 40px; background: none; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-8) var(--s-12); font: inherit; font-size: var(--fs-small); font-weight: 500; color: var(--ink); cursor: pointer; }
@@ -128,8 +128,8 @@ details p { margin-top: var(--s-8) !important; font-size: var(--fs-body) !import
 .filters button { font: inherit; font-size: var(--fs-small); color: var(--muted); background: var(--white); border: 1px solid var(--line); border-radius: 999px; padding: var(--s-4) var(--s-12); cursor: pointer; }
 .filters button:hover { border-color: var(--blue); color: var(--blue); }
 .filters button:active { background: var(--blue-tint); }
-.filters button { min-height: 32px; }
-.filters button[aria-pressed="true"] { background: var(--blue-tint); border-color: var(--blue); color: var(--blue); font-weight: 600; }
+.filters button { min-height: 32px; font-weight: 500; } /* one weight in every state: a bolder selected label would widen the button and shift the row */
+.filters button[aria-pressed="true"] { background: var(--blue-tint); border-color: var(--blue); color: var(--blue); }
 
 /* About */
 .about-row { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: var(--s-32); padding: var(--s-32) 0; border-bottom: 1px solid var(--line); }
@@ -264,8 +264,9 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
   .js .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; z-index: 10; background: var(--white); border-bottom: 1px solid var(--line); padding: 0 var(--s-24) var(--s-8); }
   .js .nav.open { display: block; }
   .nav ul { flex-direction: column; gap: 0; }
-  .nav a { padding: var(--s-12) 0; border-bottom: 1px solid var(--line); font-size: var(--fs-body); }
-  .nav a[aria-current="page"] { border-bottom-color: var(--line); box-shadow: inset 3px 0 0 var(--green); padding-left: var(--s-12); }
+  .nav a { position: relative; padding: var(--s-12) 0; margin-bottom: 0; border-bottom: 1px solid var(--line); font-size: var(--fs-body); }
+  .nav a[aria-current="page"] { border-bottom-color: var(--line); }
+  .nav a[aria-current="page"]::before { content: ""; position: absolute; left: calc(var(--s-12) * -1); top: var(--s-12); bottom: var(--s-12); width: 3px; border-radius: 2px; background: var(--green); }
   html:not(.js) .site-header .main-row { flex-wrap: wrap; padding-bottom: var(--s-8); }
   html:not(.js) .nav-toggle { display: none; }
   html:not(.js) .nav ul { flex-direction: row; flex-wrap: wrap; gap: 0 var(--s-16); }
@@ -365,7 +366,7 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
 }
 
 /* About: current and earlier logo side by side, each whole in the same frame */
-.logo-history { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-24); max-width: var(--text); }
+.logo-history { margin-top: var(--s-24); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-24); max-width: var(--text); }
 .logo-history figure { margin: 0; }
 .logo-frame { display: flex; align-items: center; justify-content: center; height: 150px; padding: var(--s-24); border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); }
 .logo-frame img { max-width: 100%; max-height: 100%; width: auto; height: auto; }

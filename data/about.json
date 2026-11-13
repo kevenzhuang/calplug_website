@@ -5,6 +5,18 @@
       "title": "About CalPlug",
       "paragraphs": [
         "The California Plug Load Research Center was established in 2011 to improve energy efficiency in the use and design of plug-load devices. CalPlug focuses on energy efficiency solutions, efficiency evaluations of consumer electronics, standards development, education, public outreach, and user behavior studies. CalPlug will address challenges in plug load efficiency for both residential and commercial buildings by collaborating closely with utilities, manufacturers, advocacy groups, research institutions, and energy policy makers."
+      ],
+      "logos": [
+        {
+          "src": "assets/brand/calplug-logo.svg",
+          "caption": "Current logo",
+          "alt": "Current CalPlug logo: a blue and green ring around a plug with signal waves, the word CALPLUG, California Plug Load Research Center, University of California, Irvine"
+        },
+        {
+          "src": "assets/brand/calplug-logo-earlier.svg",
+          "caption": "Earlier logo",
+          "alt": "Earlier CalPlug logo: the letters CalPlug drawn as a plug and cord, California Plug Load Research Center, University of California, Irvine"
+        }
       ]
     },
     {
@@ -47,21 +59,6 @@
         "label": "Our labs",
         "href": "research.html#labs"
       }
-    },
-    {
-      "title": "Our logo",
-      "logos": [
-        {
-          "src": "assets/brand/calplug-logo.svg",
-          "caption": "Current logo",
-          "alt": "Current CalPlug logo: a blue and green ring around a plug with signal waves, the word CALPLUG, California Plug Load Research Center, University of California, Irvine"
-        },
-        {
-          "src": "assets/brand/calplug-logo-earlier.svg",
-          "caption": "Earlier logo",
-          "alt": "Earlier CalPlug logo: the letters CalPlug drawn as a plug and cord, California Plug Load Research Center, University of California, Irvine"
-        }
-      ]
     }
   ]
 }
