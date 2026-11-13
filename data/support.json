@@ -1,5 +1,5 @@
 {
-  "_note": "From calplug.org/support, /friends, /members-2 and /affiliations (2026-11-12). Rewritten into short pieces for the new site (approved direction 2026-11-13); meaning unchanged. Membership benefits retyped from the table image on /members-2 (Screenshot-2026-08-19-175817.jpg). Pending Arnold's review. Logos for CPUC, PG&E, ComEd and DIRECTV provided by Keven Zhuang on 2026-11-13 (assets/logos/). The Embertec file provided is cut off at both edges, so Embertec is still shown by name.",
+  "_note": "From calplug.org/support, /friends, /members-2 and /affiliations (2026-11-12). Rewritten into short pieces for the new site (approved direction 2026-11-13); meaning unchanged. Membership benefits retyped from the table image on /members-2 (Screenshot-2026-08-19-175817.jpg). Pending Arnold's review. Logos for CPUC, PG&E, ComEd and DIRECTV provided by Keven Zhuang on 2026-11-13 (assets/logos/). Complete Embertec logo provided on 2026-11-13.",
   "title": "Support & Memberships",
   "intro": "Support from companies and individual donors adds to CalPlug's research funding. It lets us expand outreach and education and do independent research on plug loads, energy efficiency and storage, and user experience.",
   "contact": {
@@ -203,7 +203,8 @@
       "logo": "/wp-content/uploads/smartenit.jpg"
     },
     {
-      "name": "Embertec"
+      "name": "Embertec",
+      "logo": "assets/logos/embertec.png"
     },
     {
       "name": "TrickleStar",
