@@ -163,7 +163,7 @@ def page(filename, title, description, body, site):
 <footer class="site-footer">
   <div class="wrap">
     <div class="foot-row">
-      <p class="affil"><a href="https://www.uci.edu/">UC&nbsp;Irvine</a><span aria-hidden="true">\u00b7</span><a href="https://www.calit2.uci.edu/">Calit2</a></p>
+      <p class="affil"><a href="https://www.uci.edu/">UC&nbsp;Irvine</a><a href="https://www.calit2.uci.edu/" class="affil-logo"><img src="assets/brand/calit2-logo.png" alt="Calit2" width="447" height="447" loading="lazy"></a></p>
       <p class="social">{social}</p>
     </div>
     <p class="legal">{e(", ".join(c["address"])).replace("UC Irvine", "UC&nbsp;Irvine")} \u00b7 <a href="mailto:{e(c['general']['email'])}">{e(c['general']['email'])}</a> \u00b7 &copy;&nbsp;{date.today().year} {e(site['full_name'])}</p>
