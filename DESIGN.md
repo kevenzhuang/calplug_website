@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.7 (draft), 2026-11-12. Read this before changing any page, style or template.
+Version 0.8 (draft), 2026-11-12. Read this before changing any page, style or template.
 If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. Do not make one-off exceptions on a page.
@@ -17,82 +17,97 @@ calplug.org is the public showcase of the California Plug Load Research Center (
 
 Simple and direct: the site exists so people can find information, not to impress. Tone: a research lab's site, not a company's. Modern, simple, credible, with the life of a working lab. The home page leads with people and news, not with marketing: no statistics strip, no call-to-action bands, text links instead of large buttons. Every page answers one question and offers one next step.
 
-## 2. Pages
+## 2. Pages and navigation
 
-The navigation keeps the structure of the previous calplug.org, which visitors already know. Nothing from the old site is dropped: every old page has a place here.
+**Menu: one row, eight items, no drop-down menus.** Home · About · People · Projects · Publications · Facilities · News & Events · Contact.
 
-| Menu item | Sub-items | Page(s) | Content |
+Pages that are not in the menu are reached from their parent page and from the footer. Nothing from the previous site is dropped.
+
+| Page | In menu | Reached from | Content |
 |---|---|---|---|
-| Home | | `index.html` | Welcome (text left, group photo right) · Latest news (4) · Current projects · Recent publications (4) |
-| About | | `about.html` | Logo · About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility |
-| People | CalPlug Team · Affiliated Faculty Leadership · Advisory Board · Chief Technology Council | `people.html` (sections) | Director · Staff · Affiliated team · Students · Alumni · Faculty · Boards |
-| Facilities | SIM Home · 1 kWh Challenge · SIM Lab | `facilities.html` + one page each | Overview with floor plan; each facility keeps its full original page |
-| Projects & Publications | Projects · Publications | `research.html`, `publications.html` | Projects (active, completed, student) · Publications by year |
-| Support & Memberships | Support · Become a Member · Members & Affiliates | `support.html` (sections) | Original text of the three old pages, plus members and affiliates |
-| Events | News & Events · Events Archive | `news.html`, `events-archive.html` | News list with images · full archive with agendas, speakers and recordings |
-| CalPlug Careers | | `careers.html` | Student research opportunities (original page) |
-| Contact | | `contact.html` | Location, phone numbers, emails, hours |
+| Home `index.html` | yes | | Welcome (photo on top, then name, tagline, three text links) · Latest news (3) · Current projects (titles) · Recent publications (3) |
+| About `about.html` | yes | | Logo · About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility |
+| People `people.html` | yes | | Director · Staff · Affiliated team · Students · Alumni · Affiliated faculty · Advisory Board · Chief Technology Council |
+| Projects `research.html` | yes | | Current · Completed (filter by area) · Student projects |
+| Publications `publications.html` | yes | | By year, newest first, filter by type · Earlier documents |
+| Facilities `facilities.html` | yes | | Overview, floor plan, three cards |
+| SIM Home, SIM Lab, 1 kWh Challenge | no | Facilities, footer | Original pages |
+| News & Events `news.html` | yes | | All items, newest first |
+| Events Archive `events-archive.html` | no | News & Events, footer | Original page with agendas and recordings |
+| Careers `careers.html` | no | Home, footer | Original page |
+| Support & Memberships `support.html` | no | Home, footer | Original three pages as sections, members and affiliates |
+| Contact `contact.html` | yes | | Location, phones, emails, hours |
 
-The header has two rows: the full original logo, then the menu. Sub-items open on hover or keyboard focus; on phones the whole menu opens from one Menu button.
+No call-to-action bands at the bottom of pages. CalPlug is a research center, not a company.
 
-No call-to-action bands ("Get in touch", "Partner with us") at the bottom of pages. CalPlug is a research center, not a company; Careers, Support and Contact are in the menu for people who look for them.
-
-Pages copied whole from the old site live in `content/legacy/*.html` (made by `tools/import_pages.py`). They are shown word for word inside the site template. Convert one to structured data only when its format has been agreed.
+Pages copied whole from the old site live in `content/legacy/*.html` (made by `tools/import_pages.py`) and are shown word for word.
 
 Rules:
 - A page or section with no content is not published. No "coming soon", no placeholder text.
 - All items of one kind use the same component with the same fields in the same order. A missing optional field is left out, never filled with "N/A".
 - Old URLs redirect to the new pages. The PDFs under `/wp-content/uploads/` keep their URLs.
 
-## 3. Design tokens
+## 3. Visual standard
 
-Only these values may appear in CSS. They are defined once as CSS variables in `css/tokens.css`.
+The look is light and quiet: white background, one text column, thin dividers, few boxes. If a page feels heavy, remove something; do not add decoration. Only the values below may appear in CSS (they are variables at the top of `src/css/site.css`).
 
 ### Color
 
-Taken from the CalPlug logo (sampled from the logo file; confirm against the original artwork).
+| Token | Value | Use |
+|---|---|---|
+| `--blue` | `#005BAA` | Links, the selected filter, the current menu item |
+| `--green` | `#8BC53F` | The line under the current menu item only. Never for text (2.07:1 on white) |
+| `--green-text` | `#4A7A1C` | Dates and years in lists (5.13:1) |
+| `--ink` | `#1B2530` | Headings and body text |
+| `--muted` | `#5B6875` | Secondary text: authors, sponsors, summaries, footer |
+| `--line` | `#E3E8EE` | Dividers and borders, always 1px |
+| `--tint` | `#F6F8FA` | Footer and image frames only. Sections do not alternate background colors |
+| `--white` | `#FFFFFF` | Page background |
 
-| Token | Value | Use | Contrast |
-|---|---|---|---|
-| `--blue` | `#005BAA` | Links, primary buttons, headings accents | 6.83:1 on white |
-| `--green` | `#8BC53F` | Accents, icons, rules, highlights on dark. Never for text on white. | 2.07:1 on white (fails for text) |
-| `--green-text` | `#4A7A1C` | Green text or small labels on white | 5.13:1 on white |
-| `--navy` | `#0B2A4A` | Footer and dark bands | white on navy 14.54:1 |
-| `--ink` | `#16212B` | Body text | 16.32:1 on white |
-| `--muted` | `#566473` | Secondary text, meta lines | 6.06:1 on white |
-| `--line` | `#DCE3EA` | Borders, dividers | n/a |
-| `--tint` | `#F3F7FA` | Alternate section background | blue on tint 6.34:1 |
-| `--white` | `#FFFFFF` | Page background | n/a |
+Blue and green are sampled from the logo. No other colors, no gradients, no shadows.
 
-The magenta link color on the current site is dropped. Body text and background must reach at least 4.5:1.
+### Type hierarchy
 
-### Type
+One family: the system UI font. Two weights only: 400 (text) and 600 (headings); the menu uses 500.
 
-- One family for everything: the system UI stack (`system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`). No web font download in v0.1.
-- Sizes (px): 13, 15, 17, 20, 26, 34, 46. Body is 17. No other sizes.
-- Weights: 400 and 650 only. Line height 1.6 for body, 1.2 for headings.
-- Line length: 60 to 75 characters for body text.
+| Level | Token | Size | Weight | Color | Used for |
+|---|---|---|---|---|---|
+| Page title (h1) | `--fs-h1` | 34px (28px on phones) | 600 | ink | One per page |
+| Section title (h2) | `--fs-h2` | 24px (21px on phones) | 600 | ink | "Latest news", "Completed projects", a year |
+| Item title (h3) | `--fs-h3` | 17px | 600 | ink | A news item, project, publication, person |
+| Lead | `--fs-lead` | 19px | 400 | ink | One opening paragraph at most per page |
+| Body | `--fs-body` | 16px, line height 1.65 | 400 | ink | Paragraphs |
+| Small | `--fs-small` | 14px | 400 | muted | Authors, venues, sponsors, summaries, dates, links under an item, menu, footer |
 
-### Space, radius, shadow
+No uppercase labels above headings, no bold inside running text except what the original text has, no underlines except on hover.
 
-- Spacing scale (px): 4, 8, 12, 16, 24, 32, 48, 72, 104.
-- Content width 1120px; reading width 720px. Page gutter 24px (16px under 480px).
-- Radius: 6px for cards and buttons, 999px for tags. Photos of people are square with 6px radius.
-- One shadow only, for cards that can be clicked, on hover: `0 6px 20px rgba(11, 42, 74, 0.10)`.
+### Layout
+
+- One page width: 1000px (`--page`). Titles, lists and text all start at the same left edge. Nothing is centered except the home welcome block.
+- Running text is at most 720px wide (`--text`). Lists (news, projects, publications) use the full page width.
+- Spacing scale (px): 4, 8, 12, 16, 24, 32, 48, 64. Between sections: 48. Between a section title and its content: 16.
+- Radius 6px. Borders 1px `--line`.
+
+### The list format
+
+News, projects and publications all use the same row: a narrow left column, then title and details, separated by a 1px divider.
+
+| List | Left column | Right column |
+|---|---|---|
+| News | Image in a 3:2 frame (180px) | Date · title · summary · links |
+| Projects | Years (110px) | Title · sponsor · first sentence · "Full description" · links |
+| Publications | Thumbnail (72px) | Title · authors · venue · type and link |
 
 ## 4. Components
 
 | Component | Fields, in order | Notes |
 |---|---|---|
-| Header | Logo · 7 nav links | Collapses to a menu button under 820px |
-| Footer | CalPlug name and address · nav · UCI and Calit2 names · social links · copyright year | On every page |
-| Button | Label | Primary (blue fill) and secondary (blue outline) only |
-| Active project card | Title · years and sponsor · description · image (optional) · links | Large |
-| Project row | Years · title · sponsor · one-line summary · report link (optional) | Compact, one per completed project |
-| Publication entry | Thumbnail · title · authors · venue and year · type tag · link | Every entry has a thumbnail (section 6) |
-| Person card | Photo · name · role or program · organization (boards) · link | One uniform placeholder when there is no photo |
-| News/event item | Image · date · title · one or two sentences · links | Every item has an image (section 6). Items without a date sort last and show no date |
-| Tag | Label | For themes and types |
+| Header | Original logo · menu | One row. Under 900px the menu opens from a Menu button |
+| Footer | Address · Site · More (pages not in the menu) · Connect · copyright | Tint background |
+| Person | Photo · name · role or program · organization (boards) | Grid of 5 (3 on tablets, 2 on phones). Initials when there is no photo |
+| Card | Image (optional) · title · text | Only for facilities, contact blocks and the affiliated team |
+| Filter | Pills | Projects by area, publications by type |
+| Full description | Closed by default | Holds long original text so lists stay scannable |
 
 Only things that can be clicked react to hover.
 
@@ -118,7 +133,7 @@ Only things that can be clicked react to hover.
 ### Logo
 
 - Use the existing CalPlug logo file unchanged (`assets/legacy/calpluglogo-small.png`). Do not redraw it, change its lettering, recolor or stretch it. Replace it only with a higher-resolution or vector copy of the same artwork from the lab.
-- Header and About page: the full original logo.
+- Header (48px high) and About page: the full original logo.
 - `assets/brand/calplug-logo-compact.png` (icon and CALPLUG wordmark cut from the original file) is available for small spaces.
 - `assets/brand/calplug-mark.svg` is the icon alone (no lettering), used for the browser tab icon and inside the default images.
 - UC Irvine and Calit2 logos go in the footer once official files are supplied. Use only official files and follow each owner's rules; never redraw them.
@@ -143,14 +158,14 @@ Only things that can be clicked react to hover.
 
 ## 7. Motion
 
-- Hover and press feedback only, 0.2s. No entrance animations, no carousels, no auto-playing anything.
+- Hover feedback only, 0.2s color change. No entrance animations, no carousels, no auto-playing anything.
 - Off when the visitor's system asks for reduced motion.
 - All content is visible without JavaScript.
 
 ## 8. Responsive and accessibility
 
-- Checked widths: 1440, 1024, 820, 390, 360, 320. No horizontal scroll at any of them.
-- People grid: 4 columns on desktop, 3 on tablet, 2 on phones.
+- Checked widths: 1440, 1024, 820, 390, 320. No horizontal scroll at any of them.
+- People grid: 5 columns on desktop, 3 on tablets, 2 on phones.
 - Every link and button is reachable by keyboard and shows a visible focus ring.
 - One `h1` per page; headings do not skip levels.
 
@@ -172,6 +187,7 @@ Only things that can be clicked react to hover.
 | 0.5 | 2026-11-12 | Welcome: text left, photo right. Compact header logo cut from the original artwork. One default image each for news and publications; thumbnail finder also tries PDFs and preview images on linked pages. |
 | 0.6 | 2026-11-12 | About page added. Original wording kept everywhere (bios, projects, facilities); imported by `tools/import_text.py`. |
 | 0.7 | 2026-11-12 | Navigation follows the previous site (with sub-menus); Facilities sub-pages, Careers, Contact, Support and Events Archive restored with original content; call-to-action bands removed; full logo in a two-row header. |
+| 0.8 | 2026-11-12 | Lighter redesign after review (0.7 was heavy and cluttered): one-row menu without drop-downs, stacked welcome, one page width, one list format, written type hierarchy, light footer. |
 
 ## Open questions
 

@@ -23,22 +23,21 @@ STAMP = hashlib.sha1(b"".join(f.read_bytes() for f in sorted((SRC).rglob("*.*"))
 NEWS_DEFAULT = "assets/brand/news-default.svg"
 PUB_LABELS = {"journal": "Journal", "conference": "Conference", "report": "Report", "press": "In the press"}
 
-# Navigation follows the structure of the previous calplug.org. (href, label, [sub-items])
+# One row, no drop-down menus. Pages not listed here are reached from their parent page and from the footer.
 NAV = [
     ("index.html", "Home", []),
     ("about.html", "About", []),
-    ("people.html", "People", [("people.html#team", "CalPlug Team"), ("people.html#affiliated-faculty", "Affiliated Faculty Leadership"),
-                                ("people.html#advisory-board", "Advisory Board"), ("people.html#technology-council", "Chief Technology Council")]),
-    ("facilities.html", "Facilities", [("sim-home.html", "SIM Home"), ("1-kwh-challenge.html", "1 kWh Challenge"), ("sim-lab.html", "SIM Lab")]),
-    ("research.html", "Projects & Publications", [("research.html", "Projects"), ("publications.html", "Publications")]),
-    ("support.html", "Support & Memberships", [("support.html#friends", "Support"), ("support.html#members", "Become a Member"),
-                                                ("support.html#affiliates", "Members & Affiliates")]),
-    ("news.html", "Events", [("news.html", "News & Events"), ("events-archive.html", "Events Archive")]),
-    ("careers.html", "CalPlug Careers", []),
+    ("people.html", "People", []),
+    ("research.html", "Projects", []),
+    ("publications.html", "Publications", []),
+    ("facilities.html", "Facilities", []),
+    ("news.html", "News & Events", []),
     ("contact.html", "Contact", []),
 ]
+FOOTER_MORE = [("careers.html", "Careers"), ("support.html", "Support & Memberships"), ("events-archive.html", "Events Archive"),
+               ("sim-home.html", "SIM Home"), ("sim-lab.html", "SIM Lab"), ("1-kwh-challenge.html", "1 kWh Challenge")]
 # which top-level item is "current" for each page
-SECTION = {"publications.html": "research.html", "sim-home.html": "facilities.html", "sim-lab.html": "facilities.html",
+SECTION = {"sim-home.html": "facilities.html", "sim-lab.html": "facilities.html",
            "1-kwh-challenge.html": "facilities.html", "events-archive.html": "news.html"}
 OLD_LINKS = {"/sim-home": "sim-home.html", "/sim-lab": "sim-lab.html", "/1-kwh-challenge": "1-kwh-challenge.html",
              "/friends": "support.html#friends", "/members-2": "support.html#members", "/support": "support.html",
@@ -140,11 +139,11 @@ def page(filename, title, description, body, site):
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
-  <div class="wrap top">
+  <div class="wrap">
     <a class="brand" href="index.html"><img src="{e(url('/wp-content/uploads/calpluglogo-small.png'))}" alt="CalPlug, California Plug Load Research Center, University of California, Irvine" width="600" height="166"></a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main"><ul>{nav}</ul></nav>
   </div>
-  <nav class="nav" id="nav" aria-label="Main"><div class="wrap"><ul>{nav}</ul></div></nav>
 </header>
 <main id="main">
 {body}
@@ -160,6 +159,10 @@ def page(filename, title, description, body, site):
       <div>
         <h2>Site</h2>
         <ul>{''.join(f'<li><a href="{h}">{e(lbl)}</a></li>' for h, lbl, _ in NAV[1:])}</ul>
+      </div>
+      <div>
+        <h2>More</h2>
+        <ul>{''.join(f'<li><a href="{h}">{e(lbl)}</a></li>' for h, lbl in FOOTER_MORE)}</ul>
       </div>
       <div>
         <h2>Connect</h2>
@@ -239,7 +242,7 @@ def pub_entry(p, tag=True):
 def project_card(p):
     meta = " · ".join(x for x in [years(p), p.get("sponsor")] if x)
     thumb = f'<div class="thumb">{img(p["image"], p.get("image_alt", ""))}</div>' if p.get("image") else ""
-    return (f'<article class="card reveal" id="{e(p["id"])}">{thumb}'
+    return (f'<article class="card" id="{e(p["id"])}">{thumb}'
             f'{f"<div class=\"meta\">{e(meta)}</div>" if meta else ""}'
             f'<h3>{e(p["title"])}</h3>{"".join(f"<p>{e(x)}</p>" for x in paras(p))}{links(p.get("links"))}</article>')
 
@@ -247,7 +250,7 @@ def project_card(p):
 def event_row(ev):
     when = fmt_date(ev)
     bits = " · ".join(x for x in [ev.get("location"), "Online" if ev.get("format") == "online" else ""] if x)
-    return (f'<article class="row reveal"><div class="when">{e(when)}</div><div><h3>{e(ev["title"])}</h3>'
+    return (f'<article class="row"><div class="when">{e(when)}</div><div><h3>{e(ev["title"])}</h3>'
             f'{f"<p>{e(ev["theme"])}</p>" if ev.get("theme") else ""}'
             f'{f"<p>{e(ev["summary"])}</p>" if ev.get("summary") else ""}'
             f'{f"<p class=\"meta\">{e(bits)}</p>" if bits else ""}</div>{links(ev.get("links"))}</article>')
@@ -259,7 +262,7 @@ def person(p, sub):
     link = p.get("linkedin") or p.get("url")
     if link:
         name = f'<a href="{e(link)}">{name}</a>'
-    return f'<li class="person reveal">{pic}<h3>{name}</h3>{"".join(f"<p>{e(s)}</p>" for s in sub if s)}</li>'
+    return f'<li class="person">{pic}<h3>{name}</h3>{"".join(f"<p>{e(s)}</p>" for s in sub if s)}</li>'
 
 
 def board(members):
@@ -271,44 +274,47 @@ def board(members):
 
 def news_item(ev):
     thumb = f'<div class="thumb">{img(ev.get("image") or NEWS_DEFAULT, "")}</div>'
-    return (f'<article class="news reveal">{thumb}<div><div class="when">{e(fmt_date(ev))}</div>'
+    return (f'<article class="news">{thumb}<div><div class="when">{e(fmt_date(ev))}</div>'
             f'<h3>{e(ev["title"])}</h3>'
             f'{f"<p>{e(ev.get("summary") or ev.get("theme") or "")}</p>" if ev.get("summary") or ev.get("theme") else ""}'
             f'{links(ev.get("links"))}</div></article>')
 
 
+def project_row(p, full=True):
+    """One format for every project: years, title, sponsor, first sentence, and the full original text on demand."""
+    more = ""
+    if full and paras(p):
+        pic = f'<p>{img(p["image"], p.get("image_alt", ""))}</p>' if p.get("image") else ""
+        more = f'<details><summary>Full description</summary>{"".join(f"<p>{e(x)}</p>" for x in paras(p))}{pic}</details>'
+    return (f'<article class="item" id="{e(p["id"])}" data-tags="{" ".join(p["themes"])}"><div class="when">{years(p) or "Ongoing"}</div>'
+            f'<div><h3>{e(p["title"])}</h3>{f"<p class=\"meta\">{e(p["sponsor"])}</p>" if p.get("sponsor") else ""}'
+            f'{f"<p>{e(first_sentence(p))}</p>" if full and paras(p) else ""}{more}{links(p.get("links")) if full else ""}</div></article>')
+
+
 def build_home(site, projects, pubs, events, people, partners):
     P = projects["projects"]
     active = [p for p in P if p["status"] == "active"]
-    news = sorted([x for x in events["events"] if x.get("date")], key=lambda x: x["date"], reverse=True)[:4]
-    recent = sorted([x for x in pubs["publications"] if x["type"] != "press"], key=lambda x: x["year"], reverse=True)[:4]
-    proj = "".join(
-        f'<article class="row reveal"><div class="when">{years(p) or "Ongoing"}</div><div><h3>{e(p["title"])}</h3>'
-        f'<p>{e(first_sentence(p))}</p>{f"<p class=\"meta\">{e(p["sponsor"])}</p>" if p.get("sponsor") else ""}</div></article>'
-        for p in active)
-    pub = "".join(pub_entry(x, tag=False) for x in recent)
+    news = sorted([x for x in events["events"] if x.get("date")], key=lambda x: x["date"], reverse=True)[:3]
+    recent = sorted([x for x in pubs["publications"] if x["type"] != "press"], key=lambda x: x["year"], reverse=True)[:3]
     body = f"""
 <section class="welcome"><div class="wrap">
-  <div>
-    <h1>California Plug Load Research Center</h1>
-    <p class="lead">The California Plug Load Research Center (CalPlug) is the Leading Enabler for Energy Efficiency Solutions in the Use and Design of Appliances and Consumer Products.</p>
-    <p>Our mission: {e(site['mission'][0].lower() + site['mission'][1:])}</p>
-    <p>Interested in working with us? See <a href="careers.html">student research opportunities</a> or <a href="support.html">support and memberships</a>.</p>
-    <p><a href="about.html"><strong>About CalPlug \u2192</strong></a></p>
-  </div>
   <figure>{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign')}</figure>
+  <h1>California Plug Load Research Center</h1>
+  <p class="lead">The California Plug Load Research Center (CalPlug) is the Leading Enabler for Energy Efficiency Solutions in the Use and Design of Appliances and Consumer Products.</p>
+  <p>Join us in our journey towards improving energy efficiency and cross collaboration.</p>
+  <p class="textlinks"><a href="about.html">About CalPlug</a><a href="careers.html">Student research opportunities</a><a href="support.html">Support &amp; memberships</a></p>
 </div></section>
 <section class="section"><div class="wrap">
-  <div class="section-head"><h2>Latest news</h2><a class="more" href="news.html">See all news and events \u2192</a></div>
-  <div class="newslist">{''.join(news_item(x) for x in news)}</div>
-</div></section>
-<section class="section tint"><div class="wrap">
-  <div class="section-head"><h2>Current projects</h2><a class="more" href="research.html">All {len(P)} projects \u2192</a></div>
-  <div class="rows">{proj}</div>
+  <div class="section-head"><h2>Latest news</h2><a class="more" href="news.html">All news and events</a></div>
+  <div class="list">{''.join(news_item(x) for x in news)}</div>
 </div></section>
 <section class="section"><div class="wrap">
-  <div class="section-head"><h2>Recent publications</h2><a class="more" href="publications.html">All publications \u2192</a></div>
-  <div class="read">{pub}</div>
+  <div class="section-head"><h2>Current projects</h2><a class="more" href="research.html">All projects</a></div>
+  <div class="list">{''.join(project_row(p, full=False) for p in active)}</div>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="section-head"><h2>Recent publications</h2><a class="more" href="publications.html">All publications</a></div>
+  <div class="list">{''.join(pub_entry(x, tag=False) for x in recent)}</div>
 </div></section>
 """
     return page("index.html", "Home", site["about"][:155], body, site)
@@ -338,33 +344,26 @@ def build_research(site, projects):
     done = sorted([p for p in P if p["status"] == "completed"], key=lambda p: (p.get("end") or 0, p.get("start") or 0), reverse=True)
     buttons = '<button aria-pressed="true" data-filter="all">All</button>' + "".join(
         f'<button aria-pressed="false" data-filter="{k}">{e(v)}</button>' for k, v in themes.items())
-    rows = ""
-    for p in done:
-        full = "".join(f"<p>{e(x)}</p>" for x in paras(p)[0:])
-        more = f'<details><summary>Full description</summary>{full}</details>' if paras(p) else ""
-        rows += (f'<article class="row" id="{e(p["id"])}" data-tags="{" ".join(p["themes"])}"><div class="when">{years(p)}</div>'
-                 f'<div><h3>{e(p["title"])}</h3>{f"<p class=\"meta\">{e(p["sponsor"])}</p>" if p.get("sponsor") else ""}'
-                 f'{f"<p>{e(first_sentence(p))}</p>" if paras(p) else ""}{more}</div>{links(p.get("links"))}</article>')
     students = ""
     for g in projects["student_projects"]:
-        students += f'<div class="card reveal"><h3>{e(g["group"])}</h3><ul class="plain">' + "".join(
-            f'<li><a href="{e(url(i["url"]))}">{e(i["title"])}</a></li>' for i in g["items"]) + "</ul></div>"
-    body = head("Research", "CalPlug studies how plug loads, buildings and the grid use energy, and how technology, behavior and policy can reduce it.") + f"""
+        students += f'<h3>{e(g["group"])}</h3><ul class="plain">' + "".join(
+            f'<li><a href="{e(url(i["url"]))}">{e(i["title"])}</a></li>' for i in g["items"]) + "</ul>"
+    body = head("Projects", "") + f"""
 <section class="section"><div class="wrap">
-  <div class="section-head"><div><div class="eyebrow">Active</div><h2>Current projects</h2></div></div>
-  <div class="grid c2">{''.join(project_card(p) for p in active)}</div>
+  <h2>Current projects</h2>
+  <div class="list">{''.join(project_row(p) for p in active)}</div>
 </div></section>
-<section class="section tint" id="projects"><div class="wrap" data-filter-scope>
-  <div class="section-head"><div><div class="eyebrow">Completed</div><h2>{len(done)} completed projects</h2></div><span class="meta" data-count aria-live="polite"></span></div>
+<section class="section" id="projects"><div class="wrap" data-filter-scope>
+  <h2>Completed projects</h2>
   <div class="filters" role="group" aria-label="Filter by research area">{buttons}</div>
-  <div class="rows">{rows}</div>
+  <div class="list">{''.join(project_row(p) for p in done)}</div>
 </div></section>
-<section class="section"><div class="wrap">
-  <div class="section-head"><div><div class="eyebrow">Students</div><h2>Student projects</h2></div></div>
-  <div class="grid c3">{students}</div>
+<section class="section"><div class="wrap prose">
+  <h2>Student projects</h2>
+  {students}
 </div></section>
 """
-    return page("research.html", "Research", "Current and completed research projects at the California Plug Load Research Center.", body, site)
+    return page("research.html", "Projects", "Current and completed research projects at the California Plug Load Research Center.", body, site)
 
 
 def build_publications(site, pubs):
@@ -376,24 +375,24 @@ def build_publications(site, pubs):
         f'<button aria-pressed="false" data-filter="{k}">{v}</button>' for k, v in labels.items())
     out = ""
     for y in sorted({p["year"] for p in items}, reverse=True):
-        out += f'<section data-group><h2 class="year">{y}</h2>'
+        out += f'<section data-group><h2 class="year">{y}</h2><div class="list">'
         for p in [x for x in items if x["year"] == y]:
             out += pub_entry(p)
-        out += "</section>"
+        out += "</div></section>"
     other_titles = {"affiliate_faculty_research": "Affiliate faculty research on plug loads", "articles": "Articles",
                     "conference_presentations": "Conference presentations", "case_studies": "Case studies",
                     "engineering_lab_reports": "Engineering lab reports", "patent_disclosures": "Patent disclosures"}
     archive = ""
     for k, t in other_titles.items():
-        archive += f'<h3 class="sub">{t}</h3><ul class="plain">' + "".join(
-            f'<li><a href="{e(url(i["url"]))}">{e(i["title"])}</a></li>' for i in pubs["other_documents"][k]) + "</ul>"
-    body = head("Publications", "Journal articles, conference papers, technical reports and press coverage from CalPlug researchers.") + f"""
-<section class="section"><div class="wrap read" data-filter-scope>
+        docs = pubs["other_documents"][k]
+        archive += f'<details><summary>{t} ({len(docs)})</summary><ul class="plain">' + "".join(
+            f'<li><a href="{e(url(i["url"]))}">{e(i["title"])}</a></li>' for i in docs) + "</ul></details>"
+    body = head("Publications", "") + f"""
+<section class="section"><div class="wrap" data-filter-scope>
   <div class="filters" role="group" aria-label="Filter by type">{buttons}</div>
-  <span class="meta" data-count aria-live="polite"></span>
   {out}
 </div></section>
-<section class="section tint"><div class="wrap read"><div class="eyebrow">Archive</div><h2>Earlier documents</h2>{archive}</div></section>
+<section class="section"><div class="wrap"><h2>Earlier documents</h2>{archive}</div></section>
 """
     return page("publications.html", "Publications", "Publications and technical reports from the California Plug Load Research Center.", body, site)
 
@@ -403,37 +402,37 @@ def build_people(site, people, partners):
     for s in people["students"]:
         need(s, ["name", "program", "level"], "people.json students")
     staff = "".join(
-        f'<div class="lead-person reveal">{img(s["photo"], "Portrait of " + s["name"])}<div><h3>{e(s["name"])}</h3>'
+        f'<div class="lead-person">{img(s["photo"], "Portrait of " + s["name"])}<div><h3>{e(s["name"])}</h3>'
         f'<p class="meta">{e(s["title"])} · <a href="mailto:{e(s["email"])}">{e(s["email"])}</a></p><p>{e(s.get("bio", ""))}</p></div></div>'
         for s in people["staff"])
     team = "".join(
-        f'<div class="card reveal"><h3>{e(a["name"])}</h3><p>{e(a["title"])}</p><div class="links"><a href="mailto:{e(a["email"])}">{e(a["email"])}</a></div></div>'
+        f'<div class="card"><h3>{e(a["name"])}</h3><p>{e(a["title"])}</p><div class="links"><a href="mailto:{e(a["email"])}">{e(a["email"])}</a></div></div>'
         for a in people["affiliated_team"])
-    body = head("People", "Faculty, researchers, students and advisors behind CalPlug.") + f"""
+    body = head("People", "") + f"""
 <section class="section" id="team"><div class="wrap">
-  <div class="eyebrow">Director</div>
-  <div class="lead-person reveal">{img(d['photo'], 'Portrait of ' + d['name'])}<div><h2>{e(d['name'])}</h2>
+  
+  <div class="lead-person">{img(d['photo'], 'Portrait of ' + d['name'])}<div><h2>{e(d['name'])}</h2>
     <p class="meta">{e(d['title'])} · <a href="mailto:{e(d['email'])}">{e(d['email'])}</a></p><p>{e(d['bio'])}</p></div></div>
-  <div class="eyebrow">Research staff</div>{staff}
+  {staff}
   <h2 class="sub">Affiliated team</h2><div class="grid c3">{team}</div>
 </div></section>
-<section class="section tint"><div class="wrap">
-  <div class="section-head"><div><div class="eyebrow">Students</div><h2>Student researchers</h2></div></div>
+<section class="section"><div class="wrap">
+  <div class="section-head"><div><h2>Student researchers</h2></div></div>
   <ul class="grid c5">{''.join(person(s, [s['program'], s['level']]) for s in people['students'])}</ul>
   <h3 class="sub">Alumni</h3>
   <ul class="grid c5">{''.join(person(s, [s['program'], s['level']]) for s in people['alumni'])}</ul>
 </div></section>
 <section class="section" id="affiliated-faculty"><div class="wrap">
-  <div class="section-head"><div><div class="eyebrow">UC Irvine</div><h2>Affiliated Faculty Leadership</h2></div></div>
+  <div class="section-head"><div><h2>Affiliated Faculty Leadership</h2></div></div>
   <ul class="grid c5">{''.join(person(f, [f['dept']]) for f in people['affiliated_faculty'])}</ul>
 </div></section>
-<section class="section tint" id="advisory-board"><div class="wrap">
-  <div class="section-head"><div><div class="eyebrow">Guidance</div><h2>Advisory Board</h2></div></div>
+<section class="section" id="advisory-board"><div class="wrap">
+  <div class="section-head"><div><h2>Advisory Board</h2></div></div>
   {board(people['advisory_board'])}
   <h3 class="sub">Board members emeriti</h3>{board(people['advisory_board_emeriti'])}
 </div></section>
 <section class="section" id="technology-council"><div class="wrap">
-  <div class="section-head"><div><div class="eyebrow">Guidance</div><h2>Chief Technology Council</h2></div></div>
+  <div class="section-head"><div><h2>Chief Technology Council</h2></div></div>
   {board(people['technology_council'])}
   <h3 class="sub">Council members emeriti</h3>{board(people['technology_council_emeriti'])}
 </div></section>
@@ -463,8 +462,8 @@ def build_news(site, events):
         need(x, ["id", "title"], "events.json")
     dated = sorted([x for x in evs if x.get("date")], key=lambda x: x["date"], reverse=True)
     undated = [x for x in evs if not x.get("date")]
-    body = head("News & Events", "Workshops, talks and announcements from CalPlug.") + f"""
-<section class="section"><div class="wrap"><div class="newslist">{''.join(news_item(x) for x in dated + undated)}</div>
+    body = head("News & Events", "") + f"""
+<section class="section"><div class="wrap"><div class="list">{''.join(news_item(x) for x in dated + undated)}</div>
 <p style="margin-top:var(--s-32)"><a href="events-archive.html"><strong>Events archive: full agendas, speakers and recordings \u2192</strong></a></p></div></section>
 """
     return page("news.html", "News & Events", "CalPlug workshops and events.", body, site)
@@ -474,9 +473,9 @@ def build_support(site, partners):
     chips = lambda xs: "".join(f'<span class="tag">{e(x)}</span>' for x in xs)
     body = head("Support & Memberships", "") + f"""
 <section class="section"><div class="wrap prose">{legacy('support')}</div></section>
-<section class="section tint" id="friends"><div class="wrap prose"><h2>Support</h2>{legacy('friends')}</div></section>
+<section class="section" id="friends"><div class="wrap prose"><h2>Support</h2>{legacy('friends')}</div></section>
 <section class="section" id="members"><div class="wrap prose"><h2>Become A Member</h2>{legacy('members')}</div></section>
-<section class="section tint" id="affiliates"><div class="wrap">
+<section class="section" id="affiliates"><div class="wrap">
   <h2>Members &amp; Affiliates</h2>
   <h3 class="sub">Current CalPlug Members</h3><div class="chips">{chips(partners['members'])}</div>
   <h3 class="sub">Current affiliates</h3><div class="chips">{chips(partners['affiliates'])}</div>
