@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.3 (draft), 2026-11-12. Read this before changing any page, style or template.
+Version 0.4 (draft), 2026-11-12. Read this before changing any page, style or template.
 If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. Do not make one-off exceptions on a page.
@@ -15,7 +15,7 @@ calplug.org is the public showcase of the California Plug Load Research Center (
 | People curious about CalPlug (peers, media, UCI) | A fast, trustworthy overview and recent news | Home, News & Events |
 | Future students | Research areas, the team, how to join | Research, People |
 
-Tone: a research lab's site, not a company's. Modern, simple, credible, with the life of a working lab. The home page leads with people and news, not with marketing: no statistics strip, no call-to-action bands, text links instead of large buttons. Every page answers one question and offers one next step.
+Simple and direct: the site exists so people can find information, not to impress. Tone: a research lab's site, not a company's. Modern, simple, credible, with the life of a working lab. The home page leads with people and news, not with marketing: no statistics strip, no call-to-action bands, text links instead of large buttons. Every page answers one question and offers one next step.
 
 ## 2. Pages
 
@@ -23,7 +23,7 @@ Seven pages, one navigation level. No drop-down menus.
 
 | Page | Question it answers | Sections, in order | Next step |
 |---|---|---|---|
-| Home | What is CalPlug and what is new? | Welcome (group photo, name, short intro, text links) · Latest news (4, with photos) · Current projects (compact list) · Recent publications (4) | Read the news / See research / Meet the team |
+| Home | What is CalPlug and what is new? | Welcome (group photo, what we do, mission, how to work with us) · Latest news (4) · Current projects (compact list) · Recent publications (4) | Read the news / Work with us |
 | Research | What has CalPlug worked on, and with whom? | Intro · Active projects (large cards) · Completed projects (compact rows, all shown, filter by theme and sponsor) · Student projects | Read a report / Contact |
 | Publications | What has CalPlug published? | Filter (type, year) · List by year, newest first · Archive (older undated documents) | Open the PDF or DOI |
 | People | Who is CalPlug and how do I join? | Director · Staff · Students · Affiliated faculty · Advisory Board · Technology Council · Alumni · Join us | Apply / Email |
@@ -107,13 +107,19 @@ Only things that can be clicked react to hover.
 
 ### Logo
 
-- Files in `assets/brand/`: `calplug-logo.svg` (full, for light backgrounds), `calplug-logo-reversed.svg` (for the navy footer), `calplug-mark.svg` (icon only, also the favicon).
-- The SVG is a redraw of the existing logo: same icon, same blue and green, lettering set in Montserrat (open font licence) and converted to outlines. It needs the director's approval before it replaces the logo anywhere outside this site. The original PNG stays in `assets/legacy/`.
-- Do not recolor, stretch or add effects. Keep clear space around it equal to the thickness of the ring.
+- Use the existing CalPlug logo file unchanged (`assets/legacy/calpluglogo-small.png`). Do not redraw it, change its lettering, recolor or stretch it. Replace it only with a higher-resolution or vector copy of the same artwork from the lab.
+- `assets/brand/calplug-mark.svg` is the icon alone (no lettering), used for the browser tab icon and the default news image.
+- UC Irvine and Calit2 logos go in the footer once official files are supplied. Use only official files and follow each owner's rules; never redraw them.
+
+### No cropping (standard)
+
+- Content images (photos, flyers, diagrams, first pages) are never cropped. Each kind has one frame shape; the whole image is fitted inside it on a neutral background.
+- The welcome photo and the director and staff photos are shown at their own proportions.
+- The only exception is the grid of people: portraits are cropped to a square from the top so the grid stays even. Supply square portraits to avoid any crop.
 
 ### News images (standard)
 
-- Every news or event item has exactly one image, shown at 3:2.
+- Every news or event item has exactly one image, fitted whole inside a 3:2 frame.
 - Order of preference: a photo from the event, then the event flyer, then the default image `assets/brand/news-default.svg` (used automatically when `image` is empty).
 - New images: at least 1200 by 800 pixels, JPEG, under 400 KB, in `assets/news/`.
 
@@ -125,9 +131,8 @@ Only things that can be clicked react to hover.
 
 ## 7. Motion
 
-- Entrance: fade and 16px rise over 0.6s, once, when a section scrolls into view.
-- Feedback: 0.2s for hover and press.
-- Nothing else. All motion is off when the visitor's system asks for reduced motion.
+- Hover and press feedback only, 0.2s. No entrance animations, no carousels, no auto-playing anything.
+- Off when the visitor's system asks for reduced motion.
 - All content is visible without JavaScript.
 
 ## 8. Responsive and accessibility
@@ -151,8 +156,10 @@ Only things that can be clicked react to hover.
 | 0.1 | 2026-11-12 | First draft: purpose, 7 pages, tokens from the logo, components, writing and image rules. Images from the previous site may be reused (decision: Keven). |
 | 0.2 | 2026-11-12 | Home redesigned as a lab home page (welcome + news first), after review: the first version read like a company site. Original tagline restored at Keven's request. |
 | 0.3 | 2026-11-12 | SVG logo; news image standard (every item has an image, with a default); publication thumbnails (first page of the PDF, or a type tile); 'formats come first' rule. |
+| 0.4 | 2026-11-12 | Original logo restored (no redrawn lettering); no-cropping standard; entrance animations removed; welcome section simplified. |
 
 ## Open questions
 
+- Official UC Irvine and Calit2 logo files for the footer are needed from the lab.
 - UC Irvine and Calit2 brand and web requirements (logo use, footer statements, accessibility policy) have not been checked yet.
 - Research themes on the Research page are a draft grouping and need Arnold's approval.

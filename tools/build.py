@@ -107,7 +107,7 @@ def page(filename, title, description, body, site):
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/brand/calplug-logo.svg" alt="CalPlug, California Plug Load Research Center, University of California, Irvine" width="616" height="160"></a>
+    <a class="brand" href="index.html"><img src="{e(url('/wp-content/uploads/calpluglogo-small.png'))}" alt="CalPlug, California Plug Load Research Center, University of California, Irvine" width="600" height="166"></a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav" aria-label="Main"><ul>{nav}</ul></nav>
   </div>
@@ -119,7 +119,7 @@ def page(filename, title, description, body, site):
   <div class="wrap">
     <div class="cols">
       <div>
-        <img class="footer-logo" src="assets/brand/calplug-logo-reversed.svg" alt="CalPlug" width="616" height="160" loading="lazy">
+        <h2>{e(site['full_name'])}</h2>
         <p>{'<br>'.join(e(a) for a in c['address'])}</p>
         <p>{e(c['general']['phone'])}<br><a href="mailto:{e(c['general']['email'])}">{e(c['general']['email'])}</a></p>
       </div>
@@ -227,12 +227,12 @@ def build_home(site, projects, pubs, events, people, partners):
     pub = "".join(pub_entry(x, tag=False) for x in recent)
     body = f"""
 <section class="welcome"><div class="wrap">
-  <figure class="reveal">{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign')}</figure>
+  <figure>{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign')}</figure>
   <div>
     <h1>California Plug Load Research Center</h1>
     <p class="lead">The California Plug Load Research Center (CalPlug) is the Leading Enabler for Energy Efficiency Solutions in the Use and Design of Appliances and Consumer Products.</p>
-    <p>Join us in our journey towards improving energy efficiency and cross collaboration.</p>
-    <p class="textlinks"><a href="research.html">Our research \u2192</a><a href="people.html">Meet the team \u2192</a><a href="people.html#join">Join the lab \u2192</a></p>
+    <p>Our mission: {e(site['mission'][0].lower() + site['mission'][1:])}</p>
+    <p>Interested in working with us? See <a href="people.html#join">student research opportunities</a> or <a href="partner.html">how to partner with CalPlug</a>.</p>
   </div>
 </div></section>
 <section class="section"><div class="wrap">

@@ -9,19 +9,6 @@
     });
   }
 
-  // Entrance motion (DESIGN.md section 7)
-  var items = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
-      });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    items.forEach(function (el) { io.observe(el); });
-  } else {
-    items.forEach(function (el) { el.classList.add('in'); });
-  }
-
   // Filters: buttons with data-filter act on elements with data-tags inside the same [data-filter-scope]
   document.querySelectorAll('[data-filter-scope]').forEach(function (scope) {
     var buttons = scope.querySelectorAll('.filters button');
