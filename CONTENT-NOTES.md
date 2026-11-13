@@ -25,6 +25,9 @@ Working notes for maintainers. Not published. Source: calplug.org as read on 202
 | Team: Shelly Nazarenus email | Text says calit2.uci.edu, link says calit.uci.edu | `snaz@calit2.uci.edu` | Link typo |
 | Team: G. P. Li | "serves as director of Calit2 from 2007 to 2025" | "served as director ... from 2007 to 2025" | Calit2 announced a new director effective July 1, 2025 |
 | Affiliates | "emebrtec", "Emebrtec" | "Embertec" | Typo; logo file is named embertech |
+| Contact | "CalIt2 administrative offices" | "Calit2 administrative offices" | Typo |
+| 1 kWh Challenge | "accessibble"; no period after "on hold" | "accessible"; period added | Typos |
+| SIM Home | "(SIM)Home" | "(SIM) Home" | Missing space |
 | Events | Better Buildings webinar listed twice | Listed once | Duplicate |
 | Publications | 2021 DOE survey report listed under Journal | Moved to reports | It is a prepared-for report |
 
@@ -61,6 +64,8 @@ The full original text is still on the site wherever it existed (project pages, 
 | News: CalPlug/ITAC 2026 Annual Workshop | Summary shortened to 25 words | Old summary |
 | Share image line (`assets/brand/share.png`) | "How homes, offices and data centers use energy, and tools that help people use less of it." | Home tagline |
 | 404 page | "This page is unplugged." and one sentence | New |
+| Contact card titles | "General & directions", "Collaborations", "Calit2" | Old titles "General Information, Directions & Parking", "CalPlug Collaborations", "General / Calit2 Information" |
+| Contact hours | "Monday to Friday, 8:00 am to 5:00 pm" | "Mon-Fri 8:00am - 5:00pm" |
 
 ## Permissions needed before launch
 
