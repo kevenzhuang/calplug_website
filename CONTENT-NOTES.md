@@ -57,7 +57,7 @@ The full original text is still on the site wherever it existed (project pages, 
 
 | Where | New text | Based on |
 |---|---|---|
-| Home tagline (`site.json`) | "CalPlug studies how energy is used in homes, offices and data centers, and builds data, sensing and AI tools that help people use less of it. Founded in 2011 at Calit2, UC Irvine." | About text and current projects; replaces "the Leading Enabler for Energy Efficiency Solutions..." |
+| Home tagline (`site.json`) | "CalPlug studies how appliances, buildings and data centers use energy, and develops ways to use less of it. We bring together researchers, utilities, manufacturers and policy makers. Founded in 2011 at Calit2, UC Irvine." | About text (founding year, focus, partners) and current projects; replaces "the Leading Enabler for Energy Efficiency Solutions... Join Us in our Journey towards Improving Energy Efficiency and Cross Collaboration". Show Arnold both |
 | Projects intro | Two sentences on who CalPlug works with | About text |
 | Project short titles (Home cards) | "SIGNAL: Net-load Forecasting", "AI-TES: Thermal Energy Storage", "Edge Data Center Smart Retrofit", "Occupancy-based Smart Lighting" | Full titles |
 | Project summaries | One sentence each (already in the data since 0.1) | Original descriptions |
