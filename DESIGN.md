@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.10, 2026-11-13. Status: built after Keven Zhuang's review of 0.9; waiting for his look.
+Version 0.11, 2026-11-13. Status: built after Keven Zhuang approved proposals 1, 2B, 3, 4 and 7 (details).
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -11,9 +11,9 @@ calplug.org is the public face of the California Plug Load Research Center (CalP
 
 | Reader | What they want | Where they go |
 |---|---|---|
-| Sponsors and partners | What CalPlug does, what it has delivered, who backs it, how to support it | Home, About, Projects, Support |
-| People curious about CalPlug | A fast, trustworthy overview and recent news | Home, About, News & Events |
-| Future students | Research, the team, how to join | Projects, People, Careers |
+| Sponsors and partners | What CalPlug does, what it has delivered, who backs it, how to support it | Home, About, Research, Support |
+| People curious about CalPlug | A fast, trustworthy overview and recent news | Home, About, News |
+| Future students | Research, the team, how to join | Research, People, Careers |
 
 Simple and direct: the site exists so people can find information, not to impress. If a page feels heavy, remove something; do not add decoration. No call-to-action bands ("Get in touch", "Partner with us") at the bottom of pages.
 
@@ -21,13 +21,15 @@ Simple and direct: the site exists so people can find information, not to impres
 
 ### Header
 
-One row: the logo on the left, the menu on the right. Ten items, no drop-down menus:
+One row: the logo on the left, six menu items, then one button. No drop-down menus:
 
-Home · About · People · Projects · Publications · Facilities · News & Events · Careers · Support · Contact
+**Logo** · About · People · Research · Publications · News · Careers · **[Support CalPlug]**
 
-- The menu label is "Support"; the page title is "Support & Memberships".
-- When the window is too narrow for one row, the menu collapses behind a Menu button. It never wraps onto two rows.
-- The current page is marked with a short green line under its menu item.
+- The logo is the link to Home; there is no "Home" item.
+- "Support CalPlug" is the only filled button in the header (blue, white text). On phones it reads "Support" and stays next to the Menu button.
+- Contact is not in the menu: it is in the footer line and at the bottom of About. Facilities is part of Research ("Our labs").
+- Below 1000px wide the six items collapse behind a Menu button. The menu never wraps onto two rows.
+- The current page is marked with a short green line under its menu item (on the button: a green line inside its bottom edge).
 
 ### Pages
 
@@ -36,16 +38,16 @@ Every page starts the same way: the page title (h1) on the left, a short green l
 | Page | Content, top to bottom |
 |---|---|
 | Home | Welcome (see below) · Latest news (3 list rows) · Current projects (4 small cards) · Recent publications (3 list rows) |
-| About | About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility (original text; small heading on the left, text on the right) |
+| About | About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility · Contact (address, phone, email, link to Contact) (original text; small heading on the left, text on the right) |
 | People | Jump links (Team · Students · Faculty · Advisory Board · Council · Alumni) · Director and staff (photo, first two sentences of the bio, "Full bio" to open the rest) · Affiliated team · Students · Affiliated faculty · Advisory Board (+ emeriti) · Chief Technology Council (+ emeriti) · Alumni |
-| Projects | Intro · filter by research area (draft areas, see Open questions) · Current projects (cards, two per row) · Completed projects (list rows) · Student projects |
-| Project page (`project-<id>.html`) | Title · years, sponsor, area · partners · full original description · image · reports · link back to Projects. One page per project that has a description |
+| Research (`research.html`) | Intro · filter by research area (draft areas, see Open questions) · Current projects (cards, two per row) · Completed projects (list rows) · Student projects |
+| Research page, Our labs | Former Facilities page: intro · three cards linking to SIM Home, 1 kWh Challenge, SIM Lab (each an original page) · floor plan, folded. `facilities.html` now sends visitors here |
+| Project page (`project-<id>.html`) | Title · years, sponsor, area · partners · full original description · image · reports · link back to Research. One page per project that has a description |
 | Publications | Filter by type · by year, newest first · Earlier documents, folded by category |
-| Facilities | Original intro · floor plan · three cards linking to SIM Home, 1 kWh Challenge, SIM Lab (each an original page) |
-| News & Events | All items, newest first · link to the Events Archive (original page with agendas and recordings) |
+| News (page title "News & Events") | All items, newest first · link to the Events Archive (original page with agendas and recordings) |
 | Careers | Intro · deadline notice · "What you get" and "What we ask" cards · Open positions (cards: ID pill, title, one sentence, up to 3 tasks, mentors with photos) · How to apply (4 numbered steps). Content in `data/careers.json` |
 | Support & Memberships | Intro · Current members (large logo tiles) · Ways to support (3 cards: member, gift, equipment) · Membership levels (3 cards: Gold, then what Platinum and Diamond add; full comparison table folded below) · Past members and current affiliates (logo tiles). Content in `data/support.json` |
-| Contact | Original location text · photo of the Calit2 Building · address with an "Open in Google Maps" link · general, collaborations and Calit2 contacts · hours. No embedded map |
+| Contact (reached from the footer and About) | Original location text · photo of the Calit2 Building · address with an "Open in Google Maps" link · general, collaborations and Calit2 contacts · hours. No embedded map |
 
 ### Home welcome
 
@@ -56,10 +58,10 @@ Every page starts the same way: the page title (h1) on the left, a short green l
 
 ### Footer
 
-Two short lines on the light footer background, with a green line on top:
+Two short lines on the deep navy background (`--navy`), with a 3px green line on top:
 
-1. On the left, the UC Irvine primary logo (`assets/brand/uci-logo.png`, 24px high, links to uci.edu), then 24px of space, then the Calit2 logo (`assets/brand/calit2-logo.png`, 40px high, links to calit2.uci.edu). The two logos stand apart, never joined into one lockup. On the right, LinkedIn and Facebook icons. The UC Irvine seal is not used (see 6. Images, Logo).
-2. One line of small text: address · email · copyright.
+1. On the left, the UC Irvine primary logo in white (`assets/brand/uci-logo-white.png`, 24px high, links to uci.edu), then 24px of space, then the Calit2 logo (`assets/brand/calit2-logo.png`, 40px high, links to calit2.uci.edu). The two logos stand apart, never joined into one lockup. On the right, LinkedIn and Facebook icons in light gray, white on hover. The UC Irvine seal is not used (see 6. Images, Logo).
+2. One line of small text in light gray: address · email · Contact · copyright. Links are white.
 
 No site map in the footer: every page not in the menu is reached from its parent page.
 
@@ -67,15 +69,21 @@ No site map in the footer: every page not in the menu is reached from its parent
 
 ### Color and where it is used
 
-Blue and green are sampled from the CalPlug logo. They are used in small, meaningful places only.
+Blue and green are sampled from the CalPlug logo, and each has one meaning. A visitor learns it without being told:
+
+- **Blue means "you can click this."** Nothing that cannot be clicked is blue.
+- **Green means "active now" or "when".** The Active dot, dates and years, the current menu item.
+- **Navy is the ground.** The footer, and quiet structure (pill text, notice line, step numbers).
 
 | Token | Value | Used for |
 |---|---|---|
-| `--blue` | `#005BAA` | Links, selected filter, menu hover, icon hover, left half of the top strip |
-| `--green` | `#8BC53F` | Right half of the top strip; line under the current menu item; short line under page and section titles; line on top of the footer. Never for text (2.07:1 on white) |
-| `--green-text` | `#4A7A1C` | Dates and years in lists (5.13:1 on white) |
-| `--blue-tint` | `#EEF4FA` | Pills (position IDs, membership levels) and notice boxes (with a 3px blue left line) |
-| `--tint` | `#F6F8FA` | Footer, image frames |
+| `--blue` | `#005BAA` | Links, buttons, selected filter, card border on hover, left half of the top strip, top half of ring icons |
+| `--blue-dark` | `#004A8C` | Button hover |
+| `--green` | `#8BC53F` | Right half of the top strip; line under the current menu item; short line under the page title; line on top of the footer; Active dot; bottom half of ring icons. Never for text (2.07:1 on white) |
+| `--green-text` | `#4A7A1C` | Dates and years, the word "Active", check marks in the benefits table (5.13:1 on white) |
+| `--navy` | `#0E2A47` | Footer background; pill text; notice and step lines; About side headings; line icons inside rings |
+| `--on-navy` | `#C5D0DC` | Text on the footer (10:1 on navy) |
+| `--tint` | `#F6F8FA` | Image frames, pills, notice boxes, table group rows |
 | `--ink` | `#1B2530` | Headings and body text |
 | `--muted` | `#5B6875` | Authors, sponsors, summaries, small text |
 | `--line` | `#E3E8EE` | Dividers and borders, always 1px |
@@ -83,15 +91,20 @@ Blue and green are sampled from the CalPlug logo. They are used in small, meanin
 
 The top of every page has a 4px strip, blue on the left half and green on the right, echoing the logo ring.
 
-Not used: large dark blocks, gradients, shadows, colored cards, green text on white.
+Not used: gradients, shadows, colored cards, green text on white. The footer is the only dark block.
 
 ### Type hierarchy
 
-One family (the system UI font). Weights: 400 for text, 600 for headings, 500 for the menu.
+Two families, both stored on this site (`src/fonts/`, SIL Open Font License; no Google Fonts, no tracking):
+
+- **Montserrat 600** for the page title (h1) and section titles (h2). It is UC Irvine's primary typeface, so the site matches the university.
+- **Inter** (400 text, 500 menu, 600 item titles and labels) for everything else. Clear on screens at small sizes.
+
+If the fonts do not load, the system font is used.
 
 | Level | Size | Color | Used for |
 |---|---|---|---|
-| Page title (h1) | 34px (28px on phones) | ink | One per page |
+| Page title (h1) | 34px (28px on phones), Montserrat, green line below | ink | One per page |
 | Section title (h2) | 24px (21px on phones) | ink | "Latest news", a year, a People section |
 | Item title (h3) | 17px | ink | A news item, project, publication, person |
 | Lead | 19px | ink | The home tagline; at most one per page |
@@ -140,12 +153,16 @@ All content is shown with one of three blocks. The Publications list is the mode
 | List row | See section 3 | News, completed projects, publications |
 | Card | See section 3 | Current projects, facilities, contact blocks, affiliated team, Careers, Support |
 | Logo tile | See section 3 | Support |
-| Pill | Short label on the light blue tint | Position IDs, membership levels |
-| Notice | One sentence on the light blue tint with a blue left line | Deadlines. At most one per page |
+| Pill | Short navy label on the tint, thin border | Position IDs, membership levels |
+| Notice | One sentence on the tint with a 3px navy left line | Deadlines. At most one per page |
 | Steps | Numbered columns with a blue top line | How to apply |
-| Filter | Round buttons | Publications by type, Projects by research area |
+| Filter | Round buttons | Publications by type, Research by research area |
 | More on demand | Closed by default ("Full bio", "Compare all benefits") | Long text that most readers skip |
-| Social icon | Single-color icon with a hidden text label | LinkedIn, Facebook. Blue on hover |
+| Social icon | Single-color icon with a hidden text label | LinkedIn, Facebook, in the footer. White on hover |
+| Header button | Blue fill, white text | "Support CalPlug" only |
+| Ring icon | The logo's half-blue, half-green ring around a navy line icon (20px) | Research areas: on the filter buttons and on project cards. Icons: plug (plug loads), person (user behavior), factory (smart manufacturing), bolt (grid and storage), building (buildings and data centers), calendar (default news image). Drawn in `tools/build.py` (`LINE_ICONS`); never add a second icon style |
+| Active dot | Green dot + "Active" in green text | Meta line of active projects |
+| Link marks | "PDF" in a small outlined box after links to PDF files; "↗" after links that leave the site | Lists, cards, copied pages. Added by CSS from the link address, never typed into data |
 
 Only things that can be clicked react to hover.
 
@@ -191,10 +208,15 @@ Only things that can be clicked react to hover.
 - Best: people supply square portraits, at least 600 by 600 pixels.
 - No photo: one uniform placeholder with the person's initials.
 
+### Ring icons and default images
+
+- The default news image (`assets/brand/news-default.svg`) is the ring with a calendar icon on the tint background.
+- The UC Irvine logo on the navy footer is the white one-color version (`assets/brand/uci-logo-white.png`), made from the provided file by turning its color white without changing its shape. Replace with the official reversed file when available.
+
 ### News images
 
 - Every item has one image, fitted whole into a 3:2 frame.
-- Order of preference: a photo from the event, the event flyer, then the default `assets/brand/news-default.svg`.
+- Order of preference: a photo from the event, the event flyer, then the default ring image.
 - New images: at least 1200 by 800 pixels, JPEG, under 400 KB, in `assets/news/`.
 
 ### Publication thumbnails
@@ -204,7 +226,7 @@ Only things that can be clicked react to hover.
 
 ## 7. Motion
 
-- Hover feedback only: a 0.2s color change. No entrance animations, carousels or auto-play.
+- Hover feedback only: a 0.2s color change; on cards, a blue border and the image grows by 2% (0.3s). No entrance animations, carousels or auto-play.
 - Off when the visitor's system asks for reduced motion.
 - All content is visible without JavaScript.
 
@@ -234,6 +256,7 @@ Only things that can be clicked react to hover.
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.11 | 2026-11-13 | Approved proposals 1, 2B, 3, 4, 7: menu cut from ten items to six plus a "Support CalPlug" button (logo goes home; Facilities becomes "Our labs" on Research; Contact moves to the footer and About; Projects renamed Research, News & Events shortened to News). Colors given meanings: blue = clickable, green = active / when, navy = ground; navy footer with white UC Irvine logo; green line only under page titles. Montserrat (titles) and Inter (text), self-hosted. Ring icons for research areas and the default news image; Active dot. PDF and external-link marks; card hover. |
 | 0.10 | 2026-11-13 | After Keven's review ("too much text, no standard; Publications is the cleanest"): three building blocks (list row, card, logo tile) and length limits for every piece of text, checked by the build. Home welcome is white with a new plain tagline; Home projects as cards. Projects: research-area filter (draft), current projects as cards, completed projects as list rows, one page per project with the full text. Careers and Support rebuilt from data files with cards, pills, a deadline notice, numbered steps, membership levels (benefits table retyped from the old image) and logo tiles. People bios shortened with "Full bio". About logo removed. |
 | 0.9.3 | 2026-11-13 | Footer: UC Irvine primary logo (file from Keven Zhuang) replaces the "UC Irvine" text, set apart from the Calit2 logo. |
 | 0.9.2 | 2026-11-13 | Footer: Calit2 logo added (file from Keven Zhuang) next to the "UC Irvine" text. UC Irvine seal not used, following UC Irvine's rule that the seal is not for the web. |
@@ -243,5 +266,5 @@ Only things that can be clicked react to hover.
 ## Open questions
 
 - A larger or vector copy of the UC Irvine primary logo, for sharper display (optional).
-- Research areas for the Projects filter are a draft (`data/projects.json`, `themes`), for Arnold to approve.
+- Research areas for the Research filter are a draft (`data/projects.json`, `themes`), for Arnold to approve.
 - All text written or shortened for 0.10 (see `CONTENT-NOTES.md`), for Arnold to approve.

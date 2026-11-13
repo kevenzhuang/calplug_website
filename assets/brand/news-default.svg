@@ -1,9 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="CalPlug news">
-<rect width="600" height="400" fill="#F3F7FA"/>
-<g fill="none" stroke-width="2"><circle cx="300" cy="200" r="150" stroke="#DCE3EA"/><circle cx="300" cy="200" r="215" stroke="#E6ECF2"/><circle cx="300" cy="200" r="285" stroke="#ECF1F5"/></g>
-<circle cx="300" cy="200" r="96" fill="#FFFFFF"/>
-<g transform="translate(220 120)"><path d="M13 80A67 67 0 0 1 147 80" fill="none" stroke="#005BAA" stroke-width="20"/>
-<path d="M13 80A67 67 0 0 0 147 80" fill="none" stroke="#8BC53F" stroke-width="20"/>
-<g fill="none" stroke="#005BAA" stroke-width="6.5" stroke-linecap="round"><path d="M50.5 47.5A42 42 0 0 1 109.500 47.5"/><path d="M59.500 57A29.500 29.500 0 0 1 100.500 57"/><path d="M68.500 66.500A16.500 16.500 0 0 1 91.500 66.500"/></g>
-<path d="M61.500 92V79.500a3.200 3.200 0 0 1 6.400 0V92H92.100V79.500a3.200 3.200 0 0 1 6.400 0V92H113a33 33 0 0 1-66 0Z" fill="#8BC53F"/></g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="CalPlug event">
+<rect width="600" height="400" fill="#F6F8FA"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M222 200A78 78 0 0 1 378 200" stroke="#005BAA" stroke-width="10"/>
+<path d="M222 200A78 78 0 0 0 378 200" stroke="#8BC53F" stroke-width="10"/>
+<g transform="translate(264 164) scale(3)" stroke="#0E2A47" stroke-width="1.6"><path d="M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM3 10h18M8 3v4M16 3v4"/></g>
+</g>
 </svg>

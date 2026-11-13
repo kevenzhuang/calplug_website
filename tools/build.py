@@ -23,20 +23,20 @@ STAMP = hashlib.sha1(b"".join(f.read_bytes() for f in sorted((SRC).rglob("*.*"))
 NEWS_DEFAULT = "assets/brand/news-default.svg"
 PUB_LABELS = {"journal": "Journal", "conference": "Conference", "report": "Report", "press": "In the press"}
 
-# One row, ten items, no drop-down menus (DESIGN.md section 2). Sub-pages are reached from their parent page.
+# Six items and one button, no drop-down menus (DESIGN.md section 2). The logo goes home; Contact is in the footer.
 NAV = [
-    ("index.html", "Home"), ("about.html", "About"), ("people.html", "People"), ("research.html", "Projects"),
-    ("publications.html", "Publications"), ("facilities.html", "Facilities"), ("news.html", "News & Events"),
-    ("careers.html", "Careers"), ("support.html", "Support"), ("contact.html", "Contact"),
+    ("about.html", "About"), ("people.html", "People"), ("research.html", "Research"),
+    ("publications.html", "Publications"), ("news.html", "News"), ("careers.html", "Careers"),
 ]
+NAV_BUTTON = ("support.html", "Support CalPlug")  # on phones the button reads "Support"
 # which top-level item is "current" for each page
-SECTION = {"sim-home.html": "facilities.html", "sim-lab.html": "facilities.html",
-           "1-kwh-challenge.html": "facilities.html", "events-archive.html": "news.html"}
+SECTION = {"sim-home.html": "research.html", "sim-lab.html": "research.html", "1-kwh-challenge.html": "research.html",
+           "facilities.html": "research.html", "events-archive.html": "news.html"}
 OLD_LINKS = {"/sim-home": "sim-home.html", "/sim-lab": "sim-lab.html", "/1-kwh-challenge": "1-kwh-challenge.html",
              "/friends": "support.html#friends", "/members-2": "support.html#members", "/support": "support.html",
              "/affiliations": "support.html#affiliates", "/about/careers": "careers.html", "/about/contact": "contact.html",
              "/eventsarchive": "events-archive.html", "/projects": "research.html", "/publications": "publications.html",
-             "/about/team": "people.html#team", "/about": "about.html", "/facilities": "facilities.html", "/": "index.html", "": "index.html"}
+             "/about/team": "people.html#team", "/about": "about.html", "/facilities": "research.html#labs", "/": "index.html", "": "index.html"}
 
 
 def load(name):
@@ -123,9 +123,27 @@ ICONS = {
 }
 
 
+# Ring icons (DESIGN.md section 6): the logo's half-blue, half-green ring around a line icon.
+LINE_ICONS = {
+    "plug": "M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0zM12 17v5",
+    "person": "M12 4a4 4 0 1 1 0 8a4 4 0 0 1 0-8zM4 21a8 8 0 0 1 16 0",
+    "factory": "M2 21h20M3 21V11l6 4v-4l6 4V4h5v17",
+    "bolt": "M13 2L4 14h7l-1 8l9-12h-7z",
+    "building": "M4 21V4h10v17M14 9h6v12M2 21h20M8 8h2M8 12h2M8 16h2M17 13h0.01M17 17h0.01",
+    "calendar": "M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM3 10h18M8 3v4M16 3v4",
+}
+AREA_ICON = {"plug-loads": "plug", "behavior": "person", "smart-manufacturing": "factory", "grid": "bolt", "buildings": "building"}
+
+
+def ring(icon, cls="ring"):
+    return (f'<svg class="{cls}" viewBox="0 0 32 32" aria-hidden="true"><path d="M2 16A14 14 0 0 1 30 16" class="r-top"/>'
+            f'<path d="M2 16A14 14 0 0 0 30 16" class="r-bottom"/><path d="{LINE_ICONS[icon]}" class="r-icon" transform="translate(8 8) scale(0.667)"/></svg>')
+
+
 def page(filename, title, description, body, site):
     cur = SECTION.get(filename, filename)
     nav = "".join(f'<li><a href="{h}"{" aria-current=\"page\"" if h == cur else ""}>{e(label)}</a></li>' for h, label in NAV)
+    btn = f'<a class="nav-cta" href="{NAV_BUTTON[0]}"{" aria-current=\"page\"" if cur == NAV_BUTTON[0] else ""}>Support<span class="cta-more"> CalPlug</span></a>'
     c = site["contact"]
     full_title = "CalPlug \u2013 California Plug Load Research Center" if filename == "index.html" else f"{title} \u2013 CalPlug"
     social = "".join(f'<a href="{e(site["social"][k])}" aria-label="CalPlug on {k.title().replace("Linkedin", "LinkedIn")}">{ICONS[k]}</a>' for k in ("linkedin", "facebook"))
@@ -142,6 +160,8 @@ def page(filename, title, description, body, site):
 <meta property="og:description" content="{e(description)}">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/brand/calplug-mark.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/montserrat-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/site.css?v={STAMP}">
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -150,8 +170,8 @@ def page(filename, title, description, body, site):
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="index.html"><img src="assets/brand/calplug-logo-compact.png" alt="CalPlug" width="517" height="96"></a>
-    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav" aria-label="Main"><ul>{nav}</ul></nav>
+    <div class="header-actions">{btn}<button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button></div>
   </div>
 </header>
 <main id="main">
@@ -160,10 +180,10 @@ def page(filename, title, description, body, site):
 <footer class="site-footer">
   <div class="wrap">
     <div class="foot-row">
-      <p class="affil"><a href="https://www.uci.edu/" class="affil-uci"><img src="assets/brand/uci-logo.png" alt="UC Irvine" width="266" height="45" loading="lazy"></a><a href="https://www.calit2.uci.edu/" class="affil-logo"><img src="assets/brand/calit2-logo.png" alt="Calit2" width="447" height="447" loading="lazy"></a></p>
+      <p class="affil"><a href="https://www.uci.edu/" class="affil-uci"><img src="assets/brand/uci-logo-white.png" alt="UC Irvine" width="266" height="45" loading="lazy"></a><a href="https://www.calit2.uci.edu/" class="affil-logo"><img src="assets/brand/calit2-logo.png" alt="Calit2" width="447" height="447" loading="lazy"></a></p>
       <p class="social">{social}</p>
     </div>
-    <p class="legal">{e(", ".join(c["address"])).replace("UC Irvine", "UC&nbsp;Irvine")} \u00b7 <a href="mailto:{e(c['general']['email'])}">{e(c['general']['email'])}</a> \u00b7 &copy;&nbsp;{date.today().year} {e(site['full_name'])}</p>
+    <p class="legal">{e(", ".join(c["address"])).replace("UC Irvine", "UC&nbsp;Irvine")} \u00b7 <a href="mailto:{e(c['general']['email'])}">{e(c['general']['email'])}</a> \u00b7 <a href="contact.html">Contact</a> \u00b7 &copy;&nbsp;{date.today().year} {e(site['full_name'])}</p>
   </div>
 </footer>
 <script src="js/site.js?v={STAMP}" defer></script>
@@ -217,7 +237,7 @@ def pub_thumb(p):
 def pub_entry(p, tag=True):
     u = p.get("url")
     title = f'<a href="{e(url(u))}">{e(p["title"])}</a>' if u else e(p["title"])
-    kind = "PDF" if (u or "").split("?")[0].lower().endswith(".pdf") else "View"
+    kind = "Read" if (u or "").split("?")[0].lower().endswith(".pdf") else "View"  # the PDF mark is added by CSS
     link = f'<a href="{e(url(u))}">{kind}</a>' if u else ""
     meta = f'<div class="links">{f"<span class=\"tag\">{PUB_LABELS[p["type"]]}</span>" if tag else ""}{link}</div>'
     return (f'<article class="pub" data-tags="{p["type"]}">{pub_thumb(p)}<div><h3>{title}</h3><p>{e(p["authors"])}</p>'
@@ -259,12 +279,23 @@ def project_page_name(p):
 
 
 def project_meta(p, themes):
-    bits = [years(p) or "Ongoing"] + ([p["sponsor"]] if p.get("sponsor") else [])
-    return " · ".join(e(b) for b in bits)
+    active = p.get("status") == "active"
+    bits = [active_label(p)] if active else []
+    bits += [e(years(p))] if years(p) else ([] if active else ["Ongoing"])
+    bits += [e(p["sponsor"])] if p.get("sponsor") else []
+    return " · ".join(bits)
 
 
 def theme_names(p, themes):
     return " · ".join(e(themes[t]) for t in p.get("themes", []) if t in themes)
+
+
+def theme_tags(p, themes):
+    return "".join(f'<span class="area">{ring(AREA_ICON.get(t, "plug"))}{e(themes[t])}</span>' for t in p.get("themes", []) if t in themes)
+
+
+def active_label(p):
+    return '<span class="active-dot">Active</span>' if p.get("status") == "active" else ""
 
 
 def project_card(p, themes, short=False):
@@ -272,9 +303,10 @@ def project_card(p, themes, short=False):
     href = project_page_name(p)
     title = p.get("short_title") if short and p.get("short_title") else p["title"]
     pic = img(p["image"], p.get("image_alt", "")) if p.get("image") else img(NEWS_DEFAULT, "")
-    tags = f'<p class="tags">{theme_names(p, themes)}</p>' if not short and p.get("themes") else ""
+    tags = f'<p class="tags">{theme_tags(p, themes)}</p>' if not short and p.get("themes") else ""
+    short_meta = " · ".join(x for x in [active_label(p), e(years(p))] if x) or "Ongoing"
     return (f'<article class="card" data-tags="{" ".join(p.get("themes", []))}"><a class="thumb" href="{href}" tabindex="-1" aria-hidden="true">{pic}</a>'
-            f'<div class="card-body"><p class="when">{project_meta(p, themes) if not short else e(years(p) or "Ongoing")}</p>'
+            f'<div class="card-body"><p class="when">{project_meta(p, themes) if not short else short_meta}</p>'
             f'<h3><a href="{href}">{e(title)}</a></h3><p>{e(p.get("summary", ""))}</p>{tags}'
             f'<div class="links"><a class="more" href="{href}">Details</a></div></div></article>')
 
@@ -301,7 +333,7 @@ def build_project_page(p, themes, site):
   {''.join(f"<p>{e(x)}</p>" for x in paras(p))}
   {pic}
   {links(p.get("links"))}
-  <p class="back"><a href="research.html">← All projects</a></p>
+  <p class="back"><a href="research.html">← All research</a></p>
 </div></section>
 """
     return page(project_page_name(p), p["title"], (p.get("summary") or p["title"])[:155], body, site)
@@ -348,11 +380,35 @@ def build_about(site, about):
         if s.get("link"):
             inner += f'<p><a href="{s["link"]["href"]}">{e(s["link"]["label"])} \u2192</a></p>'
         out += f'<section class="about-row"><h2>{e(s["title"])}</h2><div>{inner}</div></section>'
+    c = site["contact"]
+    out += (f'<section class="about-row" id="contact"><h2>Contact</h2><div><p>{"<br>".join(e(a) for a in c["address"])}</p>'
+            f'<p>{e(c["general"]["phone"])} · <a href="mailto:{e(c["general"]["email"])}">{e(c["general"]["email"])}</a></p>'
+            f'<p><a class="more" href="contact.html">Directions and all contacts</a></p></div></section>')
     body = head("About") + f'<div class="wrap about">{out}</div>'
     return page("about.html", "About", about["sections"][0]["paragraphs"][0][:155], body, site)
 
 
-def build_research(site, projects):
+def labs_section(partners):
+    """Our labs: the former Facilities page, now part of Research (DESIGN.md section 2)."""
+    pages = {"sim-home": "sim-home.html", "sim-lab": "sim-lab.html", "1-kwh-challenge": "1-kwh-challenge.html"}
+    cards = ""
+    for f in partners["facilities"]:
+        limit(f["blurb"], 60, f"partners.json facility {f['id']} blurb")
+        h = pages[f["id"]]
+        cards += (f'<article class="card" id="{e(f["id"])}"><a class="thumb" href="{h}" tabindex="-1" aria-hidden="true">{img(f["images"][0], f["name"])}</a>'
+                  f'<div class="card-body"><h3><a href="{h}">{e(f["name"])}</a></h3><p>{e(f["blurb"])}</p><div class="links"><a class="more" href="{h}">Read more</a></div></div></article>')
+    return f"""
+<section class="section" id="labs"><div class="wrap">
+  <h2>Our labs</h2>
+  <p>{e(partners['facility_intro'])}</p>
+  <div class="grid c3 cards">{cards}</div>
+  <details class="compare"><summary>Floor plan of the CalPlug space</summary>
+    <figure class="plan">{img('/wp-content/uploads/clplg_space.jpg', 'Floor plan of the CalPlug space on the fourth floor of the Calit2 Building')}</figure>
+  </details>
+</div></section>"""
+
+
+def build_research(site, projects, partners):
     P, themes = projects["projects"], projects["themes"]
     for p in P:
         need(p, ["id", "title", "status"], "projects.json")
@@ -362,12 +418,12 @@ def build_research(site, projects):
     done = sorted([p for p in P if p["status"] == "completed"], key=lambda p: (p.get("end") or 0, p.get("start") or 0), reverse=True)
     used = [t for t in themes if any(t in p.get("themes", []) for p in P)]
     buttons = '<button aria-pressed="true" data-filter="all">All</button>' + "".join(
-        f'<button aria-pressed="false" data-filter="{t}">{e(themes[t])}</button>' for t in used)
+        f'<button aria-pressed="false" data-filter="{t}">{ring(AREA_ICON.get(t, "plug"))}{e(themes[t])}</button>' for t in used)
     students = ""
     for g in projects["student_projects"]:
         students += f'<h3>{e(g["group"])}</h3><ul class="plain">' + "".join(
             f'<li><a href="{e(url(i["url"]))}">{e(i["title"])}</a></li>' for i in g["items"]) + "</ul>"
-    body = head("Projects", f'<p class="intro">{e(projects["intro"])}</p>') + f"""
+    body = head("Research", f'<p class="intro">{e(projects["intro"])}</p>') + f"""
 <section class="section"><div class="wrap" data-filter-scope>
   <div class="filters" role="group" aria-label="Filter by research area">{buttons}</div>
   <div data-group>
@@ -379,12 +435,13 @@ def build_research(site, projects):
     <div class="list">{''.join(project_row(p, themes) for p in done)}</div>
   </div>
 </div></section>
+{labs_section(partners)}
 <section class="section" id="student-projects"><div class="wrap prose">
   <h2>Student projects</h2>
   {students}
 </div></section>
 """
-    return page("research.html", "Projects", "Current and completed research projects at the California Plug Load Research Center.", body, site)
+    return page("research.html", "Research", "Current and completed research projects at the California Plug Load Research Center.", body, site)
 
 
 def build_publications(site, pubs):
@@ -473,21 +530,12 @@ def build_people(site, people, partners):
 
 
 def build_facilities(site, partners):
-    pages = {"sim-home": "sim-home.html", "sim-lab": "sim-lab.html", "1-kwh-challenge": "1-kwh-challenge.html"}
-    cards = ""
-    for f in partners["facilities"]:
-        limit(f["blurb"], 60, f"partners.json facility {f['id']} blurb")
-        h = pages[f["id"]]
-        cards += (f'<article class="card" id="{e(f["id"])}"><a class="thumb" href="{h}" tabindex="-1" aria-hidden="true">{img(f["images"][0], f["name"])}</a>'
-                  f'<div class="card-body"><h3><a href="{h}">{e(f["name"])}</a></h3><p>{e(f["blurb"])}</p><div class="links"><a class="more" href="{h}">Read more</a></div></div></article>')
-    body = head("Facilities") + f"""
-<section class="section"><div class="wrap">
-  <p>{e(partners['facility_intro'])}</p>
-  <figure class="plan">{img('/wp-content/uploads/clplg_space.jpg', 'Floor plan of the CalPlug space on the fourth floor of the Calit2 Building')}</figure>
-  <div class="grid c3 cards">{cards}</div>
-</div></section>
-"""
-    return page("facilities.html", "Facilities", "CalPlug labs and demonstration facilities at UC Irvine.", body, site)
+    """The old Facilities address. The labs are now on the Research page; this page sends visitors there."""
+    body = head("Our labs") + """
+<section class="section"><div class="wrap"><p>CalPlug's labs are now described on the Research page.</p>
+<p><a class="more" href="research.html#labs">Go to Our labs</a></p></div></section>"""
+    html = page("facilities.html", "Our labs", "CalPlug labs and demonstration facilities at UC Irvine.", body, site)
+    return html.replace('<meta name="robots"', '<meta http-equiv="refresh" content="0; url=research.html#labs">\n<meta name="robots"', 1)
 
 
 def build_news(site, events):
@@ -630,7 +678,7 @@ def main():
     pages = {
         "index.html": build_home(site, projects, pubs, events, people, partners),
         "about.html": build_about(site, load("about")),
-        "research.html": build_research(site, projects),
+        "research.html": build_research(site, projects, partners),
         "publications.html": build_publications(site, pubs),
         "people.html": build_people(site, people, partners),
         "facilities.html": build_facilities(site, partners),
@@ -657,6 +705,7 @@ def main():
         (DIST / name).write_text(html, encoding="utf-8")
     shutil.copytree(SRC / "css", DIST / "css")
     shutil.copytree(SRC / "js", DIST / "js")
+    shutil.copytree(SRC / "fonts", DIST / "fonts")
     if ASSETS.exists():
         shutil.copytree(ASSETS, DIST / "assets")
     (DIST / ".nojekyll").write_text("")
