@@ -4,6 +4,8 @@ Source of the website of the California Plug Load Research Center (CalPlug), UC 
 
 **Status: sample for review. Not the official site.** The official site is https://www.calplug.org. Search engines are told not to index this sample.
 
+Preview: https://kevenzhuang.github.io/calplug_website/
+
 ## How it works
 
 - Content lives in `data/*.json` (people, projects, publications, events, partners, site text).
