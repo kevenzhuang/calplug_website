@@ -38,6 +38,38 @@ class Page(HTMLParser):
             self.desc = True
 
 
+class CardRows(HTMLParser):
+    """Collects, for every grid of cards, whether each card contains a bullet list."""
+    VOID = {"img", "br", "hr", "input", "meta", "link", "source"}
+
+    def __init__(self):
+        super().__init__()
+        self.stack, self.rows = [], []
+
+    def handle_starttag(self, tag, attrs):
+        if tag in self.VOID:
+            return
+        cls = (dict(attrs).get("class") or "").split()
+        kind = "grid" if "grid" in cls and "cards" in cls else "card" if "card" in cls else None
+        if kind == "grid":
+            self.rows.append([])
+        if kind == "card" and self.stack and self.stack[-1][1] == "grid":
+            self.rows[-1].append(False)
+            kind = "card-in-grid"
+        if tag == "ul":
+            for t, k in reversed(self.stack):
+                if k == "card-in-grid":
+                    self.rows[-1][-1] = True
+                    break
+        self.stack.append((tag, kind))
+
+    def handle_endtag(self, tag):
+        for i in range(len(self.stack) - 1, -1, -1):
+            if self.stack[i][0] == tag:
+                del self.stack[i:]
+                break
+
+
 def main():
     problems = []
     pages = {}
@@ -65,6 +97,12 @@ def main():
                 problems.append(f"{name}: a bullet list with one item (use a sentence): {items[0][:50]!r}")
             elif 0 < sum(ends) < len(ends):
                 problems.append(f"{name}: a bullet list mixing full sentences and short phrases: {items[0][:50]!r}")
+        # Cards side by side share one shape: either all of them hold a bullet list or none does
+        rows = CardRows()
+        rows.feed(main)
+        for shapes in rows.rows:
+            if len(shapes) > 1 and 0 < sum(shapes) < len(shapes):
+                problems.append(f"{name}: cards in one row mix bullet lists and plain text")
         for im in p.imgs:
             if "alt" not in im:
                 problems.append(f"{name}: image without alt: {im.get('src')}")

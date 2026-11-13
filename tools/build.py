@@ -23,10 +23,10 @@ STAMP = hashlib.sha1(b"".join(f.read_bytes() for f in sorted((SRC).rglob("*.*"))
 NEWS_DEFAULT = "assets/brand/news-default.svg"
 PUB_LABELS = {"journal": "Journal", "conference": "Conference", "report": "Report", "press": "In the press"}
 
-# Six items and one button, no drop-down menus (DESIGN.md section 2). The logo goes home; Contact is in the footer.
+# Seven items and one button, no drop-down menus (DESIGN.md section 2). The logo goes home.
 NAV = [
     ("about.html", "About"), ("people.html", "People"), ("research.html", "Research"),
-    ("publications.html", "Publications"), ("news.html", "News"), ("careers.html", "Careers"),
+    ("publications.html", "Publications"), ("news.html", "News"), ("careers.html", "Careers"), ("contact.html", "Contact"),
 ]
 NAV_BUTTON = ("support.html", "Support CalPlug")  # on phones the button reads "Support"
 # which top-level item is "current" for each page
@@ -200,10 +200,6 @@ def page(filename, title, description, body, site, image=None, extra_head=""):
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
-  <div class="topbar"><div class="wrap">
-    <p class="parent"><a href="https://www.uci.edu/"><span class="long">University of California, Irvine</span><span class="short">UC&nbsp;Irvine</span></a><span aria-hidden="true">\u203a</span><a href="https://www.calit2.uci.edu/">Calit2</a></p>
-    <p><a href="contact.html"{" aria-current=\"page\"" if filename == "contact.html" else ""}>Contact</a></p>
-  </div></div>
   <div class="wrap main-row">
     <a class="brand" href="index.html"><img src="assets/brand/calplug-logo-compact.svg" alt="CalPlug" width="517" height="96"></a>
     <nav class="nav" id="nav" aria-label="Main"><ul>{nav}</ul></nav>
@@ -217,7 +213,7 @@ def page(filename, title, description, body, site, image=None, extra_head=""):
   <div class="wrap">
     <p class="vision">\u201c{e(site['vision'])}\u201d</p>
     <div class="foot-row">
-      <p class="affil"><span class="affil-uci"><img src="assets/brand/uci-logo-white.png" alt="UC Irvine" width="266" height="45" loading="lazy"></span><span class="affil-logo"><img src="assets/brand/calit2-logo.png" alt="Calit2" width="447" height="447" loading="lazy"></span></p>
+      <p class="affil"><a href="https://www.uci.edu/" class="affil-uci"><img src="assets/brand/uci-logo-white.png" alt="UC Irvine" width="266" height="45" loading="lazy"></a><a href="https://www.calit2.uci.edu/" class="affil-logo"><img src="assets/brand/calit2-logo.png" alt="Calit2" width="447" height="447" loading="lazy"></a></p>
       <p class="social">{social}</p>
     </div>
     <p class="legal"><span>{e(", ".join(c["address"])).replace("UC Irvine", "UC&nbsp;Irvine")}</span><span><a href="mailto:{e(c['general']['email'])}">{e(c['general']['email'])}</a></span><span><a href="contact.html">Contact</a></span><span>&copy;&nbsp;{date.today().year} {e(site['full_name'])}</span></p>
@@ -672,8 +668,10 @@ def build_support(site, s):
     code = {t: t[0] for t in tiers}
     rows = [(cat["category"], it[0], it[1]) for cat in s["benefits"] for it in cat["items"]]
     base = [r for r in rows if code[tiers[0]] in r[2]]
-    tier_cards = (f'<div class="card"><div class="card-body"><p class="pill">{e(tiers[0])}</p>'
-                  f'<p>{len(base)} benefits in {", ".join(c["category"].lower() for c in s["benefits"][:-1])} and {s["benefits"][-1]["category"].lower()}.</p></div></div>')
+    # Every level card has the same shape: a lead-in line, then a bullet list (DESIGN.md section 5)
+    base_by_cat = [(cat["category"], sum(1 for it in cat["items"] if code[tiers[0]] in it[1])) for cat in s["benefits"]]
+    tier_cards = (f'<div class="card"><div class="card-body"><p class="pill">{e(tiers[0])}</p><p>{len(base)} core benefits:</p>'
+                  '<ul class="ticks">' + "".join(f"<li>{e(c)} ({n})</li>" for c, n in base_by_cat if n) + "</ul></div></div>")
     for i, t in enumerate(tiers[1:], 1):
         adds = [r[1] for r in rows if code[t] in r[2] and code[tiers[i - 1]] not in r[2]]
         tier_cards += (f'<div class="card"><div class="card-body"><p class="pill">{e(t)}</p><p>Everything in {e(tiers[i - 1])}, plus:</p>'

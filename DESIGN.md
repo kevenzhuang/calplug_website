@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.19, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
+Version 0.20, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -21,18 +21,16 @@ Simple and direct: the site exists so people can find information, not to impres
 
 ### Header
 
-Two rows:
+One row: the logo on the left, seven menu items, then one button. No top bar, no drop-down menus:
 
-1. **Top bar** (32px, light gray `--tint` with a 1px line below): "University of California, Irvine › Calit2" on the left (links to uci.edu and calit2.uci.edu; "UC Irvine › Calit2" on phones), "Contact" on the right. Muted gray text, blue on hover. It tells every visitor at once that CalPlug is a UC Irvine research center without a dark block at the top of the page.
-2. **Main row**: the logo on the left, six menu items, then one button. No drop-down menus:
-
-**Logo** · About · People · Research · Publications · News · Careers · **[Support CalPlug]**
+**Logo** · About · People · Research · Publications · News · Careers · Contact · **[Support CalPlug]**
 
 - The logo is the link to Home; there is no "Home" item.
 - "Support CalPlug" is the only filled button in the header (blue, white text). On phones it reads "Support" and stays next to the Menu button.
-- Contact is not in the menu: it is in the top bar, the footer line and at the bottom of About. Facilities is part of Research ("Our labs").
-- Below 1000px wide the six items collapse behind a Menu button. The menu never wraps onto two rows.
-- The current page is marked with a short green line under its menu item (on the button: a green line inside its bottom edge).
+- Facilities is part of Research ("Our labs"). Contact is the last menu item, and also in the footer line and at the bottom of About.
+- Below 1000px wide the seven items collapse behind a Menu button. The menu never wraps onto two rows.
+- The current page is marked as in section 7 (green line on the header's bottom edge).
+- There is no bar above the header. (0.12 to 0.19 had one naming UC Irvine and Calit2, first navy, then light gray; both looked like an extra strip. UC Irvine and Calit2 are named by their logos in the footer.)
 
 ### Pages
 
@@ -64,7 +62,7 @@ Every page starts the same way: the page title (h1) on the left, a short green l
 The vision line and two short lines on the deep navy background (`--navy`), with a 3px green line on top:
 
 0. CalPlug's Vision in one line ("Energy-conscious plug and process loads for how people work, live, and play"), white Montserrat, with a faint line below.
-1. On the left, the UC Irvine primary logo in white (`assets/brand/uci-logo-white.png`, 24px high), then 24px of space, then the Calit2 logo (`assets/brand/calit2-logo.png`, 40px high). The footer logos are a signature only and are not links: the top bar is the one place that links to UC Irvine and Calit2, so visitors are not sent away twice. The two logos stand apart, never joined into one lockup. On the right, LinkedIn and Facebook icons in light gray, white on hover. The UC Irvine seal is not used (see 6. Images, Logo).
+1. On the left, the UC Irvine primary logo in white (`assets/brand/uci-logo-white.png`, 24px high, links to uci.edu), then 24px of space, then the Calit2 logo (`assets/brand/calit2-logo.png`, 40px high, links to calit2.uci.edu). This is the one place on the site that links to UC Irvine and Calit2. The two logos stand apart, never joined into one lockup. On the right, LinkedIn and Facebook icons in light gray, white on hover. The UC Irvine seal is not used (see 6. Images, Logo).
 2. One line of small text in light gray: address · email · Contact · copyright. Links are white.
 
 No site map in the footer: every page not in the menu is reached from its parent page.
@@ -88,13 +86,13 @@ Blue and green are sampled from the CalPlug logo, and each has one meaning. A vi
 | `--green-text` | `#4A7A1C` | Dates and years, the word "Active", check marks in the benefits table (5.13:1 on white) |
 | `--navy` | `#0E2A47` | Footer background; pill text; notice and step lines; About side headings; line icons inside rings |
 | `--on-navy` | `#C5D0DC` | Text on the footer (10:1 on navy) |
-| `--tint` | `#F6F8FA` | Top bar, image frames, pills, notice boxes, table group rows |
+| `--tint` | `#F6F8FA` | Image frames, pills, notice boxes, table group rows |
 | `--ink` | `#1B2530` | Headings and body text |
 | `--muted` | `#5B6875` | Authors, sponsors, summaries, small text |
 | `--line` | `#E3E8EE` | Dividers and borders, always 1px |
 | `--white` | `#FFFFFF` | Page background |
 
-The page is light at the top and grounded at the bottom: a light gray top bar, the navy footer. (Until 0.11 the top had a 4px blue and green strip, which only repeated the logo's colors; in 0.12 to 0.18 the top bar was navy, which felt abrupt.)
+The page is white at the top and grounded at the bottom by the navy footer. (Until 0.11 the top had a 4px blue and green strip, which only repeated the logo's colors; in 0.12 to 0.18 the top bar was navy, which felt abrupt.)
 
 Not used: gradients, shadows, colored cards, green text on white. The footer is the only dark block.
 
@@ -193,24 +191,45 @@ Only things that can be clicked react to hover.
 
 ### Bullets, numbers, labels or sentences
 
-Choose by what the content is, never by habit. `tools/check.py` stops the build on the two most common mistakes (marked ✓).
+The format follows from what the content is, never from habit or from what looks busy. Before writing any text, ask these questions in order and stop at the first "yes":
 
-| Content | Format | Example on the site |
+1. **Do the parts happen in a fixed order?** → numbered steps.
+2. **Is each part a name with a value** (phone, date, room, audience, sponsor)? → label / value rows. No bullets, no colons.
+3. **Is each part a link to a document?** → a plain list, one link per row, a line between rows. No bullets.
+4. **Are there three or more parts that are parallel, short (about one line each) and make sense on their own**, so a reader scans them and might use only one? → a bullet list.
+5. **Otherwise** (one or two items, or ideas that lean on each other with "because", "so", "which") → sentences in a paragraph.
+
+Two rules make the site look consistent rather than random:
+
+- **Same kind of content, same format, everywhere.** If one position card lists its tasks as bullets, every position card does. If one membership level is a lead-in line and a list, every level is. Cards side by side never mix a list in one with plain text in another.
+- **A list never stands alone.** It is introduced by a heading ("What you get") or a lead-in line ending in a colon ("Everything in Gold, plus:"), never by a sentence fragment like "Why:".
+
+Inside a bullet list:
+- Every item has the same grammar: all short phrases or all full sentences.
+- Phrases: capital first letter, no period ("Workspace, supplies and equipment"). Full sentences: each ends with a period.
+- One idea per item, about one line; at most about six items. More than six: split under small headings or use a table.
+- No nested lists, except agendas copied from the old site.
+- Size: bullets inside cards use the small text size (14px); bullets in page text use the body size (16px). The marker is always a plain dot.
+
+**Where each format is used now** (keep it this way; a new page copies the closest row):
+
+| Place | Format | Why |
 |---|---|---|
-| A thought, an explanation, anything whose parts depend on each other | Sentences in a paragraph. No bullets | About CalPlug, project descriptions, bios |
-| Three or more parallel items, each short and read on its own | Bullet list | What you get / What we ask (Careers), tasks of a position, Vision |
-| Steps that happen in order | Numbered steps | How to apply |
-| Facts with a name and a value (phone, date, room, audience) | Label / value rows, no bullets, no colons | Contact cards, 1 kWh Challenge design |
-| Two items | A sentence ("A and B"), not a list | — |
-| One item | A sentence. ✓ Never a one-item list | — |
-| Items that are links to documents | A plain list with lines between rows (no bullets) | Student projects, Earlier documents |
+| About: About CalPlug, Mission, Goal, Guidance, Facility | Paragraphs | Explanations whose sentences depend on each other |
+| About: Vision | Quote, then 3 bullets (full sentences) | Three separate goals, each stands alone |
+| Project pages, bios | Paragraphs | Original descriptions, continuous text |
+| Project cards, news, publications | One sentence or none, no bullets | A list row or card carries one summary |
+| Careers: What you get / What we ask | Bullets (phrases) | Parallel conditions, scanned and compared |
+| Careers: each position | One sentence, then 3 task bullets (phrases), then mentors | Same shape in every position card |
+| Careers: How to apply | Numbered steps | Done in order |
+| Support: Ways to support | One or two sentences per card, no bullets | Each card is a single action |
+| Support: Membership levels | A lead-in line, then bullets (phrases), in every level | Same shape in every level card |
+| Support: full benefits table | Table with check marks | Many items compared across three levels |
+| Contact cards, 1 kWh Challenge design, webinar details | Label / value rows | Names with values |
+| Student projects, Earlier documents | Plain link list | Each row is a document |
+| Events Archive agendas (copied) | Bullets, nested where the original nests | Time-ordered program, kept as published |
 
-Rules inside a bullet list:
-- Every item has the same grammar: all short phrases or all full sentences. ✓ Never mixed.
-- Phrases: capital first letter, no period at the end ("Workspace, supplies and equipment"). Full sentences: a period at the end of each.
-- One idea per item, about one line; at most about six items. Longer lists become a table or are split under small headings.
-- A list is introduced by a heading or a short lead-in, not by a colon after a sentence fragment ("Why:"); copied pages are corrected to a small heading.
-- No bullets inside cards that hold a single sentence, no nested lists except in copied agendas.
+`tools/check.py` stops the build when a list has one item, when a list mixes sentences and phrases, and when cards in one row mix lists and plain text.
 
 ## 6. Images
 
@@ -282,7 +301,6 @@ The rules for how the site responds to people. Every interactive element below h
 | Element | Default | Hover | Keyboard focus | Pressed / open | Current |
 |---|---|---|---|---|---|
 | Text link | Blue | Underline (3px below the text) | 2px blue ring, 3px gap | — | — |
-| Top bar link | Muted gray | Blue, underline | Ring | — | "Contact": blue on the Contact page |
 | Link on navy (footer) | Light gray or white | White, underline | 2px white ring | — | — |
 | Menu item | Ink | Blue | Ring | — | Blue text and a 3px green line on the header's bottom edge (the link fills the header height, so the line sits on the edge, not under the word). Phones: blue text and a short green bar in the left margin; the text does not move |
 | Header button "Support CalPlug" | Blue fill, white text, 40px high, text centered on the same line as the menu | Darker blue (`--blue-dark`) | Ring | Navy | Navy fill (flat; nothing added around it) |
@@ -302,11 +320,11 @@ Visited links look the same as unvisited ones. Disabled states do not exist: an 
 - After a link that leaves the site: a small "↗". After a link to a PDF: a small outlined "PDF". Both are added by CSS from the address, never typed into data, and never added to buttons or to "→" links.
 - "→" links (`.more`): moves to another page of this site ("All news and events", "Details"). The arrow is part of the link.
 - Link text says where it goes ("Read", "Slides", "Open in Google Maps"), never "click here".
-- UC Irvine and Calit2 are linked once, in the top bar. The footer logos are not links.
+- UC Irvine and Calit2 are linked once, by their logos in the footer.
 
 ### Navigation
 
-- Wide screens: six menu items and the header button in one row. Below 1000px: the items move behind the Menu button; the header button stays visible ("Support" on phones).
+- Wide screens: seven menu items and the header button in one row. Below 1000px: the items move behind the Menu button; the header button stays visible ("Support" on phones).
 - The open menu drops below the header, full width, one item per row, each row about 48px high. It closes with the Close button, the Escape key (focus returns to the button), or a click outside it.
 - Every page starts with a hidden "Skip to content" link that appears on keyboard focus.
 - Jump links (People: Team, Students, ...) and "#labs"-style links jump straight to the section, without smooth scrolling.
@@ -379,6 +397,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.20 | 2026-11-13 | Top bar removed. Contact back in the menu as the last item; the footer logos link to UC Irvine and Calit2 again (the only place). Bullet standard rewritten as five questions in order, two consistency rules, and a table of every place on the site and its format. Membership levels: the Gold card now has the same lead-in and list as Platinum and Diamond. The build also stops when cards in one row mix lists and plain text. |
 | 0.19 | 2026-11-13 | Top bar changed to option B: light gray with a line below, muted text, blue on hover; navy stays only in the footer. About shows one full current logo, no captions. Earlier logo dropped (the trace was too rough and its typeface could not be identified). |
 | 0.18 | 2026-11-13 | Filter buttons keep one font weight when selected, so the row no longer jumps. Current menu item: the green line now sits on the header's bottom edge; phones mark it with a bar in the margin instead of indenting the text; the header button's current state is a flat navy fill instead of a green edge that looked raised. Rule added: states never change size. Logos on About moved under the About CalPlug text. Earlier wordmark-only SVG added. |
 | 0.17 | 2026-11-13 | Bullet standard (section 5): when to use paragraphs, bullets, numbered steps, label / value rows or plain link lists, and the grammar inside a list; the build checks one-item lists and mixed lists. Fixed: About Vision endings, 1 kWh Challenge ("Why:" and the design list), the webinar details in the Events Archive (now label / value rows). Vector logos: current full logo, compact header logo and earlier logo, traced with the new `tools/trace_logo.py`; the header uses the SVG. About shows the current and earlier logo. Fixed: the header button had lost the space in "Support CalPlug". |

@@ -34,16 +34,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .lead { font-size: var(--fs-lead); line-height: 1.55; }
 .meta { font-size: var(--fs-small); color: var(--muted); }
 
-/* Header: a navy bar naming the parent institutions, then one row with logo, menu and the Support button */
+/* Header: one row with logo, menu and the Support button */
 .site-header { border-bottom: 1px solid var(--line); background: var(--white); }
-.topbar { background: var(--tint); color: var(--muted); font-size: 0.8125rem; border-bottom: 1px solid var(--line); }
-.topbar .wrap { display: flex; justify-content: space-between; align-items: center; gap: var(--s-16); min-height: 32px; }
-.topbar p { margin: 0; display: flex; align-items: center; gap: var(--s-8); }
-.topbar a { color: var(--muted); }
-.topbar a:hover, .topbar a[aria-current="page"] { color: var(--blue); }
-.topbar a:hover, .site-footer a:hover { text-decoration: underline; }
-
-.topbar .short { display: none; }
 .site-header .main-row { display: flex; align-items: center; justify-content: space-between; gap: var(--s-24); min-height: 72px; position: relative; }
 .brand { flex-shrink: 0; }
 .header-actions { display: flex; align-items: center; gap: var(--s-12); flex-shrink: 0; }
@@ -53,7 +45,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nav-cta[aria-current="page"] { background: var(--navy); }
 .nav { margin-left: auto; }
 .brand img { height: 40px; width: auto; }
-.nav ul { display: flex; gap: var(--s-24); }
+.nav ul { display: flex; gap: 22px; }
 .nav a { display: block; color: var(--ink); font-size: 0.9375rem; font-weight: 500; white-space: nowrap; padding: 23px 0 21px; margin-bottom: -1px; border-bottom: 3px solid transparent; }
 .nav a:hover { color: var(--blue); text-decoration: none; }
 .nav a[aria-current="page"] { color: var(--blue); border-bottom-color: var(--green); }
@@ -299,8 +291,6 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
 }
 @media (max-width: 480px) {
   .cta-more { display: none; }
-  .topbar .long { display: none; }
-  .topbar .short { display: inline; }
 }
 @media (max-width: 360px) {
   .brand img { height: 24px; }
