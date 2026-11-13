@@ -181,55 +181,48 @@ def board(members):
 
 # ---------- pages ----------
 
+def news_item(ev):
+    thumb = f'<div class="thumb">{img(ev["image"], "")}</div>' if ev.get("image") else ""
+    return (f'<article class="news reveal{"" if thumb else " noimg"}">{thumb}<div><div class="when">{e(fmt_date(ev))}</div>'
+            f'<h3>{e(ev["title"])}</h3>'
+            f'{f"<p>{e(ev.get("summary") or ev.get("theme") or "")}</p>" if ev.get("summary") or ev.get("theme") else ""}'
+            f'{links(ev.get("links"))}</div></article>')
+
+
 def build_home(site, projects, pubs, events, people, partners):
-    P, themes = projects["projects"], projects["themes"]
+    P = projects["projects"]
     active = [p for p in P if p["status"] == "active"]
-    dated = sorted([x for x in events["events"] if x.get("date")], key=lambda x: x["date"], reverse=True)[:3]
-    theme_cards = ""
-    for key, label in themes.items():
-        inside = [p for p in P if key in p["themes"]]
-        theme_cards += (f'<a class="card reveal" href="research.html#projects"><span class="count">{len(inside)}</span>'
-                        f'<h3>{e(label)}</h3><p>{"project" if len(inside) == 1 else "projects"}</p></a>')
-    orgs = []
-    for m in people["advisory_board"]:
-        if m["org"] not in orgs:
-            orgs.append(m["org"])
-    logos = "".join(img(l["src"], l["name"]) for l in partners.get("logos", []))
+    news = sorted([x for x in events["events"] if x.get("date")], key=lambda x: x["date"], reverse=True)[:4]
+    recent = sorted([x for x in pubs["publications"] if x["type"] != "press"], key=lambda x: x["year"], reverse=True)[:4]
+    proj = "".join(
+        f'<article class="row reveal"><div class="when">{years(p) or "Ongoing"}</div><div><h3>{e(p["title"])}</h3>'
+        f'<p>{e(p["summary"])}</p>{f"<p class=\"meta\">{e(p["sponsor"])}</p>" if p.get("sponsor") else ""}</div></article>'
+        for p in active)
+    pub = "".join(
+        f'<article class="pub reveal"><h3>{f"<a href=\"{e(url(x["url"]))}\">{e(x["title"])}</a>" if x.get("url") else e(x["title"])}</h3>'
+        f'<p>{e(x["authors"])}</p><p>{e(x.get("venue", ""))}, {x["year"]}</p></article>' for x in recent)
     body = f"""
-<section class="hero"><div class="wrap">
+<section class="welcome"><div class="wrap">
+  <figure class="reveal">{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign')}</figure>
   <div>
-    <div class="eyebrow">California Plug Load Research Center · UC Irvine</div>
-    <h1>Energy-conscious plug and process loads for how people <span>work, live, and play</span></h1>
-    <p class="lead">CalPlug was established in {site['established']} to improve energy efficiency in the use and design of plug-load devices, working closely with utilities, manufacturers, research institutions, and energy policy makers.</p>
-    <div class="actions"><a class="btn primary" href="research.html">Explore our research</a><a class="btn secondary" href="partner.html">Partner with us</a></div>
+    <h1>California Plug Load Research Center</h1>
+    <p class="lead">The California Plug Load Research Center (CalPlug) is the Leading Enabler for Energy Efficiency Solutions in the Use and Design of Appliances and Consumer Products.</p>
+    <p>Join us in our journey towards improving energy efficiency and cross collaboration.</p>
+    <p class="textlinks"><a href="research.html">Our research \u2192</a><a href="people.html">Meet the team \u2192</a><a href="people.html#join">Join the lab \u2192</a></p>
   </div>
-  <figure>{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign')}</figure>
-</div></section>
-<section><div class="wrap"><div class="facts">
-  <div><strong>{site['established']}</strong><span>Established at UC Irvine</span></div>
-  <div><strong>{len(P)}</strong><span>Research projects</span></div>
-  <div><strong>{len(pubs['publications'])}</strong><span>Papers, reports and articles</span></div>
-  <div><strong>8,000+</strong><span>Sq. ft. of lab and demonstration space</span></div>
-</div></div></section>
-<section class="section"><div class="wrap">
-  <div class="section-head"><div><div class="eyebrow">Research areas</div><h2>What we work on</h2></div><a class="more" href="research.html">All research →</a></div>
-  <div class="grid c5">{theme_cards}</div>
-</div></section>
-<section class="section tint"><div class="wrap">
-  <div class="section-head"><div><div class="eyebrow">Active projects</div><h2>Current work</h2></div><a class="more" href="research.html">All {len(P)} projects →</a></div>
-  <div class="grid c2">{''.join(project_card(p) for p in active)}</div>
 </div></section>
 <section class="section"><div class="wrap">
-  <div class="section-head"><div><div class="eyebrow">News &amp; events</div><h2>Latest</h2></div><a class="more" href="news.html">All events →</a></div>
-  <div class="rows">{''.join(event_row(x) for x in dated)}</div>
+  <div class="section-head"><h2>Latest news</h2><a class="more" href="news.html">See all news and events \u2192</a></div>
+  <div class="newslist">{''.join(news_item(x) for x in news)}</div>
 </div></section>
 <section class="section tint"><div class="wrap">
-  <div class="section-head"><div><div class="eyebrow">Guided by</div><h2>Advisory board organizations</h2></div><a class="more" href="people.html#advisory-board">Meet the board →</a></div>
-  <div class="chips reveal">{''.join(f'<span class="tag">{e(o)}</span>' for o in orgs)}</div>
-  <h3 class="sub">Members and affiliates</h3>
-  <div class="logos reveal">{logos}</div>
+  <div class="section-head"><h2>Current projects</h2><a class="more" href="research.html">All {len(P)} projects \u2192</a></div>
+  <div class="rows">{proj}</div>
 </div></section>
-{cta('Work with CalPlug', 'Research collaborations, device testing, memberships and student research positions.')}
+<section class="section"><div class="wrap">
+  <div class="section-head"><h2>Recent publications</h2><a class="more" href="publications.html">All publications \u2192</a></div>
+  <div class="read">{pub}</div>
+</div></section>
 """
     return page("index.html", "Home", site["about"][:155], body, site)
 

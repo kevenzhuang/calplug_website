@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.1 (draft), 2026-11-12. Read this before changing any page, style or template.
+Version 0.2 (draft), 2026-11-12. Read this before changing any page, style or template.
 If a problem is not covered here, fix this guide first, then fix the page.
 
 ## 1. What the site is for
@@ -13,7 +13,7 @@ calplug.org is the public showcase of the California Plug Load Research Center (
 | People curious about CalPlug (peers, media, UCI) | A fast, trustworthy overview and recent news | Home, News & Events |
 | Future students | Research areas, the team, how to join | Research, People |
 
-Tone: modern, simple, credible, with the life of a working lab. Every page answers one question and offers one next step.
+Tone: a research lab's site, not a company's. Modern, simple, credible, with the life of a working lab. The home page leads with people and news, not with marketing: no statistics strip, no call-to-action bands, text links instead of large buttons. Every page answers one question and offers one next step.
 
 ## 2. Pages
 
@@ -21,7 +21,7 @@ Seven pages, one navigation level. No drop-down menus.
 
 | Page | Question it answers | Sections, in order | Next step |
 |---|---|---|---|
-| Home | What is CalPlug and what is it doing now? | Hero (one-line mission, one photo) · Research areas · Active projects · Latest news (3) · Advisory board organizations · Contact strip | See research / Partner with us |
+| Home | What is CalPlug and what is new? | Welcome (group photo, name, short intro, text links) · Latest news (4, with photos) · Current projects (compact list) · Recent publications (4) | Read the news / See research / Meet the team |
 | Research | What has CalPlug worked on, and with whom? | Intro · Active projects (large cards) · Completed projects (compact rows, all shown, filter by theme and sponsor) · Student projects | Read a report / Contact |
 | Publications | What has CalPlug published? | Filter (type, year) · List by year, newest first · Archive (older undated documents) | Open the PDF or DOI |
 | People | Who is CalPlug and how do I join? | Director · Staff · Students · Affiliated faculty · Advisory Board · Technology Council · Alumni · Join us | Apply / Email |
@@ -91,7 +91,7 @@ Only things that can be clicked react to hover.
 - English only.
 - Lead with the point. Short sentences. Few adjectives.
 - Every number, date, title and partner name needs a source (a report, a paper, an official page). No source, no claim. Unverified items are tracked in `CONTENT-NOTES.md` and stay off the site.
-- Words like "leading", "first" or "premier" are not used unless a third party said so and is cited.
+- Words like "leading", "first" or "premier" are not used in new text unless a third party said so and is cited. Exception: the center's own long-standing tagline on the home page.
 - Names: "CalPlug" (not Calplug); "California Plug Load Research Center" on first use per page; "Calit2"; "UC Irvine".
 - Sponsor names are written out on first use, with the abbreviation in parentheses: "California Energy Commission (CEC)".
 
@@ -129,6 +129,7 @@ Only things that can be clicked react to hover.
 | Version | Date | Change |
 |---|---|---|
 | 0.1 | 2026-11-12 | First draft: purpose, 7 pages, tokens from the logo, components, writing and image rules. Images from the previous site may be reused (decision: Keven). |
+| 0.2 | 2026-11-12 | Home redesigned as a lab home page (welcome + news first), after review: the first version read like a company site. Original tagline restored at Keven's request. |
 
 ## Open questions
 
