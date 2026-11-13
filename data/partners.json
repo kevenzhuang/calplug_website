@@ -1,5 +1,5 @@
 {
-  "_note": "Extracted from /affiliations, /support, /friends, /members-2 and /about/careers on 2026-11-12.",
+  "_note": "Extracted from /affiliations, /support, /friends, /members-2 and /about/careers on 2026-11-12. Facility texts are the original wording from the old site.",
   "members": [
     "Los Angeles Department of Water and Power (LADWP)",
     "Consumer Technology Association (CTA)"
@@ -87,32 +87,38 @@
     {
       "id": "sim-lab",
       "name": "SIM Lab",
-      "summary": "The CalPlug Engineering Lab collects energy consumption and performance data for plug load devices. CalPlug works with manufacturers and utilities to test prototypes before production or pilot programs, using industry testing standards such as ENERGY STAR, IEC and CEA. Four demonstration labs are set up as SIM labs, such as the SIM living room and the SIM office.",
       "images": [
         "/wp-content/uploads/simlabpic.png",
         "/wp-content/uploads/simlaboffice.png",
         "/wp-content/uploads/simlivingroom.png",
         "/wp-content/uploads/simlabfieldtrial.png"
+      ],
+      "paragraphs": [
+        "The CalPlug Engineering Lab collects energy consumption and performance data for electronic devices in the plug load category. We work with manufacturers to sample their prototypes for power testing and further analysis, before their production periods. There is currently no service at such a small scale for prototype appliances. Industry testing standards, such as Energy Star, IEC and CEA, are employed in our testing methodology. Electrical properties such as average power consumption, power rating, power factor and power states are characterized. A final report is the only expected outcome from this service.",
+        "CalPlug also provides testing service for manufacturers and utilities to obtain power consumption and savings report before their pilot programs for specific prototypes. CalPlug hosts four individual demonstration labs that are set up as individual SIM labs (Simulation Integration Majority), such as the SIM living room and the SIM office. Typical setups and the common use of appliances are implemented according to data and percentages determined by the US Census and available public databases. A final report is the only expected outcome from this service."
       ]
     },
     {
       "id": "sim-home",
       "name": "SIM Home",
-      "summary": "The Simulation, Integration, and Management (SIM) Home is an advanced metering and observation environment for studying user behavior patterns while monitoring energy consumption, with networked plug load device testing.",
       "images": [
         "/wp-content/uploads/simhomegraphic.png",
         "/wp-content/uploads/simhomenetworkdiagram.png"
+      ],
+      "paragraphs": [
+        "The Simulation, Integration, and Management (SIM) Home project aimed to assist with several aspects of program development within SCE’s Emerging Technology group. The first objective was to build an advanced metering environment including a range of products, providing the capacity for networked plug load device testing to supplement individual energy tests. The second objective was to produce energy consumption estimates for products included in the initial development of the SIM Home, in particular noting the estimated range of consumption based on varied device use patterns. The third purpose was to develop two applications for communicating this information to users: a web-based energy display, and an animated avatar providing human-like verbal communication."
       ]
     },
     {
       "id": "1-kwh-challenge",
       "name": "1 kWh Challenge",
-      "summary": "A community outreach and education program in which UCI community members learned exactly how much energy a kilowatt-hour is.",
-      "status_note": "The current site says the challenges are on hold due to Covid restrictions.",
       "images": [
         "/wp-content/uploads/1khchallengepic2.png"
       ],
-      "_flag": "Confirm whether the program is still on hold or has ended."
+      "_flag": "Confirm whether the program is still on hold or has ended.",
+      "paragraphs": [
+        "The One Kilowatt-hour Challenge was a community outreach program that was designed as an Educational Program where community members within UCI could learn exactly how much energy a Kilowatt-hour is. With Covid restrictions in place the 1 Kilowatt-hour Challenges are on hold"
+      ]
     }
   ],
   "facility_rooms_note": "Notable rooms: Engineering Lab (Room 4301) and Data Engineering ThinkTank (Room 4500). Floor plan image: /wp-content/uploads/clplg_space.jpg",
@@ -145,5 +151,6 @@
       "name": "TrickleStar",
       "src": "/wp-content/uploads/tricklestar-logo.png"
     }
-  ]
+  ],
+  "facility_intro": "CalPlug encompasses various facilities that ensure the latest in Plug and Process load research is going on. Notable rooms of interest include Engineering Lab (Room 4301) and Data Engineering ThinkTank (Room 4500)."
 }
