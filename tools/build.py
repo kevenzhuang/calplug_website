@@ -475,6 +475,7 @@ def build_research(site, projects, partners):
     body = head("Research", f'<p class="intro">{e(projects["intro"])}</p>') + f"""
 <section class="section"><div class="wrap" data-filter-scope>
   <div class="filters" role="group" aria-label="Filter by research area">{buttons}</div>
+  <p class="visually-hidden" data-count aria-live="polite"></p>
   <div data-group>
     <h2>Current projects</h2>
     <div class="grid c2 cards">{''.join(project_card(p, themes) for p in active)}</div>
@@ -517,6 +518,7 @@ def build_publications(site, pubs):
     body = head("Publications") + f"""
 <section class="section"><div class="wrap" data-filter-scope>
   <div class="filters" role="group" aria-label="Filter by type">{buttons}</div>
+  <p class="visually-hidden" data-count aria-live="polite"></p>
   {out}
 </div></section>
 <section class="section"><div class="wrap"><h2>Earlier documents</h2>{archive}</div></section>

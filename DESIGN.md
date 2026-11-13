@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.15, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
+Version 0.16, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -162,7 +162,7 @@ All content is shown with one of three blocks. The Publications list is the mode
 | Notice | One sentence on the tint with a 3px navy left line | Deadlines. At most one per page |
 | Steps | Numbered columns with a navy top line | How to apply |
 | Filter | Round buttons | Publications by type, Research by research area |
-| More on demand | Closed by default ("Full bio", "Compare all benefits") | Long text that most readers skip |
+| Disclosure | Blue label with a chevron, closed by default (section 7) | "Full bio", "Compare all benefits", Earlier documents, floor plan |
 | Social icon | Single-color icon with a hidden text label | LinkedIn, Facebook, in the footer. White on hover |
 | Header button | Blue fill, white text | "Support CalPlug" only |
 | Footer vision line | CalPlug's Vision from About, in quotes, Montserrat, white, above the logos with a faint line below | Every page. Text comes from `vision` in `data/site.json`; never replaced by a slogan |
@@ -242,16 +242,78 @@ Only things that can be clicked react to hover.
 - `tools/make_pub_thumbs.py` tries, in order: the first page of the linked PDF; the first page of a PDF named on the linked page; the linked page's preview image.
 - Otherwise the one default image `assets/brand/pub-default.svg`. No colored tiles.
 
-## 7. Motion
+## 7. Interaction and motion
 
-- Hover feedback only: a 0.2s color change; on cards, a blue border and the image grows by 2% (0.3s). No entrance animations, carousels or auto-play.
-- Off when the visitor's system asks for reduced motion.
-- All content is visible without JavaScript.
+The rules for how the site responds to people. Every interactive element below has one look per state; a new element reuses one of these patterns or this section is changed first.
+
+### Principles
+
+1. **Looks clickable only if it is.** Blue text, a button shape, an underline on hover or a pointer cursor only on things that do something. Nothing else reacts to the mouse.
+2. **One pattern per job.** Going somewhere is a link; showing more on the same page is a disclosure; narrowing a list is a filter button; the one call to action is the header button. They never swap roles.
+3. **Quiet feedback.** Changes of color and border, at most a 2% image zoom. No pop-ups, carousels, auto-play, parallax, entrance or scroll animations.
+4. **Everything works without a mouse and without JavaScript.** Keyboard reaches everything in reading order; with JavaScript off all content is visible, the menu shows as a wrapped row and filters show everything.
+
+### States
+
+| Element | Default | Hover | Keyboard focus | Pressed / open | Current |
+|---|---|---|---|---|---|
+| Text link | Blue | Underline (3px below the text) | 2px blue ring, 3px gap | — | — |
+| Link on navy (top bar, footer) | Light gray or white | White, underline | 2px white ring | — | Top bar "Contact": white on the Contact page |
+| Menu item | Ink | Blue | Ring | — | Blue text, green line under it (on phones: green bar on the left) |
+| Header button "Support CalPlug" | Blue fill, white text, 40px high | Darker blue (`--blue-dark`) | Ring | Navy | Green line inside the bottom edge |
+| Menu button (phones) | Gray border, "Menu" | Blue border and text | Ring | Blue border and text, reads "Close" | — |
+| Filter button | Gray border, muted text, round, at least 32px high | Blue border and text | Ring | Light blue fill, blue border, blue bold text (`aria-pressed`) | — |
+| Card with a link | Gray border | Blue border, image grows 2% (only on devices with a mouse) | Ring on the title link | — | — |
+| Disclosure ("Full bio", "Compare all benefits", Earlier documents) | Blue label, chevron pointing right | Underline | Ring | Chevron points down, content below | — |
+| Logo tile, person, Active dot, pill | No reaction | — | — | — | — |
+
+Visited links look the same as unvisited ones. Disabled states do not exist: an action that cannot be used is not shown.
+
+### Links
+
+- Links open in the same tab, including links to other sites and PDFs; the visitor decides. No `target="_blank"`.
+- After a link that leaves the site: a small "↗". After a link to a PDF: a small outlined "PDF". Both are added by CSS from the address, never typed into data, and never added to buttons or to "→" links.
+- "→" links (`.more`): moves to another page of this site ("All news and events", "Details"). The arrow is part of the link.
+- Link text says where it goes ("Read", "Slides", "Open in Google Maps"), never "click here".
+- UC Irvine and Calit2 are linked once, in the top bar. The footer logos are not links.
+
+### Navigation
+
+- Wide screens: six menu items and the header button in one row. Below 1000px: the items move behind the Menu button; the header button stays visible ("Support" on phones).
+- The open menu drops below the header, full width, one item per row, each row about 48px high. It closes with the Close button, the Escape key (focus returns to the button), or a click outside it.
+- Every page starts with a hidden "Skip to content" link that appears on keyboard focus.
+- Jump links (People: Team, Students, ...) and "#labs"-style links jump straight to the section, without smooth scrolling.
+
+### Filters
+
+- Filter buttons narrow a list on the same page; "All" is first and selected at the start. One selection at a time.
+- Hidden items are hidden whole; a group (a year, "Completed projects") whose items are all hidden is hidden too.
+- The number of items shown is announced to screen readers ("2 shown").
+- Phones: the buttons stay on one line and scroll sideways instead of wrapping.
+
+### Disclosures
+
+- For text most readers skip: the rest of a bio, the full benefits table, old document lists, the floor plan. Closed by default.
+- The label says what opens ("Full bio", "Compare all benefits", "Floor plan of the CalPlug space").
+- Built on the HTML `details` element, so it works without JavaScript and with the keyboard (Enter or Space).
+
+### Touch and sizes
+
+- Anything tappable is at least 32px high (buttons 40px); text links inside sentences are the exception.
+- No action depends on hover: hover only adds feedback. Image zoom on cards is turned off on touch screens.
+
+### Motion
+
+- Color, border and background changes: 0.2s. Card image zoom: 0.3s. Chevron turn: 0.2s.
+- All of it is off when the visitor's system asks for reduced motion.
+- Nothing moves on its own: no carousels, tickers, auto-playing video or animated counters.
 
 ## 8. Responsive and accessibility
 
 - Checked widths: 1440, 1024, 820, 390, 320. No horizontal scroll at any width.
-- Every link, button and icon is reachable by keyboard and has a visible focus ring and a text label.
+- Every link, button and icon is reachable by keyboard and has a visible focus ring and a text label (section 7).
+- Icons that only decorate are hidden from screen readers (`aria-hidden`); icons that act (social links) have a hidden text label.
+- Language of the page is set (`lang="en"`); the current menu item carries `aria-current="page"`; the menu button carries `aria-expanded`; filter buttons carry `aria-pressed`.
 - One h1 per page; headings do not skip levels. Every image has alt text; decorative images use empty alt.
 - Text contrast at least 4.5:1.
 
@@ -290,6 +352,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.16 | 2026-11-13 | Section 7 rewritten as the interaction standard: principles, a state table for every interactive element, and rules for links, navigation, filters, disclosures, touch sizes and motion. Code brought in line: one disclosure style with a chevron (Earlier documents are blue like other disclosures), Menu button reads Close when open and closes with Escape or a click outside, pressed states for buttons, filter results announced to screen readers, card zoom only on devices with a mouse, minimum target sizes. |
 | 0.15 | 2026-11-13 | Page icons removed (too many circles: the logo, then a ring by every title). Full visual review: Contact cards rebuilt as short titles with aligned label / value rows (Phone, Email, Web, Contact) and the Calit2 spelling fixed; footer address on its own line and no separator at a line start; affiliated team emails aligned; Home project cards without cut-off summaries; Careers research areas never split; copied pages: one-item lists turned into paragraphs, line breaks inside links removed, typos fixed, back links added; list titles kept to the text width; filter buttons scroll sideways on phones instead of wrapping into four rows. Review checklist added to section 9. |
 | 0.14 | 2026-11-13 | CalPlug icon redrawn to the original logo's measurements; it replaces the look-alike in the tab icon, About, 404 and default images. Ring icons rebuilt with the logo's ring proportions and blue line icons. Selected filter is now light blue with a blue border so the ring stays visible. Footer logos are no longer links (the top bar is the one link out). Share image and templates use the true ring. |
 | 0.13 | 2026-11-13 | Page icons: each page title has its ring icon on the left (fixed size and place on every page). CalPlug's Vision as one line at the top of the footer. |

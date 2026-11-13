@@ -2,10 +2,19 @@
 (function () {
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.getElementById('nav');
+  // Menu on narrow screens (DESIGN.md section 7): the button reads Menu / Close; Escape or a click outside closes it.
   if (toggle && nav) {
-    toggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('open');
+    var setOpen = function (open) {
+      nav.classList.toggle('open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.textContent = open ? 'Close' : 'Menu';
+    };
+    toggle.addEventListener('click', function () { setOpen(!nav.classList.contains('open')); });
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape' && nav.classList.contains('open')) { setOpen(false); toggle.focus(); }
+    });
+    document.addEventListener('click', function (ev) {
+      if (nav.classList.contains('open') && !nav.contains(ev.target) && ev.target !== toggle) { setOpen(false); }
     });
   }
 
