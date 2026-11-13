@@ -2,20 +2,29 @@
 (function () {
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.getElementById('nav');
-  // Menu on narrow screens (DESIGN.md section 7): the button reads Menu / Close; Escape or a click outside closes it.
+  // Menu on narrow screens (DESIGN.md section 7): the three-line button turns into a cross; the page behind is dimmed.
+  // Escape, a click on the dimmed page, or choosing an item closes it.
   if (toggle && nav) {
+    var scrim = null;
     var setOpen = function (open) {
       nav.classList.toggle('open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      toggle.textContent = open ? 'Close' : 'Menu';
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      if (open && !scrim) {
+        scrim = document.createElement('div');
+        scrim.className = 'nav-scrim';
+        scrim.addEventListener('click', function () { setOpen(false); });
+        document.body.appendChild(scrim);
+      } else if (!open && scrim) {
+        scrim.remove();
+        scrim = null;
+      }
     };
     toggle.addEventListener('click', function () { setOpen(!nav.classList.contains('open')); });
     document.addEventListener('keydown', function (ev) {
       if (ev.key === 'Escape' && nav.classList.contains('open')) { setOpen(false); toggle.focus(); }
     });
-    document.addEventListener('click', function (ev) {
-      if (nav.classList.contains('open') && !nav.contains(ev.target) && ev.target !== toggle) { setOpen(false); }
-    });
+    window.addEventListener('resize', function () { if (window.innerWidth > 1000 && nav.classList.contains('open')) { setOpen(false); } });
   }
 
   // Filters: buttons with data-filter act on elements with data-tags inside the same [data-filter-scope]

@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.24, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
+Version 0.25, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -26,9 +26,9 @@ One row: the logo on the left, seven menu items, then one button. No top bar, no
 **Logo** · About · People · Research · Publications · News · Careers · Contact · **[Support CalPlug]**
 
 - The logo is the link to Home; there is no "Home" item. The CalPlug icon in the footer links to Home too.
-- "Support CalPlug" is the only filled button in the header (blue, white text). On phones it reads "Support" and stays next to the Menu button.
+- "Support CalPlug" is an outline button (white, blue border, blue text) at the right of the menu: easy to find for sponsors, but quieter than the logo and the content. It fills blue on hover. Below 1000px it moves into the menu as the last row, full width, so the phone header holds only the logo and the menu button.
 - Facilities is part of Research ("Our labs"). Contact is the last menu item, and also in the footer line and at the bottom of About.
-- Below 1000px wide the seven items collapse behind a Menu button. The menu never wraps onto two rows.
+- Below 1000px wide the seven items collapse behind a menu button of three lines. The menu never wraps onto two rows.
 - The current page is marked as in section 7 (green line on the header's bottom edge).
 - There is no bar above the header. (0.12 to 0.19 had one naming UC Irvine and Calit2, first navy, then light gray; both looked like an extra strip. UC Irvine and Calit2 are named by their logos in the footer.)
 
@@ -87,6 +87,7 @@ Blue and green are sampled from the CalPlug logo, and each has one meaning. A vi
 | `--navy` | `#0E2A47` | Footer background; pill text; notice and step lines; About side headings; line icons inside rings |
 | `--on-navy` | `#C5D0DC` | Text on the footer (10:1 on navy) |
 | `--line-on-navy` | `#2B445D` | The divider line inside the footer |
+| `--scrim` | navy at 28% | The dimmed page behind the open phone menu |
 | `--tint` | `#F6F8FA` | Image frames, pills, notice boxes, table group rows |
 | `--ink` | `#1B2530` | Headings and body text |
 | `--muted` | `#5B6875` | Authors, sponsors, summaries, small text |
@@ -193,8 +194,8 @@ There are exactly four clickable shapes, and the same job always gets the same s
 
 | Control | Look | Use | Limit |
 |---|---|---|---|
-| Filled button | Blue fill, white 14px text at weight 600, 40px high, 6px radius, 16px side padding | The one main action of the site: "Support CalPlug" | One per page, in the header |
-| Outline button | White, 1px gray border, 14px text at weight 500, 40px high, 6px radius | Menu / Close on phones | Header only |
+| Outline button | White, 1px blue border, blue 14px text at weight 600, 40px high, 6px radius, 16px side padding; fills blue on hover | The one main action of the site: "Support CalPlug" | Once per page: in the header, or at the end of the phone menu |
+| Menu button | Three lines in a 40px square, turning into a cross | Opening the menu on phones and tablets | Header only |
 | Pill button | Pill, 1px gray border, 14px muted text at weight 500, 32px high; may carry a ring icon | Any row of choices under a page title: filters that narrow a list (Research, Publications) and section links that jump down a long page (People) | Only in that row. A row of choices is never plain text links, so the three pages look alike |
 | Text link | Blue text; "→" for a link to another page of the site, "↗" or "PDF" marks added automatically | Everything else | — |
 
@@ -399,8 +400,8 @@ The rules for how the site responds to people. Every interactive element below h
 | Text link | Blue | Underline (3px below the text) | 2px blue ring, 3px gap | — | — |
 | Link on navy (footer) | Light gray or white | White, underline | 2px white ring | — | — |
 | Menu item | Ink | Blue | Ring | — | Blue text and a 3px green line on the header's bottom edge (the link fills the header height, so the line sits on the edge, not under the word). Phones: blue text and a short green bar in the left margin; the text does not move |
-| Header button "Support CalPlug" | Blue fill, white text, 40px high, text centered on the same line as the menu | Darker blue (`--blue-dark`) | Ring | Navy | Navy fill (flat; nothing added around it) |
-| Menu button (phones) | Gray border, "Menu" | Blue border and text | Ring | Blue border and text, reads "Close" | — |
+| Support button | White, 1px blue border, blue text at weight 600, 40px high | Blue fill, white text | Ring | Darker blue fill | Light blue fill |
+| Menu button (phones) | Three ink lines, 20px wide, in a 40px square, no border | Lines turn blue | Ring | The lines turn into a cross; label read aloud changes from "Open menu" to "Close menu" | — |
 | Filter button | Gray border, muted text (weight 500), round, at least 32px high | Blue border and text | Ring | Light blue fill, blue border, blue text, same weight (`aria-pressed`) | — |
 | Card with a link | Gray border | Blue border, image grows 2% (only on devices with a mouse) | Ring on the title link | — | — |
 | Disclosure ("Full bio", "Compare all benefits", Earlier documents) | Blue label, chevron pointing right | Underline | Ring | Chevron points down, content below | — |
@@ -421,7 +422,7 @@ Visited links look the same as unvisited ones. Disabled states do not exist: an 
 ### Navigation
 
 - Wide screens: seven menu items and the header button in one row. Below 1000px: the items move behind the Menu button; the header button stays visible ("Support" on phones).
-- The open menu drops below the header, full width, one item per row, each row about 48px high. It closes with the Close button, the Escape key (focus returns to the button), or a click outside it.
+- The open menu drops below the header, full width, one item per row (about 48px high) with a "→" at the right, and "Support CalPlug" as a full-width outline button at the end. The page behind is dimmed (`--scrim`, navy at 28%); there is no shadow, in line with the no-shadow rule. It slides in over 0.2s (off with reduced motion). It closes with the cross, the Escape key (focus returns to the button), or a tap on the dimmed page.
 - Every page starts with a hidden "Skip to content" link that appears on keyboard focus.
 - Section links (People: Team, Students, ...) are pill buttons like filters, but they jump to a section instead of hiding items, so they have no selected state. They jump straight there, without smooth scrolling.
 
@@ -493,6 +494,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.25 | 2026-11-13 | Support button changed from a blue fill to an outline that fills on hover, so it no longer outweighs the logo. Phones: the header holds only the logo and a three-line menu button (after the Youxun site); the menu drops down over a dimmed page, items carry "→", and Support is the last row. This also removes the two unequal buttons side by side. |
 | 0.24 | 2026-11-13 | Footer: the CalPlug icon before the vision line, linking to Home. |
 | 0.23 | 2026-11-13 | Second audit. Performance: People page images cut from 18 MB to 3.7 MB with optimized copies; three images hot-linked from other sites are now stored here; image tags carry width and height. Structure: no skipped heading levels on built pages. Wording: one capitalization rule for headings ("Affiliated faculty"), one word per action ("Read" for every publication; "Details →" in project rows). Build checks added for heading order and image size. |
 | 0.22 | 2026-11-13 | People: the section links under the title were plain blue links while Research and Publications had pill buttons in the same place; they are now pill buttons too (rule: a row of choices under a page title is always pills). Director and staff: email on its own line, so a " · " no longer starts a line on phones. Filter buttons without an icon have even padding. |
