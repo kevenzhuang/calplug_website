@@ -14,7 +14,8 @@ ROOT = Path(__file__).resolve().parent.parent
 OLD_SITE = "https://www.calplug.org"
 PATTERN = re.compile(r'"(?:https?://(?:www\.)?calplug\.org)?(/wp-content/uploads/[^"]+\.(?:png|jpe?g|gif|webp|avif|svg))"', re.I)
 EXTRA = ["/wp-content/uploads/calpluglogo-small.png", "/wp-content/uploads/zotwatt-2.jpg",
-         "/wp-content/uploads/clplg_space.jpg"]
+         "/wp-content/uploads/clplg_space.jpg",
+         "/wp-content/uploads/calpluglogo2022.jpg"]  # largest copy of the logo on the old site (1187 px wide)
 
 
 def main():
