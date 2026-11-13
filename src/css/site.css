@@ -94,6 +94,7 @@ main > :last-child { padding-bottom: var(--s-64); }
 .welcome figure img { width: 100%; border-radius: var(--radius); }
 .welcome .lead { max-width: var(--text); margin: 0 auto var(--s-16); }
 .welcome .textlinks { justify-content: center; margin: 0 auto; }
+.welcome .lead strong { font-weight: var(--w-title); }
 .welcome + .section { padding-top: var(--s-32); }
 .welcome::after { content: ""; display: block; max-width: calc(var(--page) - 2 * var(--s-24)); margin: var(--s-32) auto 0; border-bottom: 1px solid var(--line); }
 .textlinks { display: flex; gap: var(--s-8) var(--s-24); flex-wrap: wrap; font-size: var(--fs-small); font-weight: var(--w-label); margin: 0; }

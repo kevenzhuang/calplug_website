@@ -465,11 +465,16 @@ def build_home(site, projects, pubs, events, people, partners):
     news = sorted([x for x in events["events"] if x.get("date")], key=lambda x: x["date"], reverse=True)[:3]
     recent = sorted([x for x in pubs["publications"] if x["type"] != "press"], key=lambda x: x["year"], reverse=True)[:3]
     limit(site["tagline"], 40, "site.json tagline")
+    # Home has no visible title: the center's full name opens the paragraph instead, in title weight (DESIGN.md section 2, Home welcome)
+    full = f'{site["full_name"]} ({site["name"]})'
+    if full not in site["tagline"]:
+        ERRORS.append(f"site.json tagline must contain the full name: {full}")
+    lead = e(site["tagline"]).replace(e(full), f"<strong>{e(full)}</strong>", 1)
     body = f"""
 <section class="welcome"><div class="wrap">
   <h1 class="visually-hidden">California Plug Load Research Center</h1>
   <figure>{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign', eager=True)}</figure>
-  <p class="lead">{e(site['tagline'])}</p>
+  <p class="lead">{lead}</p>
   <p class="textlinks"><a href="about.html">About</a><a href="careers.html">Join us</a><a href="contact.html">Contact</a></p>
 </div></section>
 <section class="section"><div class="wrap">
