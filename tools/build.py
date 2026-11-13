@@ -138,15 +138,26 @@ LINE_ICONS = {
     "pin": "M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12zM12 6.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5z",
 }
 # One ring icon per page title (DESIGN.md section 4, Page icon). Project pages use their research area's icon.
-PAGE_ICON = {"About": "signal", "People": "person", "Research": "plug", "Publications": "document", "Our labs": "building",
+PAGE_ICON = {"About": "mark", "People": "person", "Research": "plug", "Publications": "document", "Our labs": "building",
              "News & Events": "calendar", "Events Archive": "calendar", "Careers": "cap", "Support & Memberships": "heart",
              "Contact": "pin", "SIM Home": "building", "SIM Lab": "building", "1 kWh Challenge": "bolt"}
 AREA_ICON = {"plug-loads": "plug", "behavior": "person", "smart-manufacturing": "factory", "grid": "bolt", "buildings": "building"}
 
 
+# The CalPlug icon itself, drawn to the original logo's measurements (assets/brand/calplug-mark.svg).
+MARK_INNER = '<path d="M0 83A83 83 0 0 1 166 83H144.7A61.7 61.7 0 0 0 21.3 83Z" fill="#005BAA"/><path d="M0 83A83 83 0 0 0 166 83H144.7A61.7 61.7 0 0 1 21.3 83Z" fill="#8BC53F"/><g fill="none" stroke="#005BAA" stroke-width="7" stroke-linecap="round"><path d="M70.41 66.71A17.8 17.8 0 0 1 95.59 66.71"/><path d="M60.30 58.50A32.1 32.1 0 0 1 105.70 58.50"/><path d="M51.96 48.26A43.9 43.9 0 0 1 114.04 48.26"/></g><path d="M48 95.5H118A35 35 0 0 1 48 95.5Z" fill="#8BC53F"/><g stroke="#8BC53F" stroke-width="7.5" stroke-linecap="round"><path d="M67.1 81.5V96.5M98.9 81.5V96.5"/></g>'
+
+
 def ring(icon, cls="ring"):
-    return (f'<svg class="{cls}" viewBox="0 0 32 32" aria-hidden="true"><path d="M2 16A14 14 0 0 1 30 16" class="r-top"/>'
-            f'<path d="M2 16A14 14 0 0 0 30 16" class="r-bottom"/><path d="{LINE_ICONS[icon]}" class="r-icon" transform="translate(8 8) scale(0.667)"/></svg>')
+    """A line icon inside a ring with the logo's own proportions: inner radius 74% of outer, split on the
+    horizontal, blue above and green below, icon drawn in the logo's blue with round ends.
+    icon "mark" is the CalPlug icon itself."""
+    if icon == "mark":
+        return f'<svg class="{cls}" viewBox="0 0 166 166" aria-hidden="true">{MARK_INNER}</svg>'
+    return (f'<svg class="{cls}" viewBox="0 0 32 32" aria-hidden="true">'
+            f'<path d="M0 16A16 16 0 0 1 32 16H27.9A11.9 11.9 0 0 0 4.1 16Z" class="r-top"/>'
+            f'<path d="M0 16A16 16 0 0 0 32 16H27.9A11.9 11.9 0 0 1 4.1 16Z" class="r-bottom"/>'
+            f'<path d="{LINE_ICONS[icon]}" class="r-icon" transform="translate(8.5 8.5) scale(0.625)"/></svg>')
 
 
 def share_image(site, image=None):
@@ -206,7 +217,7 @@ def page(filename, title, description, body, site, image=None, extra_head=""):
   <div class="wrap">
     <p class="vision">\u201c{e(site['vision'])}\u201d</p>
     <div class="foot-row">
-      <p class="affil"><a href="https://www.uci.edu/" class="affil-uci"><img src="assets/brand/uci-logo-white.png" alt="UC Irvine" width="266" height="45" loading="lazy"></a><a href="https://www.calit2.uci.edu/" class="affil-logo"><img src="assets/brand/calit2-logo.png" alt="Calit2" width="447" height="447" loading="lazy"></a></p>
+      <p class="affil"><span class="affil-uci"><img src="assets/brand/uci-logo-white.png" alt="UC Irvine" width="266" height="45" loading="lazy"></span><span class="affil-logo"><img src="assets/brand/calit2-logo.png" alt="Calit2" width="447" height="447" loading="lazy"></span></p>
       <p class="social">{social}</p>
     </div>
     <p class="legal">{e(", ".join(c["address"])).replace("UC Irvine", "UC&nbsp;Irvine")} \u00b7 <a href="mailto:{e(c['general']['email'])}">{e(c['general']['email'])}</a> \u00b7 <a href="contact.html">Contact</a> \u00b7 &copy;&nbsp;{date.today().year} {e(site['full_name'])}</p>
@@ -679,9 +690,7 @@ def build_support(site, s):
 
 def build_404(site):
     """Shown by the host for any address that does not exist. Absolute base so it works at any depth."""
-    unplugged = ('<svg class="ring unplugged" viewBox="0 0 32 32" aria-hidden="true"><path d="M2 16A14 14 0 0 1 30 16" class="r-top"/>'
-                 '<path d="M2 16A14 14 0 0 0 30 16" class="r-bottom"/>'
-                 '<path d="M13 6.5v3M19 6.5v3M11 9.5h10v2.5a5 5 0 0 1-10 0z" class="r-icon"/><path d="M16 21v5" class="r-icon"/></svg>')
+    unplugged = ring("mark", "ring unplugged")
     body = f"""
 <section class="section notfound"><div class="wrap">
   {unplugged}

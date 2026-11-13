@@ -21,16 +21,16 @@ const THEME = {
 const C = THEME.colors;
 const img = (p) => "image/png;base64," + fs.readFileSync(path.join(ROOT, p)).toString("base64");
 
-async function ringPng(px, waves) {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="${px}" height="${px}" fill="none">
-  <path d="M13 80A67 67 0 0 1 147 80" stroke="#005BAA" stroke-width="14"/><path d="M13 80A67 67 0 0 0 147 80" stroke="#8BC53F" stroke-width="14"/>
-  ${waves ? '<g stroke="#E3E8EE" stroke-width="5" stroke-linecap="round"><path d="M50.5 47.5A42 42 0 0 1 109.5 47.5"/><path d="M59.5 57A29.5 29.5 0 0 1 100.5 57"/><path d="M68.5 66.5A16.5 16.5 0 0 1 91.5 66.5"/></g>' : ""}</svg>`;
+async function ringPng(px) {
+  // The ring of the CalPlug logo with its own proportions (inner radius 74% of outer), split on the horizontal.
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 166 166" width="${px}" height="${px}">
+  <path d="M0 83A83 83 0 0 1 166 83H144.7A61.7 61.7 0 0 0 21.3 83Z" fill="#005BAA"/><path d="M0 83A83 83 0 0 0 166 83H144.7A61.7 61.7 0 0 1 21.3 83Z" fill="#8BC53F"/></svg>`;
   return "image/png;base64," + (await sharp(Buffer.from(svg)).png().toBuffer()).toString("base64");
 }
 
 async function main() {
-  const ring = await ringPng(1200, true);
-  const ringPlain = await ringPng(600, false);
+  const ring = await ringPng(1200);
+  const ringPlain = ring;
 
   // ---------- Slides ----------
   const pres = new pptxgen();

@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.13, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
+Version 0.14, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -64,7 +64,7 @@ Every page starts the same way: the page title (h1) on the left, a short green l
 The vision line and two short lines on the deep navy background (`--navy`), with a 3px green line on top:
 
 0. CalPlug's Vision in one line ("Energy-conscious plug and process loads for how people work, live, and play"), white Montserrat, with a faint line below.
-1. On the left, the UC Irvine primary logo in white (`assets/brand/uci-logo-white.png`, 24px high, links to uci.edu), then 24px of space, then the Calit2 logo (`assets/brand/calit2-logo.png`, 40px high, links to calit2.uci.edu). The two logos stand apart, never joined into one lockup. On the right, LinkedIn and Facebook icons in light gray, white on hover. The UC Irvine seal is not used (see 6. Images, Logo).
+1. On the left, the UC Irvine primary logo in white (`assets/brand/uci-logo-white.png`, 24px high), then 24px of space, then the Calit2 logo (`assets/brand/calit2-logo.png`, 40px high). The footer logos are a signature only and are not links: the top bar is the one place that links to UC Irvine and Calit2, so visitors are not sent away twice. The two logos stand apart, never joined into one lockup. On the right, LinkedIn and Facebook icons in light gray, white on hover. The UC Irvine seal is not used (see 6. Images, Logo).
 2. One line of small text in light gray: address · email · Contact · copyright. Links are white.
 
 No site map in the footer: every page not in the menu is reached from its parent page.
@@ -84,6 +84,7 @@ Blue and green are sampled from the CalPlug logo, and each has one meaning. A vi
 | `--blue` | `#005BAA` | Links, buttons, selected filter, card border on hover, top half of ring icons |
 | `--blue-dark` | `#004A8C` | Button hover |
 | `--green` | `#8BC53F` | Line under the current menu item; short line under the page title; line on top of the footer; Active dot; bottom half of ring icons. Never for text (2.07:1 on white) |
+| `--blue-tint` | `#EEF4FA` | Selected filter button background (with blue border and blue text) |
 | `--green-text` | `#4A7A1C` | Dates and years, the word "Active", check marks in the benefits table (5.13:1 on white) |
 | `--navy` | `#0E2A47` | Top bar and footer backgrounds; pill text; notice and step lines; About side headings; line icons inside rings |
 | `--on-navy` | `#C5D0DC` | Text on the footer (10:1 on navy) |
@@ -164,9 +165,9 @@ All content is shown with one of three blocks. The Publications list is the mode
 | More on demand | Closed by default ("Full bio", "Compare all benefits") | Long text that most readers skip |
 | Social icon | Single-color icon with a hidden text label | LinkedIn, Facebook, in the footer. White on hover |
 | Header button | Blue fill, white text | "Support CalPlug" only |
-| Page icon | The ring icon for the page (44px; 36px on phones), left of the page title, top-aligned with its first line | Every page with a title: About signal waves, People person, Research plug, Publications document, News calendar, Careers cap, Support heart, Contact pin, Our labs and SIM pages building, 1 kWh Challenge bolt; a project page uses its research area's icon. Set in `PAGE_ICON` in `tools/build.py` |
+| Page icon | The ring icon for the page (44px; 36px on phones), left of the page title, top-aligned with its first line | Every page with a title: About the CalPlug icon itself, People person, Research plug, Publications document, News calendar, Careers cap, Support heart, Contact pin, Our labs and SIM pages building, 1 kWh Challenge bolt; a project page uses its research area's icon. Set in `PAGE_ICON` in `tools/build.py` |
 | Footer vision line | CalPlug's Vision from About, in quotes, Montserrat, white, above the logos with a faint line below | Every page. Text comes from `vision` in `data/site.json`; never replaced by a slogan |
-| Ring icon | The logo's half-blue, half-green ring around a navy line icon (20px) | Research areas: on the filter buttons and on project cards. Icons: plug (plug loads), person (user behavior), factory (smart manufacturing), bolt (grid and storage), building (buildings and data centers), calendar (default news image). Drawn in `tools/build.py` (`LINE_ICONS`); never add a second icon style |
+| Ring icon | A ring with the logo's own proportions (inner radius 74% of the outer, split on the horizontal, blue above, green below) around a line icon in the logo's blue with round ends, the same weight as the logo's arcs (22px; 20px on filter buttons) | Research areas: on the filter buttons and on project cards. Icons: plug (plug loads), person (user behavior), factory (smart manufacturing), bolt (grid and storage), building (buildings and data centers), calendar (default news image). Drawn in `tools/build.py` (`LINE_ICONS`); never add a second icon style |
 | Active dot | Green dot + "Active" in green text | Meta line of active projects |
 | Link marks | "PDF" in a small outlined box after links to PDF files; "↗" after links that leave the site | Lists, cards, copied pages. Added by CSS from the link address, never typed into data |
 
@@ -196,7 +197,7 @@ Only things that can be clicked react to hover.
 ### Logo
 
 - Header: `assets/brand/calplug-logo-compact.png`, the icon and the CALPLUG wordmark cut from the original logo file. Lettering unchanged, nothing redrawn. About 44px high.
-- Browser tab icon and default images: the icon alone (`assets/brand/calplug-mark.svg`).
+- The icon alone (`assets/brand/calplug-mark.svg`): redrawn as a vector by measuring the original logo file (ring outer and inner radius, horizontal split, the three arcs' centers, radii and widths, the plug's prongs and body); checked against the original pixel by pixel, differences are only at anti-aliased edges. Used for the browser tab icon, the About page icon, the 404 page and the default news and publication images. Never altered (no "unplugged" variant, no recoloring).
 - Replace these only with a higher-resolution or vector copy of the same artwork from the lab.
 - UC Irvine logo: the primary logo file Keven Zhuang provided (`assets/brand/uci-logo.png`, 266×45). Keep the clear space around it; nothing locked up with it; not smaller than 3/16 inch (about 18px); never redrawn or recolored. A larger or vector copy from the UC Irvine brand asset library (UCInetID login) would look sharper on high-resolution screens; swap it in when available.
 - UC Irvine seal: not used. UC Irvine's brand rules say the seal should not be used on the web and cannot be modified; questions go to graphicservices@uci.edu.
@@ -223,11 +224,12 @@ Only things that can be clicked react to hover.
 
 ### 404 page
 
-- `404.html`: the ring with an unplugged plug, "This page is unplugged.", one sentence, and links to Home, Research, Publications and Contact. It uses `site_url` as its base so it works at any address.
+- `404.html`: the CalPlug icon, "This page is unplugged.", one sentence, and links to Home, Research, Publications and Contact. It uses `site_url` as its base so it works at any address.
 
 ### Ring icons and default images
 
-- The default news image (`assets/brand/news-default.svg`) is the ring with a calendar icon on the tint background.
+- The default news image (`assets/brand/news-default.svg`) is the CalPlug icon on the tint background; the default publication image carries it small.
+- Large ring decorations (share image, slide and flyer templates) use the logo's ring with its own thickness, never a thinner look-alike.
 - The UC Irvine logo on the navy footer is the white one-color version (`assets/brand/uci-logo-white.png`), made from the provided file by turning its color white without changing its shape. Replace with the official reversed file when available.
 
 ### News images
@@ -283,6 +285,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.14 | 2026-11-13 | CalPlug icon redrawn to the original logo's measurements; it replaces the look-alike in the tab icon, About, 404 and default images. Ring icons rebuilt with the logo's ring proportions and blue line icons. Selected filter is now light blue with a blue border so the ring stays visible. Footer logos are no longer links (the top bar is the one link out). Share image and templates use the true ring. |
 | 0.13 | 2026-11-13 | Page icons: each page title has its ring icon on the left (fixed size and place on every page). CalPlug's Vision as one line at the top of the footer. |
 | 0.12.1 | 2026-11-13 | Page-title arcs removed: the title areas differ in height, so each page showed a different, cut-off piece of the arcs and it looked like a broken image. |
 | 0.12 | 2026-11-13 | Top color strip replaced by a navy top bar ("University of California, Irvine › Calit2", Contact). Faint signal arcs in page-title areas. Share image and share tags on every page (project pages use their own image); `site_url` added. 404 page "This page is unplugged." Brand kit (section 10): slide and flyer templates, logos, fonts, rules. |

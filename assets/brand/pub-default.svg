@@ -1,11 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 220" role="img" aria-label="Publication">
 <rect width="170" height="220" fill="#FFFFFF"/>
-<rect x="0" y="0" width="170" height="8" fill="#005BAA"/><rect x="0" y="8" width="170" height="3" fill="#8BC53F"/>
-<g fill="#DCE3EA"><rect x="22" y="40" width="126" height="9" rx="2"/><rect x="22" y="56" width="92" height="9" rx="2"/>
-<rect x="22" y="88" width="126" height="4" rx="2"/><rect x="22" y="99" width="126" height="4" rx="2"/><rect x="22" y="110" width="126" height="4" rx="2"/><rect x="22" y="121" width="84" height="4" rx="2"/>
-<rect x="22" y="142" width="126" height="4" rx="2"/><rect x="22" y="153" width="110" height="4" rx="2"/></g>
-<g transform="translate(120 174) scale(0.2)"><path d="M13 80A67 67 0 0 1 147 80" fill="none" stroke="#005BAA" stroke-width="20"/>
-<path d="M13 80A67 67 0 0 0 147 80" fill="none" stroke="#8BC53F" stroke-width="20"/>
-<g fill="none" stroke="#005BAA" stroke-width="6.5" stroke-linecap="round"><path d="M50.5 47.5A42 42 0 0 1 109.500 47.5"/><path d="M59.500 57A29.500 29.500 0 0 1 100.500 57"/><path d="M68.500 66.500A16.500 16.500 0 0 1 91.500 66.500"/></g>
-<path d="M61.500 92V79.500a3.200 3.200 0 0 1 6.400 0V92H92.100V79.500a3.200 3.200 0 0 1 6.400 0V92H113a33 33 0 0 1-66 0Z" fill="#8BC53F"/></g>
+<g fill="#DCE3EA"><rect x="22" y="30" width="126" height="9" rx="2"/><rect x="22" y="46" width="92" height="9" rx="2"/>
+<rect x="22" y="78" width="126" height="4" rx="2"/><rect x="22" y="89" width="126" height="4" rx="2"/><rect x="22" y="100" width="126" height="4" rx="2"/><rect x="22" y="111" width="84" height="4" rx="2"/>
+<rect x="22" y="132" width="126" height="4" rx="2"/><rect x="22" y="143" width="110" height="4" rx="2"/></g>
+<g transform="translate(118 168) scale(0.1807)"><path d="M0 83A83 83 0 0 1 166 83H144.7A61.7 61.7 0 0 0 21.3 83Z" fill="#005BAA"/>
+<path d="M0 83A83 83 0 0 0 166 83H144.7A61.7 61.7 0 0 1 21.3 83Z" fill="#8BC53F"/>
+<g fill="none" stroke="#005BAA" stroke-width="7" stroke-linecap="round">
+<path d="M70.41 66.71A17.8 17.8 0 0 1 95.59 66.71"/>
+<path d="M60.30 58.50A32.1 32.1 0 0 1 105.70 58.50"/>
+<path d="M51.96 48.26A43.9 43.9 0 0 1 114.04 48.26"/>
+</g>
+<path d="M48 95.5H118A35 35 0 0 1 48 95.5Z" fill="#8BC53F"/>
+<g stroke="#8BC53F" stroke-width="7.5" stroke-linecap="round"><path d="M67.1 81.5V96.5M98.9 81.5V96.5"/></g></g>
 </svg>

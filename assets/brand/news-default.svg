@@ -1,8 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="CalPlug event">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="CalPlug">
 <rect width="600" height="400" fill="#F6F8FA"/>
-<g fill="none" stroke-linecap="round" stroke-linejoin="round">
-<path d="M222 200A78 78 0 0 1 378 200" stroke="#005BAA" stroke-width="10"/>
-<path d="M222 200A78 78 0 0 0 378 200" stroke="#8BC53F" stroke-width="10"/>
-<g transform="translate(264 164) scale(3)" stroke="#0E2A47" stroke-width="1.6"><path d="M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM3 10h18M8 3v4M16 3v4"/></g>
+<g transform="translate(205 105) scale(1.1446)"><path d="M0 83A83 83 0 0 1 166 83H144.7A61.7 61.7 0 0 0 21.3 83Z" fill="#005BAA"/>
+<path d="M0 83A83 83 0 0 0 166 83H144.7A61.7 61.7 0 0 1 21.3 83Z" fill="#8BC53F"/>
+<g fill="none" stroke="#005BAA" stroke-width="7" stroke-linecap="round">
+<path d="M70.41 66.71A17.8 17.8 0 0 1 95.59 66.71"/>
+<path d="M60.30 58.50A32.1 32.1 0 0 1 105.70 58.50"/>
+<path d="M51.96 48.26A43.9 43.9 0 0 1 114.04 48.26"/>
 </g>
+<path d="M48 95.5H118A35 35 0 0 1 48 95.5Z" fill="#8BC53F"/>
+<g stroke="#8BC53F" stroke-width="7.5" stroke-linecap="round"><path d="M67.1 81.5V96.5M98.9 81.5V96.5"/></g></g>
 </svg>
