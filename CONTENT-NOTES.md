@@ -72,7 +72,7 @@ The full original text is still on the site wherever it existed (project pages, 
 | AI-TES figure (f1000research-files.f1000.com) | Still hot-linked from a journal site; will break if that site moves it |
 | Edge Data Center image (assets.belden.com) | Still hot-linked from a company site |
 | `pexels-singkham-...jpg`, `solar-energy.png` (Freepik) | Stock images; Freepik asks for attribution |
-| Member and affiliate logos | 7 of 12 logos are used; `images.png`, `images-3.png`, `california-utilities-logo.jpg`, PG&E and Embertec logos were left out because the file-to-organization match is unclear |
+| Member and affiliate logos | 11 of 12 have a logo. CPUC, PG&E, ComEd and DIRECTV logos were provided by Keven Zhuang on 2026-11-13 (`assets/logos/`). Embertec is shown by name: the file provided is cut off at both edges; needs a complete logo |
 
 ## Images to replace when better ones arrive
 
