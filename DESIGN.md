@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.25, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
+Version 0.26, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -421,7 +421,9 @@ Visited links look the same as unvisited ones. Disabled states do not exist: an 
 ### Navigation
 
 - Wide screens: seven menu items and the header button in one row. Below 1000px: the items move behind the Menu button; the header button stays visible ("Support" on phones).
-- The open menu drops below the header, full width, one item per row (about 48px high) with a "→" at the right, and "Support CalPlug" as a full-width outline button at the end. The page behind is dimmed (`--scrim`, navy at 28%); there is no shadow, in line with the no-shadow rule. It slides in over 0.2s (off with reduced motion). It closes with the cross, the Escape key (focus returns to the button), or a tap on the dimmed page.
+- The header stays at the top of the screen while the page scrolls (sticky, white), so the menu button is always in reach. Links to a section stop below it.
+- The open menu drops below the header, full width, one item per row (about 48px high, no arrows: every row is a page, the row itself says so), and "Support CalPlug" as a full-width outline button at the end. The page behind is dimmed from the header's lower edge down (`--scrim`, navy at 28%), so the header and the phone's status bar stay white (`theme-color` is white). There is no shadow, in line with the no-shadow rule.
+- While the menu is open the page behind does not scroll; a long menu scrolls inside itself. It slides in over 0.2s (off with reduced motion). It closes with the cross, the Escape key (focus returns to the button), or a tap on the dimmed page, and the page is where it was.
 - Every page starts with a hidden "Skip to content" link that appears on keyboard focus.
 - Section links (People: Team, Students, ...) are pill buttons like filters, but they jump to a section instead of hiding items, so they have no selected state. They jump straight there, without smooth scrolling.
 
@@ -493,6 +495,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.26 | 2026-11-13 | Phone menu after Keven's comparison with the Youxun site: the header is sticky; while the menu is open the page behind cannot scroll; the dimmed layer starts below the header, so the top of the screen stays white; arrows removed from menu rows. Section jumps stop below the sticky header. |
 | 0.25 | 2026-11-13 | Support button changed from a blue fill to an outline that fills on hover, so it no longer outweighs the logo. Phones: the header holds only the logo and a three-line menu button (after the Youxun site); the menu drops down over a dimmed page, items carry "→", and Support is the last row. This also removes the two unequal buttons side by side. |
 | 0.24 | 2026-11-13 | Footer: the CalPlug icon before the vision line, linking to Home. |
 | 0.23 | 2026-11-13 | Second audit. Performance: People page images cut from 18 MB to 3.7 MB with optimized copies; three images hot-linked from other sites are now stored here; image tags carry width and height. Structure: no skipped heading levels on built pages. Wording: one capitalization rule for headings ("Affiliated faculty"), one word per action ("Read" for every publication; "Details →" in project rows). Build checks added for heading order and image size. |

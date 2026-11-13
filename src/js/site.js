@@ -8,6 +8,9 @@
     var scrim = null;
     var setOpen = function (open) {
       nav.classList.toggle('open', open);
+      document.documentElement.classList.toggle('menu-open', open);
+      var header = document.querySelector('.site-header');
+      if (header) document.documentElement.style.setProperty('--nav-top', header.getBoundingClientRect().bottom + 'px');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
       if (open && !scrim) {

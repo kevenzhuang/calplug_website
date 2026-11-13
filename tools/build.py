@@ -228,6 +228,7 @@ def page(filename, title, description, body, site, image=None, extra_head=""):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FFFFFF">
 <meta name="robots" content="noindex, nofollow">
 <title>{e(full_title)}</title>
 <meta name="description" content="{e(description)}">
