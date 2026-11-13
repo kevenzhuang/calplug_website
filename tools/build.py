@@ -24,12 +24,11 @@ STAMP = hashlib.sha1(b"".join(f.read_bytes() for f in sorted((SRC).rglob("*.*"))
 NEWS_DEFAULT = "assets/brand/news-default.svg"
 PUB_LABELS = {"journal": "Journal", "conference": "Conference", "report": "Report", "press": "In the press"}
 
-# Seven items and one button, no drop-down menus (DESIGN.md section 2). The logo goes home.
+# Eight items of equal rank, no buttons, no drop-down menus (DESIGN.md section 2). The logo goes home.
 NAV = [
     ("about.html", "About"), ("people.html", "People"), ("research.html", "Research"),
-    ("publications.html", "Publications"), ("news.html", "News"), ("careers.html", "Careers"), ("contact.html", "Contact"),
+    ("publications.html", "Publications"), ("news.html", "News"), ("careers.html", "Careers"), ("support.html", "Support"), ("contact.html", "Contact"),
 ]
-NAV_BUTTON = ("support.html", "Support CalPlug")  # on phones it moves into the menu
 # which top-level item is "current" for each page
 SECTION = {"sim-home.html": "research.html", "sim-lab.html": "research.html", "1-kwh-challenge.html": "research.html",
            "facilities.html": "research.html", "events-archive.html": "news.html"}
@@ -216,9 +215,6 @@ def share_image(site, image=None):
 def page(filename, title, description, body, site, image=None, extra_head=""):
     cur = SECTION.get(filename, filename)
     nav = "".join(f'<li><a href="{h}"{" aria-current=\"page\"" if h == cur else ""}>{e(label)}</a></li>' for h, label in NAV)
-    here = " aria-current=\"page\"" if cur == NAV_BUTTON[0] else ""
-    btn = f'<a class="nav-cta" href="{NAV_BUTTON[0]}"{here}>{e(NAV_BUTTON[1])}</a>'
-    menu_btn = f'<li class="nav-menu-cta"><a class="nav-cta" href="{NAV_BUTTON[0]}"{here}>{e(NAV_BUTTON[1])}</a></li>'
     c = site["contact"]
     full_title = "CalPlug \u2013 California Plug Load Research Center" if filename == "index.html" else f"{title} \u2013 CalPlug"
     social = "".join(f'<a href="{e(site["social"][k])}" aria-label="CalPlug on {k.title().replace("Linkedin", "LinkedIn")}">{ICONS[k]}</a>' for k in ("linkedin", "facebook"))
@@ -250,8 +246,8 @@ def page(filename, title, description, body, site, image=None, extra_head=""):
 <header class="site-header">
   <div class="wrap main-row">
     <a class="brand" href="index.html"><img src="assets/brand/calplug-logo-compact.svg" alt="CalPlug" width="517" height="96"></a>
-    <nav class="nav" id="nav" aria-label="Main"><ul>{nav}{menu_btn}</ul></nav>
-    <div class="header-actions">{btn}<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><i aria-hidden="true"></i></button></div>
+    <nav class="nav" id="nav" aria-label="Main"><ul>{nav}</ul></nav>
+    <div class="header-actions"><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><i aria-hidden="true"></i></button></div>
   </div>
 </header>
 <main id="main">

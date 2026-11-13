@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.26, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
+Version 0.27, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -21,14 +21,14 @@ Simple and direct: the site exists so people can find information, not to impres
 
 ### Header
 
-One row: the logo on the left, seven menu items, then one button. No top bar, no drop-down menus:
+One row: the logo on the left, eight menu items of equal rank on the right. No buttons, no top bar, no drop-down menus:
 
-**Logo** · About · People · Research · Publications · News · Careers · Contact · **[Support CalPlug]**
+**Logo** · About · People · Research · Publications · News · Careers · Support · Contact
 
 - The logo is the link to Home; there is no "Home" item. The CalPlug icon in the footer links to Home too.
-- "Support CalPlug" is an outline button (white, blue border, blue text) at the right of the menu: easy to find for sponsors, but quieter than the logo and the content. It fills blue on hover. Below 1000px it moves into the menu as the last row, full width, so the phone header holds only the logo and the menu button.
+- Support is an ordinary menu item, not a button. A research center's first things are its research, people and results; sponsors come looking for the Support page and find it in the menu. (0.11 to 0.26 had a "Support CalPlug" button, first filled, then outlined; both made it the loudest thing in the header.) Support sits before Contact, which is always last. The page itself is titled "Support & Memberships".
 - Facilities is part of Research ("Our labs"). Contact is the last menu item, and also in the footer line and at the bottom of About.
-- Below 1000px wide the seven items collapse behind a menu button of three lines. The menu never wraps onto two rows.
+- Below 1000px wide the eight items collapse behind a menu button of three lines. The menu never wraps onto two rows.
 - The current page is marked as in section 7 (green line on the header's bottom edge).
 - There is no bar above the header. (0.12 to 0.19 had one naming UC Irvine and Calit2, first navy, then light gray; both looked like an extra strip. UC Irvine and Calit2 are named by their logos in the footer.)
 
@@ -116,7 +116,7 @@ Two families, both stored on this site (`src/fonts/`, SIL Open Font License; no 
 | `--fs-lead` | 19px | The home tagline, page introductions, the footer vision line, the About quote | One step above body for the single sentence a visitor should read first |
 | `--fs-h3` | 17px | Item title: a news item, project, publication, person, card | Just above body: weight, not size, makes it a title, so long lists stay calm |
 | `--fs-body` | 16px | Paragraphs | Browser default; comfortable for long reading |
-| `--fs-nav` | 15px | Menu items only | Between body and small so seven items fit one row down to 1000px |
+| `--fs-nav` | 15px | Menu items only | Between body and small so eight items fit one row down to 1000px |
 | `--fs-small` | 14px | Supporting text: authors, venues, sponsors, summaries, dates, card text, buttons, footer | Clearly secondary but still readable |
 | `--fs-mark` | 11px | The "PDF" mark only | A label inside a tiny box; never for sentences |
 
@@ -126,7 +126,7 @@ Two families, both stored on this site (`src/fonts/`, SIL Open Font License; no 
 |---|---|---|---|
 | `--w-text` | 400 | Running text: anything read as a sentence | Paragraphs, summaries, authors |
 | `--w-label` | 500 | Labels: short text that is not a sentence and not a title | Menu items, filter buttons, Menu button, disclosure labels, dates, "About → Join us → Contact" links |
-| `--w-title` | 600 | Titles and the few things that must stand out | h1 to h3, names, the Support button, pills, "Active", table headings, the address on Contact |
+| `--w-title` | 600 | Titles and the few things that must stand out | h1 to h3, names, pills, "Active", table headings, the address on Contact |
 
 No 700 or heavier, no italics for emphasis, no uppercase labels, no underlines except on hover.
 
@@ -152,7 +152,7 @@ Colors of text: ink for titles and body, muted for supporting text, blue only fo
 
 | Token | Value | Used for | Why |
 |---|---|---|---|
-| `--page` | 1080px | Page width; everything starts at the same left edge | Wide enough for the seven-item menu and three cards |
+| `--page` | 1080px | Page width; everything starts at the same left edge | Wide enough for the eight-item menu and three cards |
 | `--text` | 720px | Maximum width of running text and list titles | About 80 characters a line, the comfortable limit |
 | `--s-4` … `--s-64` | 4, 8, 12, 16, 24, 32, 48, 64px | All padding, margins and gaps | One scale, so distances repeat and things line up |
 | `--header-h` | 72px | Header row height | Room for a 40px control with 16px above and below |
@@ -189,11 +189,10 @@ Breakpoints (fixed; do not add others):
 
 ### Buttons and controls
 
-There are exactly four clickable shapes, and the same job always gets the same shape on every page. A new one is not added; a new action uses one of these.
+There are exactly three clickable shapes, and the same job always gets the same shape on every page. A new one is not added; a new action uses one of these.
 
 | Control | Look | Use | Limit |
 |---|---|---|---|
-| Outline button | White, 1px blue border, blue 14px text at weight 600, 40px high, 6px radius, 16px side padding; fills blue on hover | The one main action of the site: "Support CalPlug" | Once per page: in the header, or at the end of the phone menu |
 | Menu button | Three lines in a 40px square, turning into a cross | Opening the menu on phones and tablets | Header only |
 | Pill button | Pill, 1px gray border, 14px muted text at weight 500, 32px high; may carry a ring icon | Any row of choices under a page title: filters that narrow a list (Research, Publications) and section links that jump down a long page (People) | Only in that row. A row of choices is never plain text links, so the three pages look alike |
 | Text link | Blue text; "→" for a link to another page of the site, "↗" or "PDF" marks added automatically | Everything else | — |
@@ -244,7 +243,6 @@ All content is shown with one of three blocks. The Publications list is the mode
 | Filter | Round buttons | Publications by type, Research by research area |
 | Disclosure | Blue label with a chevron, closed by default (section 7) | "Full bio", "Compare all benefits", Earlier documents, floor plan |
 | Social icon | Single-color icon with a hidden text label | LinkedIn, Facebook, in the footer. White on hover |
-| Header button | Blue fill, white text | "Support CalPlug" only |
 | Footer vision line | CalPlug's Vision from About, in quotes, Montserrat, white, above the logos with a faint line below | Every page. Text comes from `vision` in `data/site.json`; never replaced by a slogan |
 | Ring icon | A ring with the logo's own proportions (inner radius 74% of the outer, split on the horizontal, blue above, green below) around a line icon in the logo's blue with round ends, the same weight as the logo's arcs (22px; 20px on filter buttons) | Research areas: on the filter buttons and on project cards. Icons: plug (plug loads), person (user behavior), factory (smart manufacturing), bolt (grid and storage), building (buildings and data centers), calendar (default news image). Drawn in `tools/build.py` (`LINE_ICONS`); never add a second icon style |
 | Active dot | Green dot + "Active" in green text | Meta line of active projects |
@@ -399,7 +397,6 @@ The rules for how the site responds to people. Every interactive element below h
 | Text link | Blue | Underline (3px below the text) | 2px blue ring, 3px gap | — | — |
 | Link on navy (footer) | Light gray or white | White, underline | 2px white ring | — | — |
 | Menu item | Ink | Blue | Ring | — | Blue text and a 3px green line on the header's bottom edge (the link fills the header height, so the line sits on the edge, not under the word). Phones: blue text and a short green bar in the left margin; the text does not move |
-| Support button | White, 1px blue border, blue text at weight 600, 40px high | Blue fill, white text | Ring | Darker blue fill | Light blue fill |
 | Menu button (phones) | Three ink lines, 20px wide, in a 40px square, no border | Lines turn blue | Ring | The lines turn into a cross; label read aloud changes from "Open menu" to "Close menu" | — |
 | Filter button | Gray border, muted text (weight 500), round, at least 32px high | Blue border and text | Ring | Light blue fill, blue border, blue text, same weight (`aria-pressed`) | — |
 | Card with a link | Gray border | Blue border, image grows 2% (only on devices with a mouse) | Ring on the title link | — | — |
@@ -420,9 +417,9 @@ Visited links look the same as unvisited ones. Disabled states do not exist: an 
 
 ### Navigation
 
-- Wide screens: seven menu items and the header button in one row. Below 1000px: the items move behind the Menu button; the header button stays visible ("Support" on phones).
+- Wide screens: eight menu items in one row. Below 1000px: they move behind the three-line menu button.
 - The header stays at the top of the screen while the page scrolls (sticky, white), so the menu button is always in reach. Links to a section stop below it.
-- The open menu drops below the header, full width, one item per row (about 48px high, no arrows: every row is a page, the row itself says so), and "Support CalPlug" as a full-width outline button at the end. The page behind is dimmed from the header's lower edge down (`--scrim`, navy at 28%), so the header and the phone's status bar stay white (`theme-color` is white). There is no shadow, in line with the no-shadow rule.
+- The open menu drops below the header, full width, one item per row (about 48px high, no arrows: every row is a page, the row itself says so). The page behind is dimmed from the header's lower edge down (`--scrim`, navy at 28%), so the header and the phone's status bar stay white (`theme-color` is white). There is no shadow, in line with the no-shadow rule.
 - While the menu is open the page behind does not scroll; a long menu scrolls inside itself. It slides in over 0.2s (off with reduced motion). It closes with the cross, the Escape key (focus returns to the button), or a tap on the dimmed page, and the page is where it was.
 - Every page starts with a hidden "Skip to content" link that appears on keyboard focus.
 - Section links (People: Team, Students, ...) are pill buttons like filters, but they jump to a section instead of hiding items, so they have no selected state. They jump straight there, without smooth scrolling.
@@ -495,6 +492,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.27 | 2026-11-13 | Support is now an ordinary menu item (before Contact) instead of a button, on wide screens and in the phone menu. The site has three clickable shapes: pill buttons, text links and the menu button. |
 | 0.26 | 2026-11-13 | Phone menu after Keven's comparison with the Youxun site: the header is sticky; while the menu is open the page behind cannot scroll; the dimmed layer starts below the header, so the top of the screen stays white; arrows removed from menu rows. Section jumps stop below the sticky header. |
 | 0.25 | 2026-11-13 | Support button changed from a blue fill to an outline that fills on hover, so it no longer outweighs the logo. Phones: the header holds only the logo and a three-line menu button (after the Youxun site); the menu drops down over a dimmed page, items carry "→", and Support is the last row. This also removes the two unequal buttons side by side. |
 | 0.24 | 2026-11-13 | Footer: the CalPlug icon before the vision line, linking to Home. |

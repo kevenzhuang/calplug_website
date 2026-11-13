@@ -41,15 +41,11 @@ ul { margin: 0; padding: 0; list-style: none; }
 .lead { font-size: var(--fs-lead); line-height: var(--lh-lead); }
 .meta { font-size: var(--fs-small); color: var(--muted); }
 
-/* Header: one row with logo, menu and the Support button. Above the menu scrim on phones. */
+/* Header: one row with the logo and eight menu items. Above the menu scrim on phones. */
 .site-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: var(--white); }
 .site-header .main-row { display: flex; align-items: center; justify-content: space-between; gap: var(--s-24); min-height: var(--header-h); position: relative; }
 .brand { flex-shrink: 0; }
 .header-actions { display: flex; align-items: center; gap: var(--s-12); flex-shrink: 0; }
-.nav-cta { display: inline-block; background: var(--white); color: var(--blue); border: 1px solid var(--blue); font-size: var(--fs-small); font-weight: var(--w-title); padding: var(--s-8) var(--s-16); border-radius: var(--radius); white-space: nowrap; }
-.nav-cta:hover { background: var(--blue); color: var(--white); text-decoration: none; }
-.nav-cta:active { background: var(--blue-dark); border-color: var(--blue-dark); color: var(--white); }
-.nav-cta[aria-current="page"] { background: var(--blue-tint); }
 .nav { margin-left: auto; }
 .brand img { height: 40px; width: auto; }
 .nav ul { display: flex; gap: var(--s-24); }
@@ -65,12 +61,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nav-toggle[aria-expanded="true"] i { background: transparent; }
 .nav-toggle[aria-expanded="true"] i::before { top: 0; transform: rotate(45deg); }
 .nav-toggle[aria-expanded="true"] i::after { top: 0; transform: rotate(-45deg); }
-.nav-menu-cta { display: none; }
 .nav-scrim { position: fixed; left: 0; right: 0; bottom: 0; top: var(--nav-top, var(--header-h)); z-index: 15; background: var(--scrim); }
 html.menu-open { overflow: hidden; } /* the page behind the open menu does not scroll. Not on body: that would make body the scroll box and unstick the header */
 [id] { scroll-margin-top: calc(var(--header-h) + var(--s-16)); } /* jumps to a section are not hidden under the sticky header */
 .nav-toggle:hover, .nav-toggle[aria-expanded="true"] { color: var(--blue); }
-.nav-cta { line-height: calc(var(--control-h) - 2 * var(--s-8) - 2px); } /* inline-block: 1px border + 8px + 22px + 8px + 1px = 40px high; not flex, which would drop the space before "CalPlug" */
 
 /* Titles: a short green line under page and section titles */
 .page-head { padding: var(--s-48) 0 0; }
@@ -272,13 +266,6 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
 
 @media (max-width: 1000px) {
   .nav-toggle { display: inline-flex; }
-  .header-actions > .nav-cta { display: none; }
-  .js .nav-menu-cta { display: block; padding: var(--s-16) 0 var(--s-8); }
-  .nav .nav-menu-cta .nav-cta { display: block; height: auto; text-align: center; border: 1px solid var(--blue); line-height: calc(var(--control-h) - 2 * var(--s-8) - 2px); padding: var(--s-8) var(--s-16); margin: 0; }
-  .nav .nav-menu-cta .nav-cta::before { display: none; }
-  .nav .nav-menu-cta .nav-cta { color: var(--blue); font-weight: var(--w-title); }
-  .nav .nav-menu-cta .nav-cta:hover, .nav .nav-menu-cta .nav-cta:active { color: var(--white); }
-  .nav .nav-menu-cta .nav-cta[aria-current="page"] { color: var(--blue); }
   .nav { margin-left: 0; }
   .js .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; z-index: 10; max-height: calc(100dvh - var(--header-h)); overflow-y: auto; overscroll-behavior: contain; background: var(--white); border-bottom: 1px solid var(--line); padding: 0 var(--s-24) var(--s-8); }
   .js .nav.open { display: block; }
@@ -317,7 +304,7 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
 }
 @media (max-width: 360px) {
   .brand img { height: 24px; }
-  .site-header .main-row, .header-actions { gap: var(--s-8); }
+  .site-header .main-row { gap: var(--s-8); }
 }
 @media (prefers-reduced-motion: no-preference) {
   a, .filters button, .filters a, .card { transition: color var(--t-fast), border-color var(--t-fast), background-color var(--t-fast); }
@@ -352,7 +339,7 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
 }
 @media (prefers-reduced-motion: no-preference) {
   summary::before { transition: transform var(--t-fast); }
-  .nav-cta, .nav-toggle { transition: color var(--t-fast), border-color var(--t-fast), background-color var(--t-fast); }
+  .nav-toggle { transition: color var(--t-fast), border-color var(--t-fast), background-color var(--t-fast); }
   .nav-toggle i, .nav-toggle i::before, .nav-toggle i::after { transition: transform var(--t-fast), top var(--t-fast), background-color var(--t-fast); }
   .js .nav.open { animation: nav-in var(--t-fast) ease-out; }
   .nav-scrim { animation: scrim-in var(--t-fast) ease-out; }
