@@ -4,6 +4,7 @@
 Usage: python tools/build.py
 Standard library only. Fails with a clear message when data is missing a required field.
 """
+import hashlib
 import json
 import re
 import shutil
@@ -16,6 +17,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA, SRC, DIST, ASSETS = ROOT / "data", ROOT / "src", ROOT / "dist", ROOT / "assets"
 OLD_SITE = "https://www.calplug.org"
 ERRORS = []
+# Version stamp so browsers fetch new CSS/JS after a change (DESIGN.md: cache and versions)
+STAMP = hashlib.sha1(b"".join(f.read_bytes() for f in sorted((SRC).rglob("*.*")))).hexdigest()[:8]
 
 NAV = [("index.html", "Home"), ("research.html", "Research"), ("publications.html", "Publications"),
        ("people.html", "People"), ("facilities.html", "Facilities"), ("news.html", "News & Events"),
@@ -93,7 +96,7 @@ def page(filename, title, description, body, site):
 <meta property="og:title" content="{e(full_title)}">
 <meta property="og:description" content="{e(description)}">
 <meta property="og:type" content="website">
-<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/site.css?v={STAMP}">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -133,7 +136,7 @@ def page(filename, title, description, body, site):
     <p class="legal">&copy; {date.today().year} {e(site['full_name'])}, {e(site['institution'])}.</p>
   </div>
 </footer>
-<script src="js/site.js" defer></script>
+<script src="js/site.js?v={STAMP}" defer></script>
 </body>
 </html>
 """

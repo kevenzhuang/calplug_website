@@ -64,6 +64,7 @@ def main():
             if href.startswith(("http", "mailto:", "tel:")):
                 continue
             path, _, frag = href.partition("#")
+            path = path.split("?")[0]
             target = name if not path else path
             if path and not (DIST / path).exists():
                 problems.append(f"{name}: broken link: {href}")
