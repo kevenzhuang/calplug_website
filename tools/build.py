@@ -549,7 +549,7 @@ def build_people(site, people, partners):
         short, rest = " ".join(parts[:2]), " ".join(parts[2:])
         more = f'<details><summary>Full bio</summary><p>{e(rest)}</p></details>' if rest else ""
         return (f'<div class="lead-person">{img(p["photo"], "Portrait of " + p["name"])}<div><h3>{e(p["name"])}</h3>'
-                f'<p class="meta">{e(title)} \u00b7 <a href="mailto:{e(p["email"])}">{e(p["email"])}</a></p><p>{e(short)}</p>{more}</div></div>')
+                f'<p class="meta">{e(title)}<a href="mailto:{e(p["email"])}">{e(p["email"])}</a></p><p>{e(short)}</p>{more}</div></div>')
 
     team = "".join(
         f'<div class="card"><div class="card-body"><h3>{e(a["name"])}</h3><p>{e(a["title"])}</p><p class="bottom"><a href="mailto:{e(a["email"])}">{e(a["email"])}</a></p></div></div>'
@@ -558,7 +558,7 @@ def build_people(site, people, partners):
     boardsub = lambda m: [m.get("role"), m.get("title"), m.get("org")]
     jump = [("team", "Team"), ("students", "Students"), ("faculty", "Faculty"), ("advisory-board", "Advisory Board"),
             ("technology-council", "Council"), ("alumni", "Alumni")]
-    body = head("People", '<p class="jump">' + "".join(f'<a href="#{i}">{t}</a>' for i, t in jump) + "</p>") + f"""
+    body = head("People", '<nav class="filters" aria-label="Sections of this page">' + "".join(f'<a href="#{i}">{t}</a>' for i, t in jump) + "</nav>") + f"""
 <section class="section" id="team"><div class="wrap">
   <h2>Team</h2>
   {lead(d, d['title'])}

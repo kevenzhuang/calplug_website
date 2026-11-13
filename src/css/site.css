@@ -74,7 +74,9 @@ main > :last-child { padding-bottom: var(--s-64); }
 .sub { margin: var(--s-32) 0 var(--s-16); }
 .after-list { margin-top: var(--s-24); }
 .after-list .more { white-space: normal; }
-.jump { display: flex; flex-wrap: wrap; gap: var(--s-8) var(--s-24); margin: var(--s-24) 0 0; font-size: var(--fs-small); }
+.filters a { display: inline-flex; align-items: center; text-decoration: none; }
+.filters a:hover { text-decoration: none; }
+.page-head .filters { margin: var(--s-24) 0 0; }
 
 /* Home welcome: text left, photo right, white, a line below */
 .welcome { padding: var(--s-48) 0 var(--s-32); }
@@ -124,10 +126,10 @@ details p { margin-top: var(--s-8) !important; font-size: var(--fs-body) !import
 .section > .wrap > details summary { font-size: var(--fs-body); }
 .plain li { padding: var(--s-8) 0; border-bottom: 1px solid var(--line); font-size: var(--fs-small); }
 .filters { display: flex; gap: var(--s-8); flex-wrap: wrap; margin-bottom: var(--s-32); }
-.filters button { font: inherit; font-size: var(--fs-small); color: var(--muted); background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-pill); padding: var(--s-4) var(--s-12); cursor: pointer; }
-.filters button:hover { border-color: var(--blue); color: var(--blue); }
-.filters button:active { background: var(--blue-tint); }
-.filters button { min-height: var(--control-h-s); font-weight: var(--w-label); } /* one weight in every state: a bolder selected label would widen the button and shift the row */
+.filters button, .filters a { font: inherit; font-size: var(--fs-small); color: var(--muted); background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-pill); padding: var(--s-4) var(--s-12); cursor: pointer; }
+.filters button:hover, .filters a:hover { border-color: var(--blue); color: var(--blue); }
+.filters button:active, .filters a:active { background: var(--blue-tint); }
+.filters button, .filters a { min-height: var(--control-h-s); font-weight: var(--w-label); } /* one weight in every state: a bolder selected label would widen the button and shift the row */
 .filters button[aria-pressed="true"] { background: var(--blue-tint); border-color: var(--blue); color: var(--blue); }
 
 /* About */
@@ -304,7 +306,7 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
   .nav-cta, .nav-toggle { padding: var(--s-8); }
 }
 @media (prefers-reduced-motion: no-preference) {
-  a, .filters button, .card { transition: color var(--t-fast), border-color var(--t-fast), background-color var(--t-fast); }
+  a, .filters button, .filters a, .card { transition: color var(--t-fast), border-color var(--t-fast), background-color var(--t-fast); }
 }
 .prose h2 strong, .prose h3 strong, .prose h4 strong { font-weight: inherit; }
 
@@ -313,7 +315,8 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
 .ring .r-top { fill: var(--blue); }
 .ring .r-bottom { fill: var(--green); }
 .ring .r-icon { fill: none; stroke: var(--blue); stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
-.filters button { display: inline-flex; align-items: center; gap: var(--s-8); padding-left: var(--s-8); }
+.filters button, .filters a { display: inline-flex; align-items: center; gap: var(--s-8); }
+.filters button:has(> .ring) { padding-left: var(--s-8); }
 .filters .ring { width: 20px; height: 20px; }
 .card .tags { display: flex; flex-wrap: wrap; gap: var(--s-8) var(--s-16); }
 .area { display: inline-flex; align-items: center; gap: var(--s-8); }
@@ -358,9 +361,11 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
 @media (max-width: 600px) {
   .filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-right: calc(var(--s-16) * -1); padding-right: var(--s-16); }
   .filters::-webkit-scrollbar { display: none; }
-  .filters button { flex-shrink: 0; }
+  .filters button, .filters a { flex-shrink: 0; }
 }
 
 
 /* About: the full logo under the About CalPlug text */
 .about-logo { display: block; width: min(360px, 100%); height: auto; margin-top: var(--s-24); }
+
+.lead-person .meta a { display: block; }
