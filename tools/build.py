@@ -5,6 +5,7 @@ Usage: python tools/build.py
 Standard library only. Fails with a clear message when data is missing a required field.
 """
 import hashlib
+import os
 import json
 import re
 import shutil
@@ -49,20 +50,64 @@ def need(item, fields, where):
             ERRORS.append(f"{where}: '{item.get('id') or item.get('name') or item.get('title')}' is missing '{f}'")
 
 
+def ext_name(u):
+    """File name under assets/ext/ for an image hosted on another site (see tools/import_assets.py)."""
+    ext = os.path.splitext(u.split("?")[0])[1].lower()
+    return hashlib.sha1(u.encode()).hexdigest()[:12] + (ext if ext in (".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg") else ".jpg")
+
+
 def url(path):
-    """Images imported into assets/legacy are served locally; everything else stays on the old site."""
+    """Where an image or file is served from: a smaller optimized copy (assets/opt) when there is one, then the
+    imported copy (assets/legacy for the old site, assets/ext for other sites), otherwise the original address."""
     if not path:
         return ""
+    local = None
     if path.startswith("/wp-content/uploads/"):
-        local = ASSETS / "legacy" / path[len("/wp-content/uploads/"):]
-        return f"assets/legacy/{path[len('/wp-content/uploads/'):]}" if local.exists() else OLD_SITE + path
+        local = "assets/legacy/" + path[len("/wp-content/uploads/"):]
+        if not (ROOT / local).exists():
+            return OLD_SITE + path
+    elif path.startswith("http") and re.search(r"\.(png|jpe?g|gif|webp)(\?|$)", path, re.I) and (ASSETS / "ext" / ext_name(path)).exists():
+        local = "assets/ext/" + ext_name(path)
+    elif path.startswith("assets/"):
+        local = path
+    if local:
+        opt = "assets/opt/" + local[len("assets/"):] + ".jpg"
+        return opt if (ROOT / opt).exists() else local
     return path
+
+
+def img_size(rel):
+    """Pixel size of a local PNG, GIF or JPEG, read from the file header (standard library only)."""
+    try:
+        with open(ROOT / rel, "rb") as f:
+            h = f.read(26)
+            if h[:8] == b"\x89PNG\r\n\x1a\n":
+                return int.from_bytes(h[16:20], "big"), int.from_bytes(h[20:24], "big")
+            if h[:6] in (b"GIF87a", b"GIF89a"):
+                return int.from_bytes(h[6:8], "little"), int.from_bytes(h[8:10], "little")
+            if h[:2] == b"\xff\xd8":
+                f.seek(2)
+                while True:
+                    m = f.read(4)
+                    if len(m) < 4 or m[0] != 0xFF:
+                        return None
+                    n = int.from_bytes(m[2:4], "big")
+                    if 0xC0 <= m[1] <= 0xCF and m[1] not in (0xC4, 0xC8, 0xCC):
+                        d = f.read(5)
+                        return int.from_bytes(d[3:5], "big"), int.from_bytes(d[1:3], "big")
+                    f.seek(n - 2, 1)
+    except OSError:
+        pass
+    return None
 
 
 def img(path, alt="", cls="", eager=False):
     """Images below the first screen load lazily; pass eager=True for images at the top of a page."""
     c = f' class="{cls}"' if cls else ""
-    return f'<img src="{e(url(path))}" alt="{e(alt)}" loading="{"eager" if eager else "lazy"}"{c}>'
+    src = url(path)
+    size = img_size(src) if not src.startswith("http") else None
+    wh = f' width="{size[0]}" height="{size[1]}"' if size else ""  # reserves the space so the page does not jump while loading
+    return f'<img src="{e(src)}" alt="{e(alt)}"{wh} loading="{"eager" if eager else "lazy"}"{c}>'
 
 
 def links(items):
@@ -294,7 +339,7 @@ def pub_thumb(p):
 def pub_entry(p, tag=True):
     u = p.get("url")
     title = f'<a href="{e(url(u))}">{e(p["title"])}</a>' if u else e(p["title"])
-    kind = "Read" if (u or "").split("?")[0].lower().endswith(".pdf") else "View"  # the PDF mark is added by CSS
+    kind = "Read"  # one word for every publication link; the PDF or external mark is added by CSS
     link = f'<a href="{e(url(u))}">{kind}</a>' if u else ""
     meta = f'<div class="links">{f"<span class=\"tag\">{PUB_LABELS[p["type"]]}</span>" if tag else ""}{link}</div>'
     return (f'<article class="pub" data-tags="{p["type"]}">{pub_thumb(p)}<div><h3>{title}</h3><p>{e(p["authors"])}</p>'
@@ -374,7 +419,7 @@ def project_row(p, themes):
     href = project_page_name(p)
     meta = " · ".join(x for x in [e(p.get("sponsor", "")), theme_names(p, themes)] if x)
     ls = list(p.get("links") or [])
-    more = f'<a href="{href}">Details</a>' if paras(p) else ""
+    more = f'<a class="more" href="{href}">Details</a>' if paras(p) else ""
     link_html = '<div class="links">' + "".join(f'<a href="{e(url(l["url"]))}">{e(l["label"])}</a>' for l in ls) + more + "</div>"
     title = f'<a href="{href}">{e(p["title"])}</a>' if paras(p) else e(p["title"])
     return (f'<article class="item" id="{e(p["id"])}" data-tags="{" ".join(p.get("themes", []))}"><div class="when">{years(p) or "Ongoing"}</div>'
@@ -571,7 +616,7 @@ def build_people(site, people, partners):
   {grid(people['students'], lambda s: [s['program'], s['level']])}
 </div></section>
 <section class="section" id="faculty"><div class="wrap">
-  <h2>Affiliated Faculty Leadership</h2>
+  <h2>Affiliated faculty</h2>
   {grid(people['affiliated_faculty'], lambda f: [f['dept']])}
 </div></section>
 <section class="section" id="advisory-board"><div class="wrap">
@@ -609,7 +654,7 @@ def build_news(site, events):
     dated = sorted([x for x in evs if x.get("date")], key=lambda x: x["date"], reverse=True)
     undated = [x for x in evs if not x.get("date")]
     body = head("News & Events") + f"""
-<section class="section"><div class="wrap"><div class="list">{''.join(news_item(x) for x in dated + undated)}</div>
+<section class="section"><div class="wrap"><h2 class="visually-hidden">All news and events</h2><div class="list">{''.join(news_item(x) for x in dated + undated)}</div>
 <p class="after-list"><a class="more" href="events-archive.html">Events Archive: full agendas, speakers and recordings</a></p></div></section>
 """
     return page("news.html", "News & Events", "CalPlug workshops and events.", body, site)
@@ -638,6 +683,7 @@ def build_careers(site, c):
     lst = lambda xs: '<ul class="ticks">' + "".join(f"<li>{e(x)}</li>" for x in xs) + "</ul>"
     body = head(c["title"], f'<p class="intro">{e(c["intro"])}</p>') + f"""
 <section class="section"><div class="wrap">
+  <h2 class="visually-hidden">About the program</h2>
   <p class="notice"><strong>Deadline.</strong> {e(c['deadline'])}</p>
   <div class="grid c2 cards">
     <div class="card"><div class="card-body"><h3>What you get</h3>{lst(c['offer'])}</div></div>
@@ -755,6 +801,7 @@ def build_contact(site):
     </div>
     <figure class="figure">{img('assets/site/calit2-building.jpg', 'The Calit2 Building at UC Irvine, home of CalPlug', eager=True)}</figure>
   </div>
+  <h2 class="visually-hidden">Contacts</h2>
   <div class="grid c3 cards contacts">{contact_card(c['general'])}{contact_card(c['collaborations'])}{contact_card(c['calit2'])}</div>
 </div></section>
 """

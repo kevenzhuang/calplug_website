@@ -38,6 +38,25 @@ def main():
             ok += 1
         except Exception as ex:  # report and continue
             failed.append(f"{p}: {ex}")
+    # Images hosted on other sites (project figures, mentor photos): keep a copy in assets/ext/ so the site
+    # does not break when the other site moves them. The name is a hash of the address (see ext_name in build.py).
+    import hashlib, os
+    ext_pat = re.compile(r'"(https?://(?!(?:www\.)?calplug\.org)[^"]+\.(?:png|jpe?g|gif|webp)(?:\?[^"]*)?)"', re.I)
+    for f in (ROOT / "data").glob("*.json"):
+        for u in set(ext_pat.findall(f.read_text(encoding="utf-8"))):
+            ext = os.path.splitext(u.split("?")[0])[1].lower()
+            dest = ROOT / "assets" / "ext" / (hashlib.sha1(u.encode()).hexdigest()[:12] + ext)
+            if dest.exists():
+                skipped += 1
+                continue
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            try:
+                req = urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0 (calplug-site-import)"})
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    dest.write_bytes(r.read())
+                ok += 1
+            except Exception as ex:
+                failed.append(f"{u}: {ex}")
     print(f"Downloaded {ok}, already present {skipped}, failed {len(failed)}")
     for f in failed:
         print("  FAILED", f)

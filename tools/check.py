@@ -11,6 +11,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 DIST = Path(__file__).resolve().parent.parent / "dist"
+LEGACY_PAGES = {"events-archive.html", "sim-home.html", "sim-lab.html", "1-kwh-challenge.html"}  # copied pages keep their own structure
 PLACEHOLDER = re.compile(r"\b(lorem ipsum|coming soon|TODO|TBD|placeholder)\b|>\s*test\s*<", re.I)
 
 
@@ -120,6 +121,16 @@ def main():
                 problems.append(f"{name}: a bullet list with one item (use a sentence): {items[0][:50]!r}")
             elif 0 < sum(ends) < len(ends):
                 problems.append(f"{name}: a bullet list mixing full sentences and short phrases: {items[0][:50]!r}")
+        if name not in LEGACY_PAGES:
+            levels = [int(x) for x in re.findall(r"<h([1-6])[\s>]", main)]
+            for prev, cur in zip(levels, levels[1:]):
+                if cur > prev + 1:
+                    problems.append(f"{name}: heading levels skip from h{prev} to h{cur}")
+                    break
+            big = [im.get("src") for im in p.imgs if im.get("src", "").startswith("assets/") and (DIST / im["src"]).exists()
+                   and (DIST / im["src"]).stat().st_size > 400_000]
+            for src in big:
+                problems.append(f"{name}: image over 400 KB: {src} (run tools/optimize_images.py)")
         # Cards side by side share one shape: either all of them hold a bullet list or none does
         rows = CardRows()
         rows.feed(main)
