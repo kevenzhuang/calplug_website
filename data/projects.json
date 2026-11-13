@@ -1,10 +1,10 @@
 {
-  "_note": "Extracted from calplug.org/projects on 2026-11-12. 'summary' is a one-line paraphrase of the existing description. 'themes' are a DRAFT grouping (not from the site) pending Arnold's review. Sponsor and years are as shown on the site; null = not shown.",
+  "_note": "Extracted from calplug.org/projects on 2026-11-12. 'summary' is a one-line paraphrase of the existing description. 'themes' are a DRAFT grouping (not from the site) pending Arnold's review. Sponsor and years are as shown on the site; null = not shown. 'short_title' (home page cards) and 'intro' were written for the new site and are pending Arnold's review.",
   "themes": {
     "plug-loads": "Plug loads & appliances",
     "behavior": "User behavior",
     "smart-manufacturing": "Smart manufacturing",
-    "grid": "Grid & distributed energy",
+    "grid": "Grid & energy storage",
     "buildings": "Buildings & data centers"
   },
   "projects": [
@@ -34,7 +34,8 @@
       ],
       "image": "/wp-content/uploads/simplified-diagram-no-title.png",
       "links": [],
-      "image_alt": "Simplified diagram of the SIGNAL forecasting workflow"
+      "image_alt": "Simplified diagram of the SIGNAL forecasting workflow",
+      "short_title": "SIGNAL: Net-load Forecasting"
     },
     {
       "id": "ai-tes",
@@ -52,7 +53,8 @@
       ],
       "image": "https://f1000research-files.f1000.com/manuscripts/200560/5dabd312-8962-4ffc-9dd6-a4f6747d7eed_figure3.gif",
       "links": [],
-      "image_alt": "Diagram of thermal energy storage technologies"
+      "image_alt": "Diagram of thermal energy storage technologies",
+      "short_title": "AI-TES: Thermal Energy Storage"
     },
     {
       "id": "edge-data-center",
@@ -70,7 +72,8 @@
       ],
       "image": "https://assets.belden.com/m/7a3474ba28aecdc4/original/Vector_cars.jpg",
       "links": [],
-      "image_alt": "Illustration of edge data centers in a city"
+      "image_alt": "Illustration of edge data centers in a city",
+      "short_title": "Edge Data Center Smart Retrofit"
     },
     {
       "id": "occupancy-lighting",
@@ -88,7 +91,8 @@
       ],
       "image": "/wp-content/uploads/unnamed-1.png",
       "links": [],
-      "image_alt": "Diagram of the occupancy-based lighting and HVAC control system"
+      "image_alt": "Diagram of the occupancy-based lighting and HVAC control system",
+      "short_title": "Occupancy-based Smart Lighting"
     },
     {
       "id": "pletics",
@@ -535,5 +539,6 @@
         }
       ]
     }
-  ]
+  ],
+  "intro": "CalPlug works with utilities, state agencies and companies on applied energy research. Each project links to its full description and reports."
 }

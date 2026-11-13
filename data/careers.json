@@ -1,0 +1,129 @@
+{
+  "_note": "From calplug.org/about/careers (2026-11-12). Rewritten into short, consistent pieces for the new site (approved direction 2026-11-13); meaning unchanged. Pending Arnold's review. The term and dates are as on the old site and are out of date: see CONTENT-NOTES.md.",
+  "title": "Careers",
+  "intro": "Undergraduate and graduate students from all majors can join CalPlug and Calit2 research projects for 199/299 course credit. Projects tackle real industry and societal problems and usually span at least two UCI schools.",
+  "areas": [
+    "Energy efficiency",
+    "Artificial intelligence",
+    "Nanotechnology",
+    "Healthcare",
+    "Transportation"
+  ],
+  "deadline": "Applications are due by 5:00 PM PST on Friday of Week 1 of each quarter, the course registration deadline. Spring 2026 deadline: April 3, 2026.",
+  "offer": [
+    "Hands-on research in cutting-edge fields",
+    "Workspace, supplies and equipment",
+    "Mentorship from faculty and project leaders",
+    "1–3 course credits (199/299); possible paid positions after 2+ quarters of outstanding work",
+    "Letters of recommendation after 2+ quarters"
+  ],
+  "ask": [
+    "GPA 3.0+ preferred; lower GPAs considered with an explanation",
+    "At least 3 quarters (one year) of research",
+    "At least 8 hours a week (2 units)",
+    "Team meetings, a research log, and a short report each quarter"
+  ],
+  "term": "Spring 2026",
+  "positions": [
+    {
+      "id": "TES-S26",
+      "title": "AI & Energy Efficiency",
+      "mentors": [
+        {
+          "name": "Dr. Shuoyu (Arnold) Wang",
+          "email": "shuoyuw@uci.edu",
+          "photo": "/wp-content/uploads/image001-scaled.jpg"
+        }
+      ],
+      "description": "Apply AI and machine learning to predict and control the performance of thermal energy systems.",
+      "tasks": [
+        "Generate high-fidelity thermal datasets with CFD and transient thermal simulation",
+        "Select and train ML models validated with FE data",
+        "Build AI applications for TES systems of different scales and conditions"
+      ]
+    },
+    {
+      "id": "IAC-F25",
+      "title": "Energy Engineering",
+      "mentors": [
+        {
+          "name": "Chelsea Choudhary",
+          "email": "ccchoudh@uci.edu",
+          "photo": "https://www.calit2.uci.edu/files/2026/03/chelsea250x300.jpg"
+        }
+      ],
+      "description": "Join a DOE-funded program that gives free energy assessments to small and medium-sized manufacturers.",
+      "tasks": [
+        "Train as an energy efficiency engineer",
+        "Learn how to reduce waste and improve productivity",
+        "Understand U.S. supply chains"
+      ],
+      "link": {
+        "label": "SMART Industrial Training and Assessment Program",
+        "url": "https://smartiac.calit2.uci.edu/"
+      }
+    },
+    {
+      "id": "DC-S26",
+      "title": "Electrical Engineering & AI-driven Management",
+      "mentors": [
+        {
+          "name": "Dr. G. P. Li",
+          "email": "gpli@calit2.uci.edu",
+          "photo": "/wp-content/uploads/gp-li-300dpi_cropped-2.jpg"
+        },
+        {
+          "name": "Dr. Shuoyu (Arnold) Wang",
+          "email": "shuoyuw@uci.edu",
+          "photo": "/wp-content/uploads/image001-scaled.jpg"
+        }
+      ],
+      "description": "Explore cost-effective retrofit strategies that make edge data centers more energy efficient.",
+      "tasks": [
+        "Measure the energy use of IT server loads and cooling loads in server rooms",
+        "Develop AI algorithms for real-time data center load management",
+        "Monitor and analyze energy data at the Calit2 facility across demonstration phases"
+      ]
+    },
+    {
+      "id": "BA-S26",
+      "title": "Building Automation & Remote Sensing and Control",
+      "mentors": [
+        {
+          "name": "Dr. G. P. Li",
+          "email": "gpli@calit2.uci.edu",
+          "photo": "/wp-content/uploads/gp-li-300dpi_cropped-2.jpg"
+        },
+        {
+          "name": "Dr. Shuoyu (Arnold) Wang",
+          "email": "shuoyuw@uci.edu",
+          "photo": "/wp-content/uploads/image001-scaled.jpg"
+        }
+      ],
+      "description": "Develop whole-building load management for lighting, HVAC and plug load devices.",
+      "tasks": [
+        "Explore occupancy-based monitoring in buildings",
+        "Develop AI load prediction for real-time control of lighting and HVAC",
+        "Demonstrate the technology at a campus site and measure energy savings"
+      ]
+    }
+  ],
+  "apply": [
+    {
+      "title": "Contact a mentor",
+      "text": "Read the positions and email the mentor to learn more about the project."
+    },
+    {
+      "title": "Apply by Week 1",
+      "text": "New and returning students apply by 5:00 PM PST on Friday of Week 1. With the Dean's approval, applications may be accepted until Week 3."
+    },
+    {
+      "title": "Interview",
+      "text": "Selected students are invited to an interview, in person or online, about skills, interests and availability."
+    },
+    {
+      "title": "Enroll",
+      "text": "Once matched with a project, submit the 199/299 paperwork."
+    }
+  ]
+}

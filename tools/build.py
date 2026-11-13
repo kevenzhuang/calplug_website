@@ -78,10 +78,6 @@ def paras(p):
     return [d] if isinstance(d, str) else d
 
 
-def first_sentence(p):
-    """First sentence of the original description, word for word."""
-    ps = paras(p)
-    return re.split(r"(?<=[.!?])\s+(?=[A-Z\u201c\"])", ps[0], maxsplit=1)[0] if ps else ""
 
 
 def years(p):
@@ -100,6 +96,7 @@ def nobreak(html):
         for term in NOBREAK:
             s = s.replace(term, term.replace(" ", "\u00a0"))
         s = re.sub(r"\b([A-Z]{2,4})-([A-Z]?\d{2,4})\b", "\\1\u2011\\2", s)  # IDs such as DC-S26
+        s = re.sub(r"\b(\w{2,4})-(\w{2,4})\b", "\\1\u2011\\2", s)  # short hyphenated words such as Net-load, AI-TES
         return s.replace(" \u2013 ", "\u00a0\u2013 ")  # a dash never starts a line
     return re.sub(r">([^<]+)<", lambda m: ">" + fix(m.group(1)) + "<", html)
 
@@ -247,21 +244,67 @@ def news_item(ev):
             f'{links(ev.get("links"))}</div></article>')
 
 
-def project_row(p, mode="list"):
-    """One format for every project (DESIGN.md section 3, One list format).
-    mode "title": years, title, sponsor (home page). "list": plus first sentence and the full text on demand.
-    "full": all original paragraphs and the image (current projects on the Projects page)."""
-    sponsor = f'<p class="meta">{e(p["sponsor"])}</p>' if p.get("sponsor") else ""
-    pic = f'<figure class="figure">{img(p["image"], p.get("image_alt", ""))}</figure>' if p.get("image") else ""
-    body = ""
-    if mode == "full":
-        body = "".join(f"<p>{e(x)}</p>" for x in paras(p)) + pic + links(p.get("links"))
-    elif mode == "list":
-        more = (f'<details><summary>Full description</summary>{"".join(f"<p>{e(x)}</p>" for x in paras(p))}{pic}</details>'
-                if paras(p) else "")
-        body = (f"<p>{e(first_sentence(p))}</p>" if paras(p) else "") + more + links(p.get("links"))
-    return (f'<article class="item{" full" if mode == "full" else ""}" id="{e(p["id"])}"><div class="when">{years(p) or "Ongoing"}</div>'
-            f'<div><h3>{e(p["title"])}</h3>{sponsor}{body}</div></article>')
+def words(text):
+    return len((text or "").split())
+
+
+def limit(text, n, where):
+    """Text rules (DESIGN.md section 5): short pieces stay short. Fails the build when a piece is too long."""
+    if words(text) > n:
+        ERRORS.append(f"{where}: {words(text)} words, the limit is {n}: {text[:60]}...")
+
+
+def project_page_name(p):
+    return f"project-{p['id']}.html"
+
+
+def project_meta(p, themes):
+    bits = [years(p) or "Ongoing"] + ([p["sponsor"]] if p.get("sponsor") else [])
+    return " · ".join(e(b) for b in bits)
+
+
+def theme_names(p, themes):
+    return " · ".join(e(themes[t]) for t in p.get("themes", []) if t in themes)
+
+
+def project_card(p, themes, short=False):
+    """Card component (DESIGN.md section 4): image, meta line, title, summary, link."""
+    href = project_page_name(p)
+    title = p.get("short_title") if short and p.get("short_title") else p["title"]
+    pic = img(p["image"], p.get("image_alt", "")) if p.get("image") else img(NEWS_DEFAULT, "")
+    tags = f'<p class="tags">{theme_names(p, themes)}</p>' if not short and p.get("themes") else ""
+    return (f'<article class="card" data-tags="{" ".join(p.get("themes", []))}"><a class="thumb" href="{href}" tabindex="-1" aria-hidden="true">{pic}</a>'
+            f'<div class="card-body"><p class="when">{project_meta(p, themes) if not short else e(years(p) or "Ongoing")}</p>'
+            f'<h3><a href="{href}">{e(title)}</a></h3><p>{e(p.get("summary", ""))}</p>{tags}'
+            f'<div class="links"><a class="more" href="{href}">Details</a></div></div></article>')
+
+
+def project_row(p, themes):
+    """List row (DESIGN.md section 4): years on the left; title, sponsor and area, summary, links."""
+    href = project_page_name(p)
+    meta = " · ".join(x for x in [e(p.get("sponsor", "")), theme_names(p, themes)] if x)
+    ls = list(p.get("links") or [])
+    more = f'<a href="{href}">Details</a>' if paras(p) else ""
+    link_html = '<div class="links">' + "".join(f'<a href="{e(url(l["url"]))}">{e(l["label"])}</a>' for l in ls) + more + "</div>"
+    title = f'<a href="{href}">{e(p["title"])}</a>' if paras(p) else e(p["title"])
+    return (f'<article class="item" id="{e(p["id"])}" data-tags="{" ".join(p.get("themes", []))}"><div class="when">{years(p) or "Ongoing"}</div>'
+            f'<div><h3>{title}</h3><p class="meta">{meta}</p>'
+            f'{f"<p>{e(p["summary"])}</p>" if p.get("summary") else ""}{link_html}</div></article>')
+
+
+def build_project_page(p, themes, site):
+    partners = f'<p class="meta">With {e(", ".join(p["partners"]))}</p>' if p.get("partners") else ""
+    pic = f'<figure class="figure">{img(p["image"], p.get("image_alt", ""), eager=True)}</figure>' if p.get("image") else ""
+    body = head(p["title"], f'<p class="meta head-meta">{project_meta(p, themes)}{" · " + theme_names(p, themes) if p.get("themes") else ""}</p>') + f"""
+<section class="section"><div class="wrap prose">
+  {partners}
+  {''.join(f"<p>{e(x)}</p>" for x in paras(p))}
+  {pic}
+  {links(p.get("links"))}
+  <p class="back"><a href="research.html">← All projects</a></p>
+</div></section>
+"""
+    return page(project_page_name(p), p["title"], (p.get("summary") or p["title"])[:155], body, site)
 
 
 def build_home(site, projects, pubs, events, people, partners):
@@ -269,12 +312,13 @@ def build_home(site, projects, pubs, events, people, partners):
     active = [p for p in P if p["status"] == "active"]
     news = sorted([x for x in events["events"] if x.get("date")], key=lambda x: x["date"], reverse=True)[:3]
     recent = sorted([x for x in pubs["publications"] if x["type"] != "press"], key=lambda x: x["year"], reverse=True)[:3]
+    limit(site["tagline"], 40, "site.json tagline")
     body = f"""
 <section class="welcome"><div class="wrap">
   <div class="welcome-text">
     <h1>California Plug Load Research Center</h1>
-    <p class="lead">The California Plug Load Research Center (CalPlug) is the Leading Enabler for Energy Efficiency Solutions in the Use and Design of Appliances and Consumer Products.</p>
-    <p class="textlinks"><a href="about.html">About</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></p>
+    <p class="lead">{e(site['tagline'])}</p>
+    <p class="textlinks"><a href="about.html">About</a><a href="careers.html">Join us</a><a href="contact.html">Contact</a></p>
   </div>
   <figure>{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign', eager=True)}</figure>
 </div></section>
@@ -284,14 +328,14 @@ def build_home(site, projects, pubs, events, people, partners):
 </div></section>
 <section class="section"><div class="wrap">
   <div class="section-head"><h2>Current projects</h2><a class="more" href="research.html">All projects</a></div>
-  <div class="list">{''.join(project_row(p, 'title') for p in active)}</div>
+  <div class="grid c4 cards">{''.join(project_card(p, projects['themes'], short=True) for p in active)}</div>
 </div></section>
 <section class="section"><div class="wrap">
   <div class="section-head"><h2>Recent publications</h2><a class="more" href="publications.html">All publications</a></div>
   <div class="list">{''.join(pub_entry(x, tag=False) for x in recent)}</div>
 </div></section>
 """
-    return page("index.html", "Home", site["about"][:155], body, site)
+    return page("index.html", "Home", site["tagline"][:155], body, site)
 
 
 def build_about(site, about):
@@ -304,30 +348,36 @@ def build_about(site, about):
         if s.get("link"):
             inner += f'<p><a href="{s["link"]["href"]}">{e(s["link"]["label"])} \u2192</a></p>'
         out += f'<section class="about-row"><h2>{e(s["title"])}</h2><div>{inner}</div></section>'
-    body = (head("About", img("/wp-content/uploads/calpluglogo-small.png",
-                              "CalPlug, California Plug Load Research Center, University of California, Irvine", "about-logo", eager=True))
-            + f'<div class="wrap about">{out}</div>')
+    body = head("About") + f'<div class="wrap about">{out}</div>'
     return page("about.html", "About", about["sections"][0]["paragraphs"][0][:155], body, site)
 
 
 def build_research(site, projects):
-    P = projects["projects"]
+    P, themes = projects["projects"], projects["themes"]
     for p in P:
         need(p, ["id", "title", "status"], "projects.json")
+        limit(p.get("summary"), 35, f"projects.json {p['id']} summary")
+    limit(projects["intro"], 45, "projects.json intro")
     active = [p for p in P if p["status"] == "active"]
     done = sorted([p for p in P if p["status"] == "completed"], key=lambda p: (p.get("end") or 0, p.get("start") or 0), reverse=True)
+    used = [t for t in themes if any(t in p.get("themes", []) for p in P)]
+    buttons = '<button aria-pressed="true" data-filter="all">All</button>' + "".join(
+        f'<button aria-pressed="false" data-filter="{t}">{e(themes[t])}</button>' for t in used)
     students = ""
     for g in projects["student_projects"]:
         students += f'<h3>{e(g["group"])}</h3><ul class="plain">' + "".join(
             f'<li><a href="{e(url(i["url"]))}">{e(i["title"])}</a></li>' for i in g["items"]) + "</ul>"
-    body = head("Projects") + f"""
-<section class="section"><div class="wrap">
-  <h2>Current projects</h2>
-  <div class="list">{''.join(project_row(p, 'full') for p in active)}</div>
-</div></section>
-<section class="section" id="completed"><div class="wrap">
-  <h2>Completed projects</h2>
-  <div class="list">{''.join(project_row(p) for p in done)}</div>
+    body = head("Projects", f'<p class="intro">{e(projects["intro"])}</p>') + f"""
+<section class="section"><div class="wrap" data-filter-scope>
+  <div class="filters" role="group" aria-label="Filter by research area">{buttons}</div>
+  <div data-group>
+    <h2>Current projects</h2>
+    <div class="grid c2 cards">{''.join(project_card(p, themes) for p in active)}</div>
+  </div>
+  <div data-group id="completed" class="group">
+    <h2>Completed projects</h2>
+    <div class="list">{''.join(project_row(p, themes) for p in done)}</div>
+  </div>
 </div></section>
 <section class="section" id="student-projects"><div class="wrap prose">
   <h2>Student projects</h2>
@@ -374,8 +424,12 @@ def build_people(site, people, partners):
         need(s, ["name", "program", "level"], "people.json students")
 
     def lead(p, title):
+        bio = p.get("bio", "")
+        parts = re.split(r"(?<=[a-z)][a-z)][.!?])\s+(?=[A-Z])", bio)  # not after initials such as "G. P."
+        short, rest = " ".join(parts[:2]), " ".join(parts[2:])
+        more = f'<details><summary>Full bio</summary><p>{e(rest)}</p></details>' if rest else ""
         return (f'<div class="lead-person">{img(p["photo"], "Portrait of " + p["name"])}<div><h3>{e(p["name"])}</h3>'
-                f'<p class="meta">{e(title)} \u00b7 <a href="mailto:{e(p["email"])}">{e(p["email"])}</a></p><p>{e(p.get("bio", ""))}</p></div></div>')
+                f'<p class="meta">{e(title)} \u00b7 <a href="mailto:{e(p["email"])}">{e(p["email"])}</a></p><p>{e(short)}</p>{more}</div></div>')
 
     team = "".join(
         f'<div class="card"><h3>{e(a["name"])}</h3><p>{e(a["title"])}</p><p><a href="mailto:{e(a["email"])}">{e(a["email"])}</a></p></div>'
@@ -422,13 +476,15 @@ def build_facilities(site, partners):
     pages = {"sim-home": "sim-home.html", "sim-lab": "sim-lab.html", "1-kwh-challenge": "1-kwh-challenge.html"}
     cards = ""
     for f in partners["facilities"]:
-        cards += (f'<a class="card" href="{pages[f["id"]]}" id="{e(f["id"])}"><div class="thumb">{img(f["images"][0], f["name"])}</div>'
-                  f'<h3>{e(f["name"])}</h3><p>{e(f["blurb"])}</p><div class="links"><span>Read more \u2192</span></div></a>')
+        limit(f["blurb"], 60, f"partners.json facility {f['id']} blurb")
+        h = pages[f["id"]]
+        cards += (f'<article class="card" id="{e(f["id"])}"><a class="thumb" href="{h}" tabindex="-1" aria-hidden="true">{img(f["images"][0], f["name"])}</a>'
+                  f'<div class="card-body"><h3><a href="{h}">{e(f["name"])}</a></h3><p>{e(f["blurb"])}</p><div class="links"><a class="more" href="{h}">Read more</a></div></div></article>')
     body = head("Facilities") + f"""
 <section class="section"><div class="wrap">
   <p>{e(partners['facility_intro'])}</p>
   <figure class="plan">{img('/wp-content/uploads/clplg_space.jpg', 'Floor plan of the CalPlug space on the fourth floor of the Calit2 Building')}</figure>
-  <div class="grid c3">{cards}</div>
+  <div class="grid c3 cards">{cards}</div>
 </div></section>
 """
     return page("facilities.html", "Facilities", "CalPlug labs and demonstration facilities at UC Irvine.", body, site)
@@ -438,6 +494,7 @@ def build_news(site, events):
     evs = events["events"]
     for x in evs:
         need(x, ["id", "title"], "events.json")
+        limit(x.get("summary"), 30, f"events.json {x['id']} summary")
     dated = sorted([x for x in evs if x.get("date")], key=lambda x: x["date"], reverse=True)
     undated = [x for x in evs if not x.get("date")]
     body = head("News & Events") + f"""
@@ -447,49 +504,100 @@ def build_news(site, events):
     return page("news.html", "News & Events", "CalPlug workshops and events.", body, site)
 
 
-def build_careers(site):
-    """Original Careers page; the open positions are shown as cards of one format (DESIGN.md section 2)."""
-    html = legacy("careers")
-    html = re.sub(r"<p>\s*(?=<img)", "", html)
-    html = re.sub(r"<p>\s*$", "", html.strip())
-    m1 = re.search(r"<h2>(?:<strong>)?Open Positions.*?</h2>", html)
-    m2 = re.search(r"<h2>(?:<strong>)?How to Apply", html)
-    if not (m1 and m2):
-        ERRORS.append("careers: could not find the 'Open Positions' and 'How to Apply' headings")
-        return legacy_page("careers.html", "Careers", "careers", site, "Student research opportunities at CalPlug.")
-    pre, part, post = html[:m1.end()], html[m1.end():m2.start()], html[m2.start():]
-    mentors = [(m.start(), m.group(1), m.group(2)) for m in
-               re.finditer(r"(<img [^>]*>)\s*<p><strong>(Mentors?:.*?)</strong></p>", part, re.S)]
-    heads = list(re.finditer(r"<h3>(.*?)</h3>", part, re.S))
-    cards = ""
-    for i, h in enumerate(heads):
-        stops = [x.start() for x in heads[i + 1:i + 2]] + [s for s, _, _ in mentors if s > h.end()] + [len(part)]
-        body = part[h.end():min(stops)].strip()
-        mentor = [x for x in mentors if x[0] < h.start()]
-        who = f'<div class="mentor">{mentor[-1][1]}<p>{mentor[-1][2]}</p></div>' if mentor else ""
-        cards += f'<article class="card position">{who}<h3>{h.group(1)}</h3>{body}</article>'
-    body = head("CalPlug Careers") + f"""
-<section class="section"><div class="wrap prose">{pre}</div>
-<div class="wrap"><div class="grid c2 positions">{cards}</div></div>
-<div class="wrap prose">{post}</div></section>
+def mentor_line(ms):
+    pics = "".join(img(m["photo"], "") for m in ms if m.get("photo"))
+    names = " and ".join(f'<a href="mailto:{e(m["email"])}">{e(m["name"])}</a>' for m in ms)
+    return f'<div class="mentor"><div class="faces">{pics}</div><p>Mentor{"s" if len(ms) > 1 else ""}: {names}</p></div>'
+
+
+def build_careers(site, c):
+    limit(c["intro"], 45, "careers.json intro")
+    for p in c["positions"]:
+        need(p, ["id", "title", "mentors", "description"], "careers.json positions")
+        limit(p["description"], 30, f"careers.json {p['id']} description")
+        if len(p.get("tasks", [])) > 3:
+            ERRORS.append(f"careers.json {p['id']}: at most 3 tasks")
+    pos = ""
+    for p in c["positions"]:
+        tasks = '<ul class="ticks">' + "".join(f"<li>{e(t)}</li>" for t in p.get("tasks", [])) + "</ul>" if p.get("tasks") else ""
+        more = f'<p class="meta">More info: <a href="{e(p["link"]["url"])}">{e(p["link"]["label"])}</a></p>' if p.get("link") else ""
+        pos += (f'<article class="card position"><div class="card-body"><p><span class="pill">{e(p["id"])}</span></p><h3>{e(p["title"])}</h3>'
+                f'<p>{e(p["description"])}</p>{tasks}{more}{mentor_line(p["mentors"])}</div></article>')
+    steps = "".join(f'<li><h3>{e(s["title"])}</h3><p>{e(s["text"])}</p></li>' for s in c["apply"])
+    lst = lambda xs: '<ul class="ticks">' + "".join(f"<li>{e(x)}</li>" for x in xs) + "</ul>"
+    body = head(c["title"], f'<p class="intro">{e(c["intro"])}</p>') + f"""
+<section class="section"><div class="wrap">
+  <p class="notice"><strong>Deadline.</strong> {e(c['deadline'])}</p>
+  <div class="grid c2 cards">
+    <div class="card"><div class="card-body"><h3>What you get</h3>{lst(c['offer'])}</div></div>
+    <div class="card"><div class="card-body"><h3>What we ask</h3>{lst(c['ask'])}</div></div>
+  </div>
+  <p class="meta areas">Calit2 research areas: {" · ".join(e(a) for a in c['areas'])}</p>
+</div></section>
+<section class="section" id="positions"><div class="wrap">
+  <h2>Open positions ({e(c['term'])})</h2>
+  <div class="grid c2 cards">{pos}</div>
+</div></section>
+<section class="section" id="apply"><div class="wrap">
+  <h2>How to apply</h2>
+  <ol class="steps">{steps}</ol>
+</div></section>
 """
     return page("careers.html", "Careers", "Student research opportunities at CalPlug.", body, site)
 
 
-def build_support(site, partners):
-    chips = lambda xs: "".join(f'<span class="tag">{e(x)}</span>' for x in xs)
-    body = head("Support & Memberships") + f"""
-<section class="section"><div class="wrap prose">{legacy('support')}</div></section>
-<section class="section" id="friends"><div class="wrap prose"><h2>Support</h2>{legacy('friends')}</div></section>
-<section class="section" id="members"><div class="wrap prose"><h2>Become A Member</h2>{legacy('members')}</div></section>
+def logo_tile(x):
+    inner = img(x["logo"], x["name"]) if x.get("logo") else f'<span>{e(x["name"])}</span>'
+    return f'<li class="logo-tile" title="{e(x["name"])}">{inner}</li>'
+
+
+def build_support(site, s):
+    limit(s["intro"], 45, "support.json intro")
+    tiers = s["tiers"]
+    code = {t: t[0] for t in tiers}
+    rows = [(cat["category"], it[0], it[1]) for cat in s["benefits"] for it in cat["items"]]
+    base = [r for r in rows if code[tiers[0]] in r[2]]
+    tier_cards = (f'<div class="card"><div class="card-body"><p class="pill">{e(tiers[0])}</p>'
+                  f'<p>{len(base)} benefits in {", ".join(c["category"].lower() for c in s["benefits"][:-1])} and {s["benefits"][-1]["category"].lower()}.</p></div></div>')
+    for i, t in enumerate(tiers[1:], 1):
+        adds = [r[1] for r in rows if code[t] in r[2] and code[tiers[i - 1]] not in r[2]]
+        tier_cards += (f'<div class="card"><div class="card-body"><p class="pill">{e(t)}</p><p>Everything in {e(tiers[i - 1])}, plus:</p>'
+                       '<ul class="ticks">' + "".join(f"<li>{e(a)}</li>" for a in adds) + "</ul></div></div>")
+    table = ""
+    for cat in s["benefits"]:
+        table += f'<tr class="cat"><th colspan="{len(tiers) + 1}" scope="colgroup">{e(cat["category"])}</th></tr>'
+        for name, has in cat["items"]:
+            table += f"<tr><td>{e(name)}</td>" + "".join(
+                f'<td class="c">{"<span aria-label=\"Included\">✓</span>" if code[t] in has else "<span class=\"visually-hidden\">Not included</span>"}</td>' for t in tiers) + "</tr>"
+    head_row = "<tr><th scope=\"col\">Benefit</th>" + "".join(f'<th scope="col" class="c">{e(t)}</th>' for t in tiers) + "</tr>"
+    ways = ""
+    for w in s["ways"]:
+        act = f'<div class="links"><a class="more" href="{e(w["action"]["url"])}">{e(w["action"]["label"])}</a></div>' if w.get("action") else ""
+        ways += f'<div class="card" id="{"friends" if w["id"] == "gift" else e(w["id"])}"><div class="card-body"><h3>{e(w["title"])}</h3><p>{e(w["text"])}</p>{act}</div></div>'
+    cmail = s["contact"]
+    body = head(s["title"], f'<p class="intro">{e(s["intro"])}</p>') + f"""
+<section class="section"><div class="wrap">
+  <h2>Current members</h2>
+  <ul class="logo-grid lg">{''.join(logo_tile(x) for x in s['members'])}</ul>
+</div></section>
+<section class="section"><div class="wrap">
+  <h2>Ways to support</h2>
+  <div class="grid c3 cards">{ways}</div>
+</div></section>
+<section class="section" id="members"><div class="wrap">
+  <h2>Membership levels</h2>
+  <div class="grid c3 cards tiers">{tier_cards}</div>
+  <details class="compare"><summary>Compare all benefits</summary>
+    <div class="table-wrap"><table class="benefits"><thead>{head_row}</thead><tbody>{table}</tbody></table></div>
+  </details>
+  <p class="after-list">To become a member, contact {e(cmail['name'])} at <a href="mailto:{e(cmail['email'])}">{e(cmail['email'])}</a>.</p>
+</div></section>
 <section class="section" id="affiliates"><div class="wrap">
-  <h2>Members &amp; Affiliates</h2>
-  <h3 class="sub">Current CalPlug Members</h3><div class="chips">{chips(partners['members'])}</div>
-  <h3 class="sub">Current affiliates</h3><div class="chips">{chips(partners['affiliates'])}</div>
-  <div class="logos" style="margin-top:var(--s-32)">{''.join(img(l['src'], l['name']) for l in partners.get('logos', []))}</div>
+  <h2>{e(s['affiliates_title'])}</h2>
+  <ul class="logo-grid">{''.join(logo_tile(x) for x in s['affiliates'])}</ul>
 </div></section>
 """
-    return page("support.html", "Support & Memberships", "Support CalPlug as a friend or corporate member.", body, site)
+    return page("support.html", s["title"], "Support CalPlug as a member, with a gift, or with equipment.", body, site)
 
 
 def build_contact(site):
@@ -531,10 +639,14 @@ def main():
         "sim-lab.html": legacy_page("sim-lab.html", "SIM Lab", "sim-lab", site, "CalPlug SIM Lab testing and demonstration labs."),
         "1-kwh-challenge.html": legacy_page("1-kwh-challenge.html", "1 kWh Challenge", "1-kwh-challenge", site, "The One Kilowatt-hour Challenge outreach program."),
         "events-archive.html": legacy_page("events-archive.html", "Events Archive", "events-archive", site, "Past CalPlug workshops with agendas, speakers and recordings."),
-        "careers.html": build_careers(site),
-        "support.html": build_support(site, partners),
+        "careers.html": build_careers(site, load("careers")),
+        "support.html": build_support(site, load("support")),
         "contact.html": build_contact(site),
     }
+    for p in projects["projects"]:
+        if paras(p):
+            SECTION[project_page_name(p)] = "research.html"
+            pages[project_page_name(p)] = build_project_page(p, projects["themes"], site)
     if ERRORS:
         print("Build stopped. Fix these data problems:\n  " + "\n  ".join(ERRORS))
         sys.exit(1)

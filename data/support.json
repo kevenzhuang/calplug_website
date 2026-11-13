@@ -1,0 +1,213 @@
+{
+  "_note": "From calplug.org/support, /friends, /members-2 and /affiliations (2026-11-12). Rewritten into short pieces for the new site (approved direction 2026-11-13); meaning unchanged. Membership benefits retyped from the table image on /members-2 (Screenshot-2026-08-19-175817.jpg). Pending Arnold's review.",
+  "title": "Support & Memberships",
+  "intro": "Support from companies and individual donors adds to CalPlug's research funding. It lets us expand outreach and education and do independent research on plug loads, energy efficiency and storage, and user experience.",
+  "contact": {
+    "name": "Dr. Shuoyu (Arnold) Wang",
+    "email": "shuoyuw@uci.edu"
+  },
+  "members": [
+    {
+      "name": "Los Angeles Department of Water and Power (LADWP)",
+      "logo": "/wp-content/uploads/images-5.jpg"
+    },
+    {
+      "name": "Consumer Technology Association (CTA)",
+      "logo": "/wp-content/uploads/images-6.jpg"
+    }
+  ],
+  "ways": [
+    {
+      "id": "membership",
+      "title": "Become a member",
+      "text": "Companies and organizations join as Gold, Platinum or Diamond members and work with our researchers and students.",
+      "action": {
+        "label": "See member benefits",
+        "url": "#members"
+      }
+    },
+    {
+      "id": "gift",
+      "title": "Give a gift",
+      "text": "Send a check payable to “The UCI Foundation” to: California Plug Load Research Center (CalPlug), ATTN: Herumi Baylon, University of California, Irvine, Irvine, CA 92697-2800."
+    },
+    {
+      "id": "equipment",
+      "title": "Donate equipment",
+      "text": "To donate equipment or materials, contact Dr. Shuoyu (Arnold) Wang.",
+      "action": {
+        "label": "shuoyuw@uci.edu",
+        "url": "mailto:shuoyuw@uci.edu"
+      }
+    }
+  ],
+  "tiers": [
+    "Gold",
+    "Platinum",
+    "Diamond"
+  ],
+  "benefits": [
+    {
+      "category": "Events and networking",
+      "items": [
+        [
+          "Event announcements",
+          "GPD"
+        ],
+        [
+          "Free admission to the biannual CalPlug workshop with networking reception (starting at two tickets for Friends; tickets are transferable to members' affiliates)",
+          "GPD"
+        ],
+        [
+          "Introductions to CalPlug and UCI faculty, staff, and students at event receptions",
+          "GPD"
+        ],
+        [
+          "Facilitating introductions for partnerships with other organizations",
+          "GPD"
+        ],
+        [
+          "Information exchange discussions on key topics with members and topic experts among UCI faculty and staff, using the Center as a neutral ground for discussions among many parties",
+          "GPD"
+        ],
+        [
+          "Formal introductions during CalPlug Workshops and other events, with recognition of membership status",
+          "GPD"
+        ],
+        [
+          "Prioritized for demonstrations of latest products or services at CalPlug events",
+          "GPD"
+        ],
+        [
+          "Opportunity to include news items on CalPlug quarterly reports",
+          "GPD"
+        ]
+      ]
+    },
+    {
+      "category": "Information, training and research",
+      "items": [
+        [
+          "Quarterly member-only reports, with inside information on ongoing projects and CalPlug's summary of events in the field",
+          "GPD"
+        ],
+        [
+          "Access to informal consultation with CalPlug technical and research staff",
+          "GPD"
+        ],
+        [
+          "Access to beta tools developed by CalPlug",
+          "GPD"
+        ],
+        [
+          "Opportunity to collaborate on research, development, and demonstration projects",
+          "PD"
+        ],
+        [
+          "Short training courses on EE and management of plug loads to support company's climate change goals (level of training to be determined)",
+          "GPD"
+        ],
+        [
+          "Access to CalPlug facility tours for members and their affiliates",
+          "GPD"
+        ],
+        [
+          "Preferred access to obtain non-exclusive license to CalPlug inventions",
+          "GPD"
+        ],
+        [
+          "First right access to obtain non-exclusive license and option to obtain exclusive license to CalPlug inventions",
+          "D"
+        ]
+      ]
+    },
+    {
+      "category": "Influence",
+      "items": [
+        [
+          "Biannual member meetings soliciting opinions on technical and policy issues",
+          "GPD"
+        ],
+        [
+          "Prioritized placement of EE or flexible loads management products in demonstration spaces, including SIM Home and SIM Lab",
+          "GPD"
+        ],
+        [
+          "Access to CalPlug students to discuss internships or jobs (e.g., members speak at professional development talks)",
+          "GPD"
+        ],
+        [
+          "Opportunity to help guide, mentor, and support student design projects (including recognition on posters and publications)",
+          "PD"
+        ],
+        [
+          "Member on Chief Technology Council",
+          "PD"
+        ],
+        [
+          "Member on Advisory Board",
+          "D"
+        ],
+        [
+          "Opportunity to host events such as energy efficiency workshops, seminars, and training sessions for interested groups at the CalPlug facility (specific terms to be agreed)",
+          "D"
+        ]
+      ]
+    },
+    {
+      "category": "Recognition",
+      "items": [
+        [
+          "A plaque on CalPlug's “Wall of Honor”",
+          "GPD"
+        ],
+        [
+          "Acknowledgement on CalPlug's website and publicity materials",
+          "GPD"
+        ],
+        [
+          "Permission to use CalPlug logo on member website to indicate membership",
+          "GPD"
+        ]
+      ]
+    }
+  ],
+  "affiliates_title": "Past members and current affiliates",
+  "affiliates": [
+    {
+      "name": "California Energy Commission (CEC)",
+      "logo": "/wp-content/uploads/ceclogo-1.jpg"
+    },
+    {
+      "name": "California Public Utilities Commission (CPUC)"
+    },
+    {
+      "name": "Southern California Edison (SCE)",
+      "logo": "/wp-content/uploads/edison-logo.png"
+    },
+    {
+      "name": "Pacific Gas and Electric Company (PG&E)"
+    },
+    {
+      "name": "San Diego Gas & Electric (SDG&E)",
+      "logo": "/wp-content/uploads/sempralogo.png"
+    },
+    {
+      "name": "Commonwealth Edison (ComEd)"
+    },
+    {
+      "name": "Smartenit",
+      "logo": "/wp-content/uploads/smartenit.jpg"
+    },
+    {
+      "name": "Embertec"
+    },
+    {
+      "name": "TrickleStar",
+      "logo": "/wp-content/uploads/tricklestar-logo.png"
+    },
+    {
+      "name": "DIRECTV (AT&T)"
+    }
+  ]
+}

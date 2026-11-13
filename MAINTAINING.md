@@ -13,11 +13,14 @@ Each task is one edit in one file under `data/`. Copy an existing entry and chan
 | Add a student | `data/people.json`, list `students` | Add `name`, `program`, `level`; optional `linkedin`, `photo` |
 | Mark a student as graduated | `data/people.json` | Move the entry from `students` to `alumni` |
 | Add a publication | `data/publications.json`, list `publications` | Add `type` (journal, conference, report, press), `year`, `authors`, `title`, `venue`, `url`. If `url` is a PDF, run the "Import images and make thumbnails" workflow on GitHub (Actions tab) to create its thumbnail |
-| Add a project | `data/projects.json`, list `projects` | Add `id`, `title`, `status` (active or completed), `start`, `end`, `sponsor`, `summary`, `themes`; active projects also need `description` |
+| Add a project | `data/projects.json`, list `projects` | Add `id`, `title`, `status` (active or completed), `start`, `end`, `sponsor`, `summary`, `themes`; active projects also need `description` and `image`, and a `short_title` for the Home card. Every project with a `description` gets its own page |
 | Finish a project | `data/projects.json` | Change `status` to `completed`, set `end`, add the report under `links` |
 | Add an event or news item | `data/events.json`, list `events` | Add `id`, `title`, `date` (YYYY-MM-DD), `summary`, `links`, and `image` (see DESIGN.md, News images). Without `image` the default image is used |
 | Change contact details | `data/site.json` | Edit `contact` |
-| Edit Careers, a facility page, Support text or the Events Archive | `content/legacy/<page>.html` | Plain HTML copied from the old site. Edit the text directly; keep the tags simple (p, h2 to h4, ul, li, a, img) |
+| Update Careers (term, deadline, positions) | `data/careers.json` | Change `term` and `deadline`; each position has `id`, `title`, `mentors` (name, email, photo), one-sentence `description`, up to 3 `tasks`. The build stops if a piece is too long (DESIGN.md section 5) |
+| Update Support (members, affiliates, benefits) | `data/support.json` | Members and affiliates: `name` and optional `logo` (without a logo the name is shown in a tile). Benefits: one line per benefit with the levels that include it (`G`, `P`, `D`) |
+| Change the home tagline or a page introduction | `data/site.json` (`tagline`), `data/projects.json` (`intro`), `data/careers.json`, `data/support.json` | Keep within the length limits in DESIGN.md section 5 |
+| Edit a facility page or the Events Archive | `content/legacy/<page>.html` | Plain HTML copied from the old site. Edit the text directly; keep the tags simple (p, h2 to h4, ul, li, a, img). `careers.html`, `support.html`, `friends.html` and `members.html` there are kept as the record of the old pages and are no longer published |
 | Add a board member | `data/people.json`, list `advisory_board` or `technology_council` | Add `name`, `title`, `org`, `org_url`, `photo` |
 
 Example, adding a publication:

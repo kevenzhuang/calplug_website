@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.9.3, 2026-11-13. Status: agreed with Keven Zhuang and built.
+Version 0.10, 2026-11-13. Status: built after Keven Zhuang's review of 0.9; waiting for his look.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -31,28 +31,28 @@ Home · About · People · Projects · Publications · Facilities · News & Even
 
 ### Pages
 
-Every page starts the same way: the page title (h1) on the left, a short green line under it, then the content. No introductory paragraph unless the original text has one.
+Every page starts the same way: the page title (h1) on the left, a short green line under it, then at most a two-sentence introduction (19px), then the content.
 
 | Page | Content, top to bottom |
 |---|---|
-| Home | Welcome band (see below) · Latest news · Current projects · Recent publications |
-| About | Full original logo · About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility (original text; small heading on the left, text on the right) |
-| People | Jump links (Team · Students · Faculty · Advisory Board · Council · Alumni) · Director and staff (photo and original bio) · Affiliated team · Students · Affiliated faculty · Advisory Board (+ emeriti) · Chief Technology Council (+ emeriti) · Alumni |
-| Projects | Current projects (full original text and image) · Completed projects (list) · Student projects. No filter for now: the research areas are not yet approved |
+| Home | Welcome (see below) · Latest news (3 list rows) · Current projects (4 small cards) · Recent publications (3 list rows) |
+| About | About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility (original text; small heading on the left, text on the right) |
+| People | Jump links (Team · Students · Faculty · Advisory Board · Council · Alumni) · Director and staff (photo, first two sentences of the bio, "Full bio" to open the rest) · Affiliated team · Students · Affiliated faculty · Advisory Board (+ emeriti) · Chief Technology Council (+ emeriti) · Alumni |
+| Projects | Intro · filter by research area (draft areas, see Open questions) · Current projects (cards, two per row) · Completed projects (list rows) · Student projects |
+| Project page (`project-<id>.html`) | Title · years, sponsor, area · partners · full original description · image · reports · link back to Projects. One page per project that has a description |
 | Publications | Filter by type · by year, newest first · Earlier documents, folded by category |
 | Facilities | Original intro · floor plan · three cards linking to SIM Home, 1 kWh Challenge, SIM Lab (each an original page) |
 | News & Events | All items, newest first · link to the Events Archive (original page with agendas and recordings) |
-| Careers | Original page; the open positions shown as cards of one format |
-| Support & Memberships | Original text of Support, Become A Member, Members & Affiliates |
+| Careers | Intro · deadline notice · "What you get" and "What we ask" cards · Open positions (cards: ID pill, title, one sentence, up to 3 tasks, mentors with photos) · How to apply (4 numbered steps). Content in `data/careers.json` |
+| Support & Memberships | Intro · Current members (large logo tiles) · Ways to support (3 cards: member, gift, equipment) · Membership levels (3 cards: Gold, then what Platinum and Diamond add; full comparison table folded below) · Past members and current affiliates (logo tiles). Content in `data/support.json` |
 | Contact | Original location text · photo of the Calit2 Building · address with an "Open in Google Maps" link · general, collaborations and Calit2 contacts · hours. No embedded map |
 
-### Home welcome band
+### Home welcome
 
-- Text on the left, the group photo on the right, both aligned at the top.
-- Text: "California Plug Load Research Center" (h1), the original tagline, then three text links: About · Careers · Contact.
-- The band is about 300px high on a laptop, so the first one or two news items are visible without scrolling.
+- Text on the left, the group photo on the right, both aligned at the top. White background, a 1px line below.
+- Text: "California Plug Load Research Center" (h1), the tagline from `data/site.json` (at most 40 words; says what CalPlug does in plain words), then three text links: About · Join us · Contact.
+- About 300px high on a laptop, so the first news items are visible without scrolling.
 - The photo is shown whole (not cropped), scaled to fit.
-- The band has the light blue background (`--blue-tint`); everything below is white.
 
 ### Footer
 
@@ -74,7 +74,7 @@ Blue and green are sampled from the CalPlug logo. They are used in small, meanin
 | `--blue` | `#005BAA` | Links, selected filter, menu hover, icon hover, left half of the top strip |
 | `--green` | `#8BC53F` | Right half of the top strip; line under the current menu item; short line under page and section titles; line on top of the footer. Never for text (2.07:1 on white) |
 | `--green-text` | `#4A7A1C` | Dates and years in lists (5.13:1 on white) |
-| `--blue-tint` | `#EEF4FA` | Home welcome band only |
+| `--blue-tint` | `#EEF4FA` | Pills (position IDs, membership levels) and notice boxes (with a 3px blue left line) |
 | `--tint` | `#F6F8FA` | Footer, image frames |
 | `--ink` | `#1B2530` | Headings and body text |
 | `--muted` | `#5B6875` | Authors, sponsors, summaries, small text |
@@ -109,20 +109,26 @@ No uppercase labels above headings. No underlines except on hover.
 
 ### Layout
 
-- One page width: 1080px (wide enough for the ten-item menu). Everything starts at the same left edge. Only the home welcome band has its own background.
+- One page width: 1080px (wide enough for the ten-item menu). Everything starts at the same left edge. No page section has its own background.
 - Running text is at most 720px wide. Lists use the full page width.
 - Spacing scale (px): 4, 8, 12, 16, 24, 32, 48, 64. Between sections 48; between a section title and its content 16.
 - Radius 6px. Borders 1px.
 
-### One list format
+### Three building blocks
 
-News, projects and publications use the same row: a narrow left column, then the title and details, rows separated by a 1px line.
+All content is shown with one of three blocks. The Publications list is the model: every entry has the same parts in the same places, and each part is short. Never paste long text into a page; if content does not fit a block, change the block here first.
+
+**1. List row.** A narrow left column, then the title and details; rows separated by a 1px line. For long lists that people scan.
 
 | List | Left column | Right column |
 |---|---|---|
 | News | Image, whole, in a 3:2 frame (180px wide) | Date · title · summary · links |
-| Projects | Years (110px) | Title · sponsor · first sentence of the original description · "Full description" · links |
+| Completed projects | Years (110px) | Title (links to the project page) · sponsor and area · summary · reports · Details |
 | Publications | Thumbnail (72px) | Title · authors · venue · type · link |
+
+**2. Card.** A bordered box: optional image on top (whole, in a 16:9 frame on the tint background), then a small meta line (years, sponsor), title, short text, and the link at the bottom. Cards in one row are the same height. For a few items that each deserve a look: current projects (2 per row; 4 small ones on Home), facilities (3), Careers positions (2), ways to support and membership levels (3). Two per row on tablets, one on phones.
+
+**3. Logo tile.** Every logo in a white box of the same size (112px high; 168px for current members), fitted whole and centered. An organization without a usable logo file gets the same box with its name in text. For members and affiliates.
 
 ## 4. Components
 
@@ -131,16 +137,33 @@ News, projects and publications use the same row: a narrow left column, then the
 | Header | Logo · menu | See section 2 |
 | Footer | Logos · icons · address, email, copyright | See section 2 |
 | Person | Photo · name · role or program · organization (boards only) | Grid of 5 (3 on tablets, 2 on phones) |
-| Card | Image (optional) · title · text | Facilities, contact blocks, affiliated team, Careers positions |
-| Filter | Pills | Publications by type |
-| Full description | Closed by default | Long original text inside lists |
+| List row | See section 3 | News, completed projects, publications |
+| Card | See section 3 | Current projects, facilities, contact blocks, affiliated team, Careers, Support |
+| Logo tile | See section 3 | Support |
+| Pill | Short label on the light blue tint | Position IDs, membership levels |
+| Notice | One sentence on the light blue tint with a blue left line | Deadlines. At most one per page |
+| Steps | Numbered columns with a blue top line | How to apply |
+| Filter | Round buttons | Publications by type, Projects by research area |
+| More on demand | Closed by default ("Full bio", "Compare all benefits") | Long text that most readers skip |
 | Social icon | Single-color icon with a hidden text label | LinkedIn, Facebook. Blue on hover |
 
 Only things that can be clicked react to hover.
 
 ## 5. Writing
 
-- **Keep the original wording.** Text the center or a person wrote (About, mission, bios, project descriptions, facility pages, Careers, Support) is published as written. Fix spelling only. Do not shorten, summarize or rephrase it; where a short version is needed, use the first sentence word for word. Rewording is a separate, approved task.
+- **Short pieces, full text one click away.** Lists and cards show short text written for the site; the full original text stays on the item's own page or behind "Full bio" / "Details", word for word. Nothing is deleted.
+- **Length limits** (the build stops when one is broken):
+
+| Piece | Limit |
+|---|---|
+| Page introduction | 2 sentences, 45 words |
+| Home tagline | 40 words |
+| Project summary, news summary | 35 and 30 words |
+| Careers position | 1 sentence of 30 words, at most 3 tasks |
+| List bullets | One idea each, about one line |
+
+- **Plain and direct.** Say what CalPlug does, for whom, with what result. No slogans ("leading enabler"), no repeated thanks, no italic or bold sentences used as headings.
+- **Rewritten text is reviewed.** Every piece written or shortened for the new site is listed in `CONTENT-NOTES.md` for Arnold to check. About, mission, vision, bios and project descriptions stay as the center wrote them.
 - English only.
 - Every number, date, title and partner name needs a source. Unverified items are tracked in `CONTENT-NOTES.md` and stay off the site.
 - Names: "CalPlug", "California Plug Load Research Center", "Calit2", "UC Irvine".
@@ -150,7 +173,6 @@ Only things that can be clicked react to hover.
 ### Logo
 
 - Header: `assets/brand/calplug-logo-compact.png`, the icon and the CALPLUG wordmark cut from the original logo file. Lettering unchanged, nothing redrawn. About 44px high.
-- About page: the full original logo with all three lines (`assets/legacy/calpluglogo-small.png`).
 - Browser tab icon and default images: the icon alone (`assets/brand/calplug-mark.svg`).
 - Replace these only with a higher-resolution or vector copy of the same artwork from the lab.
 - UC Irvine logo: the primary logo file Keven Zhuang provided (`assets/brand/uci-logo.png`, 266×45). Keep the clear space around it; nothing locked up with it; not smaller than 3/16 inch (about 18px); never redrawn or recolored. A larger or vector copy from the UC Irvine brand asset library (UCInetID login) would look sharper on high-resolution screens; swap it in when available.
@@ -212,6 +234,7 @@ Only things that can be clicked react to hover.
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.10 | 2026-11-13 | After Keven's review ("too much text, no standard; Publications is the cleanest"): three building blocks (list row, card, logo tile) and length limits for every piece of text, checked by the build. Home welcome is white with a new plain tagline; Home projects as cards. Projects: research-area filter (draft), current projects as cards, completed projects as list rows, one page per project with the full text. Careers and Support rebuilt from data files with cards, pills, a deadline notice, numbered steps, membership levels (benefits table retyped from the old image) and logo tiles. People bios shortened with "Full bio". About logo removed. |
 | 0.9.3 | 2026-11-13 | Footer: UC Irvine primary logo (file from Keven Zhuang) replaces the "UC Irvine" text, set apart from the Calit2 logo. |
 | 0.9.2 | 2026-11-13 | Footer: Calit2 logo added (file from Keven Zhuang) next to the "UC Irvine" text. UC Irvine seal not used, following UC Irvine's rule that the seal is not for the web. |
 | 0.9.1 | 2026-11-12 | Built. Page width 1080px so the ten-item menu fits; menu collapses below 1080px. Footer follows UC Irvine's rule: one UC Irvine logo plus "Calit2" in text, not two logos. |
@@ -220,4 +243,5 @@ Only things that can be clicked react to hover.
 ## Open questions
 
 - A larger or vector copy of the UC Irvine primary logo, for sharper display (optional).
-- Research areas for the Projects page, for Arnold to approve before a filter returns.
+- Research areas for the Projects filter are a draft (`data/projects.json`, `themes`), for Arnold to approve.
+- All text written or shortened for 0.10 (see `CONTENT-NOTES.md`), for Arnold to approve.

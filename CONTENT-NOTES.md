@@ -11,7 +11,9 @@ Working notes for maintainers. Not published. Source: calplug.org as read on 202
 | `data/publications.json` | Publications | 20 journal, 13 conference, 21 reports, 7 press; 30 older undated documents |
 | `data/people.json` | People | Director, 1 staff, 3 affiliated team, 17 students, 3 alumni, 9 affiliated faculty, 13 + 14 advisory board, 8 + 4 technology council |
 | `data/events.json` | Events | 12 |
-| `data/partners.json` | Members, affiliates, support, join us, facilities | n/a |
+| `data/partners.json` | Facilities | n/a |
+| `data/careers.json` | Careers page, rewritten into short pieces | 4 positions |
+| `data/support.json` | Support page, rewritten; membership benefits retyped from the old image | 2 members, 10 affiliates, 26 benefits |
 
 ## Corrections already applied
 
@@ -38,9 +40,25 @@ Working notes for maintainers. Not published. Source: calplug.org as read on 202
 8. AI-TES and Occupancy-based Lighting: no sponsor or years shown.
 9. Edge Data Center project: the current text states "25-35% total facility energy savings". Left out of the new summary because it is a target, not a measured result.
 10. 1 kWh Challenge: "on hold due to Covid restrictions". Still on hold, or ended?
-11. Join us: positions and deadline are for Spring 2026.
+11. Careers: positions and deadline are for Spring 2026 (deadline April 3, 2026, now past). Need the current term's positions. The old page also gives no application form or address: is applying by emailing the mentor right?
 12. Advisory board and council lists: are titles and affiliations current?
-13. Research themes: draft grouping in `data/projects.json`.
+13. Research areas: draft grouping in `data/projects.json` (`themes`), now used as the Projects filter.
+14. Membership benefits: retyped from the table image; "specific terms TBD" written as "specific terms to be agreed". Is the table still current?
+15. Mentor photo for Chelsea Choudhary is hot-linked from calit2.uci.edu.
+
+## Text written or shortened for the new site (version 0.10, for Arnold to review)
+
+The full original text is still on the site wherever it existed (project pages, "Full bio"); only the short pieces below are new.
+
+| Where | New text | Based on |
+|---|---|---|
+| Home tagline (`site.json`) | "CalPlug studies how energy is used in homes, offices and data centers, and builds data, sensing and AI tools that help people use less of it. Founded in 2011 at Calit2, UC Irvine." | About text and current projects; replaces "the Leading Enabler for Energy Efficiency Solutions..." |
+| Projects intro | Two sentences on who CalPlug works with | About text |
+| Project short titles (Home cards) | "SIGNAL: Net-load Forecasting", "AI-TES: Thermal Energy Storage", "Edge Data Center Smart Retrofit", "Occupancy-based Smart Lighting" | Full titles |
+| Project summaries | One sentence each (already in the data since 0.1) | Original descriptions |
+| Careers | Intro, deadline notice, "What you get", "What we ask", one-sentence position descriptions, tasks, 4 apply steps | Old Careers page, same facts |
+| Support | Intro, three ways to support, membership level cards | Old Support, Friends and Members pages, same facts |
+| News: CalPlug/ITAC 2026 Annual Workshop | Summary shortened to 25 words | Old summary |
 
 ## Permissions needed before launch
 
@@ -64,7 +82,5 @@ Working notes for maintainers. Not published. Source: calplug.org as read on 202
 
 ## Not migrated yet
 
-- Full descriptions of the 18 completed projects (the data has a one-line summary and links).
 - Full agendas and speaker lists of past workshops.
-- Membership benefits (an image on the current site; text must be retyped).
 - Arnold Wang's bio: last sentences.

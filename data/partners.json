@@ -1,39 +1,5 @@
 {
-  "_note": "Extracted from /affiliations, /support, /friends, /members-2 and /about/careers on 2026-11-12. Facility texts are the original wording from the old site.",
-  "members": [
-    "Los Angeles Department of Water and Power (LADWP)",
-    "Consumer Technology Association (CTA)"
-  ],
-  "affiliates": [
-    "California Energy Commission (CEC)",
-    "California Public Utilities Commission (CPUC)",
-    "Southern California Edison (SCE)",
-    "Pacific Gas and Electric Company (PG&E)",
-    "San Diego Gas & Electric (SDG&E)",
-    "Commonwealth Edison (ComEd)",
-    "Smartenit",
-    "Embertec",
-    "TrickleStar",
-    "DIRECTV (AT&T)"
-  ],
-  "support": {
-    "intro": "Support from corporations and individual donors provides critical resources to supplement operational and external research funding for the Center. These funds allow CalPlug to expand outreach and education and to conduct independent research on the future of plug loads, energy efficiency and storage, and user experience.",
-    "ways": [
-      {
-        "name": "Friend of CalPlug",
-        "how": "Send a gift by check payable to \"The UCI Foundation\", mailed to: California Plug Load Research Center (CalPlug), ATTN: Herumi Baylon, University of California, Irvine, Irvine, CA 92697-2800. To donate equipment or materials, contact Dr. Arnold Wang."
-      },
-      {
-        "name": "Corporate Member",
-        "how": "To request information about becoming a member, contact Dr. Shuoyu (Arnold) Wang.",
-        "_flag": "Membership benefits are an image (screenshot) on the current site; text must be retyped from it."
-      }
-    ],
-    "contact": {
-      "name": "Shuoyu (Arnold) Wang",
-      "email": "shuoyuw@uci.edu"
-    }
-  },
+  "_note": "Extracted from /affiliations, /support, /friends, /members-2 and /about/careers on 2026-11-12. Facility texts are the original wording from the old site. Members, affiliates, logos and support moved to data/support.json on 2026-11-13.",
   "facilities": [
     {
       "id": "sim-home",
@@ -76,35 +42,5 @@
     }
   ],
   "facility_rooms_note": "Notable rooms: Engineering Lab (Room 4301) and Data Engineering ThinkTank (Room 4500). Floor plan image: /wp-content/uploads/clplg_space.jpg",
-  "logos": [
-    {
-      "name": "Los Angeles Department of Water and Power",
-      "src": "/wp-content/uploads/452px-Los_Angeles_Department_of_Water_and_Power_logo.svg_.png"
-    },
-    {
-      "name": "Consumer Technology Association",
-      "src": "/wp-content/uploads/CTA.jpg"
-    },
-    {
-      "name": "California Energy Commission",
-      "src": "/wp-content/uploads/ceclogo-1.jpg"
-    },
-    {
-      "name": "Southern California Edison",
-      "src": "/wp-content/uploads/edison-logo.png"
-    },
-    {
-      "name": "San Diego Gas & Electric (Sempra)",
-      "src": "/wp-content/uploads/sempralogo.png"
-    },
-    {
-      "name": "Smartenit",
-      "src": "/wp-content/uploads/smartenit.jpg"
-    },
-    {
-      "name": "TrickleStar",
-      "src": "/wp-content/uploads/tricklestar-logo.png"
-    }
-  ],
   "facility_intro": "CalPlug encompasses various facilities that ensure the latest in Plug and Process load research is going on. Notable rooms of interest include Engineering Lab (Room 4301) and Data Engineering ThinkTank (Room 4500)."
 }
