@@ -34,7 +34,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Header */
 .site-header { position: sticky; top: 0; z-index: 10; background: var(--white); border-bottom: 1px solid var(--line); }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--s-24); min-height: 80px; }
-.brand img { height: 56px; width: auto; }
+.brand img { height: 44px; width: auto; }
 .nav ul { display: flex; gap: var(--s-24); }
 .nav a { color: var(--ink); text-decoration: none; font-size: var(--fs-15); font-weight: 650; padding: var(--s-8) 0; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
 .nav a:hover { color: var(--blue); }
@@ -78,8 +78,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* Home: welcome and news (lab style: photo, short intro, then news) */
 .welcome { padding: var(--s-48) 0 var(--s-32); }
-.welcome .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-48); align-items: center; }
-.welcome figure { margin: 0; }
+.welcome .wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: var(--s-48); align-items: start; }
+.welcome figure { margin: var(--s-8) 0 0; }
 .welcome figure img { width: 100%; height: auto; border-radius: var(--radius); }
 .welcome h1 { font-size: var(--fs-34); margin-bottom: var(--s-16); }
 .welcome .lead { color: var(--ink); }
@@ -125,11 +125,6 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); border-co
 .pub { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: var(--s-24); padding: var(--s-16) 0; border-bottom: 1px solid var(--line); align-items: start; }
 .pubthumb { width: 88px; aspect-ratio: 17 / 22; border: 1px solid var(--line); border-radius: 3px; overflow: hidden; background: var(--white); }
 .pubthumb img { width: 100%; height: 100%; object-fit: contain; }
-.pubthumb.tile { display: grid; place-items: end start; padding: var(--s-8); font-size: var(--fs-13); font-weight: 650; color: var(--white); line-height: 1.2; }
-.pubthumb.t-journal { background: var(--blue); }
-.pubthumb.t-conference { background: var(--navy); }
-.pubthumb.t-report { background: var(--green-text); }
-.pubthumb.t-press { background: var(--muted); }
 .pub h3 { font-size: var(--fs-17); margin-bottom: var(--s-4); }
 .pub p { margin: 0; font-size: var(--fs-15); color: var(--muted); }
 .pub .links { margin-top: var(--s-8); display: flex; gap: var(--s-16); align-items: center; font-size: var(--fs-15); font-weight: 650; }
@@ -202,7 +197,7 @@ a.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); border-co
 }
 @media (max-width: 480px) {
   .wrap { padding: 0 var(--s-16); }
-  .brand img { height: 36px; }
+  .brand img { height: 34px; }
   .facts strong { font-size: var(--fs-26); }
   .logos img { height: 36px; }
   .pub { grid-template-columns: 64px minmax(0, 1fr); gap: var(--s-16); }

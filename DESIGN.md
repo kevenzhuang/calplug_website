@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.4 (draft), 2026-11-12. Read this before changing any page, style or template.
+Version 0.5 (draft), 2026-11-12. Read this before changing any page, style or template.
 If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. Do not make one-off exceptions on a page.
@@ -23,7 +23,7 @@ Seven pages, one navigation level. No drop-down menus.
 
 | Page | Question it answers | Sections, in order | Next step |
 |---|---|---|---|
-| Home | What is CalPlug and what is new? | Welcome (group photo, what we do, mission, how to work with us) · Latest news (4) · Current projects (compact list) · Recent publications (4) | Read the news / Work with us |
+| Home | What is CalPlug and what is new? | Welcome (text on the left: what we do, mission, how to work with us; group photo on the right) · Latest news (4) · Current projects (compact list) · Recent publications (4) | Read the news / Work with us |
 | Research | What has CalPlug worked on, and with whom? | Intro · Active projects (large cards) · Completed projects (compact rows, all shown, filter by theme and sponsor) · Student projects | Read a report / Contact |
 | Publications | What has CalPlug published? | Filter (type, year) · List by year, newest first · Archive (older undated documents) | Open the PDF or DOI |
 | People | Who is CalPlug and how do I join? | Director · Staff · Students · Affiliated faculty · Advisory Board · Technology Council · Alumni · Join us | Apply / Email |
@@ -108,7 +108,9 @@ Only things that can be clicked react to hover.
 ### Logo
 
 - Use the existing CalPlug logo file unchanged (`assets/legacy/calpluglogo-small.png`). Do not redraw it, change its lettering, recolor or stretch it. Replace it only with a higher-resolution or vector copy of the same artwork from the lab.
-- `assets/brand/calplug-mark.svg` is the icon alone (no lettering), used for the browser tab icon and the default news image.
+- Header: `assets/brand/calplug-logo-compact.png`, the icon and the CALPLUG wordmark cut from the original file (original lettering, no redraw). The two small text lines are left out in the header because they cannot be read at that size; the center's full name is in the page text instead.
+- Full logo with all three lines: use it where it is shown at 300px wide or more (documents, slides, posters).
+- `assets/brand/calplug-mark.svg` is the icon alone (no lettering), used for the browser tab icon and inside the default images.
 - UC Irvine and Calit2 logos go in the footer once official files are supplied. Use only official files and follow each owner's rules; never redraw them.
 
 ### No cropping (standard)
@@ -120,14 +122,14 @@ Only things that can be clicked react to hover.
 ### News images (standard)
 
 - Every news or event item has exactly one image, fitted whole inside a 3:2 frame.
-- Order of preference: a photo from the event, then the event flyer, then the default image `assets/brand/news-default.svg` (used automatically when `image` is empty).
+- Order of preference: a photo from the event, then the event flyer, then the one default image `assets/brand/news-default.svg` (used automatically when `image` is empty).
 - New images: at least 1200 by 800 pixels, JPEG, under 400 KB, in `assets/news/`.
 
 ### Publication thumbnails (standard)
 
 - Every publication has a thumbnail in a portrait slot (letter-page proportion).
-- If the entry links to a PDF, the thumbnail is the first page of that PDF, made by `tools/make_pub_thumbs.py`.
-- Otherwise the slot shows the standard tile for its type (Journal, Conference, Report, In the press). No hand-made exceptions.
+- `tools/make_pub_thumbs.py` looks for an image in this order: first page of the linked PDF; first page of a PDF named on the linked page; the linked page's own preview image.
+- If none is found, the slot shows the one default image `assets/brand/pub-default.svg`. No colored tiles, no hand-made exceptions.
 
 ## 7. Motion
 
@@ -157,6 +159,7 @@ Only things that can be clicked react to hover.
 | 0.2 | 2026-11-12 | Home redesigned as a lab home page (welcome + news first), after review: the first version read like a company site. Original tagline restored at Keven's request. |
 | 0.3 | 2026-11-12 | SVG logo; news image standard (every item has an image, with a default); publication thumbnails (first page of the PDF, or a type tile); 'formats come first' rule. |
 | 0.4 | 2026-11-12 | Original logo restored (no redrawn lettering); no-cropping standard; entrance animations removed; welcome section simplified. |
+| 0.5 | 2026-11-12 | Welcome: text left, photo right. Compact header logo cut from the original artwork. One default image each for news and publications; thumbnail finder also tries PDFs and preview images on linked pages. |
 
 ## Open questions
 

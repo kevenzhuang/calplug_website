@@ -107,7 +107,7 @@ def page(filename, title, description, body, site):
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="{e(url('/wp-content/uploads/calpluglogo-small.png'))}" alt="CalPlug, California Plug Load Research Center, University of California, Irvine" width="600" height="166"></a>
+    <a class="brand" href="index.html"><img src="assets/brand/calplug-logo-compact.png" alt="CalPlug, California Plug Load Research Center" width="517" height="96"></a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav" aria-label="Main"><ul>{nav}</ul></nav>
   </div>
@@ -161,7 +161,7 @@ def pub_thumb(p):
     f = f"assets/pubs/{hashlib.sha1(u.encode()).hexdigest()[:12]}.jpg"
     if u and (ROOT / f).exists():
         return f'<div class="pubthumb"><img src="{f}" alt="" loading="lazy"></div>'
-    return f'<div class="pubthumb tile t-{p["type"]}" aria-hidden="true"><span>{PUB_LABELS[p["type"]]}</span></div>'
+    return '<div class="pubthumb"><img src="assets/brand/pub-default.svg" alt="" loading="lazy"></div>'
 
 
 def pub_entry(p, tag=True):
@@ -227,13 +227,13 @@ def build_home(site, projects, pubs, events, people, partners):
     pub = "".join(pub_entry(x, tag=False) for x in recent)
     body = f"""
 <section class="welcome"><div class="wrap">
-  <figure>{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign')}</figure>
   <div>
     <h1>California Plug Load Research Center</h1>
     <p class="lead">The California Plug Load Research Center (CalPlug) is the Leading Enabler for Energy Efficiency Solutions in the Use and Design of Appliances and Consumer Products.</p>
     <p>Our mission: {e(site['mission'][0].lower() + site['mission'][1:])}</p>
     <p>Interested in working with us? See <a href="people.html#join">student research opportunities</a> or <a href="partner.html">how to partner with CalPlug</a>.</p>
   </div>
+  <figure>{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign')}</figure>
 </div></section>
 <section class="section"><div class="wrap">
   <div class="section-head"><h2>Latest news</h2><a class="more" href="news.html">See all news and events \u2192</a></div>
