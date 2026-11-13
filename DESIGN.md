@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.12, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
+Version 0.12.1, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -163,7 +163,6 @@ All content is shown with one of three blocks. The Publications list is the mode
 | More on demand | Closed by default ("Full bio", "Compare all benefits") | Long text that most readers skip |
 | Social icon | Single-color icon with a hidden text label | LinkedIn, Facebook, in the footer. White on hover |
 | Header button | Blue fill, white text | "Support CalPlug" only |
-| Page-title arcs | The three signal arcs from the logo, very light gray (`#E9EEF3`), at the top right of each page's title area; smaller on phones | Every page with a title area. Decoration only: never behind text, never in color |
 | Ring icon | The logo's half-blue, half-green ring around a navy line icon (20px) | Research areas: on the filter buttons and on project cards. Icons: plug (plug loads), person (user behavior), factory (smart manufacturing), bolt (grid and storage), building (buildings and data centers), calendar (default news image). Drawn in `tools/build.py` (`LINE_ICONS`); never add a second icon style |
 | Active dot | Green dot + "Active" in green text | Meta line of active projects |
 | Link marks | "PDF" in a small outlined box after links to PDF files; "↗" after links that leave the site | Lists, cards, copied pages. Added by CSS from the link address, never typed into data |
@@ -281,6 +280,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.12.1 | 2026-11-13 | Page-title arcs removed: the title areas differ in height, so each page showed a different, cut-off piece of the arcs and it looked like a broken image. |
 | 0.12 | 2026-11-13 | Top color strip replaced by a navy top bar ("University of California, Irvine › Calit2", Contact). Faint signal arcs in page-title areas. Share image and share tags on every page (project pages use their own image); `site_url` added. 404 page "This page is unplugged." Brand kit (section 10): slide and flyer templates, logos, fonts, rules. |
 | 0.11 | 2026-11-13 | Approved proposals 1, 2B, 3, 4, 7: menu cut from ten items to six plus a "Support CalPlug" button (logo goes home; Facilities becomes "Our labs" on Research; Contact moves to the footer and About; Projects renamed Research, News & Events shortened to News). Colors given meanings: blue = clickable, green = active / when, navy = ground; navy footer with white UC Irvine logo; green line only under page titles. Montserrat (titles) and Inter (text), self-hosted. Ring icons for research areas and the default news image; Active dot. PDF and external-link marks; card hover. |
 | 0.10 | 2026-11-13 | After Keven's review ("too much text, no standard; Publications is the cleanest"): three building blocks (list row, card, logo tile) and length limits for every piece of text, checked by the build. Home welcome is white with a new plain tagline; Home projects as cards. Projects: research-area filter (draft), current projects as cards, completed projects as list rows, one page per project with the full text. Careers and Support rebuilt from data files with cards, pills, a deadline notice, numbered steps, membership levels (benefits table retyped from the old image) and logo tiles. People bios shortened with "Full bio". About logo removed. |

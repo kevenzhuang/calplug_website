@@ -58,11 +58,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nav-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-8) var(--s-12); font: inherit; font-size: var(--fs-small); font-weight: 500; color: var(--ink); cursor: pointer; }
 
 /* Titles: a short green line under page and section titles */
-.page-head { padding: var(--s-48) 0 0; position: relative; overflow: hidden; }
-/* Faint signal arcs from the logo, top right of each page title area. Decoration only. */
-.page-head::before { content: ""; position: absolute; top: -40px; right: max(-60px, calc((100% - var(--page)) / 2 - 60px)); width: 360px; height: 240px; pointer-events: none;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 240' fill='none' stroke='%23E9EEF3' stroke-width='14' stroke-linecap='round'%3E%3Cpath d='M30 230A150 150 0 0 1 330 230'/%3E%3Cpath d='M80 230A100 100 0 0 1 280 230'/%3E%3Cpath d='M130 230A50 50 0 0 1 230 230'/%3E%3C/svg%3E") no-repeat center / contain; }
-.page-head .wrap { position: relative; }
+.page-head { padding: var(--s-48) 0 0; }
 .page-head .intro { margin: var(--s-24) 0 0; max-width: var(--text); font-size: var(--fs-lead); line-height: 1.55; }
 .head-meta { margin: var(--s-16) 0 0; }
 .page-head h1::after { content: ""; display: block; width: 32px; height: 3px; margin-top: var(--s-12); background: var(--green); border-radius: 2px; }
@@ -255,7 +251,6 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
   .grid.c5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
-  .page-head::before { width: 220px; height: 148px; top: -24px; right: -50px; }
   .welcome .wrap, .contact-top { grid-template-columns: minmax(0, 1fr); gap: var(--s-24); }
 }
 @media (max-width: 600px) {
