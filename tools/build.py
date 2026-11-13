@@ -59,9 +59,10 @@ def url(path):
     return path
 
 
-def img(path, alt="", cls=""):
+def img(path, alt="", cls="", eager=False):
+    """Images below the first screen load lazily; pass eager=True for images at the top of a page."""
     c = f' class="{cls}"' if cls else ""
-    return f'<img src="{e(url(path))}" alt="{e(alt)}" loading="lazy"{c}>'
+    return f'<img src="{e(url(path))}" alt="{e(alt)}" loading="{"eager" if eager else "lazy"}"{c}>'
 
 
 def links(items):
@@ -275,7 +276,7 @@ def build_home(site, projects, pubs, events, people, partners):
     <p class="lead">The California Plug Load Research Center (CalPlug) is the Leading Enabler for Energy Efficiency Solutions in the Use and Design of Appliances and Consumer Products.</p>
     <p class="textlinks"><a href="about.html">About</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></p>
   </div>
-  <figure>{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign')}</figure>
+  <figure>{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign', eager=True)}</figure>
 </div></section>
 <section class="section"><div class="wrap">
   <div class="section-head"><h2>Latest news</h2><a class="more" href="news.html">All news and events</a></div>
@@ -304,7 +305,7 @@ def build_about(site, about):
             inner += f'<p><a href="{s["link"]["href"]}">{e(s["link"]["label"])} \u2192</a></p>'
         out += f'<section class="about-row"><h2>{e(s["title"])}</h2><div>{inner}</div></section>'
     body = (head("About", img("/wp-content/uploads/calpluglogo-small.png",
-                              "CalPlug, California Plug Load Research Center, University of California, Irvine", "about-logo"))
+                              "CalPlug, California Plug Load Research Center, University of California, Irvine", "about-logo", eager=True))
             + f'<div class="wrap about">{out}</div>')
     return page("about.html", "About", about["sections"][0]["paragraphs"][0][:155], body, site)
 
@@ -503,7 +504,7 @@ def build_contact(site):
       <p><a class="more" href="{maps}">Open in Google Maps</a></p>
       <p class="meta">Our hours: {e(c['hours'])}</p>
     </div>
-    <figure class="figure">{img('assets/site/calit2-building.jpg', 'The Calit2 Building at UC Irvine, home of CalPlug')}</figure>
+    <figure class="figure">{img('assets/site/calit2-building.jpg', 'The Calit2 Building at UC Irvine, home of CalPlug', eager=True)}</figure>
   </div>
   <div class="grid c3 contacts">
     <div class="card"><h3>General Information, Directions &amp; Parking</h3><p>Phone: {e(c['general']['phone'])}</p><p><a href="mailto:{e(c['general']['email'])}">{e(c['general']['email'])}</a></p></div>
