@@ -23,7 +23,7 @@ STAMP = hashlib.sha1(b"".join(f.read_bytes() for f in sorted((SRC).rglob("*.*"))
 NEWS_DEFAULT = "assets/brand/news-default.svg"
 PUB_LABELS = {"journal": "Journal", "conference": "Conference", "report": "Report", "press": "In the press"}
 
-NAV = [("index.html", "Home"), ("research.html", "Research"), ("publications.html", "Publications"),
+NAV = [("index.html", "Home"), ("about.html", "About"), ("research.html", "Research"), ("publications.html", "Publications"),
        ("people.html", "People"), ("facilities.html", "Facilities"), ("news.html", "News & Events"),
        ("partner.html", "Partner")]
 
@@ -58,6 +58,18 @@ def links(items):
         return ""
     return '<div class="links">' + "".join(
         f'<a href="{e(url(l["url"]))}">{e(l["label"])}</a>' for l in items) + "</div>"
+
+
+def paras(p):
+    """Original description as a list of paragraphs (data may hold a string or a list)."""
+    d = p.get("description") or []
+    return [d] if isinstance(d, str) else d
+
+
+def first_sentence(p):
+    """First sentence of the original description, word for word."""
+    ps = paras(p)
+    return re.split(r"(?<=[.!?])\s+(?=[A-Z\u201c\"])", ps[0], maxsplit=1)[0] if ps else ""
 
 
 def years(p):
@@ -179,7 +191,7 @@ def project_card(p):
     thumb = f'<div class="thumb">{img(p["image"], p.get("image_alt", ""))}</div>' if p.get("image") else ""
     return (f'<article class="card reveal" id="{e(p["id"])}">{thumb}'
             f'{f"<div class=\"meta\">{e(meta)}</div>" if meta else ""}'
-            f'<h3>{e(p["title"])}</h3><p>{e(p.get("description") or p["summary"])}</p>{links(p.get("links"))}</article>')
+            f'<h3>{e(p["title"])}</h3>{"".join(f"<p>{e(x)}</p>" for x in paras(p))}{links(p.get("links"))}</article>')
 
 
 def event_row(ev):
@@ -222,7 +234,7 @@ def build_home(site, projects, pubs, events, people, partners):
     recent = sorted([x for x in pubs["publications"] if x["type"] != "press"], key=lambda x: x["year"], reverse=True)[:4]
     proj = "".join(
         f'<article class="row reveal"><div class="when">{years(p) or "Ongoing"}</div><div><h3>{e(p["title"])}</h3>'
-        f'<p>{e(p["summary"])}</p>{f"<p class=\"meta\">{e(p["sponsor"])}</p>" if p.get("sponsor") else ""}</div></article>'
+        f'<p>{e(first_sentence(p))}</p>{f"<p class=\"meta\">{e(p["sponsor"])}</p>" if p.get("sponsor") else ""}</div></article>'
         for p in active)
     pub = "".join(pub_entry(x, tag=False) for x in recent)
     body = f"""
@@ -232,6 +244,7 @@ def build_home(site, projects, pubs, events, people, partners):
     <p class="lead">The California Plug Load Research Center (CalPlug) is the Leading Enabler for Energy Efficiency Solutions in the Use and Design of Appliances and Consumer Products.</p>
     <p>Our mission: {e(site['mission'][0].lower() + site['mission'][1:])}</p>
     <p>Interested in working with us? See <a href="people.html#join">student research opportunities</a> or <a href="partner.html">how to partner with CalPlug</a>.</p>
+    <p><a href="about.html"><strong>About CalPlug \u2192</strong></a></p>
   </div>
   <figure>{img('/wp-content/uploads/zotwatt-2.jpg', 'CalPlug student researchers in front of the CalPlug sign')}</figure>
 </div></section>
@@ -251,6 +264,22 @@ def build_home(site, projects, pubs, events, people, partners):
     return page("index.html", "Home", site["about"][:155], body, site)
 
 
+def build_about(site, about):
+    out = ""
+    for s in about["sections"]:
+        inner = f'<blockquote>\u201c{e(s["quote"])}\u201d</blockquote>' if s.get("quote") else ""
+        inner += "".join(f"<p>{e(x)}</p>" for x in s.get("paragraphs", []))
+        if s.get("bullets"):
+            inner += '<ul class="bullets">' + "".join(f"<li>{e(x)}</li>" for x in s["bullets"]) + "</ul>"
+        if s.get("link"):
+            inner += f'<p><a href="{s["link"]["href"]}">{e(s["link"]["label"])} \u2192</a></p>'
+        out += f'<section class="about-row"><h2>{e(s["title"])}</h2><div>{inner}</div></section>'
+    body = (f'<div class="page-head"><div class="wrap"><h1>About</h1>'
+            f'{img("/wp-content/uploads/calpluglogo-small.png", "CalPlug, California Plug Load Research Center, University of California, Irvine", "about-logo")}'
+            f'</div></div><div class="wrap about">{out}</div>')
+    return page("about.html", "About", about["sections"][0]["paragraphs"][0][:155], body, site)
+
+
 def build_research(site, projects):
     P, themes = projects["projects"], projects["themes"]
     for p in P:
@@ -261,9 +290,11 @@ def build_research(site, projects):
         f'<button aria-pressed="false" data-filter="{k}">{e(v)}</button>' for k, v in themes.items())
     rows = ""
     for p in done:
+        full = "".join(f"<p>{e(x)}</p>" for x in paras(p)[0:])
+        more = f'<details><summary>Full description</summary>{full}</details>' if paras(p) else ""
         rows += (f'<article class="row" id="{e(p["id"])}" data-tags="{" ".join(p["themes"])}"><div class="when">{years(p)}</div>'
-                 f'<div><h3>{e(p["title"])}</h3>{f"<p>{e(p["summary"])}</p>" if p.get("summary") else ""}'
-                 f'{f"<p class=\"meta\">{e(p["sponsor"])}</p>" if p.get("sponsor") else ""}</div>{links(p.get("links"))}</article>')
+                 f'<div><h3>{e(p["title"])}</h3>{f"<p class=\"meta\">{e(p["sponsor"])}</p>" if p.get("sponsor") else ""}'
+                 f'{f"<p>{e(first_sentence(p))}</p>" if paras(p) else ""}{more}</div>{links(p.get("links"))}</article>')
     students = ""
     for g in projects["student_projects"]:
         students += f'<div class="card reveal"><h3>{e(g["group"])}</h3><ul class="plain">' + "".join(
@@ -379,12 +410,11 @@ def build_facilities(site, partners):
     cards = ""
     for f in partners["facilities"]:
         pics = "".join(f'<div class="thumb">{img(f["images"][0], f["name"])}</div>' if i == 0 else "" for i, _ in enumerate(f["images"]))
-        note = f'<p class="meta">{e(f["status_note"])}</p>' if f.get("status_note") else ""
-        cards += f'<article class="card reveal" id="{e(f["id"])}">{pics}<h3>{e(f["name"])}</h3><p>{e(f["summary"])}</p>{note}</article>'
+        cards += f'<article class="card reveal" id="{e(f["id"])}">{pics}<h3>{e(f["name"])}</h3>{"".join(f"<p>{e(x)}</p>" for x in f["paragraphs"])}</article>'
     body = head("Facilities", "Labs and demonstration rooms on the fourth floor of the Calit2 Building at UC Irvine.") + f"""
 <section class="section"><div class="wrap">
   <div class="grid c2"><div><h2>Where we work</h2><p style="margin-top:var(--s-16)">{e(site['facility'])}</p>
-  <p>{e(partners['facility_rooms_note'].split(' Floor plan')[0])}</p></div>
+  <p>{e(partners['facility_intro'])}</p></div>
   <figure style="margin:0">{img('/wp-content/uploads/clplg_space.jpg', 'Floor plan of the CalPlug space on the fourth floor of the Calit2 Building')}</figure></div>
 </div></section>
 <section class="section tint"><div class="wrap"><div class="grid c3">{cards}</div></div></section>
@@ -435,6 +465,7 @@ def main():
     people, events, partners = load("people"), load("events"), load("partners")
     pages = {
         "index.html": build_home(site, projects, pubs, events, people, partners),
+        "about.html": build_about(site, load("about")),
         "research.html": build_research(site, projects),
         "publications.html": build_publications(site, pubs),
         "people.html": build_people(site, people, partners),

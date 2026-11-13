@@ -112,10 +112,7 @@ def import_bios():
         if text.startswith("G. P. Li is a professor"):
             data["director"]["bio"] = fix(text)
             n += 1
-        elif "joined CalPlug as a postdoctoral scholar" in text:
-            data["staff"][0]["bio"] = fix(text)
-            data["staff"][0].pop("_flag", None)
-            n += 1
+        # Staff bios on the old page are not in <p> tags; they were copied by hand into people.json.
     f.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Bios imported: {n}")
 

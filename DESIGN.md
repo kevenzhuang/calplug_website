@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.5 (draft), 2026-11-12. Read this before changing any page, style or template.
+Version 0.6 (draft), 2026-11-12. Read this before changing any page, style or template.
 If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. Do not make one-off exceptions on a page.
@@ -19,12 +19,13 @@ Simple and direct: the site exists so people can find information, not to impres
 
 ## 2. Pages
 
-Seven pages, one navigation level. No drop-down menus.
+Eight pages, one navigation level. No drop-down menus.
 
 | Page | Question it answers | Sections, in order | Next step |
 |---|---|---|---|
 | Home | What is CalPlug and what is new? | Welcome (text on the left: what we do, mission, how to work with us; group photo on the right) · Latest news (4) · Current projects (compact list) · Recent publications (4) | Read the news / Work with us |
-| Research | What has CalPlug worked on, and with whom? | Intro · Active projects (large cards) · Completed projects (compact rows, all shown, filter by theme and sponsor) · Student projects | Read a report / Contact |
+| About | What does CalPlug stand for? | Logo · About CalPlug · Vision · Mission Statement · Organization Goal · Guidance · Facility (original text) | Meet the boards / See facilities |
+| Research | What has CalPlug worked on, and with whom? | Intro · Active projects (cards with the full original description) · Completed projects (rows: first sentence of the original description, full text behind 'Full description'; filter by theme) · Student projects | Read a report / Contact |
 | Publications | What has CalPlug published? | Filter (type, year) · List by year, newest first · Archive (older undated documents) | Open the PDF or DOI |
 | People | Who is CalPlug and how do I join? | Director · Staff · Students · Affiliated faculty · Advisory Board · Technology Council · Alumni · Join us | Apply / Email |
 | Facilities | What can CalPlug test and demonstrate? | Intro and floor plan · SIM Lab · SIM Home · 1 kWh Challenge | Contact about testing |
@@ -89,6 +90,8 @@ The magenta link color on the current site is dropped. Body text and background 
 Only things that can be clicked react to hover.
 
 ## 5. Writing
+
+- **Keep the original wording.** Text that the center or a person wrote (About, mission, bios, project descriptions, facility descriptions) is published as written. Fix spelling only. Do not shorten, summarize or rephrase it; if a short version is needed, use the first sentence word for word. Rewording is a separate, approved task.
 
 - English only.
 - Lead with the point. Short sentences. Few adjectives.
@@ -160,6 +163,7 @@ Only things that can be clicked react to hover.
 | 0.3 | 2026-11-12 | SVG logo; news image standard (every item has an image, with a default); publication thumbnails (first page of the PDF, or a type tile); 'formats come first' rule. |
 | 0.4 | 2026-11-12 | Original logo restored (no redrawn lettering); no-cropping standard; entrance animations removed; welcome section simplified. |
 | 0.5 | 2026-11-12 | Welcome: text left, photo right. Compact header logo cut from the original artwork. One default image each for news and publications; thumbnail finder also tries PDFs and preview images on linked pages. |
+| 0.6 | 2026-11-12 | About page added. Original wording kept everywhere (bios, projects, facilities); imported by `tools/import_text.py`. |
 
 ## Open questions
 

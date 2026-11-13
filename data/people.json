@@ -1,5 +1,5 @@
 {
-  "_note": "Extracted from calplug.org people pages on 2026-11-12. 'photo' is the image path on the current site. Corrections applied are listed in CONTENT-NOTES.md.",
+  "_note": "Extracted from calplug.org people pages on 2026-11-12. 'photo' is the image path on the current site. Corrections applied are listed in CONTENT-NOTES.md. Bios are the original wording from the old site (spelling fixes only).",
   "director": {
     "name": "G. P. Li, Ph.D.",
     "title": "Director of CalPlug; Former Director of Calit2 UCI Division",
@@ -19,8 +19,7 @@
       "title": "Assistant Project Scientist",
       "email": "shuoyuw@uci.edu",
       "photo": "/wp-content/uploads/image001-scaled.jpg",
-      "bio": "Shuoyu (Arnold) Wang joined CalPlug as a postdoctoral scholar in 2024. Prior to joining CalPlug, he was a post-graduate intern within the Building Energy Science Group at the National Renewable Energy Laboratory (NREL). Dr. Wang holds a Ph.D. in structural engineering from Lehigh University, an M.S. in civil engineering from the University of Southern California, and a B.S. in civil engineering from Southwest Jiaotong University, China.",
-      "_flag": "Bio is cut off in the extraction; copy the remaining sentences from the live page."
+      "bio": "Shuoyu (Arnold) Wang joined CalPlug as a postdoctoral scholar in 2024. Prior to joining CalPlug, he was a post-graduate intern within the Building Energy Science Group at National Renewable Energy Laboratory(NREL). Dr. Wang holds a Ph.D. in structural engineering from Lehigh University and a M.S. in civil engineering from University of Southern California. He also received his B.S. in civil engineering from Southwest Jiaotong University, China. Dr. Wang’s research focuses on development of intelligent AI-based management and control of energy systems from end-devices to whole-building levels, optimization of grid operations through load forecasting, and energy storage systems with focus on sensible and latent thermal energy storage (TES) in industrial and building applications. He has a diverse expertise in actionable intelligence (AI), machine learning (ML)/deep learning (DL), thermal computation analysis with transient heat transfer and computational fluid dynamic (CFD) modeling, material characterization in TES applications, and integration of building structural components with energy efficiency and energy storage systems."
     }
   ],
   "affiliated_team": [
