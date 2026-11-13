@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.23, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
+Version 0.24, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -25,7 +25,7 @@ One row: the logo on the left, seven menu items, then one button. No top bar, no
 
 **Logo** · About · People · Research · Publications · News · Careers · Contact · **[Support CalPlug]**
 
-- The logo is the link to Home; there is no "Home" item.
+- The logo is the link to Home; there is no "Home" item. The CalPlug icon in the footer links to Home too.
 - "Support CalPlug" is the only filled button in the header (blue, white text). On phones it reads "Support" and stays next to the Menu button.
 - Facilities is part of Research ("Our labs"). Contact is the last menu item, and also in the footer line and at the bottom of About.
 - Below 1000px wide the seven items collapse behind a Menu button. The menu never wraps onto two rows.
@@ -61,7 +61,7 @@ Every page starts the same way: the page title (h1) on the left, a short green l
 
 The vision line and two short lines on the deep navy background (`--navy`), with a 3px green line on top:
 
-0. CalPlug's Vision in one line ("Energy-conscious plug and process loads for how people work, live, and play"), white Montserrat, with a faint line below.
+0. The CalPlug icon (30px, on a 40px white disc so its blue stays visible on navy; the icon itself is unchanged), which links to Home like the header logo, then CalPlug's Vision in one line ("Energy-conscious plug and process loads for how people work, live, and play"), white Montserrat, with a faint line below.
 1. On the left, the UC Irvine primary logo in white (`assets/brand/uci-logo-white.png`, 24px high, links to uci.edu), then 24px of space, then the Calit2 logo (`assets/brand/calit2-logo.png`, 40px high, links to calit2.uci.edu). This is the one place on the site that links to UC Irvine and Calit2. The two logos stand apart, never joined into one lockup. On the right, LinkedIn and Facebook icons in light gray, white on hover. The UC Irvine seal is not used (see 6. Images, Logo).
 2. One line of small text in light gray: address · email · Contact · copyright. Links are white.
 
@@ -493,6 +493,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.24 | 2026-11-13 | Footer: the CalPlug icon before the vision line, linking to Home. |
 | 0.23 | 2026-11-13 | Second audit. Performance: People page images cut from 18 MB to 3.7 MB with optimized copies; three images hot-linked from other sites are now stored here; image tags carry width and height. Structure: no skipped heading levels on built pages. Wording: one capitalization rule for headings ("Affiliated faculty"), one word per action ("Read" for every publication; "Details →" in project rows). Build checks added for heading order and image size. |
 | 0.22 | 2026-11-13 | People: the section links under the title were plain blue links while Research and Publications had pill buttons in the same place; they are now pill buttons too (rule: a row of choices under a page title is always pills). Director and staff: email on its own line, so a " · " no longer starts a line on phones. Filter buttons without an icon have even padding. |
 | 0.21 | 2026-11-13 | Full audit of the stylesheet against this guide. Every font size, weight, line height, radius, duration and spacing value is now a named token with a stated job and reason (section 3: Type; Layout, spacing and shape; Buttons and controls). Found and removed: two unnamed font sizes, three unnamed line heights, two radii, 6px / 10px / 22px gaps outside the scale, a translucent line color, an unused style. `tools/check.py` now reads the stylesheet and stops the build on any raw value. Added the table of where each rule is enforced and the rule for tracing a change. |

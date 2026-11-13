@@ -369,3 +369,8 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
 .about-logo { display: block; width: min(360px, 100%); height: auto; margin-top: var(--s-24); }
 
 .lead-person .meta a { display: block; }
+
+/* Footer: the CalPlug icon before the vision line, on a white disc so its blue stays visible on navy (the icon itself is unchanged) */
+.site-footer .vision { display: flex; align-items: center; gap: var(--s-16); }
+.vision-mark { flex-shrink: 0; display: grid; place-items: center; width: var(--control-h); height: var(--control-h); border-radius: 50%; background: var(--white); }
+.vision-mark .ring { width: 30px; height: 30px; }
