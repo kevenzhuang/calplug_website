@@ -70,8 +70,31 @@ class CardRows(HTMLParser):
                 break
 
 
+def css_problems():
+    """Token rule (DESIGN.md section 3): outside :root, styles may not use raw colors, font sizes, weights,
+    line heights, radii, durations, or spacing of 4px and more. Values up to 3px are hairlines and optical nudges."""
+    css = (DIST / "css" / "site.css").read_text(encoding="utf-8")
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    css = re.sub(r"@font-face\s*\{[^}]*\}", "", css)
+    css = re.sub(r":root\s*\{[^}]*\}", "", css)
+    out = []
+    rules = [
+        (r"#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(", "a raw color"),
+        (r"font-size:(?!\s*var\()[^;}]+", "a raw font size"),
+        (r"font-weight:(?!\s*(?:var\(|inherit))[^;}]+", "a raw font weight"),
+        (r"line-height:(?!\s*(?:var\(|calc\(|1[;}\s]))[^;}]+", "a raw line height"),
+        (r"border-radius:(?!\s*(?:var\(|50%|0 var\())[^;}]+", "a raw radius"),
+        (r"transition:[^;}]*\d(?:ms|s)\b[^;}]*", "a raw duration"),
+        (r"(?:padding|margin|gap)[a-z-]*:[^;}]*(?<![\w.-])(?:[4-9]|\d{2,})(?:\.\d+)?px[^;}]*", "raw spacing of 4px or more"),
+    ]
+    for pat, what in rules:
+        for m in re.finditer(pat, css):
+            out.append(f"css/site.css: {what}: {m.group(0).strip()[:70]!r} (use a token from DESIGN.md section 3)")
+    return out
+
+
 def main():
-    problems = []
+    problems = css_problems()
     pages = {}
     for f in sorted(DIST.glob("*.html")):
         p = Page()

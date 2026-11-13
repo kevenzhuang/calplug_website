@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.20, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
+Version 0.21, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -86,6 +86,7 @@ Blue and green are sampled from the CalPlug logo, and each has one meaning. A vi
 | `--green-text` | `#4A7A1C` | Dates and years, the word "Active", check marks in the benefits table (5.13:1 on white) |
 | `--navy` | `#0E2A47` | Footer background; pill text; notice and step lines; About side headings; line icons inside rings |
 | `--on-navy` | `#C5D0DC` | Text on the footer (10:1 on navy) |
+| `--line-on-navy` | `#2B445D` | The divider line inside the footer |
 | `--tint` | `#F6F8FA` | Image frames, pills, notice boxes, table group rows |
 | `--ink` | `#1B2530` | Headings and body text |
 | `--muted` | `#5B6875` | Authors, sponsors, summaries, small text |
@@ -96,25 +97,48 @@ The page is white at the top and grounded at the bottom by the navy footer. (Unt
 
 Not used: gradients, shadows, colored cards, green text on white. The footer is the only dark block.
 
-### Type hierarchy
+### Type
 
-Two families, both stored on this site (`src/fonts/`, SIL Open Font License; no Google Fonts, no tracking):
+Two families, both stored on this site (`src/fonts/`, SIL Open Font License; no Google Fonts, no tracking). If they do not load, the system font is used.
 
-- **Montserrat 600** for the page title (h1) and section titles (h2). It is UC Irvine's primary typeface, so the site matches the university.
-- **Inter** (400 text, 500 menu, 600 item titles and labels) for everything else. Clear on screens at small sizes.
+| Family | Used for | Why |
+|---|---|---|
+| Montserrat 600 | Page title (h1), section titles (h2), step numbers, the footer vision line | UC Irvine's primary typeface, so the site matches the university; used only large, where its character shows |
+| Inter 400 / 500 / 600 | Everything else | Drawn for screens; stays clear at 14px |
 
-If the fonts do not load, the system font is used.
+**Sizes.** Seven sizes, each with one job. A new size is never added for one element; pick the closest job.
 
-| Level | Size | Color | Used for |
+| Token | Size | Job | Why this size |
 |---|---|---|---|
-| Page title (h1) | 34px (28px on phones), Montserrat, green line below | ink | One per page |
-| Section title (h2) | 24px (21px on phones) | ink | "Latest news", a year, a People section |
-| Item title (h3) | 17px | ink | A news item, project, publication, person |
-| Lead | 19px | ink | The home tagline; at most one per page |
-| Body | 16px, line height 1.65 | ink | Paragraphs |
-| Small | 14px | muted | Authors, venues, sponsors, summaries, dates, menu, footer |
+| `--fs-h1` | 34px (28px on phones) | Page title, one per page | Clearly the largest thing on the page, still one line for most titles |
+| `--fs-h2` | 24px (21px on phones) | Section title; step numbers | About 1.4 times the body, enough to scan sections |
+| `--fs-lead` | 19px | The home tagline, page introductions, the footer vision line, the About quote | One step above body for the single sentence a visitor should read first |
+| `--fs-h3` | 17px | Item title: a news item, project, publication, person, card | Just above body: weight, not size, makes it a title, so long lists stay calm |
+| `--fs-body` | 16px | Paragraphs | Browser default; comfortable for long reading |
+| `--fs-nav` | 15px | Menu items only | Between body and small so seven items fit one row down to 1000px |
+| `--fs-small` | 14px | Supporting text: authors, venues, sponsors, summaries, dates, card text, buttons, footer | Clearly secondary but still readable |
+| `--fs-mark` | 11px | The "PDF" mark only | A label inside a tiny box; never for sentences |
 
-No uppercase labels above headings. No underlines except on hover.
+**Weights.** Three weights, by role. Weight never changes between states (section 7).
+
+| Token | Weight | Role | Examples |
+|---|---|---|---|
+| `--w-text` | 400 | Running text: anything read as a sentence | Paragraphs, summaries, authors |
+| `--w-label` | 500 | Labels: short text that is not a sentence and not a title | Menu items, filter buttons, Menu button, disclosure labels, dates, "About → Join us → Contact" links |
+| `--w-title` | 600 | Titles and the few things that must stand out | h1 to h3, names, the Support button, pills, "Active", table headings, the address on Contact |
+
+No 700 or heavier, no italics for emphasis, no uppercase labels, no underlines except on hover.
+
+**Line heights.**
+
+| Token | Value | Used for | Why |
+|---|---|---|---|
+| `--lh-title` | 1.25 | h1, h2 | Large text needs less space between lines |
+| `--lh-snug` | 1.4 | h3, small text in cards and grids, the vision line | Short blocks of two or three lines |
+| `--lh-lead` | 1.55 | Lead text | Between snug and body |
+| `--lh-body` | 1.65 | Paragraphs | Generous for long reading at 720px wide |
+
+Colors of text: ink for titles and body, muted for supporting text, blue only for links, green-text only for dates and "Active" (see Color).
 
 ### Line breaks
 
@@ -123,12 +147,70 @@ No uppercase labels above headings. No underlines except on hover.
 - Names, dates and short fixed terms never split across lines: "UC Irvine", "CalPlug/ITAC", "May 5, 2026", "Calit2 Building". Use a non-breaking space or a no-wrap span.
 - After any change to a title or layout, look at the page at 1440, 1024 and 390px wide and check each wrapped line by eye.
 
-### Layout
+### Layout, spacing and shape
 
-- One page width: 1080px (wide enough for the ten-item menu). Everything starts at the same left edge. No page section has its own background.
-- Running text is at most 720px wide. Lists use the full page width.
-- Spacing scale (px): 4, 8, 12, 16, 24, 32, 48, 64. Between sections 48; between a section title and its content 16.
-- Radius 6px. Borders 1px.
+| Token | Value | Used for | Why |
+|---|---|---|---|
+| `--page` | 1080px | Page width; everything starts at the same left edge | Wide enough for the seven-item menu and three cards |
+| `--text` | 720px | Maximum width of running text and list titles | About 80 characters a line, the comfortable limit |
+| `--s-4` … `--s-64` | 4, 8, 12, 16, 24, 32, 48, 64px | All padding, margins and gaps | One scale, so distances repeat and things line up |
+| `--header-h` | 72px | Header row height | Room for a 40px control with 16px above and below |
+| `--control-h` | 40px | Height of buttons (Support, Menu) | Comfortable to tap |
+| `--control-h-s` | 32px | Height of filter buttons | Smaller because they come in rows |
+| `--radius` | 6px | Cards, images, buttons, notices | Soft but not round; one radius for all boxes |
+| `--radius-s` | 3px | Small things: thumbnails, the PDF mark, accent lines, focus ring | 6px would look like a blob at this size |
+| `--radius-pill` | fully round | Filter buttons and pills | Marks them as tags, different from buttons |
+| `--t-fast`, `--t-slow` | 0.2s, 0.3s | Color changes; image zoom | Fast enough to feel instant |
+
+How the spacing scale is used:
+
+| Distance | Token |
+|---|---|
+| Between sections | 48 |
+| Section title to its content | 24 |
+| Between cards in a grid; between columns | 24 |
+| Inside a card | 24 (16 in the small Home cards) |
+| Between rows of a list | 24 above and below the line |
+| Title to the text under it; between paragraphs | 4 to 16 |
+| Icon to its label | 8 |
+
+Lines: 1px `--line` for all borders and dividers; 3px for accent lines (green under the page title and current menu item, navy on notices and steps, green on top of the footer); 2px for the focus ring. Values up to 3px may be written directly (hairlines and optical nudges); everything from 4px up must be a spacing token.
+
+Breakpoints (fixed; do not add others):
+
+| Width | What changes |
+|---|---|
+| 1000px and below | Menu collapses behind the Menu button |
+| 900px | Grids of 4 and 3 cards become 2; people grid 5 becomes 3; steps 4 become 2 |
+| 760px | Home welcome and Contact top stack into one column |
+| 600px | Phone layout: one column, smaller titles, 16px page margin |
+| 480px | Header button reads "Support" |
+| 360px | Smaller logo and tighter header |
+
+### Buttons and controls
+
+There are exactly four clickable shapes. A new one is not added; a new action uses one of these.
+
+| Control | Look | Use | Limit |
+|---|---|---|---|
+| Filled button | Blue fill, white 14px text at weight 600, 40px high, 6px radius, 16px side padding | The one main action of the site: "Support CalPlug" | One per page, in the header |
+| Outline button | White, 1px gray border, 14px text at weight 500, 40px high, 6px radius | Menu / Close on phones | Header only |
+| Filter button | Pill, 1px gray border, 14px muted text at weight 500, 32px high; may carry a ring icon | Narrowing a list on the same page | Only above the list it filters |
+| Text link | Blue text; "→" for a link to another page of the site, "↗" or "PDF" marks added automatically | Everything else | — |
+
+States for each are in section 7.
+
+### Where each rule is enforced
+
+| Rule | Enforced by |
+|---|---|
+| Colors, sizes, weights, line heights, radii, durations and spacing come from tokens | `tools/check.py` reads the stylesheet and stops the build on a raw value |
+| Text length limits | `tools/build.py` stops the build |
+| Bullet rules; cards in a row have one shape | `tools/check.py` |
+| Links, image alt text, one h1, no placeholder text, no empty sections | `tools/check.py` |
+| Alignment, line breaks, photos, overall look | A person, with the checklist in section 9 |
+
+**Tracing a change.** Every visual decision has a row in this guide: the token tables above (what value and why), section 4 (which component), section 5 (how text is written and formatted), section 7 (how it reacts). A change that cannot point to a row adds the row first, with its reason, and a line in the change log.
 
 ### Three building blocks
 
@@ -397,6 +479,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.21 | 2026-11-13 | Full audit of the stylesheet against this guide. Every font size, weight, line height, radius, duration and spacing value is now a named token with a stated job and reason (section 3: Type; Layout, spacing and shape; Buttons and controls). Found and removed: two unnamed font sizes, three unnamed line heights, two radii, 6px / 10px / 22px gaps outside the scale, a translucent line color, an unused style. `tools/check.py` now reads the stylesheet and stops the build on any raw value. Added the table of where each rule is enforced and the rule for tracing a change. |
 | 0.20 | 2026-11-13 | Top bar removed. Contact back in the menu as the last item; the footer logos link to UC Irvine and Calit2 again (the only place). Bullet standard rewritten as five questions in order, two consistency rules, and a table of every place on the site and its format. Membership levels: the Gold card now has the same lead-in and list as Platinum and Diamond. The build also stops when cards in one row mix lists and plain text. |
 | 0.19 | 2026-11-13 | Top bar changed to option B: light gray with a line below, muted text, blue on hover; navy stays only in the footer. About shows one full current logo, no captions. Earlier logo dropped (the trace was too rough and its typeface could not be identified). |
 | 0.18 | 2026-11-13 | Filter buttons keep one font weight when selected, so the row no longer jumps. Current menu item: the green line now sits on the header's bottom edge; phones mark it with a bar in the margin instead of indenting the text; the header button's current state is a flat navy fill instead of a green edge that looked raised. Rule added: states never change size. Logos on About moved under the About CalPlug text. Earlier wordmark-only SVG added. |
