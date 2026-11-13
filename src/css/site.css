@@ -181,6 +181,7 @@ a.card .links span { color: var(--blue); }
   html:not(.js) .nav ul { flex-direction: row; flex-wrap: wrap; gap: 0 var(--s-16); }
 }
 @media (max-width: 900px) {
+  .positions { grid-template-columns: minmax(0, 1fr); }
   .grid.c5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {

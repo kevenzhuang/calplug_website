@@ -94,10 +94,13 @@ NOBREAK = ["UC Irvine", "Calit2 Building", "CalPlug/ITAC", "Calit2 UCI Division"
 
 
 def nobreak(html):
-    """Keep names and fixed terms on one line (DESIGN.md section 3, Line breaks)."""
-    for term in NOBREAK:
-        html = html.replace(term, term.replace(" ", "\u00a0"))
-    return html
+    """Keep names and fixed terms on one line (DESIGN.md section 3, Line breaks). Text only, never inside tags or URLs."""
+    def fix(s):
+        for term in NOBREAK:
+            s = s.replace(term, term.replace(" ", "\u00a0"))
+        s = re.sub(r"\b([A-Z]{2,4})-([A-Z]?\d{2,4})\b", "\\1\u2011\\2", s)  # IDs such as DC-S26
+        return s.replace(" \u2013 ", "\u00a0\u2013 ")  # a dash never starts a line
+    return re.sub(r">([^<]+)<", lambda m: ">" + fix(m.group(1)) + "<", html)
 
 
 def fmt_date(ev):
