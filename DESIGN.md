@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.11, 2026-11-13. Status: built after Keven Zhuang approved proposals 1, 2B, 3, 4 and 7 (details).
+Version 0.12, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -21,13 +21,16 @@ Simple and direct: the site exists so people can find information, not to impres
 
 ### Header
 
-One row: the logo on the left, six menu items, then one button. No drop-down menus:
+Two rows:
+
+1. **Top bar** (32px, navy): "University of California, Irvine › Calit2" on the left (links to uci.edu and calit2.uci.edu; "UC Irvine › Calit2" on phones), "Contact" on the right. Light gray text, white on hover. It tells every visitor at once that CalPlug is a UC Irvine research center, and pairs with the navy footer.
+2. **Main row**: the logo on the left, six menu items, then one button. No drop-down menus:
 
 **Logo** · About · People · Research · Publications · News · Careers · **[Support CalPlug]**
 
 - The logo is the link to Home; there is no "Home" item.
 - "Support CalPlug" is the only filled button in the header (blue, white text). On phones it reads "Support" and stays next to the Menu button.
-- Contact is not in the menu: it is in the footer line and at the bottom of About. Facilities is part of Research ("Our labs").
+- Contact is not in the menu: it is in the top bar, the footer line and at the bottom of About. Facilities is part of Research ("Our labs").
 - Below 1000px wide the six items collapse behind a Menu button. The menu never wraps onto two rows.
 - The current page is marked with a short green line under its menu item (on the button: a green line inside its bottom edge).
 
@@ -77,11 +80,11 @@ Blue and green are sampled from the CalPlug logo, and each has one meaning. A vi
 
 | Token | Value | Used for |
 |---|---|---|
-| `--blue` | `#005BAA` | Links, buttons, selected filter, card border on hover, left half of the top strip, top half of ring icons |
+| `--blue` | `#005BAA` | Links, buttons, selected filter, card border on hover, top half of ring icons |
 | `--blue-dark` | `#004A8C` | Button hover |
-| `--green` | `#8BC53F` | Right half of the top strip; line under the current menu item; short line under the page title; line on top of the footer; Active dot; bottom half of ring icons. Never for text (2.07:1 on white) |
+| `--green` | `#8BC53F` | Line under the current menu item; short line under the page title; line on top of the footer; Active dot; bottom half of ring icons. Never for text (2.07:1 on white) |
 | `--green-text` | `#4A7A1C` | Dates and years, the word "Active", check marks in the benefits table (5.13:1 on white) |
-| `--navy` | `#0E2A47` | Footer background; pill text; notice and step lines; About side headings; line icons inside rings |
+| `--navy` | `#0E2A47` | Top bar and footer backgrounds; pill text; notice and step lines; About side headings; line icons inside rings |
 | `--on-navy` | `#C5D0DC` | Text on the footer (10:1 on navy) |
 | `--tint` | `#F6F8FA` | Image frames, pills, notice boxes, table group rows |
 | `--ink` | `#1B2530` | Headings and body text |
@@ -89,7 +92,7 @@ Blue and green are sampled from the CalPlug logo, and each has one meaning. A vi
 | `--line` | `#E3E8EE` | Dividers and borders, always 1px |
 | `--white` | `#FFFFFF` | Page background |
 
-The top of every page has a 4px strip, blue on the left half and green on the right, echoing the logo ring.
+The page is framed by navy: the top bar above, the footer below. (Until 0.11 the top had a 4px blue and green strip; it was replaced because it only repeated the logo's colors right next to the logo.)
 
 Not used: gradients, shadows, colored cards, green text on white. The footer is the only dark block.
 
@@ -160,6 +163,7 @@ All content is shown with one of three blocks. The Publications list is the mode
 | More on demand | Closed by default ("Full bio", "Compare all benefits") | Long text that most readers skip |
 | Social icon | Single-color icon with a hidden text label | LinkedIn, Facebook, in the footer. White on hover |
 | Header button | Blue fill, white text | "Support CalPlug" only |
+| Page-title arcs | The three signal arcs from the logo, very light gray (`#E9EEF3`), at the top right of each page's title area; smaller on phones | Every page with a title area. Decoration only: never behind text, never in color |
 | Ring icon | The logo's half-blue, half-green ring around a navy line icon (20px) | Research areas: on the filter buttons and on project cards. Icons: plug (plug loads), person (user behavior), factory (smart manufacturing), bolt (grid and storage), building (buildings and data centers), calendar (default news image). Drawn in `tools/build.py` (`LINE_ICONS`); never add a second icon style |
 | Active dot | Green dot + "Active" in green text | Meta line of active projects |
 | Link marks | "PDF" in a small outlined box after links to PDF files; "↗" after links that leave the site | Lists, cards, copied pages. Added by CSS from the link address, never typed into data |
@@ -208,6 +212,17 @@ Only things that can be clicked react to hover.
 - Best: people supply square portraits, at least 600 by 600 pixels.
 - No photo: one uniform placeholder with the person's initials.
 
+### Share image
+
+- When a page is shared (WeChat, LinkedIn, Slack, email), the preview shows `assets/brand/share.png` (1200×630): the full CalPlug logo, one line on what CalPlug does, a large ring, and the navy band with the UC Irvine and Calit2 logos and "calplug.org".
+- A project page shares its own image instead.
+- Source: `tools/share/share.html`; rebuild with `python tools/make_share_image.py` after changing it.
+- Share links are absolute, built from `site_url` in `data/site.json`. Change `site_url` when the site moves to calplug.org.
+
+### 404 page
+
+- `404.html`: the ring with an unplugged plug, "This page is unplugged.", one sentence, and links to Home, Research, Publications and Contact. It uses `site_url` as its base so it works at any address.
+
 ### Ring icons and default images
 
 - The default news image (`assets/brand/news-default.svg`) is the ring with a calendar icon on the tint background.
@@ -244,7 +259,17 @@ Only things that can be clicked react to hover.
 3. Screenshots at 1440, 1024 and 390 look right, including line breaks (section 3) and people photos (section 6). A passing script does not mean the page looks good.
 4. Anything new that this guide does not cover has been added to this guide.
 
-## 10. Change log
+## 10. Brand kit
+
+Everything CalPlug shows outside the website (slides, flyers, posters) follows the same rules, so the lab looks like one place everywhere. The kit is the folder `brand-kit/`, with a one-page guide (`brand-kit/README.md`):
+
+- `calplug-slides-template.pptx`: cover (logo, title, large ring, navy band with UC Irvine and Calit2), section divider (navy), content slide (title, text, small logo, slide number).
+- `calplug-flyer-template.pptx`: US Letter portrait event flyer (label, title, date and place, one picture, two or three sentences, navy band).
+- Logos (CalPlug full, compact, icon; UC Irvine blue and white; Calit2), the share image, and the fonts (Montserrat, Inter; SIL Open Font License).
+- Rules: same colors and meanings as section 3; titles Montserrat bold, text Inter (Arial if missing); logos never redrawn, recolored, stretched or joined; the ring is the only decoration, once per page; real photos, no stock.
+- `brand-kit/source/make_templates.js` rebuilds the templates. Change the templates there, not by hand, so this guide and the files stay in step.
+
+## 11. Change log
 
 | Version | Date | Change |
 |---|---|---|
@@ -256,6 +281,7 @@ Only things that can be clicked react to hover.
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.12 | 2026-11-13 | Top color strip replaced by a navy top bar ("University of California, Irvine › Calit2", Contact). Faint signal arcs in page-title areas. Share image and share tags on every page (project pages use their own image); `site_url` added. 404 page "This page is unplugged." Brand kit (section 10): slide and flyer templates, logos, fonts, rules. |
 | 0.11 | 2026-11-13 | Approved proposals 1, 2B, 3, 4, 7: menu cut from ten items to six plus a "Support CalPlug" button (logo goes home; Facilities becomes "Our labs" on Research; Contact moves to the footer and About; Projects renamed Research, News & Events shortened to News). Colors given meanings: blue = clickable, green = active / when, navy = ground; navy footer with white UC Irvine logo; green line only under page titles. Montserrat (titles) and Inter (text), self-hosted. Ring icons for research areas and the default news image; Active dot. PDF and external-link marks; card hover. |
 | 0.10 | 2026-11-13 | After Keven's review ("too much text, no standard; Publications is the cleanest"): three building blocks (list row, card, logo tile) and length limits for every piece of text, checked by the build. Home welcome is white with a new plain tagline; Home projects as cards. Projects: research-area filter (draft), current projects as cards, completed projects as list rows, one page per project with the full text. Careers and Support rebuilt from data files with cards, pills, a deadline notice, numbered steps, membership levels (benefits table retyped from the old image) and logo tiles. People bios shortened with "Full bio". About logo removed. |
 | 0.9.3 | 2026-11-13 | Footer: UC Irvine primary logo (file from Keven Zhuang) replaces the "UC Irvine" text, set apart from the Calit2 logo. |
@@ -264,6 +290,8 @@ Only things that can be clicked react to hover.
 | 0.9 | 2026-11-12 | Agreed plan after a point-by-point review: welcome band text left and photo right at about 300px so news shows on the first screen; 10-item menu including Careers and Support; compact logo; blue and green used in a top strip, title lines, current-menu line, welcome band and footer line; two-line footer with UC Irvine and Calit2 logos and social icons; line-break rules; people photos squared from the top and checked by eye; project filter removed; Contact with building photo and map link, no embedded map. |
 
 ## Open questions
+
+- The original CalPlug logo as a vector file, for printed posters (brand kit).
 
 - A larger or vector copy of the UC Irvine primary logo, for sharper display (optional).
 - Research areas for the Research filter are a draft (`data/projects.json`, `themes`), for Arnold to approve.

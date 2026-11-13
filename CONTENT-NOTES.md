@@ -59,6 +59,8 @@ The full original text is still on the site wherever it existed (project pages, 
 | Careers | Intro, deadline notice, "What you get", "What we ask", one-sentence position descriptions, tasks, 4 apply steps | Old Careers page, same facts |
 | Support | Intro, three ways to support, membership level cards | Old Support, Friends and Members pages, same facts |
 | News: CalPlug/ITAC 2026 Annual Workshop | Summary shortened to 25 words | Old summary |
+| Share image line (`assets/brand/share.png`) | "How homes, offices and data centers use energy, and tools that help people use less of it." | Home tagline |
+| 404 page | "This page is unplugged." and one sentence | New |
 
 ## Permissions needed before launch
 

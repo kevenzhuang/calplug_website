@@ -17,6 +17,9 @@ Each task is one edit in one file under `data/`. Copy an existing entry and chan
 | Finish a project | `data/projects.json` | Change `status` to `completed`, set `end`, add the report under `links` |
 | Add an event or news item | `data/events.json`, list `events` | Add `id`, `title`, `date` (YYYY-MM-DD), `summary`, `links`, and `image` (see DESIGN.md, News images). Without `image` the default image is used |
 | Change contact details | `data/site.json` | Edit `contact` |
+| Move the site to calplug.org | `data/site.json` | Change `site_url` to `https://www.calplug.org`. Share links and the 404 page use it |
+| Change the share picture | `tools/share/share.html` | Edit, then run `python tools/make_share_image.py` (needs Playwright) |
+| Make slides or a flyer | `brand-kit/` | Start from the templates; see `brand-kit/README.md` |
 | Update Careers (term, deadline, positions) | `data/careers.json` | Change `term` and `deadline`; each position has `id`, `title`, `mentors` (name, email, photo), one-sentence `description`, up to 3 `tasks`. The build stops if a piece is too long (DESIGN.md section 5) |
 | Update Support (members, affiliates, benefits) | `data/support.json` | Members and affiliates: `name` and optional `logo` (without a logo the name is shown in a tile). Benefits: one line per benefit with the levels that include it (`G`, `P`, `D`) |
 | Change the home tagline or a page introduction | `data/site.json` (`tagline`), `data/projects.json` (`intro`), `data/careers.json`, `data/support.json` | Keep within the length limits in DESIGN.md section 5 |

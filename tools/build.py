@@ -140,7 +140,15 @@ def ring(icon, cls="ring"):
             f'<path d="M2 16A14 14 0 0 0 30 16" class="r-bottom"/><path d="{LINE_ICONS[icon]}" class="r-icon" transform="translate(8 8) scale(0.667)"/></svg>')
 
 
-def page(filename, title, description, body, site):
+def share_image(site, image=None):
+    """Picture shown when a page is shared (DESIGN.md section 6, Share image). Must be an absolute address."""
+    if image and url(image).startswith("http"):
+        return url(image)
+    path = url(image) if image else "assets/brand/share.png"
+    return f"{site['site_url'].rstrip('/')}/{path}"
+
+
+def page(filename, title, description, body, site, image=None, extra_head=""):
     cur = SECTION.get(filename, filename)
     nav = "".join(f'<li><a href="{h}"{" aria-current=\"page\"" if h == cur else ""}>{e(label)}</a></li>' for h, label in NAV)
     btn = f'<a class="nav-cta" href="{NAV_BUTTON[0]}"{" aria-current=\"page\"" if cur == NAV_BUTTON[0] else ""}>Support<span class="cta-more"> CalPlug</span></a>'
@@ -159,6 +167,10 @@ def page(filename, title, description, body, site):
 <meta property="og:title" content="{e(full_title)}">
 <meta property="og:description" content="{e(description)}">
 <meta property="og:type" content="website">
+<meta property="og:url" content="{e(site['site_url'].rstrip('/') + '/' + ('' if filename == 'index.html' else filename))}">
+<meta property="og:image" content="{e(share_image(site, image))}">
+<meta property="og:site_name" content="CalPlug">
+<meta name="twitter:card" content="summary_large_image">{extra_head}
 <link rel="icon" href="assets/brand/calplug-mark.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/montserrat-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -168,7 +180,11 @@ def page(filename, title, description, body, site):
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
-  <div class="wrap">
+  <div class="topbar"><div class="wrap">
+    <p class="parent"><a href="https://www.uci.edu/"><span class="long">University of California, Irvine</span><span class="short">UC&nbsp;Irvine</span></a><span aria-hidden="true">\u203a</span><a href="https://www.calit2.uci.edu/">Calit2</a></p>
+    <p><a href="contact.html"{" aria-current=\"page\"" if filename == "contact.html" else ""}>Contact</a></p>
+  </div></div>
+  <div class="wrap main-row">
     <a class="brand" href="index.html"><img src="assets/brand/calplug-logo-compact.png" alt="CalPlug" width="517" height="96"></a>
     <nav class="nav" id="nav" aria-label="Main"><ul>{nav}</ul></nav>
     <div class="header-actions">{btn}<button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button></div>
@@ -336,7 +352,7 @@ def build_project_page(p, themes, site):
   <p class="back"><a href="research.html">← All research</a></p>
 </div></section>
 """
-    return page(project_page_name(p), p["title"], (p.get("summary") or p["title"])[:155], body, site)
+    return page(project_page_name(p), p["title"], (p.get("summary") or p["title"])[:155], body, site, image=p.get("image"))
 
 
 def build_home(site, projects, pubs, events, people, partners):
@@ -648,6 +664,23 @@ def build_support(site, s):
     return page("support.html", s["title"], "Support CalPlug as a member, with a gift, or with equipment.", body, site)
 
 
+def build_404(site):
+    """Shown by the host for any address that does not exist. Absolute base so it works at any depth."""
+    unplugged = ('<svg class="ring unplugged" viewBox="0 0 32 32" aria-hidden="true"><path d="M2 16A14 14 0 0 1 30 16" class="r-top"/>'
+                 '<path d="M2 16A14 14 0 0 0 30 16" class="r-bottom"/>'
+                 '<path d="M13 6.5v3M19 6.5v3M11 9.5h10v2.5a5 5 0 0 1-10 0z" class="r-icon"/><path d="M16 21v5" class="r-icon"/></svg>')
+    body = f"""
+<section class="section notfound"><div class="wrap">
+  {unplugged}
+  <h1>This page is unplugged.</h1>
+  <p class="intro">The address may have changed when the site moved. Try one of these:</p>
+  <p class="textlinks"><a href="index.html">Home</a><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="contact.html">Contact</a></p>
+</div></section>
+"""
+    base = f'\n<base href="{e(site["site_url"].rstrip("/"))}/">'
+    return page("404.html", "Page not found", "This page does not exist on the CalPlug website.", body, site, extra_head=base)
+
+
 def build_contact(site):
     c = site["contact"]
     maps = "https://www.google.com/maps/search/?api=1&query=Calit2+Building%2C+University+of+California%2C+Irvine%2C+CA+92697"
@@ -690,6 +723,7 @@ def main():
         "careers.html": build_careers(site, load("careers")),
         "support.html": build_support(site, load("support")),
         "contact.html": build_contact(site),
+        "404.html": build_404(site),
     }
     for p in projects["projects"]:
         if paras(p):

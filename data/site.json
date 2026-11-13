@@ -1,6 +1,8 @@
 {
   "name": "CalPlug",
   "full_name": "California Plug Load Research Center",
+  "site_url": "https://kevenzhuang.github.io/calplug_website",
+  "_site_url_note": "The site's public address, used for share links and the 404 page. Change to https://www.calplug.org when the domain moves.",
   "institution": "University of California, Irvine",
   "host": "Calit2 (California Institute for Telecommunications and Information Technology), UC Irvine Division",
   "established": 2011,
