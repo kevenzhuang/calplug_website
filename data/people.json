@@ -145,7 +145,8 @@
       "program": "EECS",
       "level": "Post-graduate",
       "linkedin": "https://www.linkedin.com/in/tianlewang-moto",
-      "photo": "/wp-content/uploads/Tianle-Wang-scaled.jpg"
+      "photo": "/wp-content/uploads/Tianle-Wang-scaled.jpg",
+      "photo_position": "center 85%"
     },
     {
       "name": "Gensen Xiao",
@@ -155,11 +156,12 @@
       "photo": "/wp-content/uploads/Gensen-Xiao-scaled.jpeg"
     },
     {
-      "name": "Keven Zhuang",
+      "name": "Zijun (Keven) Zhuang",
       "program": "Applied and Computational Mathematics",
       "level": "Undergraduate",
       "linkedin": "https://www.linkedin.com/in/keven-zhuang-62643b3b6",
-      "photo": "/wp-content/uploads/Keven-Zhuang-scaled.jpeg"
+      "photo": "/wp-content/uploads/Keven-Zhuang-scaled.jpeg",
+      "photo_position": "center 75%"
     }
   ],
   "alumni": [
