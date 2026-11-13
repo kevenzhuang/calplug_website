@@ -314,8 +314,6 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
   .page-head .intro { font-size: var(--fs-body); }
   .grid.c5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (max-width: 480px) {
-}
 @media (max-width: 360px) {
   .brand img { height: 24px; }
   .site-header .main-row, .header-actions { gap: var(--s-8); }
