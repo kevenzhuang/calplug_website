@@ -105,7 +105,7 @@ main > :last-child { padding-bottom: var(--s-64); }
 .item, .news, .pub { display: grid; gap: var(--s-24); padding: var(--s-24) 0; border-bottom: 1px solid var(--line); align-items: start; }
 .item { grid-template-columns: 110px minmax(0, 1fr); }
 .news { grid-template-columns: 180px minmax(0, 1fr); }
-.pub { grid-template-columns: 72px minmax(0, 1fr); }
+.pub { grid-template-columns: 96px minmax(0, 1fr); }
 .item h3, .news h3, .pub h3 { margin-bottom: var(--s-4); }
 .item p, .news p, .pub p { margin: 0 0 var(--s-4); font-size: var(--fs-small); color: var(--muted); }
 .item.full p { font-size: var(--fs-body); color: var(--ink); margin-bottom: var(--s-12); }
@@ -117,7 +117,9 @@ main > :last-child { padding-bottom: var(--s-64); }
 .when { font-size: var(--fs-small); color: var(--green-text); font-weight: var(--w-label); font-variant-numeric: tabular-nums; }
 .news .when { margin-bottom: var(--s-4); }
 .news .thumb img { width: 100%; aspect-ratio: 3 / 2; object-fit: contain; background: var(--tint); border-radius: var(--radius); }
-.pubthumb { width: 72px; aspect-ratio: 17 / 22; border: 1px solid var(--line); border-radius: var(--radius-s); overflow: hidden; background: var(--white); }
+/* 96px wide gives a 124px-high page, the height of a news image (180 by 120), so every list row carries a picture of about the same height.
+   The 3px nudge puts the top edge level with the capitals of the title beside it. */
+.pubthumb { width: 96px; margin-top: 3px; aspect-ratio: 17 / 22; border: 1px solid var(--line); border-radius: var(--radius-s); overflow: hidden; background: var(--white); }
 .pubthumb img { width: 100%; height: 100%; object-fit: contain; }
 .links { display: flex; gap: 0 var(--s-16); flex-wrap: wrap; align-items: center; font-size: var(--fs-small); margin: var(--s-4) 0 0; }
 .tag { font-size: var(--fs-small); color: var(--muted); }
@@ -303,8 +305,8 @@ figcaption { margin-top: var(--s-8); font-size: var(--fs-small); color: var(--mu
   .item, .news, .about-row, .lead-person { grid-template-columns: minmax(0, 1fr); gap: var(--s-8); }
   .news .thumb { max-width: 240px; }
   .lead-person img { max-width: 160px; }
-  .pub { grid-template-columns: 56px minmax(0, 1fr); gap: var(--s-16); }
-  .pubthumb { width: 56px; }
+  .pub { grid-template-columns: 72px minmax(0, 1fr); gap: var(--s-16); }
+  .pubthumb { width: 72px; }
   .grid.c2, .grid.c3, .grid.c3.cards, .grid.c4, .steps { grid-template-columns: minmax(0, 1fr); }
   .logo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-12); }
   .logo-grid.lg { grid-template-columns: minmax(0, 1fr); }
