@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.12.1, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
+Version 0.13, 2026-11-13. Status: built after Keven Zhuang approved the top bar (B), share image, 404 page, page-title arcs and brand kit.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -61,8 +61,9 @@ Every page starts the same way: the page title (h1) on the left, a short green l
 
 ### Footer
 
-Two short lines on the deep navy background (`--navy`), with a 3px green line on top:
+The vision line and two short lines on the deep navy background (`--navy`), with a 3px green line on top:
 
+0. CalPlug's Vision in one line ("Energy-conscious plug and process loads for how people work, live, and play"), white Montserrat, with a faint line below.
 1. On the left, the UC Irvine primary logo in white (`assets/brand/uci-logo-white.png`, 24px high, links to uci.edu), then 24px of space, then the Calit2 logo (`assets/brand/calit2-logo.png`, 40px high, links to calit2.uci.edu). The two logos stand apart, never joined into one lockup. On the right, LinkedIn and Facebook icons in light gray, white on hover. The UC Irvine seal is not used (see 6. Images, Logo).
 2. One line of small text in light gray: address · email · Contact · copyright. Links are white.
 
@@ -163,6 +164,8 @@ All content is shown with one of three blocks. The Publications list is the mode
 | More on demand | Closed by default ("Full bio", "Compare all benefits") | Long text that most readers skip |
 | Social icon | Single-color icon with a hidden text label | LinkedIn, Facebook, in the footer. White on hover |
 | Header button | Blue fill, white text | "Support CalPlug" only |
+| Page icon | The ring icon for the page (44px; 36px on phones), left of the page title, top-aligned with its first line | Every page with a title: About signal waves, People person, Research plug, Publications document, News calendar, Careers cap, Support heart, Contact pin, Our labs and SIM pages building, 1 kWh Challenge bolt; a project page uses its research area's icon. Set in `PAGE_ICON` in `tools/build.py` |
+| Footer vision line | CalPlug's Vision from About, in quotes, Montserrat, white, above the logos with a faint line below | Every page. Text comes from `vision` in `data/site.json`; never replaced by a slogan |
 | Ring icon | The logo's half-blue, half-green ring around a navy line icon (20px) | Research areas: on the filter buttons and on project cards. Icons: plug (plug loads), person (user behavior), factory (smart manufacturing), bolt (grid and storage), building (buildings and data centers), calendar (default news image). Drawn in `tools/build.py` (`LINE_ICONS`); never add a second icon style |
 | Active dot | Green dot + "Active" in green text | Meta line of active projects |
 | Link marks | "PDF" in a small outlined box after links to PDF files; "↗" after links that leave the site | Lists, cards, copied pages. Added by CSS from the link address, never typed into data |
@@ -280,6 +283,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.13 | 2026-11-13 | Page icons: each page title has its ring icon on the left (fixed size and place on every page). CalPlug's Vision as one line at the top of the footer. |
 | 0.12.1 | 2026-11-13 | Page-title arcs removed: the title areas differ in height, so each page showed a different, cut-off piece of the arcs and it looked like a broken image. |
 | 0.12 | 2026-11-13 | Top color strip replaced by a navy top bar ("University of California, Irvine › Calit2", Contact). Faint signal arcs in page-title areas. Share image and share tags on every page (project pages use their own image); `site_url` added. 404 page "This page is unplugged." Brand kit (section 10): slide and flyer templates, logos, fonts, rules. |
 | 0.11 | 2026-11-13 | Approved proposals 1, 2B, 3, 4, 7: menu cut from ten items to six plus a "Support CalPlug" button (logo goes home; Facilities becomes "Our labs" on Research; Contact moves to the footer and About; Projects renamed Research, News & Events shortened to News). Colors given meanings: blue = clickable, green = active / when, navy = ground; navy footer with white UC Irvine logo; green line only under page titles. Montserrat (titles) and Inter (text), self-hosted. Ring icons for research areas and the default news image; Active dot. PDF and external-link marks; card hover. |

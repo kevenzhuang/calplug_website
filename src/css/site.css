@@ -320,3 +320,14 @@ a.card:hover { border-color: var(--blue); text-decoration: none; }
 .notfound .unplugged .r-icon { stroke-width: 1.6; }
 .notfound h1 { margin-bottom: var(--s-16); }
 .notfound .intro { font-size: var(--fs-lead); }
+
+/* Page icon: the ring icon for the page, left of the title (DESIGN.md section 4) */
+.title-row { display: flex; align-items: flex-start; gap: var(--s-16); }
+.page-icon { width: 44px; height: 44px; margin-top: 0; }
+.page-icon .r-top, .page-icon .r-bottom { stroke-width: 2; }
+.page-icon .r-icon { stroke-width: 1.8; }
+@media (max-width: 600px) { .page-icon { width: 36px; height: 36px; } .title-row { gap: var(--s-12); } }
+
+/* Footer vision line: CalPlug's own words, on every page */
+.site-footer .vision { font-family: var(--font-head); font-weight: 600; font-size: var(--fs-lead); line-height: 1.4; color: var(--white); max-width: none; margin: 0 0 var(--s-24); padding-bottom: var(--s-24); border-bottom: 1px solid rgba(255, 255, 255, 0.12); text-wrap: balance; }
+@media (max-width: 600px) { .site-footer .vision { font-size: var(--fs-body); } }

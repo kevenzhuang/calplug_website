@@ -131,7 +131,16 @@ LINE_ICONS = {
     "bolt": "M13 2L4 14h7l-1 8l9-12h-7z",
     "building": "M4 21V4h10v17M14 9h6v12M2 21h20M8 8h2M8 12h2M8 16h2M17 13h0.01M17 17h0.01",
     "calendar": "M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM3 10h18M8 3v4M16 3v4",
+    "document": "M6 3h8l5 5v13H6zM14 3v5h5M9 13h7M9 17h7",
+    "cap": "M2 9l10-5l10 5l-10 5zM6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5M22 9v6",
+    "signal": "M2.5 9a13.5 13.5 0 0 1 19 0M5.5 12.5a9 9 0 0 1 13 0M8.5 16a4.5 4.5 0 0 1 7 0M12 19.5h0.01",
+    "heart": "M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z",
+    "pin": "M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12zM12 6.5a2.5 2.5 0 1 1 0 5a2.5 2.5 0 0 1 0-5z",
 }
+# One ring icon per page title (DESIGN.md section 4, Page icon). Project pages use their research area's icon.
+PAGE_ICON = {"About": "signal", "People": "person", "Research": "plug", "Publications": "document", "Our labs": "building",
+             "News & Events": "calendar", "Events Archive": "calendar", "Careers": "cap", "Support & Memberships": "heart",
+             "Contact": "pin", "SIM Home": "building", "SIM Lab": "building", "1 kWh Challenge": "bolt"}
 AREA_ICON = {"plug-loads": "plug", "behavior": "person", "smart-manufacturing": "factory", "grid": "bolt", "buildings": "building"}
 
 
@@ -195,6 +204,7 @@ def page(filename, title, description, body, site, image=None, extra_head=""):
 </main>
 <footer class="site-footer">
   <div class="wrap">
+    <p class="vision">\u201c{e(site['vision'])}\u201d</p>
     <div class="foot-row">
       <p class="affil"><a href="https://www.uci.edu/" class="affil-uci"><img src="assets/brand/uci-logo-white.png" alt="UC Irvine" width="266" height="45" loading="lazy"></a><a href="https://www.calit2.uci.edu/" class="affil-logo"><img src="assets/brand/calit2-logo.png" alt="Calit2" width="447" height="447" loading="lazy"></a></p>
       <p class="social">{social}</p>
@@ -236,9 +246,11 @@ def legacy_page(filename, title, slug, site, description):
     return page(filename, title, description, body, site)
 
 
-def head(title, extra=""):
-    """Every page starts the same way: title, green line (CSS), then content (DESIGN.md section 2)."""
-    return f'<div class="page-head"><div class="wrap"><h1>{e(title)}</h1>{extra}</div></div>'
+def head(title, extra="", icon=None):
+    """Every page starts the same way: ring icon and title, green line (CSS), then content (DESIGN.md section 2)."""
+    icon = icon or PAGE_ICON.get(title)
+    mark = ring(icon, "ring page-icon") if icon else ""
+    return f'<div class="page-head"><div class="wrap"><div class="title-row">{mark}<h1>{e(title)}</h1></div>{extra}</div></div>'
 
 
 def pub_thumb(p):
@@ -343,7 +355,8 @@ def project_row(p, themes):
 def build_project_page(p, themes, site):
     partners = f'<p class="meta">With {e(", ".join(p["partners"]))}</p>' if p.get("partners") else ""
     pic = f'<figure class="figure">{img(p["image"], p.get("image_alt", ""), eager=True)}</figure>' if p.get("image") else ""
-    body = head(p["title"], f'<p class="meta head-meta">{project_meta(p, themes)}{" · " + theme_names(p, themes) if p.get("themes") else ""}</p>') + f"""
+    icon = AREA_ICON.get((p.get("themes") or ["plug-loads"])[0], "plug")
+    body = head(p["title"], f'<p class="meta head-meta">{project_meta(p, themes)}{" · " + theme_names(p, themes) if p.get("themes") else ""}</p>', icon=icon) + f"""
 <section class="section"><div class="wrap prose">
   {partners}
   {''.join(f"<p>{e(x)}</p>" for x in paras(p))}
