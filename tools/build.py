@@ -267,15 +267,14 @@ def page(filename, title, description, body, site, image=None, extra_head=""):
 </main>
 <footer class="site-footer">
   <div class="wrap">
-    <p class="vision"><a class="vision-mark" href="index.html" aria-label="CalPlug home">{ring("mark")}</a><span>\u201c{e(site['vision'])}\u201d</span></p>
-    <div class="foot-cols">
-      <p class="affil"><a href="https://www.uci.edu/" class="affil-uci"><img src="assets/brand/uci-logo-white.png" alt="UC Irvine" width="266" height="45" loading="lazy"></a><a href="https://www.calit2.uci.edu/" class="affil-logo"><img src="assets/brand/calit2-logo.png" alt="Calit2" width="447" height="447" loading="lazy"></a></p>
+    <div class="foot-top">
+      <p class="vision"><a class="vision-mark" href="index.html" aria-label="CalPlug home">{ring("mark")}</a><span>\u201c{e(site['vision'])}\u201d</span></p>
       <div><p class="foot-label">Visit</p><p>{"<br>".join(e(x) for x in c["address"])}</p></div>
       <div><p class="foot-label">Contact</p><p><a href="mailto:{e(c['general']['email'])}">{e(c['general']['email'])}</a><br>{e(c['general']['phone'])}<br><a class="more" href="contact.html">Directions and all contacts</a></p></div>
     </div>
     <div class="foot-row">
-      <p class="legal">&copy;&nbsp;{date.today().year} {e(site['full_name'])}</p>
-      <p class="social">{social}</p>
+      <p class="affil"><a href="https://www.uci.edu/" class="affil-uci"><img src="assets/brand/uci-logo-white.png" alt="UC Irvine" width="266" height="45" loading="lazy"></a><a href="https://www.calit2.uci.edu/" class="affil-logo"><img src="assets/brand/calit2-logo.png" alt="Calit2" width="447" height="447" loading="lazy"></a></p>
+      <div class="foot-end"><p class="legal">&copy;&nbsp;{date.today().year} {e(site['full_name'])}</p><p class="social">{social}</p></div>
     </div>
   </div>
 </footer>

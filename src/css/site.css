@@ -253,20 +253,30 @@ figcaption { margin-top: var(--s-8); font-size: var(--fs-small); color: var(--mu
 .prose td, .prose th { border: 1px solid var(--line); padding: var(--s-8) var(--s-12); vertical-align: top; text-align: left; }
 
 /* Footer: green line on top, two short lines */
-.site-footer { background: var(--navy); border-top: 3px solid var(--green); padding: var(--s-48) 0 var(--s-32); font-size: var(--fs-small); color: var(--on-navy); }
-/* Three columns of the same width: who we belong to, where we are, how to reach us. Then one quiet line: copyright left, social icons right. */
-.foot-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-32) var(--s-48); padding: var(--s-16) 0 var(--s-48); align-items: start; }
-.foot-cols p { margin: 0; max-width: none; line-height: var(--lh-body); }
-.foot-cols a { color: var(--white); }
-.foot-cols .foot-label { color: var(--white); font-weight: var(--w-label); margin-bottom: var(--s-8); }
-.foot-row { display: flex; justify-content: space-between; align-items: center; gap: var(--s-16); flex-wrap: wrap; padding-top: var(--s-24); border-top: 1px solid var(--line-on-navy); }
-@media (max-width: 760px) { .foot-cols { grid-template-columns: minmax(0, 1fr); gap: var(--s-24); padding-bottom: var(--s-32); } }
+.site-footer { background: var(--navy); border-top: 3px solid var(--green); padding: var(--s-64) 0 var(--s-32); font-size: var(--fs-small); color: var(--on-navy); }
+/* Footer, top: the statement (icon, then the vision in title type) takes half the width; where we are and how to reach us sit beside it.
+   Bottom: one quiet line under a single divider: the two institutions on the left, copyright and social icons on the right. */
+.foot-top { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-32) var(--s-48); padding-bottom: var(--s-48); align-items: start; }
+.foot-top p { margin: 0; max-width: none; line-height: var(--lh-body); }
+.foot-top a { color: var(--white); }
+.foot-top > div { padding-top: var(--s-8); }
+.foot-top .foot-label { color: var(--white); font-weight: var(--w-label); margin-bottom: var(--s-8); }
+.foot-row { display: flex; justify-content: space-between; align-items: center; gap: var(--s-16) var(--s-32); flex-wrap: wrap; padding-top: var(--s-24); border-top: 1px solid var(--line-on-navy); }
+.foot-end { display: flex; align-items: center; gap: var(--s-32); }
+@media (max-width: 900px) { .foot-top { grid-template-columns: repeat(2, minmax(0, 1fr)); } .foot-top .vision { grid-column: 1 / -1; } }
+@media (max-width: 600px) {
+  .foot-top { grid-template-columns: minmax(0, 1fr); gap: var(--s-24); padding-bottom: var(--s-32); }
+  /* Phones: the institutions and the social icons share one line, the copyright gets its own, so it never wraps */
+  .foot-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+  .foot-end { display: contents; }
+  .foot-end .legal { grid-column: 1 / -1; order: 3; }
+}
 .foot-row p { margin: 0; }
 .affil { display: flex; gap: var(--s-24); align-items: center; }
-.affil-uci img { height: 24px; width: auto; display: block; }
+.affil-uci img { height: 20px; width: auto; display: block; }
 .affil-logo img { display: block; }
 .affil a { color: var(--white); }
-.affil-logo img { height: 40px; width: 40px; border-radius: var(--radius-s); }
+.affil-logo img { height: 32px; width: 32px; border-radius: var(--radius-s); }
 .social { display: flex; gap: var(--s-16); }
 .social a { color: var(--on-navy); display: block; }
 .social a:hover { color: var(--white); }
@@ -368,8 +378,7 @@ figcaption { margin-top: var(--s-8); font-size: var(--fs-small); color: var(--mu
 
 
 /* Footer vision line: CalPlug's own words, on every page */
-.site-footer .vision { font-family: var(--font-head); font-weight: var(--w-title); font-size: var(--fs-lead); line-height: var(--lh-snug); color: var(--white); max-width: none; margin: 0 0 var(--s-32); padding-bottom: var(--s-32); border-bottom: 1px solid var(--line-on-navy); text-wrap: balance; }
-@media (max-width: 600px) { .site-footer .vision { font-size: var(--fs-body); } }
+.site-footer .vision { font-family: var(--font-head); font-weight: var(--w-title); font-size: var(--fs-h2); line-height: var(--lh-title); color: var(--white); max-width: 460px; text-wrap: balance; }
 
 /* Review fixes 0.15 */
 .nw { white-space: nowrap; }
@@ -389,7 +398,7 @@ figcaption { margin-top: var(--s-8); font-size: var(--fs-small); color: var(--mu
 .lead-person .meta a { display: block; }
 
 /* Footer: the CalPlug icon before the vision line, on a white disc so its blue stays visible on navy (the icon itself is unchanged) */
-.site-footer .vision { display: flex; align-items: center; gap: var(--s-16); }
+.site-footer .vision { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-16); }
 .vision-mark { flex-shrink: 0; display: grid; place-items: center; width: var(--control-h); height: var(--control-h); border-radius: 50%; background: var(--white); }
 .vision-mark .ring { width: 30px; height: 30px; }
 
