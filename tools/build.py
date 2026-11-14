@@ -268,7 +268,7 @@ def page(filename, title, description, body, site, image=None, extra_head=""):
 <footer class="site-footer">
   <div class="wrap">
     <div class="foot-top">
-      <p class="vision"><a class="vision-mark" href="index.html" aria-label="CalPlug home">{ring("mark")}</a><span>\u201c{e(site['vision'])}\u201d</span></p>
+      <div class="foot-id"><a href="index.html"><img src="assets/brand/calplug-logo-reversed.svg" alt="CalPlug home" width="517" height="96" loading="lazy"></a><p class="vision">\u201c{e(site['vision'])}\u201d</p></div>
       <div><p class="foot-label">Visit</p><p>{"<br>".join(e(x) for x in c["address"])}</p></div>
       <div><p class="foot-label">Contact</p><p><a href="mailto:{e(c['general']['email'])}">{e(c['general']['email'])}</a><br>{e(c['general']['phone'])}<br><a class="more" href="contact.html">Directions and all contacts</a></p></div>
     </div>

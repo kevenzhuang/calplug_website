@@ -259,11 +259,12 @@ figcaption { margin-top: var(--s-8); font-size: var(--fs-small); color: var(--mu
 .foot-top { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-32) var(--s-48); padding-bottom: var(--s-48); align-items: start; }
 .foot-top p { margin: 0; max-width: none; line-height: var(--lh-body); }
 .foot-top a { color: var(--white); }
-.foot-top > div { padding-top: var(--s-8); }
+.foot-top > div + div { padding-top: var(--s-8); }
+.foot-id img { height: var(--control-h); width: auto; display: block; margin-bottom: var(--s-16); }
 .foot-top .foot-label { color: var(--white); font-weight: var(--w-label); margin-bottom: var(--s-8); }
 .foot-row { display: flex; justify-content: space-between; align-items: center; gap: var(--s-16) var(--s-32); flex-wrap: wrap; padding-top: var(--s-24); border-top: 1px solid var(--line-on-navy); }
 .foot-end { display: flex; align-items: center; gap: var(--s-32); }
-@media (max-width: 900px) { .foot-top { grid-template-columns: repeat(2, minmax(0, 1fr)); } .foot-top .vision { grid-column: 1 / -1; } }
+@media (max-width: 900px) { .foot-top { grid-template-columns: repeat(2, minmax(0, 1fr)); } .foot-top .foot-id { grid-column: 1 / -1; } }
 @media (max-width: 600px) {
   .foot-top { grid-template-columns: minmax(0, 1fr); gap: var(--s-24); padding-bottom: var(--s-32); }
   /* Phones: the institutions and the social icons share one line, the copyright gets its own, so it never wraps */
@@ -378,7 +379,7 @@ figcaption { margin-top: var(--s-8); font-size: var(--fs-small); color: var(--mu
 
 
 /* Footer vision line: CalPlug's own words, on every page */
-.site-footer .vision { font-family: var(--font-head); font-weight: var(--w-title); font-size: var(--fs-h2); line-height: var(--lh-title); color: var(--white); max-width: 460px; text-wrap: balance; }
+.site-footer .vision { font-family: var(--font-head); font-weight: var(--w-title); font-size: var(--fs-h3); line-height: var(--lh-snug); color: var(--white); max-width: 440px; text-wrap: balance; }
 
 /* Review fixes 0.15 */
 .nw { white-space: nowrap; }
@@ -398,9 +399,6 @@ figcaption { margin-top: var(--s-8); font-size: var(--fs-small); color: var(--mu
 .lead-person .meta a { display: block; }
 
 /* Footer: the CalPlug icon before the vision line, on a white disc so its blue stays visible on navy (the icon itself is unchanged) */
-.site-footer .vision { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-16); }
-.vision-mark { flex-shrink: 0; display: grid; place-items: center; width: var(--control-h); height: var(--control-h); border-radius: 50%; background: var(--white); }
-.vision-mark .ring { width: 30px; height: 30px; }
 
 @keyframes nav-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
 @keyframes scrim-in { from { opacity: 0; } to { opacity: 1; } }
