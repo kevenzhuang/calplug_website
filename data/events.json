@@ -1,5 +1,5 @@
 {
-  "_note": "Extracted from calplug.org home page and /eventsarchive on 2026-11-12. date is ISO (YYYY-MM-DD) or null when the site gives none. Full agendas are on the Events Archive page (content/legacy/events-archive.html). Every item is shown with an image; items without 'image' use assets/brand/news-default.svg.",
+  "_note": "Extracted from calplug.org home page and /eventsarchive on 2026-11-12. date is ISO (YYYY-MM-DD) or null when the site gives none. An event with more to say (speakers, agenda) has a file content/events/<id>.html and gets its own page; the others are complete in the list. Every item is shown with an image; items without 'image' use assets/brand/news-default.svg.",
   "events": [
     {
       "id": "annual-workshop-2026",
@@ -73,7 +73,8 @@
           "url": "/wp-content/uploads/CalPlug-10th-Anniversary-Workshop.pdf"
         }
       ],
-      "_flag": "Site shows 'Monday, October 18, 2021', the same date as Workshop #18, while the slides link is dated May 2022. Date left empty until confirmed."
+      "_flag": "Site shows 'Monday, October 18, 2021', the same date as Workshop #18, while the slides link is dated May 2022. Date left empty until confirmed.",
+      "image_alt": "Workshop banner: Designing Climate Resiliency: Energy Load Solutions at the Intersection of Infrastructures, Community and People"
     },
     {
       "id": "workshop-18",
@@ -91,7 +92,8 @@
           "label": "Brochure",
           "url": "/wp-content/uploads/CalPlug18-1.pdf"
         }
-      ]
+      ],
+      "image_alt": "Workshop banner: CalPlug Workshop #18, Optimizing Energy Efficiency in Spaces"
     },
     {
       "id": "aceee-2021",
@@ -124,6 +126,10 @@
         {
           "label": "Recording",
           "url": "https://www.youtube.com/watch?v=4iMTFollSfc"
+        },
+        {
+          "label": "EarthDay.org listing",
+          "url": "https://earthday.maps.arcgis.com/apps/opsdashboard/index.html#/8d15cc3da12d4338a109c7d64c97c02a"
         }
       ]
     },
@@ -139,11 +145,12 @@
           "url": "https://betterbuildingssolutioncenter.energy.gov/webinars/beyond-energy-efficiency-how-your-device-usage-patterns-affect-energy-consumption"
         }
       ],
-      "image": "/wp-content/uploads/calplugpictureBBAPPL.png"
+      "image": "/wp-content/uploads/calplugpictureBBAPPL.png",
+      "image_alt": "Diagram: one television in the middle with arrows to five charts, captioned “One device across many use profiles”"
     },
     {
       "id": "workshop-3cs",
-      "title": "CalPlug Workshop: 3 C's - Climate Change, Energy Consumption and Disadvantaged Communities during COVID-19",
+      "title": "CalPlug Workshop: 3 C’s – Climate Change, Energy Consumption and Disadvantaged Communities during COVID-19",
       "date": "2020-11-16",
       "format": "online",
       "links": [
