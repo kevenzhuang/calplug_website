@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.32, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
+Version 0.33, 2026-11-14. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -67,13 +67,24 @@ Line breaks in the paragraph: centered text is read line by line, so a line must
 
 ### Footer
 
-The vision line and two short lines on the deep navy background (`--navy`), with a 3px green line on top:
+Deep navy (`--navy`) with a 3px green line on top, 48px of space above the content and 32px below. Three tiers, each separated by a faint line (`--line-on-navy`):
 
-0. The CalPlug icon (30px, on a 40px white disc so its blue stays visible on navy; the icon itself is unchanged), which links to Home like the header logo, then CalPlug's Vision in one line ("Energy-conscious plug and process loads for how people work, live, and play"), white Montserrat, with a faint line below.
-1. On the left, the UC Irvine primary logo in white (`assets/brand/uci-logo-white.png`, 24px high, links to uci.edu), then 24px of space, then the Calit2 logo (`assets/brand/calit2-logo.png`, 40px high, links to calit2.uci.edu). This is the one place on the site that links to UC Irvine and Calit2. The two logos stand apart, never joined into one lockup. On the right, LinkedIn and Facebook icons in light gray, white on hover. The UC Irvine seal is not used (see 6. Images, Logo).
-2. One line of small text in light gray: address · email · Contact · copyright. Links are white.
+1. **The vision.** The CalPlug icon (30px, on a 40px white disc so its blue stays visible on navy; the icon itself is unchanged), which links to Home like the header logo, then CalPlug's Vision in one line ("Energy-conscious plug and process loads for how people work, live, and play"), white Montserrat 19px.
+2. **Three columns of equal width**, text 14px:
+   - the UC Irvine primary logo in white (`assets/brand/uci-logo-white.png`, 24px high, links to uci.edu), then 24px of space, then the Calit2 logo (`assets/brand/calit2-logo.png`, 40px high, links to calit2.uci.edu). This is the one place on the site that links to UC Irvine and Calit2. The two logos stand apart, never joined into one lockup;
+   - **Visit**: the postal address on three lines, as written on an envelope;
+   - **Contact**: the general e-mail address, the general phone number, and "Directions and all contacts →" to the Contact page.
+   Column labels are white, weight 500; text is light gray (`--on-navy`); links are white. Everything comes from `contact` in `data/site.json`.
+3. **One line**: the copyright on the left, LinkedIn and Facebook icons on the right.
 
-No site map in the footer: every page not in the menu is reached from its parent page.
+On screens of 760px or less the three columns stack, in the same order.
+
+Why this shape (0.33): the earlier footer put the logos, the address in one line, the e-mail and the copyright in a small block at the left, with only two icons on the right. It read as cramped and one-sided. Spreading the same information over three columns uses the width and gives each item room; the address on three lines also avoids "Irvine, Irvine, CA". Keven chose this version over three others compared on 2026-11-14 (a large vision statement at the left; the full CalPlug logo with white lettering; the full logo on a white plate or on a light band).
+
+Two rules that came out of that comparison:
+
+- **The CalPlug logo is never recolored**, not even to white for a dark background. On navy only the icon is used, on its white disc. The full logo appears on white or light backgrounds only.
+- No site map in the footer: every page not in the menu is reached from its parent page.
 
 ## 3. Visual standard
 
@@ -364,6 +375,7 @@ Inside a bullet list:
   - When the designer's original vector files are found, they replace these files under the same names.
 - The icon alone (`assets/brand/calplug-mark.svg`): redrawn as a vector by measuring the original logo file (ring outer and inner radius, horizontal split, the three arcs' centers, radii and widths, the plug's prongs and body); checked against the original pixel by pixel, differences are only at anti-aliased edges. Used for the browser tab icon, the 404 page and the default news and publication images. Never altered (no "unplugged" variant, no recoloring).
 - Replace these only with a higher-resolution or vector copy of the same artwork from the lab.
+- The CalPlug logo is never recolored, not even to white for a dark background (decided 2026-11-14). On the navy footer only the icon is used, on a white disc; the full logo appears on white or light backgrounds only.
 - UC Irvine logo: the primary logo file Keven Zhuang provided (`assets/brand/uci-logo.png`, 266×45). Keep the clear space around it; nothing locked up with it; not smaller than 3/16 inch (about 18px); never redrawn or recolored. A larger or vector copy from the UC Irvine brand asset library (UCInetID login) would look sharper on high-resolution screens; swap it in when available.
 - UC Irvine seal: not used. UC Irvine's brand rules say the seal should not be used on the web and cannot be modified; questions go to graphicservices@uci.edu.
 - Calit2 logo: the file Keven Zhuang provided (`assets/brand/calit2-logo.png`, square). Shown as is, at 40px high, with a little space from the UC Irvine name; never recolored or redrawn.
@@ -533,6 +545,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.33 | 2026-11-14 | Footer redesigned after Keven found it cramped: more space, three equal columns (UC Irvine and Calit2 logos, Visit, Contact), then one line with the copyright and social icons. Four alternatives were compared and set aside. New rule: the CalPlug logo is never recolored. |
 | 0.32 | 2026-11-13 | Home paragraph: lines now break at sentence ends on screens wider than 760px (Keven: the breaks looked odd, with "We" and "Founded" left at line ends). |
 | 0.31 | 2026-11-13 | Publication thumbnails enlarged again, to 132px (96px on phones), after comparing 96 / 132 / 160 with Keven against the UW Makeability Lab list. Home section titles stay left-aligned: only the welcome block is centered (discussed, no change). |
 | 0.30 | 2026-11-13 | Home welcome redesigned after Keven's comparison with the Melady Lab site: group photo first, then one centered paragraph and three links; no visible title, the full name opens the paragraph in title weight (the build checks that it is there). Approved from a before-and-after preview. |
