@@ -253,20 +253,24 @@ figcaption { margin-top: var(--s-8); font-size: var(--fs-small); color: var(--mu
 .prose td, .prose th { border: 1px solid var(--line); padding: var(--s-8) var(--s-12); vertical-align: top; text-align: left; }
 
 /* Footer: green line on top, two short lines */
-.site-footer { background: var(--navy); border-top: 3px solid var(--green); padding: var(--s-64) 0 var(--s-32); font-size: var(--fs-small); color: var(--on-navy); }
+.site-footer { background: var(--navy); border-top: 3px solid var(--green); font-size: var(--fs-small); color: var(--on-navy); }
+.foot-main { padding: var(--s-64) 0 var(--s-48); }
+.foot-bar { padding-bottom: var(--s-32); }
 /* Footer, top: the statement (icon, then the vision in title type) takes half the width; where we are and how to reach us sit beside it.
    Bottom: one quiet line under a single divider: the two institutions on the left, copyright and social icons on the right. */
-.foot-top { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-32) var(--s-48); padding-bottom: var(--s-48); align-items: start; }
+.foot-top { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-32) var(--s-48); align-items: start; }
 .foot-top p { margin: 0; max-width: none; line-height: var(--lh-body); }
 .foot-top a { color: var(--white); }
 .foot-top > div + div { padding-top: var(--s-8); }
-.foot-id img { height: var(--control-h); width: auto; display: block; margin-bottom: var(--s-16); }
+.foot-id a { display: inline-block; background: var(--white); border-radius: var(--radius); padding: var(--s-8) var(--s-12); margin-bottom: var(--s-16); }
+.foot-id img { height: var(--control-h-s); width: auto; display: block; }
 .foot-top .foot-label { color: var(--white); font-weight: var(--w-label); margin-bottom: var(--s-8); }
 .foot-row { display: flex; justify-content: space-between; align-items: center; gap: var(--s-16) var(--s-32); flex-wrap: wrap; padding-top: var(--s-24); border-top: 1px solid var(--line-on-navy); }
 .foot-end { display: flex; align-items: center; gap: var(--s-32); }
 @media (max-width: 900px) { .foot-top { grid-template-columns: repeat(2, minmax(0, 1fr)); } .foot-top .foot-id { grid-column: 1 / -1; } }
 @media (max-width: 600px) {
-  .foot-top { grid-template-columns: minmax(0, 1fr); gap: var(--s-24); padding-bottom: var(--s-32); }
+  .foot-top { grid-template-columns: minmax(0, 1fr); gap: var(--s-24); }
+  .foot-main { padding: var(--s-48) 0 var(--s-32); }
   /* Phones: the institutions and the social icons share one line, the copyright gets its own, so it never wraps */
   .foot-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
   .foot-end { display: contents; }
@@ -402,3 +406,13 @@ figcaption { margin-top: var(--s-8); font-size: var(--fs-small); color: var(--mu
 
 @keyframes nav-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
 @keyframes scrim-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* PREVIEW E2 */
+.site-footer.light { background: var(--tint); color: var(--muted); }
+.site-footer.light .foot-id a { background: none; padding: 0; }
+.site-footer.light .foot-id img { height: var(--control-h); }
+.site-footer.light .vision { color: var(--ink); }
+.site-footer.light .foot-top a { color: var(--blue); }
+.site-footer.light .foot-top .foot-label { color: var(--ink); }
+.site-footer.light .foot-bar { background: var(--navy); color: var(--on-navy); padding: var(--s-24) 0; }
+.site-footer.light .foot-row { border-top: 0; padding-top: 0; }

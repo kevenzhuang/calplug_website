@@ -266,17 +266,19 @@ def page(filename, title, description, body, site, image=None, extra_head=""):
 {body}
 </main>
 <footer class="site-footer">
-  <div class="wrap">
+  <div class="foot-main"><div class="wrap">
     <div class="foot-top">
-      <div class="foot-id"><a href="index.html"><img src="assets/brand/calplug-logo-reversed.svg" alt="CalPlug home" width="517" height="96" loading="lazy"></a><p class="vision">\u201c{e(site['vision'])}\u201d</p></div>
+      <div class="foot-id"><a href="index.html"><img src="assets/brand/calplug-logo-compact.svg" alt="CalPlug home" width="517" height="96" loading="lazy"></a><p class="vision">\u201c{e(site['vision'])}\u201d</p></div>
       <div><p class="foot-label">Visit</p><p>{"<br>".join(e(x) for x in c["address"])}</p></div>
       <div><p class="foot-label">Contact</p><p><a href="mailto:{e(c['general']['email'])}">{e(c['general']['email'])}</a><br>{e(c['general']['phone'])}<br><a class="more" href="contact.html">Directions and all contacts</a></p></div>
     </div>
+  </div></div>
+  <div class="foot-bar"><div class="wrap">
     <div class="foot-row">
       <p class="affil"><a href="https://www.uci.edu/" class="affil-uci"><img src="assets/brand/uci-logo-white.png" alt="UC Irvine" width="266" height="45" loading="lazy"></a><a href="https://www.calit2.uci.edu/" class="affil-logo"><img src="assets/brand/calit2-logo.png" alt="Calit2" width="447" height="447" loading="lazy"></a></p>
       <div class="foot-end"><p class="legal">&copy;&nbsp;{date.today().year} {e(site['full_name'])}</p><p class="social">{social}</p></div>
     </div>
-  </div>
+  </div></div>
 </footer>
 <script src="js/site.js?v={STAMP}" defer></script>
 </body>
