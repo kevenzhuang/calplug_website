@@ -253,8 +253,14 @@ figcaption { margin-top: var(--s-8); font-size: var(--fs-small); color: var(--mu
 .prose td, .prose th { border: 1px solid var(--line); padding: var(--s-8) var(--s-12); vertical-align: top; text-align: left; }
 
 /* Footer: green line on top, two short lines */
-.site-footer { background: var(--navy); border-top: 3px solid var(--green); padding: var(--s-32) 0 var(--s-24); font-size: var(--fs-small); color: var(--on-navy); }
-.foot-row { display: flex; justify-content: space-between; align-items: center; gap: var(--s-16); flex-wrap: wrap; margin-bottom: var(--s-16); }
+.site-footer { background: var(--navy); border-top: 3px solid var(--green); padding: var(--s-48) 0 var(--s-32); font-size: var(--fs-small); color: var(--on-navy); }
+/* Three columns of the same width: who we belong to, where we are, how to reach us. Then one quiet line: copyright left, social icons right. */
+.foot-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-32) var(--s-48); padding: var(--s-16) 0 var(--s-48); align-items: start; }
+.foot-cols p { margin: 0; max-width: none; line-height: var(--lh-body); }
+.foot-cols a { color: var(--white); }
+.foot-cols .foot-label { color: var(--white); font-weight: var(--w-label); margin-bottom: var(--s-8); }
+.foot-row { display: flex; justify-content: space-between; align-items: center; gap: var(--s-16); flex-wrap: wrap; padding-top: var(--s-24); border-top: 1px solid var(--line-on-navy); }
+@media (max-width: 760px) { .foot-cols { grid-template-columns: minmax(0, 1fr); gap: var(--s-24); padding-bottom: var(--s-32); } }
 .foot-row p { margin: 0; }
 .affil { display: flex; gap: var(--s-24); align-items: center; }
 .affil-uci img { height: 24px; width: auto; display: block; }
@@ -265,15 +271,7 @@ figcaption { margin-top: var(--s-8); font-size: var(--fs-small); color: var(--mu
 .social a { color: var(--on-navy); display: block; }
 .social a:hover { color: var(--white); }
 .social svg { width: 20px; height: 20px; fill: currentColor; display: block; }
-.site-footer .legal { margin: 0; max-width: none; display: flex; flex-wrap: wrap; gap: 0 var(--s-8); }
-.site-footer .legal span { white-space: nowrap; }
-.site-footer .legal span:first-child { flex-basis: 100%; }
-.site-footer .legal span + span + span::before { content: "\00b7"; margin-right: var(--s-8); }
-@media (max-width: 600px) {
-  .site-footer .legal { display: block; }
-  .site-footer .legal span { display: block; white-space: normal; }
-  .site-footer .legal span::before { display: none; }
-}
+.site-footer .legal { margin: 0; max-width: none; }
 .site-footer .legal a { color: var(--white); }
 .site-footer :focus-visible { outline-color: var(--white); }
 
@@ -370,7 +368,7 @@ figcaption { margin-top: var(--s-8); font-size: var(--fs-small); color: var(--mu
 
 
 /* Footer vision line: CalPlug's own words, on every page */
-.site-footer .vision { font-family: var(--font-head); font-weight: var(--w-title); font-size: var(--fs-lead); line-height: var(--lh-snug); color: var(--white); max-width: none; margin: 0 0 var(--s-24); padding-bottom: var(--s-24); border-bottom: 1px solid var(--line-on-navy); text-wrap: balance; }
+.site-footer .vision { font-family: var(--font-head); font-weight: var(--w-title); font-size: var(--fs-lead); line-height: var(--lh-snug); color: var(--white); max-width: none; margin: 0 0 var(--s-32); padding-bottom: var(--s-32); border-bottom: 1px solid var(--line-on-navy); text-wrap: balance; }
 @media (max-width: 600px) { .site-footer .vision { font-size: var(--fs-body); } }
 
 /* Review fixes 0.15 */
