@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.33, 2026-11-14. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
+Version 0.34, 2026-11-14. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -45,10 +45,17 @@ Every page starts the same way: the page title (h1) on the left, a short green l
 | Research page, Our labs | Former Facilities page: intro · three cards linking to SIM Home, 1 kWh Challenge, SIM Lab (each an original page) · floor plan, folded. `facilities.html` now sends visitors here |
 | Project page (`project-<id>.html`) | Title · years, sponsor, area · partners · full original description · image · reports · link back to Research. One page per project that has a description |
 | Publications | Filter by type · by year, newest first · Earlier documents, folded by category |
-| News (page title "News & Events") | All items, newest first · link to the Events Archive (original page with agendas and recordings) |
+| News (page title "News & Events") | All items in one list, newest first. Each row: image · date · title · summary · links. An item with more to say opens its own page from its title and "Details →" |
+| Event page (`event-<id>.html`) | Title · date, place · picture · paragraph · speakers · agenda · links · link back to News. One page per event that has a file `content/events/<id>.html`; an event without one is complete in the list and gets no page. The same rule as for projects, so a visitor meets one pattern: a list, and a page for the items that have more |
 | Careers | Intro · deadline notice · "What you get" and "What we ask" cards · Open positions (cards: ID pill, title, one sentence, up to 3 tasks, mentors with photos) · How to apply (4 numbered steps). Content in `data/careers.json` |
 | Support & Memberships | Intro · Current members (large logo tiles) · Ways to support (3 cards: member, gift, equipment) · Membership levels (3 cards: Gold, then what Platinum and Diamond add; full comparison table folded below) · Past members and current affiliates (logo tiles). Content in `data/support.json` |
 | Contact (reached from the footer and About) | Original location text · photo of the Calit2 Building · address with an "Open in Google Maps" link · general, collaborations and Calit2 contacts · hours. No embedded map |
+
+### News: one list, pages for the events that have more
+
+- There is no separate archive. The old site kept a second page ("Events Archive") with the same events in long form; every event appeared twice and a visitor had to guess where to look. Since 0.34 the long form of each event is its own page, reached from the list.
+- No paging while the list is short: one page up to 20 items (12 today). Past 20, the list is split into pages of 10 with "Newer" and "Older" links; add this to `tools/build.py` then, not before.
+- Addresses of the old WordPress site keep working: the build writes a small forwarding page for each (`/eventsarchive` to News, `/projects` to Research, `/about/careers` to Careers, and so on; the list is `OLD_LINKS` in `tools/build.py`).
 
 ### Home welcome
 
@@ -241,7 +248,7 @@ All content is shown with one of three blocks. The Publications list is the mode
 
 | List | Left column | Right column |
 |---|---|---|
-| News | Image, whole, in a 3:2 frame (180px wide) | Date · title · summary · links |
+| News | Image, whole, in a 3:2 frame (180px wide) | Date · title (a link when the event has its own page) · summary · links ("Details →" first, then slides, brochure, recording) |
 | Completed projects | Years (110px) | Title (links to the project page) · sponsor and area · summary · reports · Details |
 | Publications | Thumbnail (132px wide, 171px high; 96px on phones, 72px at 360px or less) | Title · authors · venue · type · link |
 
@@ -319,7 +326,7 @@ One way to write each, so the same thing never appears in three forms.
 | | data centers (two words) · SIM Home · SIM Lab · 1 kWh Challenge | datacenters · SIM-Home |
 | An organization in a list of people | The full name, without an abbreviation in brackets, unless every entry of that organization has it | Electric Power Research Institute (EPRI) in one row only |
 
-Exceptions, kept as published: author lists and titles in Publications, and speaker names and talk titles in the Events Archive (a record of what was announced).
+Exceptions, kept as published: author lists and titles in Publications, and speaker names and talk titles on event pages (a record of what was announced).
 
 ### Bullets, numbers, labels or sentences
 
@@ -360,8 +367,8 @@ Inside a bullet list:
 | Contact cards, 1 kWh Challenge design, webinar details | Label / value rows | Names with values |
 | Student projects, Earlier documents | Plain link list | Each row is a document |
 | SIM Home: recommendations | A lead-in line, then bullets (full sentences) | Four separate recommendations |
-| Events Archive: each event | Title, date, one paragraph, speakers in one sentence, agenda, links, picture: the same order for every event | Seven events read as one list |
-| Events Archive agendas | Behind an "Agenda" disclosure (the old site also hid them). Bullets, one line each: "time \| **speaker**, organization: *title*"; nested where the program has sessions | Time-ordered program, kept as published |
+| Event page | Paragraph, speakers in one sentence, agenda, links: the same order on every event page | Seven pages read as one series |
+| Event page: agenda | Under an "Agenda" heading, open (the page exists for it). Bullets, one line each: "time \| **speaker**, organization: *title*"; nested where the program has sessions | Time-ordered program, kept as published |
 
 `tools/check.py` stops the build when a list has one item, when a list mixes sentences and phrases, and when cards in one row mix lists and plain text.
 
@@ -545,6 +552,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.34 | 2026-11-14 | News restructured on Keven's question whether the Events Archive was needed: the archive page is gone; each of its seven events has its own page (`event-<id>.html`) with speakers and agenda, opened from the News list, following the pattern of project pages. No text was dropped. Paging deferred until the list passes 20 items. The build now writes forwarding pages for the old site's addresses. |
 | 0.33 | 2026-11-14 | Footer redesigned after Keven found it cramped: more space, three equal columns (UC Irvine and Calit2 logos, Visit, Contact), then one line with the copyright and social icons. Four alternatives were compared and set aside. New rule: the CalPlug logo is never recolored. |
 | 0.32 | 2026-11-13 | Home paragraph: lines now break at sentence ends on screens wider than 760px (Keven: the breaks looked odd, with "We" and "Founded" left at line ends). |
 | 0.31 | 2026-11-13 | Publication thumbnails enlarged again, to 132px (96px on phones), after comparing 96 / 132 / 160 with Keven against the UW Makeability Lab list. Home section titles stay left-aligned: only the welcome block is centered (discussed, no change). |

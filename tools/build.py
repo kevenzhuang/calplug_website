@@ -32,11 +32,11 @@ NAV = [
 ]
 # which top-level item is "current" for each page
 SECTION = {"sim-home.html": "research.html", "sim-lab.html": "research.html", "1-kwh-challenge.html": "research.html",
-           "facilities.html": "research.html", "events-archive.html": "news.html"}
+           "facilities.html": "research.html"}
 OLD_LINKS = {"/sim-home": "sim-home.html", "/sim-lab": "sim-lab.html", "/1-kwh-challenge": "1-kwh-challenge.html",
              "/friends": "support.html#friends", "/members-2": "support.html#members", "/support": "support.html",
              "/affiliations": "support.html#affiliates", "/about/careers": "careers.html", "/about/contact": "contact.html",
-             "/eventsarchive": "events-archive.html", "/projects": "research.html", "/publications": "publications.html",
+             "/eventsarchive": "news.html", "/projects": "research.html", "/publications": "publications.html",
              "/about/team": "people.html#team", "/about": "about.html", "/facilities": "research.html#labs", "/": "index.html", "": "index.html"}
 
 
@@ -291,8 +291,11 @@ def legacy(slug):
     if not f.exists():
         ERRORS.append(f"content/legacy/{slug}.html is missing; run tools/import_pages.py")
         return ""
-    html = f.read_text(encoding="utf-8")
+    return localize(f.read_text(encoding="utf-8"))
 
+
+def localize(html):
+    """Point links and images written for the old site at this site."""
     def src(m):
         return f'src="{e(url(m.group(1)))}"'
 
@@ -325,7 +328,7 @@ def tidy_lists(html):
     return re.sub(r"<ul>((?:(?!<ul>).)*?)</ul>", fix, html, flags=re.S)
 
 
-LEGACY_BACK = {"events-archive.html": ("news.html", "News & Events"), "sim-home.html": ("research.html#labs", "Our labs"),
+LEGACY_BACK = {"sim-home.html": ("research.html#labs", "Our labs"),
                "sim-lab.html": ("research.html#labs", "Our labs"), "1-kwh-challenge.html": ("research.html#labs", "Our labs")}
 
 
@@ -372,12 +375,43 @@ def person(p, sub, tag="h3"):
 
 # ---------- pages ----------
 
+def event_file(ev):
+    """An event with more to say than its row (speakers, agenda) has content/events/<id>.html and gets its own page,
+    the way a project with a description does (DESIGN.md section 2, News)."""
+    return ROOT / "content" / "events" / f"{ev['id']}.html"
+
+
+def event_page_name(ev):
+    return f"event-{ev['id']}.html"
+
+
 def news_item(ev):
     thumb = f'<div class="thumb">{img(ev.get("image") or NEWS_DEFAULT, "")}</div>'
+    own = event_file(ev).exists()
+    title = f'<a href="{event_page_name(ev)}">{e(ev["title"])}</a>' if own else e(ev["title"])
+    row = (f'<a class="more" href="{event_page_name(ev)}">Details</a>' if own else "") + "".join(
+        f'<a href="{e(url(l["url"]))}">{e(l["label"])}</a>' for l in ev.get("links") or [])
     return (f'<article class="news">{thumb}<div><div class="when">{e(fmt_date(ev))}</div>'
-            f'<h3>{e(ev["title"])}</h3>'
+            f'<h3>{title}</h3>'
             f'{f"<p>{e(ev.get("summary") or ev.get("theme") or "")}</p>" if ev.get("summary") or ev.get("theme") else ""}'
-            f'{links(ev.get("links"))}</div></article>')
+            f'{f"""<div class="links">{row}</div>""" if row else ""}</div></article>')
+
+
+def build_event_page(ev, site):
+    where = ev.get("location") or ("Online" if ev.get("format") == "online" else "")
+    meta = " \u00b7 ".join(x for x in (e(fmt_date(ev)), e(where)) if x)
+    pic = f'<figure class="figure">{img(ev["image"], ev.get("image_alt", ""), eager=True)}</figure>' if ev.get("image") else ""
+    if ev.get("image") and not ev.get("image_alt"):
+        ERRORS.append(f"events.json {ev['id']}: an event with its own page needs image_alt (what the picture shows)")
+    body = head(ev["title"], f'<p class="meta head-meta">{meta}</p>' if meta else "") + f"""
+<section class="section"><div class="wrap prose">
+  {pic}
+  {tidy_lists(localize(event_file(ev).read_text(encoding="utf-8")))}
+  {links(ev.get("links"))}
+  <p class="back"><a href="news.html">\u2190 All news and events</a></p>
+</div></section>
+"""
+    return page(event_page_name(ev), ev["title"], (ev.get("summary") or ev["title"])[:155], body, site, image=ev.get("image"))
 
 
 def words(text):
@@ -681,8 +715,7 @@ def build_news(site, events):
     dated = sorted([x for x in evs if x.get("date")], key=lambda x: x["date"], reverse=True)
     undated = [x for x in evs if not x.get("date")]
     body = head("News & Events") + f"""
-<section class="section"><div class="wrap"><h2 class="visually-hidden">All news and events</h2><div class="list">{''.join(news_item(x) for x in dated + undated)}</div>
-<p class="after-list"><a class="more" href="events-archive.html">Events Archive: full agendas, speakers and recordings</a></p></div></section>
+<section class="section"><div class="wrap"><h2 class="visually-hidden">All news and events</h2><div class="list">{''.join(news_item(x) for x in dated + undated)}</div></div></section>
 """
     return page("news.html", "News & Events", "CalPlug workshops and events.", body, site)
 
@@ -852,7 +885,6 @@ def main():
         "sim-home.html": legacy_page("sim-home.html", "SIM Home", "sim-home", site, "The Simulation, Integration, and Management (SIM) Home at CalPlug."),
         "sim-lab.html": legacy_page("sim-lab.html", "SIM Lab", "sim-lab", site, "CalPlug SIM Lab testing and demonstration labs."),
         "1-kwh-challenge.html": legacy_page("1-kwh-challenge.html", "1 kWh Challenge", "1-kwh-challenge", site, "The One Kilowatt-hour Challenge outreach program."),
-        "events-archive.html": legacy_page("events-archive.html", "Events Archive", "events-archive", site, "Past CalPlug workshops with agendas, speakers and recordings."),
         "careers.html": build_careers(site, load("careers"), {p["id"]: p for p in projects["projects"]}),
         "support.html": build_support(site, load("support")),
         "contact.html": build_contact(site),
@@ -862,6 +894,14 @@ def main():
         if paras(p):
             SECTION[project_page_name(p)] = "research.html"
             pages[project_page_name(p)] = build_project_page(p, projects["themes"], site)
+    for ev in events["events"]:
+        if event_file(ev).exists():
+            SECTION[event_page_name(ev)] = "news.html"
+            pages[event_page_name(ev)] = build_event_page(ev, site)
+    known = {ev["id"] for ev in events["events"]}
+    for f in sorted((ROOT / "content" / "events").glob("*.html")):
+        if f.stem not in known:
+            ERRORS.append(f"content/events/{f.name} has no entry with that id in data/events.json")
     if ERRORS:
         print("Build stopped. Fix these data problems:\n  " + "\n  ".join(ERRORS))
         sys.exit(1)
@@ -877,6 +917,17 @@ def main():
         shutil.copytree(ASSETS, DIST / "assets")
     if (ROOT / "wp-content").exists():  # documents from the old site, served at their old address
         shutil.copytree(ROOT / "wp-content", DIST / "wp-content")
+    # Addresses of the old WordPress site (calplug.org/projects, /eventsarchive, ...) lead to the page that replaced them.
+    for old, new in OLD_LINKS.items():
+        if old.strip("/"):
+            up = "../" * len(old.strip("/").split("/"))
+            d = DIST / old.strip("/")
+            d.mkdir(parents=True, exist_ok=True)
+            (d / "index.html").write_text(
+                f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>{e(site["name"])}</title>'
+                f'<meta http-equiv="refresh" content="0; url={up}{new}"><meta name="robots" content="noindex">'
+                f'<link rel="canonical" href="{e(site["site_url"])}/{new}"></head>'
+                f'<body><p>This page has moved. <a href="{up}{new}">Continue</a></p></body></html>', encoding="utf-8")
     (DIST / ".nojekyll").write_text("")
     print(f"Built {len(pages)} pages into dist/")
     if MISSING:

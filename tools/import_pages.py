@@ -14,7 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 OLD_SITE = "https://www.calplug.org"
 PAGES = {"sim-home": "/sim-home", "sim-lab": "/sim-lab", "1-kwh-challenge": "/1-kwh-challenge",
-         "careers": "/about/careers", "events-archive": "/eventsarchive", "support": "/support",
+         "careers": "/about/careers", "support": "/support",
          "friends": "/friends", "members": "/members-2"}
 KEEP = {"p", "h2", "h3", "h4", "h5", "h6", "ul", "ol", "li", "a", "img", "strong", "b", "em", "i", "br",
         "table", "thead", "tbody", "tr", "td", "th", "blockquote"}

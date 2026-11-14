@@ -42,7 +42,7 @@ Rewritten after the full audit of 2026-11-13 (DESIGN.md 0.28). Earlier numbers a
 1. **Careers is out of date and has no way to apply.** Positions and deadline are for Spring 2026 (deadline April 3, 2026, now past); one position still carries a Fall 2025 code (IAC-F25). The old page gives no form or address: is e-mailing the mentor the way to apply? Need the current term, positions and deadline.
 2. **Copyright line.** The footer says "© 2026 California Plug Load Research Center". Should it be "© 2026 The Regents of the University of California", as on other UC Irvine sites?
 3. **1 kWh Challenge.** The old page said "With Covid restrictions in place the 1 Kilowatt-hour Challenges are on hold." The new page says "The challenges are currently on hold." Still on hold, or ended? If ended, the sentence goes.
-4. **Workshop #19 and 10th Anniversary.** The Events Archive gives it the same date as Workshop #18 (October 18, 2021); its slides page is dated May 2022. Need the real date. In News it is shown without a date for this reason.
+4. **Workshop #19 and 10th Anniversary.** The old site's Events Archive gives it the same date as Workshop #18 (October 18, 2021); its slides page is dated May 2022. Need the real date. In News it is shown without a date for this reason.
 5. **LADWP COVID-19 project.** No description or summary: the old site's description was a copy of the CESMII survey text. Need two or three sentences.
 6. **Computer Power Management Usage Survey.** The old report link opens the Set-Top Box report, so the project has no report link. Need the right file.
 7. **Home paragraph.** Home now opens with the group photo and one paragraph instead of a title. Is the new paragraph (below, "Text written or shortened") right, or should the old tagline be used? The old one is kept in `data/site.json` as `tagline_current_site`.
@@ -63,7 +63,7 @@ Projects
 Labs and archive
 - SIM Lab: "SIM labs (Simulation Integration Majority)" was changed to "(Simulation, Integration, and Management)", the expansion used on the SIM Home page. Correct?
 - Our labs introduction ("CalPlug encompasses various facilities that ensure the latest in Plug and Process load research is going on") reads awkwardly; left as written. A new sentence would be welcome.
-- Events Archive, Workshop #19: the speaker line said "John Woosley", the agenda "John Woolsey"; both now say Woolsey. "Matthias Kurwing" (Enervee) may be "Kurwig". Please check both names.
+- Workshop #19 page: the speaker line said "John Woosley", the agenda "John Woolsey"; both now say Woolsey. "Matthias Kurwing" (Enervee) may be "Kurwig". Please check both names.
 
 People
 - Advisory board order: co-chairs first, then alphabetical, except Armen Saiyan at the end. Intended?
@@ -199,6 +199,8 @@ Only three kinds of change were made: spelling and grammar, the tense of complet
 | Events Archive, all | Times as 10 am, 9:00 a.m., 1:00pm; dates as Monday, October 18, 2021 / July 12-15, 2021 / Mar 17, 2021 | 10:00 am, 9:00 am, 1:00 pm; Oct 18, 2021 / Jul 12–15, 2021 / Mar 17, 2021 |
 | Events Archive, all | Link words "Related Slides", "Presentation Slides", "Program Brochure", "Watch Recording", "PPT", "here" | "Slides", "Brochure", "Recording", "slides" (the words used in News) |
 
+Since version 0.34 the Events Archive is no longer one page: each event above has its own page (`content/events/<id>.html`), with the text as corrected here. "Presented online." moved from the text to the line under the title. The EarthDay.org link of Workshop #17 moved into its link row.
+
 Paragraphs split without changing a word (limit: 150 words per paragraph):
 
 - SIGNAL: new paragraph “Second, a state-of-the-art…” / “Third, a comprehensive…”
@@ -235,3 +237,4 @@ Also: the SIM Home project no longer has a second page with the same title and t
 
 - The old Careers, Support, Friends and Members pages: their content was rewritten into `data/careers.json` and `data/support.json`; the old text is kept in `content/legacy/` as a record.
 - The old Facilities page: now "Our labs" on Research.
+- The old Events Archive page: its seven events are now seven event pages opened from News.
