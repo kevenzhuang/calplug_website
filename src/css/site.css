@@ -95,6 +95,9 @@ main > :last-child { padding-bottom: var(--s-64); }
 .welcome .lead { max-width: var(--text); margin: 0 auto var(--s-16); }
 .welcome .textlinks { justify-content: center; margin: 0 auto; }
 .welcome .lead strong { font-weight: var(--w-title); }
+/* Where a sentence fits on one line (wider than 760px), each sentence is its own block, so a line never ends one word into the next sentence.
+   On phones the paragraph flows normally: sentence blocks there turn into many short lines. */
+@media (min-width: 761px) { .welcome .lead span { display: block; text-wrap: balance; } }
 .welcome + .section { padding-top: var(--s-32); }
 .welcome::after { content: ""; display: block; max-width: calc(var(--page) - 2 * var(--s-24)); margin: var(--s-32) auto 0; border-bottom: 1px solid var(--line); }
 .textlinks { display: flex; gap: var(--s-8) var(--s-24); flex-wrap: wrap; font-size: var(--fs-small); font-weight: var(--w-label); margin: 0; }

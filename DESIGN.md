@@ -1,6 +1,6 @@
 # CalPlug Website Design Guide
 
-Version 0.31, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
+Version 0.32, 2026-11-13. Status: built with Keven Zhuang, change by change; waiting for review by Arnold Wang.
 Read this before changing any page, style or template. If a problem is not covered here, fix this guide first, then fix the page.
 
 **Formats come first.** Every kind of content (a news item, a publication, a person, a project) has one format, defined here and in `MAINTAINING.md`. New content is built on these formats. When a format turns out to be wrong or incomplete, improve the format, record the change in the change log, and bring existing content up to it. No one-off exceptions on a page.
@@ -57,6 +57,8 @@ A lab's home page shows its people first (the model is the USC Melady Lab site).
 1. The group photo, whole, not cropped. At most 640px wide, because the only copy is 400 by 225 pixels and looks soft when enlarged further. When a photo of 1600px or wider arrives, raise the limit to the text width (720px).
 2. One paragraph (19px, at most 720px wide, at most 40 words): `tagline` in `data/site.json`. It opens with the center's full name, "The California Plug Load Research Center (CalPlug) ...", set in title weight, because the page has no visible title and the logo says only "CalPlug". The build stops if the full name is missing.
 3. Three text links: About · Join us · Contact.
+
+Line breaks in the paragraph: centered text is read line by line, so a line must not end one word into the next sentence ("... less of it. We" / "... policy makers. Founded"). On screens wider than 760px each sentence is its own block with balanced lines: the first sentence takes two lines of similar length, the other two one line each. On phones a sentence does not fit on a line, and sentence blocks would turn into many short lines, so there the paragraph flows normally. The build splits the sentences; nothing is typed by hand.
 
 - No visible title and no green line: the name would say the same thing three times (logo, title, first sentence). The h1 is still in the page for search engines and screen readers, hidden from view.
 - White background, a 1px line below. The sections under it (news, projects, publications) stay left-aligned: lists are scanned from the left edge.
@@ -531,6 +533,7 @@ Everything CalPlug shows outside the website (slides, flyers, posters) follows t
 | 0.6 | 2026-11-12 | About page; original wording kept everywhere. |
 | 0.7 | 2026-11-12 | Navigation copied from the previous site with drop-downs; original pages restored. Reviewed as too heavy. |
 | 0.8 | 2026-11-12 | Lighter version: one-row menu, stacked welcome, one list format, type hierarchy. Reviewed: news too low, logo too small, colors unused, Careers hidden. |
+| 0.32 | 2026-11-13 | Home paragraph: lines now break at sentence ends on screens wider than 760px (Keven: the breaks looked odd, with "We" and "Founded" left at line ends). |
 | 0.31 | 2026-11-13 | Publication thumbnails enlarged again, to 132px (96px on phones), after comparing 96 / 132 / 160 with Keven against the UW Makeability Lab list. Home section titles stay left-aligned: only the welcome block is centered (discussed, no change). |
 | 0.30 | 2026-11-13 | Home welcome redesigned after Keven's comparison with the Melady Lab site: group photo first, then one centered paragraph and three links; no visible title, the full name opens the paragraph in title weight (the build checks that it is there). Approved from a before-and-after preview. |
 | 0.29 | 2026-11-13 | Publication thumbnails enlarged from 72px to 96px wide (56px to 72px on phones), after Keven's review: same height as news images, top edge level with the title. |

@@ -469,7 +469,11 @@ def build_home(site, projects, pubs, events, people, partners):
     full = f'{site["full_name"]} ({site["name"]})'
     if full not in site["tagline"]:
         ERRORS.append(f"site.json tagline must contain the full name: {full}")
-    lead = e(site["tagline"]).replace(e(full), f"<strong>{e(full)}</strong>", 1)
+    # Centered text breaks where a sentence ends, never one word into the next sentence ("... of it. We"):
+    # each sentence is its own block and its lines are balanced (DESIGN.md section 2, Home welcome).
+    sentences = re.split(r"(?<=[.!?])\s+(?=[A-Z])", site["tagline"].strip())
+    lead = "".join(f"<span>{e(x)}</span> " for x in sentences).strip()
+    lead = lead.replace(e(full), f"<strong>{e(full)}</strong>", 1).replace(f'{e(site["full_name"])} (', f'{e(site["full_name"])}\u00a0(', 1)
     body = f"""
 <section class="welcome"><div class="wrap">
   <h1 class="visually-hidden">California Plug Load Research Center</h1>
